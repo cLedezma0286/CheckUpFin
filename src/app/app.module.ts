@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeModule } from "./premier/home/home.module";
 import { LoaderModule } from './premier/loader/loader.module';
+import { ClientSearchModule } from "./premier/client-search/client-search.module";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LoaderModule } from './premier/loader/loader.module';
     HttpClientModule,
     routing,
     HomeModule,
-    LoaderModule
+    LoaderModule,
+    ClientSearchModule
   ],
   providers: [],
   bootstrap: [AppComponent]

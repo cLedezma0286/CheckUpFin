@@ -1,0 +1,24 @@
+@import 'app-colors';
+.client-search{
+  display: flex;
+  flex-direction: column;
+  .header{
+    width: 100%;
+    height: 58px;
+    background-color: $white;
+  }
+  .content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    .whiteBox{
+      width: 843px;
+      height: 366px;
+      padding: 36px 60px 0px 60px;
+      .card_description{
+        margin-top: 12px;
+      }
+    }
+  }
+}
