@@ -8,8 +8,11 @@ html, body{
   width: 100%;
   height: 100%;
   background-color: $background-gray;
+  font-family: 'UniversNextforHSBC';
 }
 p{
   margin: 0;
-  font-family: 'UniversNextforHSBC';
+}
+.height100 {
+  height: 100%;
 }
