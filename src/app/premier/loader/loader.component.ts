@@ -19,7 +19,7 @@ export class LoaderComponent{
   interval;
   interval2;
 
-  constructor( private router: Router){
+  constructor( public router: Router){
     this.textLoading = router.url === '/loading/EDRAS'? 'Cargando EDRAS' : 'calculando salud financiera';
     this.interval = setInterval(() => {
       if(document.querySelector(".outer")){
