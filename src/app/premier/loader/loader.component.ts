@@ -39,7 +39,7 @@ export class LoaderComponent{
   }
 
   startAnimation() {
-    this.interval2 = setInterval((){
+    this.interval2 = setInterval(() => {
       this.percentage += this.increment;
       this.circle.style.strokeDashoffset = this.calculatePercentage(this.radio, this.percentage);
       if(this.percentage > 100 ){
