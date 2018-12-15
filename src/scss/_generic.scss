@@ -34,6 +34,17 @@ p{
 }
 button{
   cursor: pointer;
+  &.generic_hsbc{
+    border: none;
+    background-color: $primary-red;
+    font-size: 16px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+  }
 }
 .fill_screen{
   width: 100%;

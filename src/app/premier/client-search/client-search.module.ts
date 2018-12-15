@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { ClientSearchComponent } from "./client-search.component";
-
 @NgModule({
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   declarations: [
     ClientSearchComponent
