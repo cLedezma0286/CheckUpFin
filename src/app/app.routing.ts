@@ -1,10 +1,13 @@
 import { Routes, RouterModule } from "@angular/router";
 import { ModuleWithProviders } from "@angular/core";
 import { HomeComponent } from "./premier/home/home.component";
+import { LoaderComponent } from "./premier/loader/loader.component";
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'loading/financeHealth', component: LoaderComponent },
+  { path: 'loading/EDRAS', component: LoaderComponent },
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 
