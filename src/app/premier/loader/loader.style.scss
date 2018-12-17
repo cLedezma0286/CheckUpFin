@@ -1,0 +1,63 @@
+@import 'app-colors';
+
+.mainBackground {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadingDiv {
+  display: flex;
+  justify-content: space-around;
+}
+
+svg {
+  width: 120px;
+  height: 120px;
+}
+
+.chart {
+  display: inline-block;
+  color: $chart-loading;
+  font-size: 20px;
+  width: 120px;
+  height: 120px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.chart svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  .icon {
+    fill: $primary-red;
+    transform-origin: center center;
+    transition: all .5s linear;
+  }
+}
+
+.outer {
+  fill: transparent;
+  stroke: $primary-red;
+  stroke-dashoffset: 345;
+  stroke-width: 2px;
+  transition: all .5s linear;
+}
+
+.inner {
+  fill: transparent;
+  stroke: $white;
+  stroke-dashoffset: 0;
+  stroke-width: 2px;
+}
+
+div.loading-txt {
+  font-weight: 100;
+  font-size: 30px;
+  text-align: center;
+  color: $text-black;
+}

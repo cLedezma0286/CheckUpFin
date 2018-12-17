@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HomeComponent } from "./home.component";
+import { LoaderComponent } from "./loader.component";
 
 @NgModule({
   imports: [
     BrowserModule
   ],
   declarations: [
-    HomeComponent
+    LoaderComponent
   ],
   exports: [
-    HomeComponent
+    LoaderComponent
   ]
 })
-export class HomeModule {
+export class LoaderModule {
 }
