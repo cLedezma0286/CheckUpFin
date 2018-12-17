@@ -1,0 +1,14 @@
+<div class="client-search fill_screen">
+  <div class="header"></div>
+  <div class="content">
+    <div class="whiteBox">
+      <p class="card_title">Busca o añade un cliente por su CIS</p>
+      <p class="card_description">Busca cliente o añade uno si este no existe o si nunca se le hizo el ckeck up financiero.</p>
+      <input name="cis_numer" [(ngModel)]="cis_numer"/>
+      <button class="generic_hsbc" (click)="searchClients()">Buscar clientes</button>
+      <div class="clients_list">
+      	<p *ngFor="let client of clients">{{client.num_clie_cis}} | {{client.nombre_clie}}</p>
+      </div>
+    </div>
+  </div>
+</div>
