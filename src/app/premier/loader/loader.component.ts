@@ -65,10 +65,10 @@ export class LoaderComponent{
     var c = Math.PI * (r * 2);
 
     if (val < 0) {
-        val = 0;
+      val = 0;
     }
     if (val > 100) {
-        val = 100;
+      val = 100;
     }
 
     var pct = ((100 - val) / 100) * c;
