@@ -11,6 +11,7 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'loading/finance-health', component: LoaderComponent },
   { path: 'loading/edras', component: LoaderComponent },
+  { path: 'clients-search', component: ClientSearchComponent },
   { path: 'client-finances', component: ClientFinancesComponent,
     children: [
       { path: 'products', component: ProductsComponent }
