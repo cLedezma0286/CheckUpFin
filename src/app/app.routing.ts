@@ -3,13 +3,19 @@ import { ModuleWithProviders } from "@angular/core";
 import { HomeComponent } from "./premier/home/home.component";
 import { LoaderComponent } from "./premier/loader/loader.component";
 import { ClientSearchComponent } from "./premier/client-search/client-search.component";
+import { ClientFinancesComponent } from "./premier/client-finances/client-finances.component";
+import { ProductsComponent } from "./premier/client-finances/products/products.component";
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'loading/financeHealth', component: LoaderComponent },
-  { path: 'loading/EDRAS', component: LoaderComponent },
-  { path: 'client-search', component: ClientSearchComponent},
+  { path: 'loading/finance-health', component: LoaderComponent },
+  { path: 'loading/edras', component: LoaderComponent },
+  { path: 'clients-search', component: ClientSearchComponent },
+  { path: 'client-finances', component: ClientFinancesComponent,
+    children: [
+      { path: 'products', component: ProductsComponent }
+  ] },
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 
