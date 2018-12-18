@@ -8,6 +8,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeModule } from "./premier/home/home.module";
 import { LoaderModule } from './premier/loader/loader.module';
 import { ClientSearchModule } from "./premier/client-search/client-search.module";
+import { ClientFinancesModule } from './premier/client-finances/client-finances.module'
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ClientSearchModule } from "./premier/client-search/client-search.module
     routing,
     HomeModule,
     LoaderModule,
-    ClientSearchModule
+    ClientSearchModule,
+    ClientFinancesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
