@@ -14,9 +14,17 @@
     </div>
     <div class="separation"></div>
     <div class="menu">
-      <div></div>
-      <div></div>
-      <div></div>
+      <div class="hamburger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="clickable" open_menu="true"></div>
+      </div>
+      <div class="options_container" *ngIf="open_menu">
+        <div class="option">Buscar o añadir cliente nuevo</div>
+        <div class="option">Nueva entrevista con cliente</div>
+        <div class="option">Ficha de cliente</div>
+      </div>
     </div>
   </div>
 </div>

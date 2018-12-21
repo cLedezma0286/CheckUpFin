@@ -95,15 +95,76 @@
     }
     .menu{
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 30px;
-      height: 18px;
-      cursor: pointer;
-      div{
-        width: 100%;
-        height: 2px;
-        background-color: $menu-gray;
+      align-items: center;
+      position: relative;
+      height: 100%;
+      .hamburger{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        width: 30px;
+        height: 18px;
+        cursor: pointer;
+        .line{
+          width: 100%;
+          height: 2px;
+          background-color: $menu-gray;
+        }
+        .clickable{
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: 100%;
+          height: 100%;
+          cursor: pointer;
+          background-color: red;
+          z-index: 2
+        }
+      }
+      .options_container{
+        position: absolute;
+        top: 100%;
+        right: -8px;
+        width: 270px;
+        border-radius: 2px;
+        background-color: $text-black;
+        &:before{
+          content: '';
+          position: absolute;
+          width: 0px;
+          height: 0px;
+          border-left: 6px solid transparent;
+          border-right: 6px solid transparent;
+          border-bottom: 12px solid $text-black;
+          top: -12px;
+          right: 17px;
+        }
+        .option{
+          display: flex;
+          align-items: center;
+          padding-left: 12px;
+          width: 100%;
+          height: 30px;
+          color: $white;
+          font-size: 16px;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: 1;
+          letter-spacing: normal;
+          cursor: pointer;
+          &:nth-child(1){
+            border-top-right-radius: 2px;
+            border-top-left-radius: 2px;
+          }
+          &:nth-child(n + 1){
+            border-bottom: 1px solid $menu-border-bottom;
+          }
+          &:last-child{
+            border-bottom-right-radius: 2px;
+            border-bottom-left-radius: 2px;
+          }
+        }
       }
     }
   }
