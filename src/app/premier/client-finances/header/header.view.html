@@ -3,5 +3,20 @@
     <img src="assets/logo_hsbc.svg"/>
     <p>Financial <span>Check Up</span></p>
   </div>
-  <div class="header_controls"></div>
+  <div class="header_controls">
+    <div class="sub_title">ENGAGE</div>
+    <div class="percentage_status">
+      <p class="title">Información de Gerardo</p>
+      <div class="status_bar">
+        <div [style.width.%]="percentage"></div>
+      </div>
+      <p class="percentage_amount">{{percentage}}%</p>
+    </div>
+    <div class="separation"></div>
+    <div class="menu">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
 </div>

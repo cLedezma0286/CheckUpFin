@@ -17,7 +17,8 @@
       "dom"
     ],
     "paths": {
-      "@environment/*" : ["environments/*"]
+      "@environment/*" : ["environments/*"],
+      "@shared-services/*" : ["app/shared-services/*"]
     }
   }
 }
