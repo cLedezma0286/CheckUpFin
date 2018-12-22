@@ -15,12 +15,12 @@ export class LoaderComponent{
   radio: number;
   duration: number;
   count: number;
-  increment: number;
+  increment = 0;
   interval;
   interval2;
 
   constructor( public router: Router){
-    this.textLoading = router.url === '/loading/EDRAS'? 'Cargando EDRAS' : 'calculando salud financiera';
+    this.textLoading = router.url === '/loading/edras'? 'Cargando EDRAS' : 'calculando salud financiera';
     this.interval = setInterval(() => {
       if(document.querySelector(".outer")){
         this.circle = document.querySelector(".outer");
@@ -42,7 +42,7 @@ export class LoaderComponent{
     this.interval2 = setInterval(() => {
       this.percentage += this.increment;
       this.circle.style.strokeDashoffset = this.calculatePercentage(this.radio, this.percentage);
-      if(this.percentage > 100 ){
+      if(this.percentage > 99 ){
         this.changeColor();
         clearInterval(this.interval2);
       }
