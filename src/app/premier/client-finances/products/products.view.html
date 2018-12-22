@@ -1,1 +1,28 @@
-<h1>products</h1>
+<div id="menu">
+  <h2 class="title">{{ false ? 'Productos seleccionados' : 'Productos'}}</h2>
+  <ul class="right-menu">
+    <li><a ui-sref="productos({userId:2})" class="active">Todos</a></li>
+    <li><a ui-sref="productos.productosSeleccionados({userId:2})" class="btn-link btn-products" ui-sref-active="active">{{21}} Productos</a></li>
+  </ul>
+</div>
+<div *ngIf="products.length > 0">
+  <div class="product-list" *ngFor="let listado of products">
+    <h2>{{listado[0].categoria}}</h2>
+    <div class="row">
+      <div class="col-product" *ngFor="let producto of listado">
+        <div class="content-box selected">
+          <div class="product-highlight"></div>
+          <div class="product-img"><img [src]="getImagenByCategory(producto.categoria)" /></div>
+          <div class="product-type">{{producto.tipo_producto}}</div>
+          <div class="product-name">{{producto.nombre_producto}}</div>
+          <div class="product-information">{{producto.informacion}}</div>
+          <div class="product-links">
+            <a (click)="showProductInfo(producto)">mas info</a>
+            <a (click)="addProduct(producto);" *ngIf="true">seleccionar</a>
+            <a (click)="selectedProducts.removeProduct(producto.id);" *ngIf="false">deseleccionar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

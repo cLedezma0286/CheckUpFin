@@ -1,0 +1,20 @@
+.bodyClientFinances {
+  margin-right: auto;
+  margin-left: auto;
+  padding: 20px 15px 0 15px;
+}
+@media only screen and (min-width: 768px) {
+  .bodyClientFinances {
+    width: 750px;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .bodyClientFinances {
+    width: 970px;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .bodyClientFinances {
+    width: 1170px;
+  }
+}

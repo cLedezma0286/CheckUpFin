@@ -5,5 +5,6 @@ export const environment = {
   NOTES_URL: BASE_URL + 'notas',
   AGREEMENTS_URL: BASE_URL + 'acuerdos',
   INTERVIEWS_URL: BASE_URL + 'entrevistas',
-  OBJECTIVES_URL: BASE_URL + 'objetivos'
+  OBJECTIVES_URL: BASE_URL + 'objetivos',
+  PRODUCTS_URL: BASE_URL + 'productos'
 };
