@@ -3,5 +3,28 @@
     <img src="assets/logo_hsbc.svg"/>
     <p>Financial <span>Check Up</span></p>
   </div>
-  <div class="header_controls"></div>
+  <div class="header_controls">
+    <div class="subtitle" *ngIf="subtitle !== ''">{{subtitle}}</div>
+    <div class="percentage_status">
+      <p class="title">Información de Gerardo</p>
+      <div class="status_bar">
+        <div [style.width.%]="percentage"></div>
+      </div>
+      <p class="percentage_amount">{{percentage}}%</p>
+    </div>
+    <div class="separation"></div>
+    <div class="menu">
+      <div class="hamburger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="clickable" open_menu="true"></div>
+      </div>
+      <div class="options_container" *ngIf="open_menu">
+        <div class="option">Buscar o añadir cliente nuevo</div>
+        <div class="option">Nueva entrevista con cliente</div>
+        <div class="option">Ficha de cliente</div>
+      </div>
+    </div>
+  </div>
 </div>
