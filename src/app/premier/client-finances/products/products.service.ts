@@ -6,10 +6,23 @@ import { environment } from '@environment/environment';
 	providedIn: 'root'
 })
 export class ProductsService {
+  currentProduct;
 
   constructor(private http: HttpClient) { }
 
+  getCurrentProduct() {
+    return this.currentProduct;
+  }
+
+  setCurrentProduct(value) {
+    this.currentProduct = value;
+  }
+
   getProducts() {
     return this.http.get(environment.PRODUCTS_URL);
+  }
+
+  getProduct(idProduct) {
+    return this.http.get(environment.PRODUCTS_URL + "/" + idProduct);
   }
 }
