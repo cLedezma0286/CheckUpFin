@@ -55,7 +55,7 @@ export class LoaderComponent{
 
     if (this.router.url.indexOf('loading')) {
       setTimeout(() => {
-        this.router.navigate(['home']);
+        this.router.navigate(['clients-search']);
       }, 1000);
     }
   }
