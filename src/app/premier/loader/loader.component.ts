@@ -28,7 +28,7 @@ export class LoaderComponent{
         this.circle.style.strokeDasharray = 2 * Math.PI * this.radio;
         this.delay = 50;
 
-        this.duration = router.url === '/loading/EDRAS'? 50*100 : 30000;
+        this.duration = router.url === '/loading/EDRAS'? 50*100 : 3000;
         this.increment = this.delay*100/this.duration;
 
         this.count = this.duration/this.delay;
@@ -55,7 +55,7 @@ export class LoaderComponent{
 
     if (this.router.url.indexOf('loading')) {
       setTimeout(() => {
-        this.router.navigate(['home']);
+        this.router.navigate(['clients-search']);
       }, 1000);
     }
   }

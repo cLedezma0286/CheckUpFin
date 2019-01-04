@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HeaderModule } from "./header/header.module";
 import { ProductsModule } from "./products/products.module";
+import { CustomerFileModule } from "./customer-file/customer-file.module";
 import { ClientFinancesComponent } from "./client-finances.component";
 
 @NgModule({
@@ -10,7 +11,8 @@ import { ClientFinancesComponent } from "./client-finances.component";
     BrowserModule,
     RouterModule,
     HeaderModule,
-    ProductsModule
+    ProductsModule,
+    CustomerFileModule
   ],
   declarations: [
     ClientFinancesComponent
