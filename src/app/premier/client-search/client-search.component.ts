@@ -20,7 +20,7 @@ export class ClientSearchComponent{
       }
     );
   }
-  goToFinancialCheckUp(){
-    this.router.navigate(['/client-finances/financial-check-up']);
+  goToClientFile(){
+    this.router.navigate(['/client-finances/customer-file']);
   }
 }

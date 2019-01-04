@@ -5,7 +5,7 @@ import { LoaderComponent } from './premier/loader/loader.component';
 import { ClientSearchComponent } from './premier/client-search/client-search.component';
 import { ClientFinancesComponent } from './premier/client-finances/client-finances.component';
 import { ProductsComponent } from './premier/client-finances/products/products.component';
-import { FinancialCheckUpComponent } from './premier/client-finances/financial-check-up/financial-check-up.component';
+import { CustomerFileComponent } from './premier/client-finances/customer-file/customer-file.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -16,8 +16,9 @@ const appRoutes: Routes = [
   { path: 'client-finances', component: ClientFinancesComponent,
     children: [
       { path: 'products', component: ProductsComponent },
-      { path: 'financial-check-up', component: FinancialCheckUpComponent }
-  ] },
+      { path: 'customer-file', component: CustomerFileComponent }
+    ]
+  },
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 
