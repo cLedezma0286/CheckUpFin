@@ -5,24 +5,42 @@
     <li><a ui-sref="productos.productosSeleccionados({userId:2})" class="btn-link btn-products" ui-sref-active="active">{{21}} Productos</a></li>
   </ul>
 </div>
-<div *ngIf="products.length > 0">
-  <div class="product-list" *ngFor="let listado of products">
-    <h2>{{listado[0].categoria}}</h2>
+<div class="alert alert-info" *ngIf="products.length === 0">
+  Cargando productos...
+</div>
+<div *ngIf="products.length > 0 && !currentProduct">
+  <div class="product-list" *ngFor="let list of products">
+    <h2>{{list[0].categoria}}</h2>
     <div class="row">
-      <div class="col-product" *ngFor="let producto of listado">
+      <div class="col-product" *ngFor="let product of list">
         <div class="content-box selected">
           <div class="product-highlight"></div>
-          <div class="product-img"><img [src]="getImagenByCategory(producto.categoria)" /></div>
-          <div class="product-type">{{producto.tipo_producto}}</div>
-          <div class="product-name">{{producto.nombre_producto}}</div>
-          <div class="product-information">{{producto.informacion}}</div>
+          <div class="product-img"><img [src]="getImagenByCategory(product.categoria)" /></div>
+          <div class="product-type">{{product.tipo_producto}}</div>
+          <div class="product-name">{{product.nombre_producto}}</div>
+          <div class="product-information">{{product.informacion}}</div>
           <div class="product-links">
-            <a (click)="showProductInfo(producto)">mas info</a>
-            <a (click)="addProduct(producto);" *ngIf="true">seleccionar</a>
-            <a (click)="selectedProducts.removeProduct(producto.id);" *ngIf="false">deseleccionar</a>
+            <a (click)="showProductInfo(product)">mas info</a>
+            <a (click)="addProduct(product);" *ngIf="true">seleccionar</a>
+            <a (click)="selectedProducts.removeProduct(product.id);" *ngIf="false">deseleccionar</a>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+<div class="alert alert-info marginBottom66px" >
+  Para la contratación de un fondo de inversión en específico, es necesario realizar el perfil de inversión
+</div>
+<div class="modal-product" *ngIf="currentProduct">
+  <div class="container">
+    <div class="simple-modal-logo"></div>
+    <button class="simple-modal-close simple-modal-close-icon" (click)="closeProductModal()">Cerrar</button>
+    
+    <div class="content-box">
+      <h2>{{currentProduct.nombre_producto}}</h2>
+      <h4>{{currentProduct.tipo_producto}}</h4>
+      <div class="product-info-detail">{{currentProduct.mas_informacion}}</div>
     </div>
   </div>
 </div>

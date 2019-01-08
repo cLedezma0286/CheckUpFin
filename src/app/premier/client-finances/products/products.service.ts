@@ -23,6 +23,6 @@ export class ProductsService {
   }
 
   getProduct(idProduct) {
-    return this.http.get(environment.PRODUCTS_URL + "/" + idProduct);
+    return this.http.get(environment.PRODUCTS_URL2 + "/" + idProduct);
   }
 }

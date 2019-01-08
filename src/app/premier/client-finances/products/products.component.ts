@@ -8,6 +8,7 @@ import { ProductsService } from './products.service';
 })
 export class ProductsComponent{
   products = [];
+  currentProduct;
 
   constructor(public productsService: ProductsService){
     productsService.getProducts()
@@ -21,7 +22,6 @@ export class ProductsComponent{
         }
         index++;
       }
-      console.log(this.products);
     });
   }
 
@@ -35,5 +35,16 @@ export class ProductsComponent{
 
     return "assets/images/"+
       (images.hasOwnProperty(category) ? images[category] : images['Hogar']);
-    }
+  }
+
+  showProductInfo(product) {
+    this.productsService.getProduct(product.id)
+    .subscribe(data => {
+      this.currentProduct = data;
+    });
+  }
+
+  closeProductModal() {
+    this.currentProduct = undefined;
+  }
 }
