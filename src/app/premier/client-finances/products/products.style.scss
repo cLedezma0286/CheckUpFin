@@ -107,6 +107,10 @@
     }
   }
 }
+.activeProducts {
+  background: $primary-green;
+  color: $white;
+}
 
 .product-list {
   text-align: center;
@@ -202,7 +206,7 @@
 	}
 }
 
-.modal-product {
+.modal-product, .selected-modal{
   background: $background-gray;
   white-space: pre-wrap;
   z-index: 11;
@@ -213,19 +217,6 @@
   position: fixed;
   overflow-y: auto;
 
-  h2 {
-    font-size: 36px;
-    line-height: 49px;
-    margin-bottom: 0;
-    font-weight: 100;
-  }
-  h4 {
-    font-size: 20px;
-    line-height: 27px;
-    color: $text-light-gray;
-    margin-top: 0;
-    font-weight: 300;
-  }
   .container {
     position: relative;
     padding-top: 100px;
@@ -259,6 +250,95 @@
     height: 26px;
   }
 }
+.selected-modal {
+  h2 {
+    font-weight: 100;
+    font-size: 24px;
+    margin-bottom: 40px;
+    color: $text-black;
+  }
+  .content-box {
+    padding: 24px 37px;
+    max-width: 1140px;
+  }
+  .checkbox-group {
+    margin-bottom: 15px;
+    padding-top: 15px;
+    padding-left: 60px;
+
+    .number {
+      float: left;
+      margin-left: -35px;
+      color: $primary-red;
+    }
+    label {
+      margin-bottom: 5px;
+      padding-left: 0;
+      cursor: default;
+    }
+    .control-label {
+      color: $text-gray;
+      font-size: 18px;
+      font-weight: 300;
+      position: relative;
+      display: block;
+    }
+  }
+  .btn-link {
+    color: $text-black;
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 8px 24px;
+    &:hover{
+      text-decoration: underline;
+      color: $hover-red;
+    }
+  }
+  .btn-primary {
+    color: $white;
+    background-color: $primary-red;
+    font-size: 16px;
+    padding: 8px 24px;
+    border: none;
+    font-weight: normal;
+    &:hover{
+      background-color: $hover-red
+    }
+  }
+  .radio {
+    font-size: 14px;
+    color: $light-gray;
+    font-weight: 300;
+    padding-left: 20px;
+  }
+  .btn-wrapper-right{
+    text-align: right;
+    margin-top: 30px;
+  }
+  .form-group{
+    margin-bottom: 25px;
+  }
+}
+.modal-product {
+  .content-box {
+    padding: 70px;
+    max-width: 1140px;
+  }
+  h2 {
+    font-size: 36px;
+    line-height: 49px;
+    margin-bottom: 0;
+    font-weight: 100;
+  }
+  h4 {
+    font-size: 20px;
+    line-height: 27px;
+    color: $light-gray;
+    margin-top: 0;
+    font-weight: 300;
+  }
+}
 
 @media only screen and (min-width: 992px) {
   .col-product {
@@ -267,7 +347,7 @@
 }
 
 @media only screen and (max-width: 1200px) {
-  .modal-product {
+  .modal-product, .selected-modal {
     .container {
       margin-right: 10%;
       margin-left: 10%;
@@ -276,7 +356,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .modal-product {
+  .modal-product, .selected-modal {
     .container {
       margin-right: 0;
       margin-left: 0;

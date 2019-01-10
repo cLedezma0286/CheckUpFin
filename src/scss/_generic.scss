@@ -92,3 +92,16 @@ button{
     font-weight: 300;
   }
 }
+.radio, .checkbox {
+  position: relative;
+  display: block;
+  margin-top:10px;
+  margin-bottom: 10px;
+}
+.radio input[type="radio"]{
+  position: absolute;
+  margin-left: -20px;
+}
+input[type="radio"]{
+  margin: 4px 0 0;
+}

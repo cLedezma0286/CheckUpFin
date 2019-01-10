@@ -2,18 +2,18 @@
   <h2 class="title">{{ false ? 'Productos seleccionados' : 'Productos'}}</h2>
   <ul class="right-menu">
     <li><a ui-sref="productos({userId:2})" class="active">Todos</a></li>
-    <li><a ui-sref="productos.productosSeleccionados({userId:2})" class="btn-link btn-products" ui-sref-active="active">{{21}} Productos</a></li>
+    <li><a class="btn-link btn-products" (click)="showSelected()" [ngClass]="{activeProducts: showSelectedProducts}">{{selectedProducts.length}} Productos</a></li>
   </ul>
 </div>
 <div class="alert alert-info" *ngIf="products.length === 0">
   Cargando productos...
 </div>
-<div *ngIf="products.length > 0 && !currentProduct">
+<div *ngIf="products.length > 0 && !currentProduct && !selectedProduct">
   <div class="product-list" *ngFor="let list of products">
     <h2>{{list[0].categoria}}</h2>
     <div class="row">
       <div class="col-product" *ngFor="let product of list">
-        <div class="content-box selected">
+        <div class="content-box" [ngClass]="{selected: product.isAdded}">
           <div class="product-highlight"></div>
           <div class="product-img"><img [src]="getImagenByCategory(product.categoria)" /></div>
           <div class="product-type">{{product.tipo_producto}}</div>
@@ -21,15 +21,15 @@
           <div class="product-information">{{product.informacion}}</div>
           <div class="product-links">
             <a (click)="showProductInfo(product)">mas info</a>
-            <a (click)="addProduct(product);" *ngIf="true">seleccionar</a>
-            <a (click)="selectedProducts.removeProduct(product.id);" *ngIf="false">deseleccionar</a>
+            <a (click)="selectProduct(product)" *ngIf="!product.isAdded">seleccionar</a>
+            <a (click)="removeProduct(product.id)" *ngIf="product.isAdded">deseleccionar</a>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="alert alert-info marginBottom66px" >
+<div class="alert alert-info marginBottom66px" *ngIf="products.length > 0">
   Para la contratación de un fondo de inversión en específico, es necesario realizar el perfil de inversión
 </div>
 <div class="modal-product" *ngIf="currentProduct">
@@ -41,6 +41,37 @@
       <h2>{{currentProduct.nombre_producto}}</h2>
       <h4>{{currentProduct.tipo_producto}}</h4>
       <div class="product-info-detail">{{currentProduct.mas_informacion}}</div>
+    </div>
+  </div>
+</div>
+
+<div class="selected-modal" *ngIf="selectedProduct">
+  <div class="container">
+    <div class="simple-modal-logo"></div>
+    <button class="simple-modal-close simple-modal-close-icon" (click)="closeProductModal()">Cerrar</button>
+    
+    <div class="content-box">
+      <h2 class="marginBottom40px">Asocia el producto seleccionado a los objetivos del cliente</h2>
+
+			<div class="form-group checkbox-group" *ngFor="let product of selectedProducts, let i = index" ng-class="{'checkbox-inactive': product.id !== listaProductos.currentProductId}">
+				<div class="number">{{(i < 9) ? "0"+(i+1) : (i+1)}}</div>
+				<label class="control-label">{{ product.nombre_producto }}</label>
+
+				<div *ngIf="selectedProduct.id === product.id">
+					<label class="control-label">Fecha de venta</label>
+					<div class="radio" *ngFor="let date of salesDates">
+						<label>
+							<input type="radio" name="sales_dates" value="{{date.key}}" ng-model="listaProductos.mapObjetivos[product.id]['sale_date']">
+							{{date.value}}
+						</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group btn-wrapper-right">
+				<button class="btn btn-link simple-modal-close" (click)="closeProductModal()">Cancelar</button>
+				<button class="btn btn-primary" (click)="saveProduct()">Guardar cambios</button>
+			</div>
     </div>
   </div>
 </div>

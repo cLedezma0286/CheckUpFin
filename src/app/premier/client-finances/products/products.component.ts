@@ -8,7 +8,24 @@ import { ProductsService } from './products.service';
 })
 export class ProductsComponent{
   products = [];
+  selectedProducts = [];
+  salesDates = [
+    {
+      key: 'inmediata',
+      value: 'Inmediata'
+    },
+    {
+      key: '3-6 months',
+      value: '3-6 Meses'
+    },
+    {
+      key: '1 year',
+      value: '1 año'
+    }
+  ];
   currentProduct;
+  selectedProduct;
+  showSelectedProducts;
 
   constructor(public productsService: ProductsService){
     productsService.getProducts()
@@ -37,6 +54,20 @@ export class ProductsComponent{
       (images.hasOwnProperty(category) ? images[category] : images['Hogar']);
   }
 
+  showSelected() {
+    this.showSelectedProducts = true;
+  }
+
+  selectProduct(product) {
+    this.selectedProduct = product;
+    this.selectedProducts.push(product);
+  }
+
+  saveProduct() {
+    this.selectedProduct['isAdded'] = true;
+    this.selectedProduct = undefined;
+  }
+
   showProductInfo(product) {
     this.productsService.getProduct(product.id)
     .subscribe(data => {
@@ -45,6 +76,10 @@ export class ProductsComponent{
   }
 
   closeProductModal() {
+    if (this.selectedProduct) {
+      this.selectedProducts.pop();
+    }
     this.currentProduct = undefined;
+    this.selectedProduct = undefined;
   }
 }
