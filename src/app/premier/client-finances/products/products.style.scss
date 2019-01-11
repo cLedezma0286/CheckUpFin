@@ -1,0 +1,396 @@
+@import 'app-colors';
+
+#menu{
+  border-bottom: solid 1px $background-gray-status;
+  position: relative;
+  margin-bottom: 24px;
+
+  .title{
+    font-weight: 100;
+    font-size: 24px;
+    line-height: 24px;
+    color: $text-black;
+    padding-bottom: 10px;
+    margin: 0;
+    display: inline-block;
+  }
+  .right-menu{
+    margin: 0;
+    padding: 0;
+    float: right;
+    li{
+      padding: 0;
+      margin: 0;
+      display: inline-block;
+      cursor: pointer;
+      margin-left: 55px;
+      a{
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 13px;
+        color: $text-black;
+        text-decoration: none;
+        position: relative;
+        padding:8px 11px 12px 11px;
+        text-align: center;
+        display: block;
+        &.active{
+          border-bottom: 2px solid $primary-red;
+          &.notas {
+            border: none;
+            background: $text-gray;
+            color: $white;
+          }
+        }
+
+        @mixin btn-link() {
+          padding-bottom: 6px;
+          padding-right: 38px;
+          margin-bottom:6px;
+          border-radius: 3px;
+          font-weight: 500;
+          height: 30px;
+          line-height: 17px;
+          margin-top: -3px;
+
+          &:after {
+            margin-right: -28px;
+          }
+          &.active {
+            border: none;
+          }
+        }
+
+        &.btn-notes{
+          @include btn-link();
+          background-color: $white;
+
+          &:after {
+            content: "";
+            background: transparent url(/assets/images/notes.png) no-repeat 0 0;
+            width: 15px;
+            height: 17px;
+            float: right;
+          }
+
+          &.active {
+            background-color: $text-gray;
+            color: $white;
+            &:after {
+              background-image: url(/assets/images/notes-active.png);
+              color: $white;
+            }
+          }
+        }
+				
+        &.btn-products {
+          @include btn-link();
+          background-color: $background-gray-status;
+
+          &:after {
+            content: "";
+            background: transparent url(/assets/images/tick.png) no-repeat 0 0;
+            width: 16px;
+            height: 11px;
+            float: right;
+          }
+
+          &.activeProducts {
+            background: $primary-green;
+            color: $white;
+
+            &:after {
+              background-image: url(/assets/images/tick-white.png);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.product-list {
+  text-align: center;
+
+  .content-box {
+    position: relative;
+    padding-top: 40px;
+
+    &.selected {
+      border: 1px solid $primary-red;
+    }
+  }
+
+  h2 {
+    text-align: left;
+    color: $text-black;
+    font-weight: 300;
+  }
+
+  .product-type,
+  .product-information {
+    font-size: 14px;
+    color: $text-light-gray;
+  }
+
+  .product-name {
+    font-size: 24px;
+    color: $text-black;
+    font-weight: 100;
+  }
+
+  .product-links {
+    font-size: 12px;
+    margin-top: 20px;
+
+    a {
+      padding: 0 5px;
+      cursor: pointer;
+      color: $primary-red
+    }
+
+    a:hover {
+      color: $hover-red;
+      text-decoration: underline;
+    }
+  }
+
+  .product-img {
+    margin-bottom: 15px;
+  }
+
+  .product-highlight {
+    background: transparent url(/assets/images/star.png) no-repeat 0 0;
+    width: 25px;
+    height: 24px;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+  }
+}
+.hiddenOverflow {
+  overflow: hidden;
+}
+.col-product {
+  width: 100%;
+  padding: 0 15px;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.marginBottom66px {
+  margin-bottom: 66px;
+}
+
+.alert {
+  font-size: 14px;
+  background-color: $white;
+  height: 46px;
+  padding: 13px;
+
+	&.alert-info {
+		&:before {
+			content: "";
+			background: transparent url(/assets/images/info.png) no-repeat 0 0;
+			width: 23px;
+			height: 23px;
+			float: left;
+			margin-right: 10px;
+		}
+	}
+}
+
+.modal-product, .selected-modal{
+  background: $background-gray;
+  white-space: pre-wrap;
+  z-index: 11;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  overflow-y: auto;
+
+  .container {
+    position: relative;
+    padding-top: 100px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    max-width: 1140px;
+  }
+  .content-box {
+    padding: 70px;
+    max-width: 1140px;
+  }
+  .simple-modal-logo {
+    background: transparent url(/assets/images/logo_hsbc.svg) no-repeat 0 0;
+    width: 36px;
+    height: 18px;
+    background-size: contain;
+    position: absolute;
+    top: 20px;
+    left: 15px;
+  }
+  .simple-modal-close-icon {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    background: transparent url(/assets/images/close-arrow.png) no-repeat 0 0;
+    border: none;
+    font-size: 0;
+    width: 27px;
+    height: 26px;
+  }
+}
+.selected-modal {
+  h2 {
+    font-weight: 100;
+    font-size: 24px;
+    margin-bottom: 40px;
+    color: $text-black;
+  }
+  .content-box {
+    padding: 24px 37px;
+    max-width: 1140px;
+  }
+  .checkbox-group {
+    margin-bottom: 15px;
+    padding-top: 15px;
+    padding-left: 60px;
+
+    .number {
+      float: left;
+      margin-left: -35px;
+      color: $primary-red;
+    }
+    label {
+      margin-bottom: 5px;
+      padding-left: 0;
+      cursor: default;
+    }
+    .control-label {
+      color: $text-gray;
+      font-size: 18px;
+      font-weight: 300;
+      position: relative;
+      display: block;
+    }
+  }
+  .checkbox-group:nth-child(n+2) {
+    border-top: 1px solid $border-gray;
+  }
+  .btn-link {
+    color: $text-black;
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 8px 24px;
+    &:hover{
+      text-decoration: underline;
+      color: $hover-red;
+    }
+  }
+  .radio {
+    font-size: 14px;
+    color: $text-light-gray;
+    font-weight: 300;
+    padding-left: 20px;
+  }
+  .form-group{
+    margin-bottom: 25px;
+  }
+}
+.modal-product {
+  .content-box {
+    padding: 70px;
+    max-width: 1140px;
+  }
+  h2 {
+    font-size: 36px;
+    line-height: 49px;
+    margin-bottom: 0;
+    font-weight: 100;
+  }
+  h4 {
+    font-size: 20px;
+    line-height: 27px;
+    color: $text-light-gray;
+    margin-top: 0;
+    font-weight: 300;
+  }
+}
+.btn-primary {
+  color: $white;
+  background-color: $primary-red;
+  font-size: 16px;
+  padding: 8px 24px;
+  border: none;
+  font-weight: normal;
+  &:hover{
+    background-color: $hover-red
+  }
+}
+.btn-checkup {
+  color: $white;
+  background-color: $primary-red;
+  font-size: 16px;
+  padding: 0 24px;
+  border: none;
+  font-weight: normal;
+  height: 40px;
+  &:hover{
+    background-color: $hover-red
+  }
+}
+.btn-image {
+  background-color: $primary-red;
+  border: none;
+  background-position: center center;
+  width: 55px;
+  height: 40px;
+  margin-right: 5px;
+  &:hover{
+    background-color: $hover-red
+  }
+}
+.btn-wrapper-right{
+  text-align: right;
+  margin-top: 30px;
+}
+.btn-img-email{
+  background-image: url(/assets/images/email.svg);
+  background-repeat: no-repeat;
+}
+.btn-img-print{
+  background-image: url(/assets/images/print.svg);
+  background-repeat: no-repeat;
+}
+
+@media only screen and (min-width: 992px) {
+  .col-product {
+    width: 25%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .modal-product, .selected-modal {
+    .container {
+      margin-right: 10%;
+      margin-left: 10%;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .modal-product, .selected-modal {
+    .container {
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+}
