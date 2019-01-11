@@ -47,7 +47,6 @@ export class ProductsComponent{
       "Estilo de vida": "dinero.png",
       "Hogar": "hogar.png",
       "Protección de Patrimonio": "inversion.png"
-      // seguro.png, tarjeta.png
     };
 
     return "assets/images/"+
