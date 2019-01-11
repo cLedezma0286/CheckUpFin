@@ -1,0 +1,171 @@
+<section>
+  <div class="whiteBox client_information">
+    <p class="client_name">Gerardo Escrucería</p>
+    <div class="client_data">
+      <div class="data_column">
+        <p class="column_title">Datos generales</p>
+        <p class="column_title">CIS {{client_information.num_clie_cis}}</p>
+        <p class="client_attribute">{{client_information.ocupacion}}</p>
+        <p class="client_attribute">{{client_information.correo}}</p>
+      </div>
+      <div class="data_column">
+        <p class="column_title">Familia</p>
+        <p class="client_attribute">{{getYearsOfAge()}} años</p>
+        <p class="client_attribute">Cumpleaños {{getHumanFormatDate()}}</p>
+        <p class="client_attribute">{{client_information.edo_civil}}</p>
+        <p class="client_attribute">{{client_information.num_hijos ? client_information.num_hijos + ' ' + (client_information.num_hijos === 1 ? 'hijo' : 'hijos') : 'Sin hijos'}}</p>
+      </div>
+      <div class="data_column">
+        <p class="column_title">Hobbies</p>
+        <p class="client_attribute" *ngFor="let hobbie of client_information.hobbies">{{hobbie}}</p>
+      </div>
+    </div>
+    <button>Editar</button>
+  </div>
+  <div class="whiteBox financial_health_index">
+    <div class="header">
+      <img src="assets/heart.svg"/>
+      <p>Índice salud financiera</p>
+    </div>
+    <div class="evaluations">
+      <div class="status" [ngClass]="{'healthy': getRateNumber(financial_health.puntuacion) >= 7, 'unhealthy': getRateNumber(financial_health.puntuacion) >= 5 && health_value < 7, 'dangerous': getRateNumber(financial_health.puntuacion) < 5}">
+        <p class="score">{{getRate(financial_health.puntuacion)}}</p>
+        <div class="status_bar">
+          <div [style.width.%]="getRateNumber(financial_health.puntuacion) * 10"></div>
+        </div>
+        <p class="verdict">Estado de la salud financiera: Saludable</p>
+      </div>
+      <div class="items">
+        <div class="item" [ngClass]="{'healthy': financial_health.Gastos.num_puntuacion >= 7, 'unhealthy': financial_health.Gastos.num_puntuacion >= 5 && financial_health.Gastos.num_puntuacion < 7, 'dangerous': financial_health.Gastos.num_puntuacion < 5}">
+          <div class="bar">
+            <div class="image_container">
+              <img src="assets/gastos.svg"/>
+            </div>
+            <div class="status_bar">
+              <div [style.height.%]="financial_health.Gastos.num_puntuacion * 10"></div>
+            </div>
+            <p class="name">Gastos</p>
+          </div>
+          <p class="score"><span>{{financial_health.Gastos.num_puntuacion}}</span>/10</p>
+        </div>
+        <div class="item" [ngClass]="{'healthy': financial_health.Deuda.num_puntuacion >= 7, 'unhealthy': financial_health.Deuda.num_puntuacion >= 5 && financial_health.Deuda.num_puntuacion < 7, 'dangerous': financial_health.Deuda.num_puntuacion < 5}">
+          <div class="bar">
+            <div class="image_container">
+              <img src="assets/deuda.svg"/>
+            </div>
+            <div class="status_bar">
+              <div [style.height.%]="financial_health.Deuda.num_puntuacion * 10"></div>
+            </div>
+            <p class="name">Deuda</p>
+          </div>
+          <p class="score"><span>{{financial_health.Deuda.num_puntuacion}}</span>/10</p>
+        </div>
+        <div class="item" [ngClass]="{'healthy': financial_health.Ahorro.num_puntuacion >= 7, 'unhealthy': financial_health.Ahorro.num_puntuacion >= 5 && financial_health.Ahorro.num_puntuacion < 7, 'dangerous': financial_health.Ahorro.num_puntuacion < 5}">
+          <div class="bar">
+            <div class="image_container">
+              <img src="assets/ahorro.svg"/>
+            </div>
+            <div class="status_bar">
+              <div [style.height.%]="financial_health.Ahorro.num_puntuacion * 10"></div>
+            </div>
+            <p class="name">Ahorro</p>
+          </div>
+          <p class="score"><span>{{financial_health.Ahorro.num_puntuacion}}</span>/10</p>
+        </div>
+        <div class="item" [ngClass]="{'healthy': financial_health.Plan.num_puntuacion >= 7, 'unhealthy': financial_health.Plan.num_puntuacion >= 5 && financial_health.Plan.num_puntuacion < 7, 'dangerous': financial_health.Plan.num_puntuacion < 5}">
+          <div class="bar">
+            <div class="image_container">
+              <img src="assets/plan.svg"/>
+            </div>
+            <div class="status_bar">
+              <div [style.height.%]="financial_health.Plan.num_puntuacion * 10"></div>
+            </div>
+            <p class="name">Planificación</p>
+          </div>
+          <p class="score"><span>{{financial_health.Plan.num_puntuacion}}</span>/10</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="whiteBox objectives_and_needs">
+    <div class="header">
+      <img src="assets/objective.svg"/>
+      <p>Objetivos y necesidades</p>
+    </div>
+    <div class="objectives_list">
+      <div class="objective" *ngFor="let product of products; let i = index">
+        <div class="objective_header">
+          <div>
+            <p class="number">{{i + 1 < 10 ? '0' + (i + 1) : (i + 1) }}</p>
+            <p class="name">{{product.producto.nombre_producto}}</p>
+          </div>
+          <div>
+            <img src="assets/icon-edit.svg"/>
+            <img src="assets/icon-delete.svg"/>
+          </div>
+        </div>
+        <div class="services">
+          <p class="service" *ngFor="let objective of product.objectivos">{{objective.nombre}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="whiteBox products_and_investments">
+    <div class="header">
+      <img src="assets/productos.svg"/>
+      <p>Productos e inversiones</p>
+    </div>
+    <div class="products_list">
+      <div class="product">
+        <div class="product_header">
+          <p class="number">01</p>
+          <p class="name">HSBC - Tarjeta de crédito</p>
+        </div>
+        <div class="product_items">
+          <p>Límite: 180.000.000 MXN</p>
+          <p>Uso: Compras día a día</p>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product_header">
+          <p class="number">01</p>
+          <p class="name">HSBC - Tarjeta de crédito</p>
+        </div>
+        <div class="product_items">
+          <p>Límite: 180.000.000 MXN</p>
+          <p>Uso: Compras día a día</p>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product_header">
+          <p class="number">01</p>
+          <p class="name">HSBC - Tarjeta de crédito</p>
+        </div>
+        <div class="product_items">
+          <p>Límite: 180.000.000 MXN</p>
+          <p>Uso: Compras día a día</p>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product_header">
+          <p class="number">01</p>
+          <p class="name">HSBC - Tarjeta de crédito</p>
+        </div>
+        <div class="product_items">
+          <p>Límite: 180.000.000 MXN</p>
+          <p>Uso: Compras día a día</p>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product_header">
+          <p class="number">01</p>
+          <p class="name">HSBC - Tarjeta de crédito</p>
+        </div>
+        <div class="product_items">
+          <p>Límite: 180.000.000 MXN</p>
+          <p>Uso: Compras día a día</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

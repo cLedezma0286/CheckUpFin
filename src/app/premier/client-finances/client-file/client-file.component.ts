@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderService } from '@shared-services/header.service';
 @Component({
-  selector: 'customer-file',
-  templateUrl: 'customer-file.view.html',
-  styleUrls: ['customer-file.style.scss']
+  selector: 'client-file',
+  templateUrl: 'client-file.view.html',
+  styleUrls: ['client-file.style.scss']
 })
-export class CustomerFileComponent implements OnInit{
+export class ClientFileComponent implements OnInit{
   active_section_name = 'dashboard';
   constructor(public headerService: HeaderService){}
   setActiveSectionName(section_name){
