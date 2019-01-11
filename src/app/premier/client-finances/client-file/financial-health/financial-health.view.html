@@ -1,1 +1,19 @@
-<h1>financial health</h1>
+<section>
+  <div class="financial_health_index">
+    <div class="whiteBox status">
+      <div class="header">
+        <img src="assets/heart.svg"/>
+        <p>Índice salud financiera</p>
+      </div>
+      <div class="status" [ngClass]="{'healthy': 10 >= 7, 'unhealthy': 10 >= 5 && 10 < 7, 'dangerous': 10 < 5}">
+        <p class="score">10</p>
+        <div class="status_bar">
+          <div [style.width.%]="10 * 10"></div>
+        </div>
+        <p class="verdict">Estado de la salud financiera: Saludable</p>
+      </div>
+    </div>
+    <div class="whiteBox">
+    </div>
+  </div>
+</section>
