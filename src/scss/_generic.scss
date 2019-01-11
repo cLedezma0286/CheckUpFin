@@ -92,6 +92,10 @@ button{
     font-weight: 300;
   }
 }
+.divFlexRight {
+  display: flex;
+  justify-content: flex-end;
+}
 .radio, .checkbox {
   position: relative;
   display: block;

@@ -58,9 +58,22 @@ export class ProductsComponent{
     this.showSelectedProducts = true;
   }
 
+  hideSelected() {
+    this.showSelectedProducts = false;
+  }
+
   selectProduct(product) {
     this.selectedProduct = product;
     this.selectedProducts.push(product);
+  }
+
+  removeProduct(idProduct) {
+    for (var k = 0; k < this.selectedProducts.length; k++) {
+      if (idProduct === this.selectedProducts[k].id) {
+        this.selectedProducts[k].isAdded = false;
+        this.selectedProducts.splice(k,1);
+      }
+    }
   }
 
   saveProduct() {
