@@ -18,7 +18,8 @@
     ],
     "paths": {
       "@environment/*" : ["environments/*"],
-      "@shared-services/*" : ["app/shared-services/*"]
+      "@shared-services/*" : ["app/shared-services/*"],
+      "@models/*" : ["app/models/*"]
     }
   }
 }

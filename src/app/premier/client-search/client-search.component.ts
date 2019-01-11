@@ -21,6 +21,6 @@ export class ClientSearchComponent{
     );
   }
   goToClientFile(){
-    this.router.navigate(['/client-finances/customer-file']);
+    this.router.navigate(['/client-finances/client-file']);
   }
 }

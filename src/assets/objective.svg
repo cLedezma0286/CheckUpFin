@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="19px" height="25px" viewBox="0 0 19 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M12,11.09 L12,13.94 C15.55,13.73 17.42,11.95 17.88,9.09 C17.18,9.31 16.51,9.42 15.87,9.42 C14.45,9.42 13.26,8.91 12,8.23 L12,11.09 Z M11,2.27 C9.33,1.44 7.73,1.02 6.24,1.02 C5.25,1.02 4.28,1.62 3.37,1.99 L3.19,2.06 L3,2.06 L3,10.32 C3.72,9.89 4.65,9.68 5.79,9.68 C7.17,9.68 8.62,10.27 9.9,10.53 C10.29,10.61 10.66,10.69 11,10.75 L11,2.27 Z M19,7.54 C19,12.61 16,14.99 11,14.99 L11,11.74 C9.58,11.43 7.56,10.69 5.79,10.69 C4.67,10.69 3.67,10.92 3,11.59 L3,24 L5,24 L5,25 L0,25 L0,24 L2,24 L2,1.04 L3,1.04 C4.1,0.6 5.18,0.01 6.24,0.01 C8.34,0.01 10.31,0.73 12,1.65 L12,7.08 C13.36,7.84 14.52,8.41 15.87,8.41 C16.77,8.41 17.78,8.15 19,7.54 Z" id="Shape" fill="#9B9B9B" fill-rule="nonzero"></path>
+    </g>
+</svg>
