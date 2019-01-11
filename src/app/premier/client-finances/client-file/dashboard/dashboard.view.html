@@ -28,7 +28,7 @@
       <p>Índice salud financiera</p>
     </div>
     <div class="evaluations">
-      <div class="status" [ngClass]="{'healthy': getRateNumber(financial_health.puntuacion) >= 7, 'unhealthy': getRateNumber(financial_health.puntuacion) >= 5 && health_value < 7, 'dangerous': getRateNumber(financial_health.puntuacion) < 5}">
+      <div class="status" [ngClass]="{'healthy': getRateNumber(financial_health.puntuacion) >= 7, 'unhealthy': getRateNumber(financial_health.puntuacion) >= 5 && getRateNumber(financial_health.puntuacion) < 7, 'dangerous': getRateNumber(financial_health.puntuacion) < 5}">
         <p class="score">{{getRate(financial_health.puntuacion)}}</p>
         <div class="status_bar">
           <div [style.width.%]="getRateNumber(financial_health.puntuacion) * 10"></div>
