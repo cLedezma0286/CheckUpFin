@@ -6,7 +6,7 @@ import { HeaderService } from '@shared-services/header.service';
   styleUrls: ['client-file.style.scss']
 })
 export class ClientFileComponent implements OnInit{
-  active_section_name = 'dashboard';
+  active_section_name = 'financial_health';
   constructor(public headerService: HeaderService){}
   setActiveSectionName(section_name){
     this.active_section_name = section_name;

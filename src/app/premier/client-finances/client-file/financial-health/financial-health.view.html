@@ -5,15 +5,79 @@
         <img src="assets/heart.svg"/>
         <p>Índice salud financiera</p>
       </div>
-      <div class="status" [ngClass]="{'healthy': 10 >= 7, 'unhealthy': 10 >= 5 && 10 < 7, 'dangerous': 10 < 5}">
+      <div class="content" [ngClass]="{'healthy': 10 >= 7, 'unhealthy': 10 >= 5 && 10 < 7, 'dangerous': 10 < 5}">
         <p class="score">10</p>
         <div class="status_bar">
           <div [style.width.%]="10 * 10"></div>
         </div>
-        <p class="verdict">Estado de la salud financiera: Saludable</p>
+        <p class="explanation">Tu salud financiera es es calculada a partir de toda la información que nos has facilitado y estableciendo una media entre cuatro tracks fundamentales...</p>
+        <p class="calculated">¿Cómo se calcula?</p>
       </div>
     </div>
-    <div class="whiteBox">
+    <div class="whiteBox items">
+        <div class="item" [ngClass]="{'healthy': 10 >= 7, 'unhealthy': 10 >= 5 && 10 < 7, 'dangerous': 10 < 5}">
+          <div class="bar">
+            <div class="image_container">
+              <img src="assets/gastos.svg"/>
+            </div>
+            <div class="status_bar">
+              <div [style.height.%]="10 * 10"></div>
+            </div>
+            <p class="name">Gastos</p>
+          </div>
+          <p class="score"><span>{{10}}</span>/10</p>
+        </div>
+        <div class="item" [ngClass]="{'healthy': 10 >= 7, 'unhealthy': 10 >= 5 && 10 < 7, 'dangerous': 10 < 5}">
+          <div class="bar">
+            <div class="image_container">
+              <img src="assets/deuda.svg"/>
+            </div>
+            <div class="status_bar">
+              <div [style.height.%]="10 * 10"></div>
+            </div>
+            <p class="name">Deuda</p>
+          </div>
+          <p class="score"><span>{{10}}</span>/10</p>
+        </div>
+        <div class="item" [ngClass]="{'healthy': 10 >= 7, 'unhealthy': 10 >= 5 && 10 < 7, 'dangerous': 10 < 5}">
+          <div class="bar">
+            <div class="image_container">
+              <img src="assets/ahorro.svg"/>
+            </div>
+            <div class="status_bar">
+              <div [style.height.%]="10 * 10"></div>
+            </div>
+            <p class="name">Ahorro</p>
+          </div>
+          <p class="score"><span>{{10}}</span>/10</p>
+        </div>
+        <div class="item" [ngClass]="{'healthy': 10 >= 7, 'unhealthy': 10 >= 5 && 10 < 7, 'dangerous': 10 < 5}">
+          <div class="bar">
+            <div class="image_container">
+              <img src="assets/plan.svg"/>
+            </div>
+            <div class="status_bar">
+              <div [style.height.%]="10 * 10"></div>
+            </div>
+            <p class="name">Planificación</p>
+          </div>
+          <p class="score"><span>{{10}}</span>/10</p>
+        </div>
+      </div>
+  </div>
+  <div class="life_goals_and_needs whiteBox">
+    <p class="title">Objetivos de vida y necesidades</p>
+    <p class="description">Estos son tus objetivos y sueños, así como los detalles que debes tener en cuenta para conseguirlos:</p>
+    <div class="objectives_container">
+      <div class="objective">
+        <div class="number">1</div>
+        <div class="details">
+          <p class="name">Vivir en el extranjero 4 meses.</p>
+          <p class="date_price">2018, $250,000</p>
+        </div>
+        <img src=""/>
+        <img src=""/>
+      </div>
     </div>
   </div>
 </section>

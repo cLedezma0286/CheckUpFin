@@ -3,11 +3,18 @@ section{
   padding-top: 47px;
   padding-bottom: 70px;
   .financial_health_index{
+    display: flex;
+    justify-content: space-between;
     >.whiteBox{
+      width: calc(50% - 3px);
+      height: 350px;
+    }
+    .status{
+      padding-top: 34px;
       .header{
         display: flex;
         justify-content: flex-start;
-        padding-left: 20px;
+        padding-left: 34px;
         height: 23px;
         img{
           width: 26px;
@@ -23,37 +30,37 @@ section{
           margin-left: 18px;
         }
       }
-    }
-    .status{
-      padding-top: 22px;
-      width: 300px;
-      &.healthy{
-        .score{
-          color: $primary-green;
-        }
-        .status_bar{
-          div{
-            background-color: $primary-green;
+      .content{
+        margin-top: 10px;
+        padding: 0px 60px;
+        &.healthy{
+          .score{
+            color: $primary-green;
+          }
+          .status_bar{
+            div{
+              background-color: $primary-green;
+            }
           }
         }
-      }
-      &.unhealthy{
-        .score{
-          color: $unhealthy-yellow;
-        }
-        .status_bar{
-          div{
-            background-color: $unhealthy-yellow;
+        &.unhealthy{
+          .score{
+            color: $unhealthy-yellow;
+          }
+          .status_bar{
+            div{
+              background-color: $unhealthy-yellow;
+            }
           }
         }
-      }
-      &.dangerous{
-        .score{
-          color: $primary-red;
-        }
-        .status_bar{
-          div{
-            background-color: $primary-red;
+        &.dangerous{
+          .score{
+            color: $primary-red;
+          }
+          .status_bar{
+            div{
+              background-color: $primary-red;
+            }
           }
         }
       }
@@ -77,15 +84,193 @@ section{
           transition: width 0.5s;
         }
       }
-      .verdict{
+      .explanation{
+        margin-top: 20px;
+        padding: 0px 5px;
         font-size: 14px;
         font-style: normal;
-        font-stretch: normal;
-        line-height: 20px;
+        line-height: normal;
         letter-spacing: normal;
+        text-align: center;
+        color: $text-gray;
         font-weight: 400;
-        color: $text-light-gray;
-        margin-top: 5px;
+      }
+      .calculated{
+        margin-top: 12px;
+        font-weight: 400;
+        font-style: normal;
+        font-stretch: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: $primary-red;
+        font-size: 14px;
+        cursor: pointer;
+        &:hover{
+          text-decoration: underline;
+        }
+      }
+    }
+    .items{
+      display: flex;
+      justify-content: space-between;
+      padding: 34px 26px 0px 36px;
+      .item{
+        &.healthy{
+          .bar{
+            .status_bar{
+              div{
+                background-color: $primary-green;
+              }
+            }
+          }
+          .score{
+            span{
+              color: $primary-green;
+            }
+          }
+        }
+        &.unhealthy{
+          .bar{
+            .status_bar{
+              div{
+                background-color: $unhealthy-yellow;
+              }
+            }
+          }
+          .score{
+            span{
+              color: $unhealthy-yellow;
+            }
+          }
+        }
+        &.dangerous{
+          .bar{
+            .status_bar{
+              div{
+                background-color: $primary-red;
+              }
+            }
+          }
+          .score{
+            span{
+              color: $primary-red;
+            }
+          }
+        }
+        .bar{
+          .image_container{
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            margin: 0px auto 0px auto;
+            width: 30px;
+            height: 30px;
+            img{
+              width: 100%;
+            }
+          }
+          .status_bar{
+            display: flex;
+            align-items: flex-end;
+            margin: 28px auto 0px auto;
+            width: 3px;
+            height: 168px;
+            background-color: $background-gray-status;
+            div{
+              width: 3px;
+            }
+          }
+          .name{
+            font-size: 13px;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: 15px;
+            letter-spacing: normal;
+            text-align: center;
+            color: $text-black;
+            margin-top: 16px;
+          }
+        }
+        .score{
+          margin-top: 9px;
+          font-size: 14px;
+          font-style: normal;
+          font-stretch: normal;
+          letter-spacing: normal;
+          color: $text-light-gray;
+          text-align: center;
+          span{
+            font-size: 24px;
+            margin-right: 3px;
+          }
+        }
+      }
+    }
+  }
+  .life_goals_and_needs{
+    margin-top: 5px;
+    padding: 26px 16px 16px 26px;
+    .title{
+      font-size: 24px;
+      font-style: normal;
+      font-stretch: normal;
+      font-stretch: normal;
+      letter-spacing: normal;
+      color: $text-black;
+      font-weight: 100;
+    }
+    .description{
+      font-size: 14px;
+      font-weight: 100;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: $text-gray;
+    }
+    .objectives_container{
+      margin-top: 50px;
+      padding: 0px 40px;
+      .objective{
+        display: flex;
+        .number{
+          border-radius: 100%;
+          background-color: $primary-green;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 36px;
+          height: 36px;
+          font-size: 24px;
+          line-height: 1;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          letter-spacing: normal;
+          color: $white;
+        }
+        .details{
+          margin-left: 20px;
+          .name{
+            font-size: 16px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: $text-gray;
+            font-weight: 100;
+          }
+          .date_price{
+            font-size: 14px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: $text-light-gray;
+          }
+        }
       }
     }
   }
