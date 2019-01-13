@@ -11,7 +11,7 @@
           <div [style.width.%]="10 * 10"></div>
         </div>
         <p class="explanation">Tu salud financiera es es calculada a partir de toda la información que nos has facilitado y estableciendo una media entre cuatro tracks fundamentales...</p>
-        <p class="calculated">¿Cómo se calcula?</p>
+        <p class="calculated" (click)="openCalculationExplanationModal()">¿Cómo se calcula?</p>
       </div>
     </div>
     <div class="whiteBox items">
@@ -169,3 +169,4 @@
   </div>
   <img src="assets/images/lock-sm.png" class="lock" />
 </section>
+<calculation-explanation *ngIf="calculation_explanation_open" (close)="closeCalculationExplanationModal()"></calculation-explanation>

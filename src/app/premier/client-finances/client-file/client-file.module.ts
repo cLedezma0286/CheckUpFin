@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ClientFileComponent } from './client-file.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FinancialHealthComponent } from './financial-health/financial-health.component';
+import { CalculationExplanationComponent } from './financial-health/calculation-explanation/calculation-explanation.component';
 import { NotesAndAgreementsComponent } from './notes-and-agreements/notes-and-agreements.component';
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { NotesAndAgreementsComponent } from './notes-and-agreements/notes-and-ag
     ClientFileComponent,
     DashboardComponent,
     FinancialHealthComponent,
-    NotesAndAgreementsComponent
+    NotesAndAgreementsComponent,
+    CalculationExplanationComponent
   ],
   exports: [
     ClientFileComponent
