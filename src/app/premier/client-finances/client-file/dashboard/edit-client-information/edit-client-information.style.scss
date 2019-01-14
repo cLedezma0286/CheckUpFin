@@ -1,0 +1,68 @@
+@import 'app-colors';
+section{
+  padding-top: 47px;
+  padding-bottom: 96px;
+  .edit_client_container{
+    padding: 32px 22px 24px 64px;
+    .name{
+      font-size: 24px;
+      font-weight: 100;
+      color: $text-black;
+    }
+    .inputs_container{
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-top: 28px;
+      padding-right: 48px;
+      .client_input{
+        width: calc(50% - 22px);
+        &:nth-child(n + 3){
+          margin-top: 24px;
+        }
+        .placeholder{
+          font-size: 13px;
+          color: $text-black;
+          font-weight: 400;
+        }
+        input{
+          width: 100%;
+          height: 24px;
+          margin-top: 8px;
+          border-top: none;
+          border-right: none;
+          border-bottom: 1px solid $background-gray-status;
+          border-left: none;
+          padding: 0px 0px 6px 0px;
+          background-color: transparent;
+          line-height: 1;
+          font-size: 14px;
+          font-weight: 100;
+          color: $text-gray;
+        }
+      }
+    }
+    .controls{
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-top: 104px;
+      p{
+        font-size: 13px;
+        color: $text-black;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+      button{
+        margin-left: 32px;
+        border: none;
+        width: 88px;
+        height: 32px;
+        background-color: $primary-red;
+        color: $white;
+        font-size: 16px;
+        font-weight: 300;
+      }
+    }
+  }
+}
