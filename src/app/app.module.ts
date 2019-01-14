@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeModule } from "./premier/home/home.module";
 import { LoaderModule } from './premier/loader/loader.module';
-import { ClientSearchModule } from "./premier/client-search/client-search.module";
 import { ClientFinancesModule } from './premier/client-finances/client-finances.module'
 
 @NgModule({
@@ -21,7 +20,6 @@ import { ClientFinancesModule } from './premier/client-finances/client-finances.
     routing,
     HomeModule,
     LoaderModule,
-    ClientSearchModule,
     ClientFinancesModule
   ],
   providers: [],
