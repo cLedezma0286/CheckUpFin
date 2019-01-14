@@ -1,1 +1,51 @@
-<h1>notes and agreements</h1>
+<div *ngIf="!showNote && !showAgreement">
+  <div class="content-box marginTop20px">
+    <h2>Notas</h2>
+
+    <ul class="items-list">
+      <li *ngFor="let note of notes">
+        <div class="links">
+          <button (click)="editNote(note)"><img src="assets/images/icon-edit.svg" alt="Editar"></button>
+          <button (click)="deleteNote(note)"><img src="assets/images/icon-delete.svg" alt="Eliminar"></button>
+        </div>
+        <div class="title-lg">{{note.titulo}}</div>
+        <div class="date">{{note.created_at}}</div>
+        <div class="content">{{note.descripcion}}</div>
+      </li>
+    </ul>
+
+    <div class="btn-wrapper-right">
+      <button class="main-button">Añadir nota</button>
+    </div>
+  </div>
+
+  <div class="content-box">
+    <h2>Acuerdos</h2>
+
+    <ul class="items-list">
+      <li *ngFor="let agreement of agreements">
+        <div class="links">
+          <button (click)="editAgreement(agreement)"><img src="/assets/images/icon-edit.svg" alt="Editar"></button>
+          <button (click)="deleteAgreement(agreement)">
+            <img src="/assets/images/icon-delete.svg" alt="Eliminar">
+          </button>
+        </div>
+        <div class="title-lg">{{agreement.titulo}}</div>
+        <div class="date">{{agreement.created_at}}</div>
+        <div class="content">{{agreement.descripcion}}</div>
+      </li>
+    </ul>
+
+    <div class="btn-wrapper-right">
+      <button class="main-button">Añadir acuerdo</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showAgreement">
+  
+</div>
+
+<div *ngIf="showNote">
+
+</div>

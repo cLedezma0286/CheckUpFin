@@ -1,0 +1,74 @@
+@import 'app-colors';
+
+.marginTop20px {
+  margin-top: 20px;
+}
+ul.items-list {
+  list-style-type: none;
+  padding: 0;
+  
+  $numberWidth: 60px;
+  
+  li {
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(216, 216, 216, 0.5);
+  }
+  
+  &.items-list-numbered {
+    li {
+      padding: 15px 0 15px $numberWidth;
+    }
+  }
+  
+  li {
+    font-weight: 300;
+    font-size: 16px;
+    text-align: left;
+    .title-lg {
+      font-size: 24px;
+    }
+    .date {
+      font-size: 14px;
+      color: $text-light-gray;
+      font-weight: normal;
+    }
+    .content {
+      font-weight: 400;
+      font-size: 14px;
+      color: $text-light-gray;
+      margin-top: 5px;
+    }
+  }
+
+  .links {
+    float: right;
+    margin-top: 12px;
+
+    button {
+      display: inline-block;
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+      
+      &+button {
+        margin-left: 10px;
+      }
+    }
+  }
+}
+.btn-wrapper-right{
+  text-align: right;
+  margin-top: 30px;
+}
+.main-button{
+  background-color: $primary-red;
+  border: none;
+  color: $white;
+  font-weight: normal;
+  padding: 8px 24px;
+  font-size: 16px;
+
+  &:hover {
+    background-color: $hover-red;
+  }
+}
