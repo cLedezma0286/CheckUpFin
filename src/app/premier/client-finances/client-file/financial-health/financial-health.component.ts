@@ -1,4 +1,5 @@
 import { Component, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
 @Component({
   selector: 'financial-health',
   templateUrl: 'financial-health.view.html',
@@ -6,7 +7,7 @@ import { Component, Renderer2 } from '@angular/core';
 })
 export class FinancialHealthComponent{
   calculation_explanation_open = false;
-  constructor(private renderer: Renderer2){}
+  constructor(public router: Router, public renderer: Renderer2){}
   openCalculationExplanationModal(){
     this.setBodyScroll('hidden');
     this.calculation_explanation_open = true;
@@ -17,5 +18,8 @@ export class FinancialHealthComponent{
   }
   setBodyScroll(scroll_value){
     this.renderer.setStyle(document.body, 'overflow', scroll_value);
+  }
+  goToProducts(){
+    this.router.navigate(['/client-finances/products']);
   }
 }
