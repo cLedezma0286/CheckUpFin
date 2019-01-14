@@ -7,7 +7,7 @@ import { ProductsService } from '../products.service';
   styleUrls: ['product-detail.style.scss']
 })
 
-export class ProductsComponent{
+export class ProductDetailComponent{
   product;
 
   constructor(productService: ProductsService){

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { ProductsService } from './products.service';
 
 @Component({
@@ -26,8 +26,8 @@ export class ProductsComponent{
   currentProduct;
   selectedProduct;
   showSelectedProducts;
-
-  constructor(public productsService: ProductsService){
+  print_modal_open = false;
+  constructor(public productsService: ProductsService, public renderer: Renderer2){
     productsService.getProducts()
     .subscribe(data => {
       var productos = data['productos'];
@@ -93,5 +93,16 @@ export class ProductsComponent{
     }
     this.currentProduct = undefined;
     this.selectedProduct = undefined;
+  }
+  openPrintModal(){
+    this.setBodyScroll('hidden');
+    this.print_modal_open = true;
+  }
+  closePrintModal(){
+    this.print_modal_open = false;
+    this.setBodyScroll('auto');
+  }
+   setBodyScroll(scroll_value){
+    this.renderer.setStyle(document.body, 'overflow', scroll_value);
   }
 }

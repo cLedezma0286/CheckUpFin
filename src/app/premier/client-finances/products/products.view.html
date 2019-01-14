@@ -99,9 +99,10 @@
       </div>
     </div>
     <div class="btn-wrapper-right divFlexRight">
-      <button class="btn btn-image btn-img-email" ng-click="sendEmail()"></button>
-      <button class="btn btn-image btn-img-print" ng-click="showPrintInfo()"></button>
-      <button ng-click="saveCheckup()" class="btn-checkup">Terminar check up</button>
+      <button class="btn btn-image btn-img-email"></button>
+      <button class="btn btn-image btn-img-print" (click)="openPrintModal()"></button>
+      <button class="btn-checkup">Terminar check up</button>
     </div>
   </div>
 </div>
+<printout *ngIf="print_modal_open" (close)="closePrintModal()"></printout>

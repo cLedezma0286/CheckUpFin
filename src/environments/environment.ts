@@ -7,5 +7,5 @@ export const environment = {
   INTERVIEWS_URL: BASE_URL + 'entrevistas',
   OBJECTIVES_URL: BASE_URL + 'objetivos',
   PRODUCTS_URL: BASE_URL + 'productos',
-  PRODUCTS_URL2: BASE_URL + 'products',
+  PRODUCTS_URL2: BASE_URL + 'products'
 };
