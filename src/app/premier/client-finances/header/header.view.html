@@ -21,9 +21,11 @@
         <div class="clickable" open_menu="true"></div>
       </div>
       <div class="options_container" *ngIf="open_menu">
+        <!--
         <div class="option">Buscar o añadir cliente nuevo</div>
+        -->
         <div class="option">Nueva entrevista con cliente</div>
-        <div class="option">Ficha de cliente</div>
+        <div class="option" (click)="goToRoute('/client-finances/client-file')">Ficha de cliente</div>
       </div>
     </div>
   </div>
