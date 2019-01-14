@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent{
   constructor(public router: Router){}
-  
   goToEDRASLoader(){
     this.router.navigate(['/loading/edras']);
   }

@@ -20,13 +20,13 @@ export class LoaderComponent{
   interval2;
 
   constructor( public router: Router){
-    this.textLoading = router.url === '/loading/edras'? 'Cargando EDRAS' : 'calculando salud financiera';
+    this.textLoading = router.url === '/loading/edras'? 'Cargando EDRAS' : 'Calculando salud financiera';
     this.interval = setInterval(() => {
       if(document.querySelector(".outer")){
         this.circle = document.querySelector(".outer");
         this.radio = this.circle.getAttribute('r');
         this.circle.style.strokeDasharray = 2 * Math.PI * this.radio;
-        this.delay = 50;
+        this.delay = 100;
 
         this.duration = router.url === '/loading/EDRAS'? 50*100 : 3000;
         this.increment = this.delay*100/this.duration;
@@ -55,7 +55,7 @@ export class LoaderComponent{
 
     if (this.router.url.indexOf('loading')) {
       setTimeout(() => {
-        this.router.navigate(['clients-search']);
+        this.router.navigate(['client-finances/client-file']);
       }, 1000);
     }
   }
