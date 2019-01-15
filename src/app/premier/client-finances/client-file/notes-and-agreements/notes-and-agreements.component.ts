@@ -97,6 +97,18 @@ export class NotesAndAgreementsComponent{
   }
 
   save() {
-
+    if (this.showAgreement) {
+      if (this.currentAgreement) {
+        console.log(1);
+      } else {
+        console.log(2);
+      }
+    } else if (this.showNote) {
+      if (this.currentNote) {
+        console.log(3);
+      } else {
+        console.log(4);
+      }
+    }
   }
 }
