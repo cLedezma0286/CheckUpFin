@@ -72,3 +72,50 @@ ul.items-list {
     background-color: $hover-red;
   }
 }
+.form-group {
+  margin-bottom: 15px;
+}
+form {
+	.control-label {
+		font-size: 13px;
+		font-weight: normal;
+	}
+	.form-control {
+    width: 100%;
+		border: none;
+		border-bottom: 1px solid $background-gray-status;
+		border-radius: 0;
+		box-shadow: none;
+		font-size: 14px;
+		font-weight: 300;
+		padding: 6px 0;
+		line-height: 14px;
+    height: auto;
+    color: $text-input;
+  }
+  .btn-wrapper-right {
+    margin-top: 100px;
+  }
+  .btn-link {
+    color: $text-black;
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 10px 24px;
+    &:hover{
+      text-decoration: underline;
+      color: $hover-red;
+    }
+  }
+  .btn-primary {
+    color: $white;
+    background-color: $primary-red;
+    font-size: 16px;
+    padding: 10px 24px;
+    border: none;
+    font-weight: normal;
+    &:hover{
+      background-color: $hover-red
+    }
+  }
+}

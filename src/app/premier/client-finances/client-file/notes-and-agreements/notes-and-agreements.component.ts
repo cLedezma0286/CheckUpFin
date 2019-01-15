@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NotesAndsAgreementsService } from './notes-and-agreements.service';
-  import { from } from 'rxjs';
-import { timingSafeEqual } from 'crypto';
+import { Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'notes-and-agreements',
@@ -11,7 +10,17 @@ import { timingSafeEqual } from 'crypto';
 export class NotesAndAgreementsComponent{
   notes = [];
   agreements = [];
-  constructor(public notesAgreementsService: NotesAndsAgreementsService){
+  currentNote;
+  currentAgreement;
+  showNote = false;
+  showAgreement = false;
+  validateForm = this.fb.group({
+    title: ['', [Validators.required,]],
+    description: ['', [Validators.required]]
+  });
+
+  constructor(public notesAgreementsService: NotesAndsAgreementsService,
+    public fb: FormBuilder){
     this.getNotes();
     this.getAgreements();
   }
@@ -48,5 +57,46 @@ export class NotesAndAgreementsComponent{
       },
       error => {});
     }
+  }
+
+  showNoteView() {
+    this.showNote = true;
+  }
+
+  editNote(note) {
+    this.validateForm = this.fb.group({
+      title: [note.titulo, [Validators.required,]],
+      description: [note.descripcion, [Validators.required]]
+    });
+    this.currentNote = note;
+    this.showNoteView();
+  }
+
+  showAgreementView() {
+    this.showAgreement = true;
+  }
+
+  editAgreement(agreement) {
+    this.validateForm = this.fb.group({
+      title: [agreement.titulo, [Validators.required,]],
+      description: [agreement.descripcion, [Validators.required]]
+    });
+    this.currentAgreement = agreement;
+    this.showAgreementView();
+  }
+
+  closeModal() {
+    this.showAgreement = false;
+    this.showNote = false;
+    this.currentAgreement = undefined;
+    this.currentNote = undefined;
+    this.validateForm = this.fb.group({
+      title: ['', [Validators.required,]],
+      description: ['', [Validators.required]]
+    });
+  }
+
+  save() {
+
   }
 }
