@@ -1,1 +1,64 @@
-<h1>notes and agreements</h1>
+<div *ngIf="!showNote && !showAgreement">
+  <div class="content-box marginTop20px">
+    <h2>Notas</h2>
+
+    <ul class="items-list">
+      <li *ngFor="let note of notes">
+        <div class="links">
+          <button (click)="editNote(note)"><img src="assets/images/icon-edit.svg" alt="Editar"></button>
+          <button (click)="deleteNote(note)"><img src="assets/images/icon-delete.svg" alt="Eliminar"></button>
+        </div>
+        <div class="title-lg">{{note.titulo}}</div>
+        <div class="date">{{note.created_at}}</div>
+        <div class="content">{{note.descripcion}}</div>
+      </li>
+    </ul>
+
+    <div class="btn-wrapper-right">
+      <button class="main-button" (click)="showNoteView()">Añadir nota</button>
+    </div>
+  </div>
+
+  <div class="content-box">
+    <h2>Acuerdos</h2>
+
+    <ul class="items-list">
+      <li *ngFor="let agreement of agreements">
+        <div class="links">
+          <button (click)="editAgreement(agreement)"><img src="/assets/images/icon-edit.svg" alt="Editar"></button>
+          <button (click)="deleteAgreement(agreement)">
+            <img src="/assets/images/icon-delete.svg" alt="Eliminar">
+          </button>
+        </div>
+        <div class="title-lg">{{agreement.titulo}}</div>
+        <div class="date">{{agreement.created_at}}</div>
+        <div class="content">{{agreement.descripcion}}</div>
+      </li>
+    </ul>
+
+    <div class="btn-wrapper-right">
+      <button class="main-button" (click)="showAgreementView()">Añadir acuerdo</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showNote || showAgreement">
+  <div class="content-box marginTop20px">
+    <h2 *ngIf="showNote">{{currentNote ? 'Editar nota' : 'Añadir nota'}}</h2>
+    <h2 *ngIf="showAgreement">{{currentAgreement ? 'Editar acuerdo' : 'Añadir acuerdo'}}</h2>
+    <form [formGroup]="validateForm" class="row" novalidate>
+      <div class="form-group col-md-12">
+        <label for="field_titulo" class="control-label">Título</label>
+        <input type="text" class="form-control" name="title" required formControlName="title">
+      </div>
+      <div class="form-group col-md-12">
+        <label for="field_description" class="control-label">Descripción</label>
+        <textarea class="form-control" name="description" required formControlName="description"></textarea>
+      </div>
+      <div class="form-group col-md-12 btn-wrapper-right">
+        <button class="btn-link" (click)="closeModal()">Cancelar</button>
+        <button type="submit" class="btn-primary" (click)="save()">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>

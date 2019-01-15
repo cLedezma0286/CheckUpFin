@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ClientFileComponent } from './client-file.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GeneralClientInformationComponent } from './dashboard/general-client-information/general-client-information.component';
@@ -9,7 +10,9 @@ import { CalculationExplanationComponent } from './financial-health/calculation-
 import { NotesAndAgreementsComponent } from './notes-and-agreements/notes-and-agreements.component';
 @NgModule({
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     ClientFileComponent,
