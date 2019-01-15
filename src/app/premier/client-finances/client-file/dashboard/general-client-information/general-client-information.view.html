@@ -1,5 +1,16 @@
 <section>
   <div class="whiteBox client_information">
+    <div class="date-checkup">
+      <div class="date-header">
+        <p>Próximo check-up
+          <span class="date">{{datosUser.cliente.next_checkup}}</span>
+        </p>
+        <a class="dropdown-calendar" ng-click="datosUser.showCalendar=true">&nbsp;</a>
+      </div>
+      <div class="calendar-wrapper" ng-show="datosUser.showCalendar">
+        <div date-picker="dates.today" view="date" min-view="date" min-date="minDate" date-change="dateChange" template="app/partials/datepicker.html"></div>
+      </div>
+    </div>
     <p class="client_name">Gerardo Escrucería</p>
     <div class="client_data">
       <div class="data_column">
