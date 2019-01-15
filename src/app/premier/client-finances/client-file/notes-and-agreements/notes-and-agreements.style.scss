@@ -76,20 +76,20 @@ ul.items-list {
   margin-bottom: 15px;
 }
 form {
-	.control-label {
-		font-size: 13px;
-		font-weight: normal;
-	}
-	.form-control {
+  .control-label {
+    font-size: 13px;
+    font-weight: normal;
+  }
+  .form-control {
     width: 100%;
-		border: none;
-		border-bottom: 1px solid $background-gray-status;
-		border-radius: 0;
-		box-shadow: none;
-		font-size: 14px;
-		font-weight: 300;
-		padding: 6px 0;
-		line-height: 14px;
+    border: none;
+    border-bottom: 1px solid $background-gray-status;
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 14px;
+    font-weight: 300;
+    padding: 6px 0;
+    line-height: 14px;
     height: auto;
     color: $text-input;
   }
