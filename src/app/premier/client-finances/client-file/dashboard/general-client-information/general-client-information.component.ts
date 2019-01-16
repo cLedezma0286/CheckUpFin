@@ -12,6 +12,7 @@ export class GeneralClientInformationComponent implements OnInit{
   client_information: Client = new Client();
   financial_health: FinancialHealth = new FinancialHealth();
   objectives = [];
+  showCalendar=false;
   products = [];
   investments = [];
   @Output() show_edit_section: EventEmitter<void> = new EventEmitter<void>();

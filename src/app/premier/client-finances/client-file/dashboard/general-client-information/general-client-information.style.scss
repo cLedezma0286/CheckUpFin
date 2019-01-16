@@ -376,11 +376,11 @@ section{
     height: 70px;
     float: right;
     border-radius: 2px;
-    background-color: #aaa20a;
+    background-color: $primary-green;
     font-weight: 100;
     font-size: 14px;
     text-align: left;
-    color: #ffffff;
+    color: $white;
     background-image: url(/assets/images/planw.svg);
     background-repeat: no-repeat;
     background-position: 10% 40%;
@@ -393,7 +393,7 @@ section{
       font-weight: 400;
       font-size: 20px;
       text-align: left;
-      color: #ffffff;
+      color: $white;
       clear: both;
       display: block;
     }
