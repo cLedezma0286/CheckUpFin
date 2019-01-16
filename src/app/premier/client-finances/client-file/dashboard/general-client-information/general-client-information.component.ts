@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { DashboardService } from './../dashboard.service';
+import { ClientsService } from '@shared-services/clients.service';
+import { InterviewService } from '@shared-services/interview.service';
 import { Client } from '@models/client.model';
 import { FinancialHealth } from '@models/financial-health.model';
 @Component({
@@ -10,23 +11,30 @@ import { FinancialHealth } from '@models/financial-health.model';
 export class GeneralClientInformationComponent implements OnInit{
   client_information: Client = new Client();
   financial_health: FinancialHealth = new FinancialHealth();
+  objectives = [];
   products = [];
+  investments = [];
   @Output() show_edit_section: EventEmitter<void> = new EventEmitter<void>();
-  constructor(public dashboardService: DashboardService){}
+  constructor(public clientsService: ClientsService, public interviewService: InterviewService){}
   ngOnInit(){
-    this.dashboardService.getClientInformation().subscribe(
+    this.clientsService.getClientInformation(458747).subscribe(
       (response: Client) => {
         this.client_information = response;
       }
     );
-    this.dashboardService.getInterviewInformation().subscribe(
+    this.clientsService.getClientInterviewInformation(458747).subscribe(
       response => {
         this.financial_health = response['salud_financiera'];
       }
     );
-    this.dashboardService.getProductsByObjectives().subscribe(
+    this.clientsService.getClientProducts(458747).subscribe(
       response => {
         this.products = response['productos'];
+      }
+    );
+    this.interviewService.getInterviewInvestments(1).subscribe(
+      response => {
+        this.investments = response['inversiones'];
       }
     );
   }
@@ -103,5 +111,25 @@ export class GeneralClientInformationComponent implements OnInit{
   }
   showEditUserInformationSection(){
     this.show_edit_section.emit();
+  }
+  objectiveToString(objective){
+    let objective_string = objective.nombre;
+    if (objective.valor) {
+      objective_string = objective_string + '/ $' + objective.valor + ' MXN';
+    }
+    if (objective.fecha) {
+      objective_string = objective_string + '/ ' + objective.fecha;
+    }
+    return objective_string;
+  }
+  getClientFinantialHealthState(financial_health_score){
+    let score = this.getRateNumber(financial_health_score);
+    if (score >= 7) {
+      return 'Excelente';
+    }else if (score >= 5) {
+      return 'Bueno';
+    }else {
+      return 'Malo';
+    }
   }
 }

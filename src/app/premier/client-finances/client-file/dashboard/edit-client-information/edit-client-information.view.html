@@ -1,47 +1,56 @@
 <section>
-  <div class="whiteBox edit_client_container">
-    <p class="name">Gerardo Escrucería</p>
+  <form class="whiteBox edit_client_container" [formGroup]="user_information" (ngSubmit)="setClientPersonalInformation()">
+    <p class="name">{{name}}</p>
     <div class="inputs_container">
       <div class="client_input">
         <p class="placeholder">Cargo</p>
-        <input type="text"/>
+        <input type="text" formControlName="position" maxlength="50"/>
       </div>
       <div class="client_input">
         <p class="placeholder">Teléfono</p>
-        <input type="text"/>
+        <input type="text" formControlName="phone" maxlength="15"/>
       </div>
       <div class="client_input">
         <p class="placeholder">Email</p>
-        <input type="text"/>
+        <input type="text" formControlName="email" maxlength="80"/>
       </div>
       <div class="client_input">
         <p class="placeholder">Número de hijos</p>
-        <input type="number"/>
+        <input type="number" formControlName="number_of_childrens"/>
       </div>
       <div class="client_input">
         <p class="placeholder">Cumpleaños</p>
-        <input type="text"/>
+        <input type="text" formControlName="birthday" maxlength="10" (keyup)="validateBirthdayFormat()" placeholder="31/12/1999"/>
       </div>
       <div class="client_input">
         <p class="placeholder">Estado civil</p>
-        <input type="text"/>
+        <input type="text" formControlName="civil_status" maxlength="12"/>
       </div>
       <div class="client_input">
         <p class="placeholder">CIS</p>
-        <input type="text"/>
+        <input type="text" formControlName="cis" maxlength="15"/>
       </div>
       <div class="client_input">
         <p class="placeholder">Hobbies</p>
-        <input type="text"/>
+        <input type="text" formControlName="hobbies" maxlength="255"/>
       </div>
       <div class="client_input">
         <p class="placeholder">Perfil de riesgo</p>
-        <input type="text"/>
+        <select formControlName="risk_profile">
+          <option value="Sin perfil">Sin perfil</option>
+          <option value="Ejecución">Ejecución</option>
+          <option value="Ahorrador">Ahorrador</option>
+          <option value="Conservador">Conservador</option>
+          <option value="Conservador - moderado">Conservador - moderado</option>
+          <option value="Moderado">Moderado</option>
+          <option value="Moderado - agresivo">Moderado - agresivo</option>
+          <option value="Agresivo">Agresivo</option>
+        </select>
       </div>
     </div>
     <div class="controls">
       <p (click)="closeEditClientInformation()">Cancelar</p>
       <button>Guardar</button>
     </div>
-  </div>
+  </form>
 </section>
