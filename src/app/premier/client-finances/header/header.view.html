@@ -6,7 +6,7 @@
   <div class="header_controls">
     <div class="subtitle" *ngIf="subtitle !== ''">{{subtitle}}</div>
     <div class="percentage_status">
-      <p class="title">Información de Gerardo</p>
+      <p class="title">Información de {{name}}</p>
       <div class="status_bar">
         <div [style.width.%]="percentage"></div>
       </div>
@@ -21,9 +21,6 @@
         <div class="clickable" open_menu="true"></div>
       </div>
       <div class="options_container" *ngIf="open_menu">
-        <!--
-        <div class="option">Buscar o añadir cliente nuevo</div>
-        -->
         <div class="option">Nueva entrevista con cliente</div>
         <div class="option" (click)="goToRoute('/client-finances/client-file')">Ficha de cliente</div>
       </div>
