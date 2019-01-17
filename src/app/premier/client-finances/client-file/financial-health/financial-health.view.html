@@ -5,63 +5,63 @@
         <img src="assets/heart.svg"/>
         <p>Índice salud financiera</p>
       </div>
-      <div class="content" [ngClass]="{'healthy': 10 >= 7, 'unhealthy': 10 >= 5 && 10 < 7, 'dangerous': 10 < 5}">
-        <p class="score">10</p>
+      <div class="content" [ngClass]="{'healthy': getRateNumber(financial_health.puntuacion) >= 7, 'unhealthy': getRateNumber(financial_health.puntuacion) >= 5 && getRateNumber(financial_health.puntuacion) < 7, 'dangerous': getRateNumber(financial_health.puntuacion) < 5}">
+        <p class="score">{{getRate(financial_health.puntuacion)}}</p>
         <div class="status_bar">
-          <div [style.width.%]="10 * 10"></div>
+          <div [style.width.%]="getRateNumber(financial_health.puntuacion) * 10"></div>
         </div>
         <p class="explanation">Tu salud financiera es es calculada a partir de toda la información que nos has facilitado y estableciendo una media entre cuatro tracks fundamentales...</p>
         <p class="calculated" (click)="openCalculationExplanationModal()">¿Cómo se calcula?</p>
       </div>
     </div>
     <div class="whiteBox items">
-        <div class="item" [ngClass]="{'healthy': 10 >= 7, 'unhealthy': 10 >= 5 && 10 < 7, 'dangerous': 10 < 5}">
+        <div class="item" [ngClass]="{'healthy': financial_health.Gastos.num_puntuacion >= 7, 'unhealthy': financial_health.Gastos.num_puntuacion >= 5 && financial_health.Gastos.num_puntuacion < 7, 'dangerous': financial_health.Gastos.num_puntuacion < 5}">
           <div class="bar">
             <div class="image_container">
               <img src="assets/gastos.svg"/>
             </div>
             <div class="status_bar">
-              <div [style.height.%]="10 * 10"></div>
+              <div [style.height.%]="financial_health.Gastos.num_puntuacion * 10"></div>
             </div>
             <p class="name">Gastos</p>
           </div>
-          <p class="score"><span>{{10}}</span>/10</p>
+          <p class="score"><span>{{financial_health.Gastos.num_puntuacion}}</span>/10</p>
         </div>
-        <div class="item" [ngClass]="{'healthy': 10 >= 7, 'unhealthy': 10 >= 5 && 10 < 7, 'dangerous': 10 < 5}">
+        <div class="item" [ngClass]="{'healthy': financial_health.Deuda.num_puntuacion >= 7, 'unhealthy': financial_health.Deuda.num_puntuacion >= 5 && financial_health.Deuda.num_puntuacion < 7, 'dangerous': financial_health.Deuda.num_puntuacion < 5}">
           <div class="bar">
             <div class="image_container">
               <img src="assets/deuda.svg"/>
             </div>
             <div class="status_bar">
-              <div [style.height.%]="10 * 10"></div>
+              <div [style.height.%]="financial_health.Deuda.num_puntuacion * 10"></div>
             </div>
             <p class="name">Deuda</p>
           </div>
-          <p class="score"><span>{{10}}</span>/10</p>
+          <p class="score"><span>{{financial_health.Deuda.num_puntuacion}}</span>/10</p>
         </div>
-        <div class="item" [ngClass]="{'healthy': 10 >= 7, 'unhealthy': 10 >= 5 && 10 < 7, 'dangerous': 10 < 5}">
+        <div class="item" [ngClass]="{'healthy': financial_health.Ahorro.num_puntuacion >= 7, 'unhealthy': financial_health.Ahorro.num_puntuacion >= 5 && financial_health.Ahorro.num_puntuacion < 7, 'dangerous': financial_health.Ahorro.num_puntuacion < 5}">
           <div class="bar">
             <div class="image_container">
               <img src="assets/ahorro.svg"/>
             </div>
             <div class="status_bar">
-              <div [style.height.%]="10 * 10"></div>
+              <div [style.height.%]="financial_health.Ahorro.num_puntuacion * 10"></div>
             </div>
             <p class="name">Ahorro</p>
           </div>
-          <p class="score"><span>{{10}}</span>/10</p>
+          <p class="score"><span>{{financial_health.Ahorro.num_puntuacion}}</span>/10</p>
         </div>
-        <div class="item" [ngClass]="{'healthy': 10 >= 7, 'unhealthy': 10 >= 5 && 10 < 7, 'dangerous': 10 < 5}">
+        <div class="item" [ngClass]="{'healthy': financial_health.Plan.num_puntuacion >= 7, 'unhealthy': financial_health.Plan.num_puntuacion >= 5 && financial_health.Plan.num_puntuacion < 7, 'dangerous': financial_health.Plan.num_puntuacion < 5}">
           <div class="bar">
             <div class="image_container">
               <img src="assets/plan.svg"/>
             </div>
             <div class="status_bar">
-              <div [style.height.%]="10 * 10"></div>
+              <div [style.height.%]="financial_health.Plan.num_puntuacion * 10"></div>
             </div>
             <p class="name">Planificación</p>
           </div>
-          <p class="score"><span>{{10}}</span>/10</p>
+          <p class="score"><span>{{financial_health.Plan.num_puntuacion}}</span>/10</p>
         </div>
       </div>
   </div>
@@ -69,51 +69,34 @@
     <p class="title">Objetivos de vida y necesidades</p>
     <p class="description">Estos son tus objetivos y sueños, así como los detalles que debes tener en cuenta para conseguirlos:</p>
     <div class="objectives_container">
-      <div class="objective">
-        <div class="number">1</div>
+      <div class="objective" *ngFor="let objective of objectives; let i = index">
+        <div class="number">{{ i + 1 }}</div>
         <div class="details">
-          <p class="name">Vivir en el extranjero 4 meses.</p>
-          <p class="date_price">2018, $250,000</p>
+          <p class="name">{{ objective.nombre }}</p>
+          <p class="date_price">{{ objective.fecha }}, ${{objective.amount}}</p>
         </div>
         <img class="edit" src="assets/icon-edit.svg"/>
-        <div class="delete"></div>
-      </div>
-      <div class="objective">
-        <div class="number">2</div>
-        <div class="details">
-          <p class="name">Vivir en el extranjero 4 meses.</p>
-          <p class="date_price">2018, $250,000</p>
-        </div>
-        <img class="edit" src="assets/icon-edit.svg"/>
-        <div class="delete"></div>
-      </div>
-      <div class="objective">
-        <div class="number">3</div>
-        <div class="details">
-          <p class="name">Vivir en el extranjero 4 meses.</p>
-          <p class="date_price">2018, $250,000</p>
-        </div>
-        <img class="edit" src="assets/icon-edit.svg"/>
-        <div class="delete"></div>
+        <div class="delete" (click)="deleteObjective(objective.id)"></div>
       </div>
     </div>
-    <button class="add_objective">Añadir objetivo</button>
+    <button class="add_objective" (click)="openAddObjectiveModal()">Añadir objetivo</button>
   </div>
   <div class="results whiteBox">
     <p class="title">Resultado de tu Finance Health Monitor</p>
-    <p class="description">Gerardo Fernández <span>(55)</span></p>
+    <p class="description">{{name}} <span>({{getYearsOfAge()}} años)</span></p>
     <div class="recommendations_by_category">
       <div class="row">
         <div class="item">
           <div class="score">
             <img src="assets/gastos.svg"/>
-            <div>8</div>
+            <div [ngClass]="{'healthy': financial_health.Gastos.num_puntuacion >= 7, 'unhealthy': financial_health.Gastos.num_puntuacion >= 5 && financial_health.Gastos.num_puntuacion < 7, 'dangerous': financial_health.Gastos.num_puntuacion < 5}">{{financial_health.Gastos.num_puntuacion}}</div>
           </div>
           <div class="recomendations">
             <p class="recomendation_title">Gastos</p>
             <div class="recomendations_list">
-              <p>• Prestar atención a los gastos.</p>
-              <p>• No es recomendable que los gastos superen el 35% de tus ingresos.</p>
+              <div *ngFor="let recommendation of financial_health.Gastos.recomendaciones">
+                <p *ngFor="let bullet of recommendation.bullets">• {{bullet}}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -121,13 +104,14 @@
         <div class="item">
           <div class="score">
             <img src="assets/deuda.svg"/>
-            <div>8</div>
+            <div [ngClass]="{'healthy': financial_health.Deuda.num_puntuacion >= 7, 'unhealthy': financial_health.Deuda.num_puntuacion >= 5 && financial_health.Deuda.num_puntuacion < 7, 'dangerous': financial_health.Deuda.num_puntuacion < 5}">{{financial_health.Deuda.num_puntuacion}}</div>
           </div>
           <div class="recomendations">
             <p class="recomendation_title">Deuda</p>
             <div class="recomendations_list">
-              <p>• Prestar atención a los gastos.</p>
-              <p>• No es recomendable que los gastos superen el 35% de tus ingresos.</p>
+              <div *ngFor="let recommendation of financial_health.Deuda.recomendaciones">
+                <p *ngFor="let bullet of recommendation.bullets">• {{bullet}}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -136,13 +120,14 @@
         <div class="item">
           <div class="score">
             <img src="assets/ahorro.svg"/>
-            <div>8</div>
+            <div [ngClass]="{'healthy': financial_health.Ahorro.num_puntuacion >= 7, 'unhealthy': financial_health.Ahorro.num_puntuacion >= 5 && financial_health.Ahorro.num_puntuacion < 7, 'dangerous': financial_health.Ahorro.num_puntuacion < 5}">{{financial_health.Ahorro.num_puntuacion}}</div>
           </div>
           <div class="recomendations">
             <p class="recomendation_title">Ahorro</p>
             <div class="recomendations_list">
-              <p>• Prestar atención a los gastos.</p>
-              <p>• No es recomendable que los gastos superen el 35% de tus ingresos.</p>
+              <div *ngFor="let recommendation of financial_health.Ahorro.recomendaciones">
+                <p *ngFor="let bullet of recommendation.bullets">• {{bullet}}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -150,13 +135,14 @@
         <div class="item">
           <div class="score">
             <img src="assets/plan.svg"/>
-            <div>8</div>
+            <div [ngClass]="{'healthy': financial_health.Plan.num_puntuacion >= 7, 'unhealthy': financial_health.Plan.num_puntuacion >= 5 && financial_health.Plan.num_puntuacion < 7, 'dangerous': financial_health.Plan.num_puntuacion < 5}">{{financial_health.Plan.num_puntuacion}}</div>
           </div>
           <div class="recomendations">
             <p class="recomendation_title">Planificación</p>
             <div class="recomendations_list">
-              <p>• Prestar atención a los gastos.</p>
-              <p>• No es recomendable que los gastos superen el 35% de tus ingresos.</p>
+              <div *ngFor="let recommendation of financial_health.Plan.recomendaciones">
+                <p *ngFor="let bullet of recommendation.bullets">• {{bullet}}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -170,3 +156,4 @@
   <img src="assets/images/lock-sm.png" class="lock" />
 </section>
 <calculation-explanation *ngIf="calculation_explanation_open" (close)="closeCalculationExplanationModal()"></calculation-explanation>
+<add-objective *ngIf="add_objective_open" [interview_id]="financial_health.entrevista_id" (close)="closeAddObjectiveModal()"></add-objective>

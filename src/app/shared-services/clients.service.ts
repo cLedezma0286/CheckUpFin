@@ -16,7 +16,6 @@ export class ClientsService{
   	return this.http.get(environment.CLIENTS_URL + '/' + client_cis + '/productos');
   }
   setClientPersonalInformation(client_information){
-    console.log(client_information);
     return this.http.put(environment.CLIENTS_URL + '/' + 6454, client_information);
   }
 }

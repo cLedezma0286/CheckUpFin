@@ -395,11 +395,19 @@ section{
               border-radius: 48px;
               width: 48px;
               height: 48px;
-              background-color: $primary-green;
               color: $white;
               font-size: 24px;
               line-height: 1;
               font-weight: 400;
+              &.healthy{
+                background-color: $primary-green;
+              }
+              &.unhealthy{
+                background-color: $unhealthy-yellow
+              }
+              &.dangerous{
+                background-color: $primary-red;
+              }
             }
           }
           .recomendations{
