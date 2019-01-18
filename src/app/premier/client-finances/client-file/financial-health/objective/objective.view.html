@@ -1,0 +1,35 @@
+<section>
+  <div class="header">
+    <img src="assets/images/logo_hsbc.svg"/>
+    <div class="close" (click)="closeModal(null)">
+    </div>
+  </div>
+  <p class="title">{{objective ? 'Editar objetivo' : 'Añadir objetivo'}}</p>
+  <div class="questions_container">
+    <div class="line"></div>
+    <form class="questions_and_controls" [formGroup]="objective_form" novalidate>
+      <div class="questions_list">
+        <div class="question_item" [ngClass]="{past_question: 0 < actual_question_index, actual_question: 0 === actual_question_index, next_question: actual_question_index + 1 === 0, future_question: 0 > actual_question_index + 1}">
+          <p class="question">¿Qué objetivo te gustaría lograr?</p>
+          <input type="text" #question_0 formControlName="what_objective" (focus)="setActualQuestion(0)"/>
+        </div>
+        <div class="question_item has_options" [ngClass]="{past_question: 1 < actual_question_index, actual_question: 1 === actual_question_index, next_question: actual_question_index + 1 === 1, future_question: 1 > actual_question_index + 1}">
+          <p class="question">¿Cuándo te gustaría lograrlo?</p>
+          <div class="answer_container">
+            <input type="text" #question_1 formControlName="when" (focus)="setActualQuestion(1)"/>
+            <div class="option" [ngClass]="{selected: question_1_selected_option === 'meses'}" (click)="setQuestionOneOptionValue('meses')">Mes</div>
+            <div class="option" [ngClass]="{selected: question_1_selected_option === 'años'}" (click)="setQuestionOneOptionValue('años')">Año</div>
+          </div>
+        </div>
+        <div class="question_item" [ngClass]="{past_question: 2 < actual_question_index, actual_question: 2 === actual_question_index, next_question: actual_question_index + 1 === 2, future_question: 2 > actual_question_index + 1}">
+          <p class="question">¿Cuánto necesitas para lograrlo?</p>
+          <input type="text" #question_2 formControlName="how_many" (focus)="setActualQuestion(2)"/>
+        </div>
+      </div>
+      <div class="controls" *ngIf="actual_question_index === 2">
+        <button class="add_objective" type="button" (click)="finishObjectiveForm()">{{objective ? 'Editar objetivo' : 'Añadir objetivo'}}</button>
+      </div>
+    </form>
+    <div class="line"></div>
+  </div>
+</section>

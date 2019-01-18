@@ -1,5 +1,5 @@
 <section>
-  <form class="whiteBox edit_client_container" [formGroup]="user_information" (ngSubmit)="setClientPersonalInformation()">
+  <form class="whiteBox edit_client_container" [formGroup]="user_information" (ngSubmit)="setClientPersonalInformation()" novalidate>
     <p class="name">{{name}}</p>
     <div class="inputs_container">
       <div class="client_input">
