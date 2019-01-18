@@ -12,9 +12,10 @@ export class FinancialHealthComponent implements OnInit{
   name: string;
   age = null;
   calculation_explanation_open = false;
-  add_objective_open = false;
+  objective_modal_open = false;
   financial_health: FinancialHealth = new FinancialHealth();
   objectives = [];
+  objective_to_edit = null;
   constructor(public router: Router, public clientsService: ClientsService, public objectivesService: ObjectivesService, public renderer: Renderer2){}
   ngOnInit(){
     this.clientsService.getClientInterviewInformation(458747).subscribe(
@@ -51,13 +52,26 @@ export class FinancialHealthComponent implements OnInit{
     this.calculation_explanation_open = false;
     this.setBodyScroll('auto');
   }
-  openAddObjectiveModal(){
+  openObjectiveModal(){
     this.setBodyScroll('hidden');
-    this.add_objective_open = true;
+    this.objective_modal_open = true;
   }
-  closeAddObjectiveModal(){
-    this.add_objective_open = false;
+  closeObjectiveModal(objective){
+    if (objective) {
+      this.updateLocalObjectivesList(objective);
+    }
+    this.objective_modal_open = false;
+    this.objective_to_edit = null;
     this.setBodyScroll('auto');
+  }
+  updateLocalObjectivesList(objective){
+    for (var i = 0; i < this.objectives.length; i++) {
+      if (objective.id === this.objectives[i].id) {
+        this.objectives[i] = objective;
+        return;
+      }
+    }
+    this.objectives.push(objective);
   }
   setBodyScroll(scroll_value){
     this.renderer.setStyle(document.body, 'overflow', scroll_value);
@@ -73,6 +87,10 @@ export class FinancialHealthComponent implements OnInit{
       return full_rate.split('/')[0];
     }
     return 0;
+  }
+  editObjective(objective){
+    this.objective_to_edit = objective;
+    this.openObjectiveModal();
   }
   deleteObjective(objective_id){
     this.objectivesService.deleteObjective(objective_id).subscribe(

@@ -75,11 +75,11 @@
           <p class="name">{{ objective.nombre }}</p>
           <p class="date_price">{{ objective.fecha }}, ${{objective.amount}}</p>
         </div>
-        <img class="edit" src="assets/icon-edit.svg"/>
+        <img class="edit" src="assets/icon-edit.svg" (click)="editObjective(objective)"/>
         <div class="delete" (click)="deleteObjective(objective.id)"></div>
       </div>
     </div>
-    <button class="add_objective" (click)="openAddObjectiveModal()">Añadir objetivo</button>
+    <button class="add_objective" (click)="openObjectiveModal()">Añadir objetivo</button>
   </div>
   <div class="results whiteBox">
     <p class="title">Resultado de tu Finance Health Monitor</p>
@@ -156,4 +156,4 @@
   <img src="assets/images/lock-sm.png" class="lock" />
 </section>
 <calculation-explanation *ngIf="calculation_explanation_open" (close)="closeCalculationExplanationModal()"></calculation-explanation>
-<add-objective *ngIf="add_objective_open" [interview_id]="financial_health.entrevista_id" (close)="closeAddObjectiveModal()"></add-objective>
+<objective *ngIf="objective_modal_open" [interview_id]="financial_health.entrevista_id" [objective]="objective_to_edit" (close)="closeObjectiveModal($event)"></objective>
