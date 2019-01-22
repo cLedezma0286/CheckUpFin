@@ -3,6 +3,7 @@ import { ClientsService } from '@shared-services/clients.service';
 import { InterviewService } from '@shared-services/interview.service';
 import { Client } from '@models/client.model';
 import { FinancialHealth } from '@models/financial-health.model';
+declare var jsCalendar: any;
 @Component({
   selector: 'general-client-information',
   templateUrl: 'general-client-information.view.html',
@@ -12,6 +13,7 @@ export class GeneralClientInformationComponent implements OnInit{
   client_information: Client = new Client();
   financial_health: FinancialHealth = new FinancialHealth();
   objectives = [];
+  showCalendar=false;
   products = [];
   investments = [];
   @Output() show_edit_section: EventEmitter<void> = new EventEmitter<void>();
@@ -35,6 +37,44 @@ export class GeneralClientInformationComponent implements OnInit{
     this.interviewService.getInterviewInvestments(1).subscribe(
       response => {
         this.investments = response['inversiones'];
+      }
+    );
+  }
+  changeCalendar() {
+    this.showCalendar = !this.showCalendar;
+    if (this.showCalendar)this.initCalendar();
+  }
+  initCalendar() {
+    var checkExist = setInterval(() => {
+      if(document.getElementById("my-calendar")){
+        var element = document.getElementById("my-calendar");
+        var calendar = jsCalendar.new(element,
+          new Date(this.getDateForObjectFormat(this.client_information.sig_checkup)), {
+          language: "es",
+          navigatorPosition: 'right'
+        });
+        calendar.onDateClick((event, date) => {
+          if (date.getDay()%6 !== 0) {
+            calendar.set(date);
+            this.updateNextCheckup(date);
+            this.showCalendar = false;
+          }
+        });
+        clearInterval(checkExist);
+      }
+    },100);
+  }
+  updateNextCheckup(nextDate) {
+    nextDate = ("0" + nextDate.getDate()).slice(-2) + "/" +
+      ("0"+(nextDate.getMonth()+1)).slice(-2) + "/" +
+      nextDate.getFullYear();
+    var dateRequest = {
+      'sig_checkup': nextDate
+    };
+    this.clientsService.setNextCheckupClient(458747, dateRequest)
+    .subscribe(
+      (response: Client) => {
+        this.client_information = response;
       }
     );
   }

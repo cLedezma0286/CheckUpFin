@@ -4,6 +4,7 @@ section{
   padding-bottom: 70px;
   .client_information{
     padding: 30px 16px 20px 68px;
+    position: relative;
     .client_name{
       font-size: 24px;
       font-weight: 300;
@@ -363,4 +364,50 @@ section{
       }
     }
   }
-}     
+}
+.date-checkup {
+  position: absolute;
+  top: -17px;
+  right: 17px;
+  width: 387px;
+  .date-header {
+    position: relative;
+    width: 288px;
+    height: 70px;
+    float: right;
+    border-radius: 2px;
+    background-color: $primary-green;
+    font-weight: 100;
+    font-size: 14px;
+    text-align: left;
+    color: $white;
+    background-image: url(/assets/images/planw.svg);
+    background-repeat: no-repeat;
+    background-position: 10% 40%;
+    padding-left: 71px;
+    padding-top: 14px;
+    p {
+      margin: 0;
+    }
+    .date {
+      font-weight: 400;
+      font-size: 20px;
+      text-align: left;
+      color: $white;
+      clear: both;
+      display: block;
+    }
+    .dropdown-calendar {
+      background-image: url(/assets/images/down_arrow.svg);
+      background-repeat: no-repeat;
+      width: 25px;
+      height: 25px;
+      position: absolute;
+      right: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+}
