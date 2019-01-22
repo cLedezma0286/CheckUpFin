@@ -3,7 +3,6 @@ import { ClientsService } from '@shared-services/clients.service';
 import { InterviewService } from '@shared-services/interview.service';
 import { Client } from '@models/client.model';
 import { FinancialHealth } from '@models/financial-health.model';
-import { timingSafeEqual } from 'crypto';
 declare var jsCalendar: any;
 @Component({
   selector: 'general-client-information',
@@ -74,7 +73,7 @@ export class GeneralClientInformationComponent implements OnInit{
     };
     this.clientsService.setNextCheckupClient(458747, dateRequest)
     .subscribe(
-      response => {
+      (response: Client) => {
         this.client_information = response;
       }
     );
