@@ -55,9 +55,11 @@ export class GeneralClientInformationComponent implements OnInit{
           navigatorPosition: 'right'
         });
         calendar.onDateClick((event, date) => {
-          calendar.set(date);
-          this.updateNextCheckup(date);
-          this.showCalendar = false;
+          if (date.getDay()%6 !== 0) {
+            calendar.set(date);
+            this.updateNextCheckup(date);
+            this.showCalendar = false;
+          }
         });
         clearInterval(checkExist);
       }
