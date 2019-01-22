@@ -9,15 +9,15 @@
     </div>
     <p class="modal_title">Informe de salud financiera</p>
     <div class="name_date">
-      <p>Francisco Gerardo Amira</p>
+      <p>{{name}}</p>
       <p>20.Octubre.2017</p>
     </div>
     <div class="separation separation_header"></div>
     <p class="section_title">Índice de salud financiera</p>
     <div class="financial_health_index">
       <div class="evaluations">
-        <div class="status" [ngClass]="{'healthy': 10 >= 7, 'unhealthy': 10 >= 5 && 10 < 7, 'dangerous': 10 < 5}">
-          <p class="score">{{'10.0'}}<span>/10</span></p>
+        <div class="status" [ngClass]="{'healthy': getRateNumber(financial_health.puntuacion) >= 7, 'unhealthy': getRateNumber(financial_health.puntuacion) >= 5 && getRateNumber(financial_health.puntuacion) < 7, 'dangerous': getRateNumber(financial_health.puntuacion) < 5}">
+          <p class="score">{{getRateNumber(financial_health.puntuacion)}}<span>/10</span></p>
           <div class="status_bar">
             <div [style.width.%]="10 * 10"></div>
           </div>
