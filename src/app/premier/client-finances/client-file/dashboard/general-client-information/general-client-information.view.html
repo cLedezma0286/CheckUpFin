@@ -5,10 +5,10 @@
         <p>Próximo check-up
           <span class="date">{{client_information.sig_checkup}}</span>
         </p>
-        <a class="dropdown-calendar" (click)="showCalendar=true">&nbsp;</a>
+        <a class="dropdown-calendar" (click)="changeCalendar()">&nbsp;</a>
       </div>
       <div class="calendar-wrapper" *ngIf="showCalendar">
-        <div date-picker="dates.today" view="date" min-view="date" min-date="minDate" date-change="dateChange" template="app/partials/datepicker.html"></div>
+        <div id="my-calendar"></div>
       </div>
     </div>
     <p class="client_name">Gerardo Escrucería</p>

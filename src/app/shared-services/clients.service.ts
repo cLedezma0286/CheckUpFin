@@ -18,4 +18,7 @@ export class ClientsService{
   setClientPersonalInformation(client_information){
     return this.http.put(environment.CLIENTS_URL + '/' + 6454, client_information);
   }
+  setNextCheckupClient(client_cis, nextCheckup){
+    return this.http.put(environment.CLIENTS_URL + '/' + client_cis + '/siguiente_checkup', nextCheckup);
+  }
 }
