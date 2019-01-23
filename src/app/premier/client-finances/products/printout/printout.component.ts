@@ -11,6 +11,7 @@ export class PrintoutComponent implements OnInit{
   financial_health: FinancialHealth = new FinancialHealth();
   objectives = [];
   name: string;
+  date = '';
   constructor(public clientsService: ClientsService){}
   ngOnInit(){
     this.clientsService.getClientInterviewInformation(458747).subscribe(
@@ -24,6 +25,7 @@ export class PrintoutComponent implements OnInit{
         this.name = response['nombre_clie'];
       }
     );
+    this.date = this.getTodayDate();
   }
   getRateNumber(full_rate){
     return Number(this.getRate(full_rate));
@@ -36,5 +38,50 @@ export class PrintoutComponent implements OnInit{
   }
   closeModal(){
     this.close.emit();
+  }
+  getTodayDate(){
+    let date_aux = new Date();
+    return date_aux.getDate() + '.' + this.getMonthName(date_aux.getMonth() + 1) + '.' + date_aux.getFullYear();
+  }
+  getMonthName(month){
+    let month_name = '';
+    switch(month) {
+      case 1:
+        month_name = 'Enero';
+        break;
+      case 2:
+        month_name = 'Febrero';
+        break;
+      case 3:
+        month_name = 'Marzo';
+        break;
+      case 4:
+        month_name = 'Abril';
+        break;
+      case 5:
+        month_name = 'Mayo';
+        break;
+      case 6:
+        month_name = 'Junio';
+        break;
+      case 7:
+        month_name = 'Julio';
+        break;
+      case 8:
+        month_name = 'Agosto';
+        break;
+      case 9:
+        month_name = 'Septiembre';
+        break;
+      case 10:
+        month_name = 'Octubre';
+        break;
+      case 11:
+        month_name = 'Noviembre';
+        break;
+      case 12:
+        month_name = 'Diciembre';
+    }
+    return month_name;
   }
 }
