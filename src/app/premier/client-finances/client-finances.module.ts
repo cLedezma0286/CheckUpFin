@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { HeaderModule } from "./header/header.module";
+import { HeaderComponent } from "./header/header.component";
 import { ProductsModule } from "./products/products.module";
 import { ClientFileModule } from "./client-file/client-file.module";
 import { ClientFinancesComponent } from "./client-finances.component";
@@ -10,12 +10,12 @@ import { ClientFinancesComponent } from "./client-finances.component";
   imports: [
     BrowserModule,
     RouterModule,
-    HeaderModule,
     ProductsModule,
     ClientFileModule
   ],
   declarations: [
-    ClientFinancesComponent
+    ClientFinancesComponent,
+    HeaderComponent
   ],
   exports: [
     ClientFinancesComponent
