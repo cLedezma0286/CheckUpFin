@@ -18,7 +18,8 @@ import { ClientFinancesComponent } from "./client-finances.component";
     HeaderComponent
   ],
   exports: [
-    ClientFinancesComponent
+    ClientFinancesComponent,
+    HeaderComponent
   ]
 })
 export class ClientFinancesModule {}
