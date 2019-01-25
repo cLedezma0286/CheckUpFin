@@ -467,3 +467,19 @@ section{
     width: 20px;
   }
 }
+
+.btn-image {
+  background-color: $primary-red;
+  border: none;
+  background-position: center center;
+  width: 55px;
+  height: 40px;
+  margin-right: 5px;
+  &:hover{
+    background-color: $hover-red
+  }
+}
+.btn-img-print{
+  background-image: url(/assets/images/print.svg);
+  background-repeat: no-repeat;
+}
