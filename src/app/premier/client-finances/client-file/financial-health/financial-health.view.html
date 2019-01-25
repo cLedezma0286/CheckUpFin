@@ -75,11 +75,11 @@
           <p class="name">{{ objective.nombre }}</p>
           <p class="date_price">{{ objective.fecha }}<span *ngIf="objective.valor">, ${{ objective.valor }}</span></p>
         </div>
-        <img class="edit" src="assets/icon-edit.svg" (click)="editObjective(objective)"/>
-        <div class="delete" (click)="deleteObjective(objective.id)"></div>
+        <!--img class="edit" src="assets/icon-edit.svg" (click)="editObjective(objective)"/-->
+        <!--div class="delete" (click)="deleteObjective(objective.id)"></div-->
       </div>
     </div>
-    <button class="add_objective" (click)="openObjectiveModal()">Añadir objetivo</button>
+    <!--button class="add_objective" (click)="openObjectiveModal()">Añadir objetivo</button-->
   </div>
   <div class="results whiteBox">
     <p class="title">Resultado de tu Finance Health Monitor</p>
@@ -150,7 +150,7 @@
     </div>
   </div>
   <div class="controls">
-    <button>Proxima cita</button>
+    <button class="btn-image btn-img-print"></button>
     <button (click)="goToProducts()">Ver productos</button>
   </div>
   <img src="assets/images/lock-sm.png" class="lock"/>
