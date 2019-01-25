@@ -153,7 +153,7 @@
     <button>Proxima cita</button>
     <button (click)="goToProducts()">Ver productos</button>
   </div>
-  <img src="assets/images/lock-sm.png" class="lock" />
+  <img src="assets/images/lock-sm.png" class="lock"/>
 </section>
 <calculation-explanation *ngIf="calculation_explanation_open" (close)="closeCalculationExplanationModal()"></calculation-explanation>
 <objective *ngIf="objective_modal_open" [interview_id]="financial_health.entrevista_id" [objective]="objective_to_edit" (close)="closeObjectiveModal($event)"></objective>

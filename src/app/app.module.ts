@@ -8,6 +8,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeModule } from "./premier/home/home.module";
 import { LoaderModule } from './premier/loader/loader.module';
 import { ClientFinancesModule } from './premier/client-finances/client-finances.module'
+import { InterviewModule } from './premier/interview/interview.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ClientFinancesModule } from './premier/client-finances/client-finances.
     routing,
     HomeModule,
     LoaderModule,
+    InterviewModule,
     ClientFinancesModule
   ],
   providers: [],

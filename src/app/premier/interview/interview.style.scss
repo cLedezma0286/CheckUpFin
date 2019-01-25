@@ -1,0 +1,12 @@
+@import 'app-colors';
+section{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  .content{
+    width: 100%;
+    height: calc(100% - 122px);
+    overflow: auto;
+  }
+}
