@@ -16,6 +16,7 @@ export class FinancialHealthComponent implements OnInit{
   financial_health: FinancialHealth = new FinancialHealth();
   objectives = [];
   objective_to_edit = null;
+  openPrintModal = false;
   constructor(public router: Router, public clientsService: ClientsService, public objectivesService: ObjectivesService, public renderer: Renderer2){}
   ngOnInit(){
     this.clientsService.getClientInterviewInformation(458747).subscribe(
