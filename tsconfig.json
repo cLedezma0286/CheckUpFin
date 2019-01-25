@@ -17,9 +17,11 @@
       "dom"
     ],
     "paths": {
-      "@environment/*" : ["environments/*"],
-      "@shared-services/*" : ["app/shared-services/*"],
-      "@models/*" : ["app/models/*"]
+      "@environments/*" : ["environments/*"],
+      "@services/*" : ["app/core/services/*"],
+      "@models/*" : ["app/core/models/*"],
+      "@interceptors/*" : ["app/core/interceptors/*"],
+      "@shared-components/*" : ["app/core/shared-components/*"]
     }
   }
 }

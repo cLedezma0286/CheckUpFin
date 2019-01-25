@@ -1,0 +1,32 @@
+@import 'app-colors';
+section{
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+  background-color: $white;
+  .clients_list{
+    padding: 0px 12px 0px 6px;
+    .client{
+      height: 37px;
+      border-bottom: 1px solid $background-gray-status;
+    }
+  }
+  .create_cis{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 26px 12px 16px 0px;
+    button{
+      border: none;
+      background-color: $primary-red;
+      height: 36px;
+      padding-left: 40px;
+      padding-right: 40px; 
+      font-size: 16px;
+      font-weight: 100;
+      color: $white;
+    }
+  }
+}

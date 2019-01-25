@@ -1,0 +1,41 @@
+<section class="interview">
+  <client-header></client-header>
+  <div class="content" id="content">
+    <form class="questions_container" [formGroup]="interview" novalidate>
+      <div class="question_item" *ngFor="let question of questions" [ngClass]="{active: active_question_id === question.num_pregunta_id}" [attr.id]="'question_container_' + question.num_pregunta_id">
+        <div class="question">
+          <div class="line"></div>
+          <p><span *ngIf="question.pregunta_requerida">*</span>  {{question.num_pregunta_id}}<span>{{getDesTexto(question)}}</span></p>
+        </div>
+        <div class="answer simple_input" *ngIf="question.des_opciones.length === 0 && question.tipo_fecha === 0">
+          <input type="text" [attr.id]="'question_' + question.num_pregunta_id" (focus)="setActiveQuestion(question.num_pregunta_id)" formControlName="{{'question_' + question.num_pregunta_id}}" (input)="validateValue(question)"/>
+        </div>
+        <div class="answer simple_options" *ngIf="question.des_opciones.length !== 0 && question.tipo_fecha === 0">
+          <div class="options_container">
+            <div class="option" *ngFor="let option of question.des_opciones; let i = index" (click)="selectOptionByClick(question.num_pregunta_id, i)" [ngClass]="{focused: question.focused === i && active_question_id === question.num_pregunta_id, selected: question.selected.indexOf(i) !== -1}">{{option.nombre}}</div>
+          </div>
+          <input type="text" [attr.id]="'question_' + question.num_pregunta_id" formControlName="{{'question_' + question.num_pregunta_id}}" (focus)="setActiveQuestion(question.num_pregunta_id, 0)"/>
+        </div>
+        <div class="answer input_options" *ngIf="question.des_opciones.length !== 0 && question.tipo_fecha === 1">
+          <input type="text" [attr.id]="'question_' + question.num_pregunta_id" formControlName="{{'question_' + question.num_pregunta_id}}" (focus)="setActiveQuestion(question.num_pregunta_id, -1)"/>
+          <div class="options_container">
+            <div class="option" *ngFor="let option of question.des_opciones; let i = index" [ngClass]="{focused: question.focused === i && active_question_id === question.num_pregunta_id, selected: question.selected.indexOf(i) !== -1}" (click)="selectOptionByClick(question.num_pregunta_id, i)">{{option.nombre}}</div>
+            <input type="text" [attr.id]="'question_date_' + question.num_pregunta_id" (focus)="setActiveQuestion(question.num_pregunta_id, 0)"/>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="footer">
+    <div class="controls">
+      <img src="assets/images/lock-sm.png"/>
+      <div class="add_container">
+        <button class="generic_hsbc" (click)="openAddObjectiveModal()">Añadir Objetivo</button>
+        <button class="generic_hsbc" (click)="openAddNoteModal()">Añadir Notas</button>
+      </div>
+      <button class="generic_hsbc finish" (click)="sendInterview()">Terminar</button>
+    </div>
+  </div>
+</section>
+<add-objective *ngIf="add_objective_modal_open" (close)="closeObjectiveModal($event)"></add-objective>
+<add-notes *ngIf="add_note_modal_open" (close)="closeNoteModal($event)"></add-notes>
