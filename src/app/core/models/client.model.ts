@@ -13,4 +13,5 @@ export class Client {
   sig_checkup: string;
   telefono: string;
   updated_at: string;
+  cliente_nuevo: number;
 }

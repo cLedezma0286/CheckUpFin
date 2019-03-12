@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ClientsService } from '@services/clients.service';
+import { Client } from '@models/client.model';
 @Component({
   selector: 'dropdown',
   templateUrl: 'dropdown.view.html',
@@ -7,14 +8,17 @@ import { ClientsService } from '@services/clients.service';
 })
 export class DropdownComponent{
   @Input() cis: string;
+  client: Client;
+  status = '';
   constructor(public clientsService: ClientsService){}
   ngOnInit(){
     this.clientsService.getClientInformation(this.cis).subscribe(
-      response => {
-        console.log(response);
+      (response: Client) => {
+        this.client = response;
+        console.log(this.client);
       },
       error => {
-        console.log(error);
+        
       }
     );
   }
