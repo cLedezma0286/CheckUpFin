@@ -1,4 +1,4 @@
-const BASE_URL = 'http://staging.api.premier.jaque.me/';
+const BASE_URL = '/CheckUpFinanciero/';
 export const environment = {
   production: true,
   CLIENTS_URL: BASE_URL + 'clientes',

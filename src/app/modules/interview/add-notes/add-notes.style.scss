@@ -1,0 +1,147 @@
+@import 'app-colors';
+section{
+  z-index: 5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $background-gray;
+  overflow: hidden;
+  .header{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 20px 0px 24px;
+    img{
+      width: 44px;
+      height: 22px;
+    }
+    .close{
+      position: relative;
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      overflow: hidden;
+      cursor: pointer;
+      &::before, &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        left: 0;
+        margin-top: -1px;
+        background: $primary-red;
+        height: 1px;
+      }
+      &::before {
+        transform: rotate(45deg);
+      }
+      &::after {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+  .title{
+    margin-top: 112px;
+    padding-left: 147px;
+    font-size: 30px;
+    font-weight: 100;
+    color: $primary-red;
+  }
+  .questions_container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding: 0px 36px;
+    .line{
+      margin-top: 20px;
+      width: 35px;
+      height: 1px;
+      background-color: $primary-red;
+    }
+    .questions_and_controls{
+      width: calc(100% - 222px);
+      .questions_list{
+        .question_item{
+          &:nth-child(n + 2){
+            &:not(.actual_question){
+              &:not(.past_question){
+                margin-top: 100px;
+              }
+            }
+          }
+          &.has_options{
+            .answer_container{
+              margin-top: 34px;
+              display: flex;
+              justify-content: flex-start;
+              input{
+                margin-top: 0px;
+                width: 108px;
+              }
+              .option{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                margin-left: 5px;
+                border: 1px solid $text-gray;
+                border-radius: 2px;
+                padding-left: 16px;
+                width: 116px;
+                height: 36px;
+                cursor: pointer;
+                line-height: 1;
+                font-size: 18px;
+                font-weight: 300;
+                color: $text-gray;
+                &.selected{
+                  border: 1px solid $primary-red;
+                  color: $primary-red;
+                  background-color: rgba(219,0,17, 0.15);
+                }
+              }
+            }
+          }
+          &.past_question, &.future_question{
+            height: 0px;
+            overflow: hidden;
+          }
+          &.next_question{
+            opacity: 0.2;
+          }
+          .question{
+            font-size: 30px;
+            line-height: 36px;
+            font-weight: 100;
+            color: $text-black;
+          }
+          input{
+            margin-top: 34px;
+            border: none;
+            padding-left: 0px;
+            width: 100%;
+            height: 36px;
+            background-color: transparent;
+            font-size: 30px;
+            line-height: 1;
+            color: $text-black;
+            font-weight: 100;
+          }
+        }
+      }
+      .controls{
+        margin-top: 80px;
+      }
+    }
+  }
+  .add_note{
+    border: none;
+    padding: auto;
+    width: 182px;
+    height: 48px;
+    font-size: 18px;
+    font-weight: 100;
+    color: $white;
+    background-color: $primary-red;
+  }
+}

@@ -1,0 +1,27 @@
+<section>
+  <div class="header">
+    <img src="assets/images/logo_hsbc.svg"/>
+    <div class="close" (click)="closeModal(null)">
+    </div>
+  </div>
+  <p class="title">Añadir nota</p>
+  <div class="questions_container">
+    <div class="line"></div>
+    <form class="questions_and_controls" [formGroup]="note_form" novalidate>
+      <div class="questions_list">
+        <div class="question_item" [ngClass]="{past_question: 0 < actual_question_index, actual_question: 0 === actual_question_index, next_question: actual_question_index + 1 === 0, future_question: 0 > actual_question_index + 1}">
+          <p class="question">Título de la nota</p>
+          <input type="text" #question_0 formControlName="title" (focus)="setActualQuestion(0)"/>
+        </div>
+        <div class="question_item" [ngClass]="{past_question: 1 < actual_question_index, actual_question: 1 === actual_question_index, next_question: actual_question_index + 1 === 1, future_question: 1 > actual_question_index + 1}">
+          <p class="question">Texto de la nota</p>
+          <input type="text" #question_1 formControlName="text" (focus)="setActualQuestion(1)"/>
+        </div>
+      </div>
+      <div class="controls" *ngIf="actual_question_index === 1">
+        <button class="add_note" type="button" (click)="finishNoteForm()">Añadir Nota</button>
+      </div>
+    </form>
+    <div class="line"></div>
+  </div>
+</section>

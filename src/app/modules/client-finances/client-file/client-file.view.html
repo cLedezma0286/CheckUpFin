@@ -1,0 +1,13 @@
+<section [ngSwitch]="active_section_name">
+  <div class="header">
+    <div class="title">Ficha de cliente</div>
+    <div class="options">
+      <a class="tab" routerLinkActive="selected" routerLink="/client-finances/client-file/dashboard">Dashboard</a>
+      <a class="tab" routerLinkActive="selected" routerLink="/client-finances/client-file/financial-health">Salud financiera</a>
+      <a class="notes_and_agreements" routerLinkActive="selected" routerLink="/client-finances/client-file/notes-and-agreements">
+        <p>Notas y acuerdos</p>
+      </a>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</section>

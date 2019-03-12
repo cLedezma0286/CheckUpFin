@@ -1,0 +1,82 @@
+@import 'app-colors';
+section{
+  display: block;
+  margin: 0px auto;
+  padding-top: 24px;
+  max-width: 848px;
+  .header{
+    display: flex;
+    justify-content: space-between;
+    height: 41px;
+    border-bottom: 2px solid $background-gray-status;
+    .title{
+      font-size: 24px;
+      font-weight: 100;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: $text-black;
+    }
+    .options{
+      display: flex;
+      >*{
+        &:nth-child(n + 2){
+          margin-left: 36px;
+        }
+      }
+      .tab{
+        padding-top: 9px;
+        width: 118px;
+        height: 41px;
+        text-align: center;
+        font-size: 13px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: $text-black;
+        cursor: pointer;
+        text-decoration: none;
+        &.selected{
+          border-bottom: 3px solid $primary-red;
+        }
+      }
+      .notes_and_agreements{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 2px;
+        border-radius: 2px;
+        padding-left: 11px;
+        width: 161px;
+        height: 30px;
+        background-color: $white;
+        background-image: url('assets/images/notes.png');
+        background-repeat: no-repeat;
+        background-position: right 11px center;
+        background-size: 15px 17px;
+        cursor: pointer;
+        text-decoration: none;
+        p{
+          font-size: 13px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: 1;
+          letter-spacing: normal;
+          color: $text-gray;
+          text-decoration: none;
+        }
+        &.selected{
+          background-color: $text-gray;
+          background-image: url('assets/images/notes-active.png');
+          p{
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+}

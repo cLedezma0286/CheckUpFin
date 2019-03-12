@@ -1,15 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { routing } from './app.routing';
-
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { HomeModule } from "./premier/home/home.module";
-import { LoaderModule } from './premier/loader/loader.module';
-import { ClientFinancesModule } from './premier/client-finances/client-finances.module'
-import { InterviewModule } from './premier/interview/interview.module';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HomeModule } from "./modules/home/home.module";
+import { LoaderModule } from './modules/loader/loader.module';
+import { ClientFinancesModule } from './modules/client-finances/client-finances.module';
+import { ClientSearchModule } from './modules/client-search/client-search.module';
+import { InterviewModule } from './modules/interview/interview.module';
+import { GeneralInterceptor } from '@interceptors/general.interceptor';
 @NgModule({
   declarations: [
     AppComponent
@@ -22,9 +22,14 @@ import { InterviewModule } from './premier/interview/interview.module';
     HomeModule,
     LoaderModule,
     InterviewModule,
-    ClientFinancesModule
+    ClientFinancesModule,
+    ClientSearchModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: GeneralInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

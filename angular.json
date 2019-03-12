@@ -24,16 +24,16 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/app/calendar/jsCalendar.css"
+              "src/app/core/libraries/calendar/jsCalendar.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/scss/"
+                "src/app/core/scss"
               ]
             },
             "scripts": [
-              "src/app/calendar/jsCalendar.js",
-              "src/app/calendar/jsCalendar.lang.es.js"
+              "src/app/core/libraries/calendar/jsCalendar.js",
+              "src/app/core/libraries/calendar/jsCalendar.lang.es.js"
             ]
           },
           "configurations": {
@@ -42,6 +42,23 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
+            "spring": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.spring.ts"
                 }
               ],
               "optimization": true,
