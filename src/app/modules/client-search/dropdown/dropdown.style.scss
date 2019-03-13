@@ -3,14 +3,39 @@ section{
   position: absolute;
   top: 0px;
   width: 100%;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.12);
   border-radius: 2px;
   background-color: $white;
-  .clients_list{
-    padding: 0px 12px 0px 6px;
-    .client{
-      height: 37px;
-      border-bottom: 1px solid $background-gray-status;
+  .client_container{
+    padding: 4px;
+    .client, .not_found, .loading{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 11px 15px 11px 15px;
+      &.client{
+        cursor: pointer;
+        background-color: $menu-border-bottom;
+        span{
+          color: $white;
+        }
+        div{
+          background-color: $white;
+        }
+      }
+      span{
+        font-size: 14px;
+        line-height: 17px;
+        font-weight: 100;
+        color: $text-black;
+      }
+      div{
+        width: 1px;
+        height: 17px;
+        background-color: $text-black;
+        margin-left: 8px;
+        margin-right: 8px;
+      }
     }
   }
   .create_cis{

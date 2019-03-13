@@ -41,7 +41,6 @@ export class FinancialHealthComponent implements OnInit{
   }
   getYearsOfAge(){
     if (this.age) {
-      console.log(this.getDateForObjectFormat(this.age));
       let birthday = new Date(this.age);
       let age_dif_ms = Date.now() - birthday.getTime();
       let age_date = new Date(age_dif_ms);

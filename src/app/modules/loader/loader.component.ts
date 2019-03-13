@@ -58,7 +58,7 @@ export class LoaderComponent implements OnDestroy{
     document.querySelector('.icon')['style']['fill'] = '#AAA20A';
     if (this.router.url.indexOf('loading')) {
       setTimeout(() => {
-        this.router.navigate(['interview']);
+        this.router.navigate(['client-search']);
       }, 1000);
     }
   }

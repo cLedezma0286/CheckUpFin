@@ -8,8 +8,8 @@
       <p class="title">Busca o añade un cliente por su CIS</p>
       <p class="description">Busca cliente o añade uno si este no existe o si nunca se le hizo el ckeck up financiero.</p>
       <form class="search_select_container" [formGroup]="cis_form" novalidate>
-        <input type="text" maxlength="15" formControlName="cis" />
-        <dropdown *ngIf="cis_form.value.cis.length === 15" [cis]="cis_form.value.cis"></dropdown>
+        <input type="text" maxlength="15" formControlName="cis"/>
+        <dropdown *ngIf="cis_form.value.cis" [client]="client" [loading]="loading"></dropdown>
       </form>
     </div>
   </div>

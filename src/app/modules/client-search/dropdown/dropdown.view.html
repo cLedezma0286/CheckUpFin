@@ -1,10 +1,15 @@
 <section>
-  <div class="clients_list">
-    <div class="client"></div>
-    <div class="client"></div>
-    <div class="client"></div>
-  </div>
-  <div class="create_cis">
-    <button>Crear CIS "1545"</button>
+  <div class="client_container">
+    <div class="client" *ngIf="client && !loading" (click)="setLocalClientInformation()">
+      <span>CIS. {{client.num_clie_cis}}</span>
+      <div></div>
+      <span>{{client.nombre_clie}}</span>
+    </div>
+    <div class="not_found" *ngIf="!client && !loading">
+      <span>No se ha encontrado el cliente</span>
+    </div>
+    <div class="loading" *ngIf="loading">
+      <span>Buscando cliente...</span>
+    </div>
   </div>
 </section>
