@@ -265,26 +265,30 @@ export class InterviewComponent implements OnInit{
       if (actual_question.des_sig_preg === 0) { //En caso de que des_sig_preg sea 0 la pregunta es de opciones
         if (this.isQuestionWithOptionsAnswered(actual_question)) { //Revisamos que la pregunta actual ya tenga algún valor seleccionado
           for (var i = 0; i < actual_question.des_opciones.length; i++) { // Recorremos las opciones
-            if (Array.isArray(actual_question.des_opciones[i].des_sig_preg)) { //Checamos si la opción de la iteración actual tiene el atributo des_sig_preg como un arreglo o un número
-              for (var j = 0; j < actual_question.des_opciones[i].des_sig_preg.length; j++) {
-                required_question = this.getQuestionById(actual_question.des_opciones[i].des_sig_preg[j].preg_req[0]);
-                if (this.isQuestionWithOptionsAnswered(required_question)) {
-                  if (this.isAnswerInTheOptions(this.getSelectedValue(required_question), actual_question.des_opciones[i].des_sig_preg[j].opc_seleccionada)) {
-                    this.active_question_id = actual_question.des_opciones[i].des_sig_preg[j].siguiente;
-                    this.focusQuestion(this.active_question_id);
-                    return;
+            if (this.isAnswerInTheOptions(i, actual_question.selected)) {
+              if (Array.isArray(actual_question.des_opciones[i].des_sig_preg)) { //Checamos si la opción de la iteración actual tiene el atributo des_sig_preg como un arreglo o un número
+                for (var j = 0; j < actual_question.des_opciones[i].des_sig_preg.length; j++) {
+                  for (var k = 0; k < actual_question.des_opciones[i].des_sig_preg[j].preg_req.length; k++) {
+                    required_question = this.getQuestionById(actual_question.des_opciones[i].des_sig_preg[j].preg_req[k]);
+                    if (this.isQuestionWithOptionsAnswered(required_question)) {
+                      if (this.isAnswerInTheOptions(this.getSelectedValue(required_question), actual_question.des_opciones[i].des_sig_preg[j].opc_seleccionada)) {
+                        this.active_question_id = actual_question.des_opciones[i].des_sig_preg[j].siguiente;
+                        this.focusQuestion(this.active_question_id);
+                        return;
+                      }
+                    }
                   }
                 }
-              }
-              // En caso de que ninguna de las respuestas requeridas haya sido contestada asignamos la siguiente comopregunta de la lista como la activa
-              next_question = this.getNextQuestion();
-              this.active_question_id = next_question.num_pregunta_id;
-              this.focusQuestion(this.active_question_id);
-            } else {
-              if (actual_question.des_opciones[actual_question.selected[0]].valor === actual_question.des_opciones[i].valor) { //Checamos que si la opción de la iteración actual es la opción seleccionada.
-                this.active_question_id = actual_question.des_opciones[i].des_sig_preg;
+                // En caso de que ninguna de las respuestas requeridas haya sido contestada asignamos la siguiente comopregunta de la lista como la activa
+                next_question = this.getNextQuestion();
+                this.active_question_id = next_question.num_pregunta_id;
                 this.focusQuestion(this.active_question_id);
-                return;
+              } else {
+                if (actual_question.des_opciones[actual_question.selected[0]].valor === actual_question.des_opciones[i].valor) { //Checamos que si la opción de la iteración actual es la opción seleccionada.
+                  this.active_question_id = actual_question.des_opciones[i].des_sig_preg;
+                  this.focusQuestion(this.active_question_id);
+                  return;
+                }
               }
             }
           }
@@ -378,27 +382,36 @@ export class InterviewComponent implements OnInit{
             }
           }
         } else {
-          actual_question.selected.push(actual_question.focused);
+          if (actual_question.des_opciones[actual_question.focused].opc_exclusiva === 1) {
+            actual_question.selected = [actual_question.focused];
+          } else {
+            actual_question.selected.push(actual_question.focused);
+            for (var i = 0; i < actual_question.selected.length; i++) {
+              if (actual_question.des_opciones[actual_question.selected[i]].opc_exclusiva === 1) {
+                actual_question.selected.splice(i, 1);
+              }
+            }
+          }
           if (actual_question.num_pregunta_id === 60) {
             this.throwSpecialCase(60);
           }
           if (actual_question.num_pregunta_id === 72) {
             this.throwSpecialCase(72);
           }
-          if (actual_question.num_pregunta_id === 27) {
-            if (actual_question.focused === 5) {
-              actual_question.selected = [5];
-            } else if (actual_question.selected.indexOf(5) !== -1) {
-              actual_question.selected.splice(actual_question.selected.indexOf(5), 1);
-            }
-          }
-          if (actual_question.num_pregunta_id === 50) {
-            if (actual_question.focused === 4) {
-              actual_question.selected = [4];
-            } else if (actual_question.selected.indexOf(4) !== -1) {
-              actual_question.selected.splice(actual_question.selected.indexOf(4), 1);
-            }
-          }
+          // if (actual_question.num_pregunta_id === 27) {
+          //   if (actual_question.focused === 5) {
+          //     actual_question.selected = [5];
+          //   } else if (actual_question.selected.indexOf(5) !== -1) {
+          //     actual_question.selected.splice(actual_question.selected.indexOf(5), 1);
+          //   }
+          // }
+          // if (actual_question.num_pregunta_id === 50) {
+          //   if (actual_question.focused === 4) {
+          //     actual_question.selected = [4];
+          //   } else if (actual_question.selected.indexOf(4) !== -1) {
+          //     actual_question.selected.splice(actual_question.selected.indexOf(4), 1);
+          //   }
+          // }
           return;
         }
       }
