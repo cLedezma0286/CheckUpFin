@@ -111,37 +111,55 @@ export class InterviewComponent implements OnInit{
   setAnswers(answers){
     for (var i = 0; i < answers.length; i++) {
       let question_aux = this.getQuestionById(answers[i].pregunta_id);
-      if (question_aux.bnd_enteros === 1) {
-        let answer_value = +answers[i].texto.replace(',','');
-        this.interview.controls[this.getQuestionControlName(answers[i].pregunta_id)].setValue(answer_value);
-      } else if (question_aux.tipo_fecha === 1) {
-        let answer_value = answers[i].texto.split(' ');
-        this.interview.controls[this.getQuestionControlName(answers[i].pregunta_id)].setValue(answer_value[0]);
-        if (answer_value[1] === 'meses') {
-          question_aux.selected.push(0);
-        } else if (answer_value[1] === 'años') {
-          question_aux.selected.push(0);
-        }
-      } else if (question_aux.des_opciones.length !== 0 && !Array.isArray(answers[i].texto)) {
-        let answer_value = answers[i].texto;
-        for (var j = 0; j < question_aux.des_opciones.length; j++) {
-          if (question_aux.des_opciones[j].valor === answer_value) {
-            question_aux.selected.push(j);
+      if (question_aux) {
+        if (question_aux.bnd_enteros === 1 && question_aux.num_pregunta_id !== 6) {
+          let answer_value = +answers[i].texto.replace(',','');
+          this.interview.controls[this.getQuestionControlName(answers[i].pregunta_id)].setValue(answer_value);
+          if (question_aux.num_pregunta_id === 5) {
+            this.throwSpecialCase(5);
+            let answers_with_id_6 = this.getAnswersWithId6(answers);
+            for (var j = 0; j < answers_with_id_6.length; j++) {
+              this.interview.controls[this.getQuestionControlName(answers_with_id_6[j].sub_id)].setValue(+answers_with_id_6[j].texto);
+            }
           }
-        }
-      } else if (question_aux.des_opciones.length !== 0 && Array.isArray(answers[i].texto)) {
-        let answer_value = answers[i].texto;
-        for (var j = 0; j < question_aux.des_opciones.length; j++) {
-          for (var k = 0; k < answer_value.length; k++) {
-            if (question_aux.des_opciones[j].valor === answer_value[k]) {
+        } else if (question_aux.tipo_fecha === 1) {
+          let answer_value = answers[i].texto.split(' ');
+          this.interview.controls[this.getQuestionControlName(answers[i].pregunta_id)].setValue(answer_value[0]);
+          if (answer_value[1] === 'meses') {
+            question_aux.selected.push(0);
+          } else if (answer_value[1] === 'años') {
+            question_aux.selected.push(0);
+          }
+        } else if (question_aux.des_opciones.length !== 0 && !Array.isArray(answers[i].texto)) {
+          let answer_value = answers[i].texto;
+          for (var j = 0; j < question_aux.des_opciones.length; j++) {
+            if (question_aux.des_opciones[j].valor === answer_value) {
               question_aux.selected.push(j);
             }
           }
+        } else if (question_aux.des_opciones.length !== 0 && Array.isArray(answers[i].texto)) {
+          let answer_value = answers[i].texto;
+          for (var j = 0; j < question_aux.des_opciones.length; j++) {
+            for (var k = 0; k < answer_value.length; k++) {
+              if (question_aux.des_opciones[j].valor === answer_value[k]) {
+                question_aux.selected.push(j);
+              }
+            }
+          }
+        } else {
+          this.interview.controls[this.getQuestionControlName(answers[i].pregunta_id)].setValue(answers[i].texto);
         }
-      } else {
-        this.interview.controls[this.getQuestionControlName(answers[i].pregunta_id)].setValue(answers[i].texto);
       }
     }
+  }
+  getAnswersWithId6(answers){
+    let answers_with_id_6 = [];
+    for (var i = 0; i < answers.length; i++) {
+      if (answers[i].pregunta_id === 6) {
+        answers_with_id_6.push(answers[i]);
+      }
+    }
+    return answers_with_id_6;
   }
   getActualQuestion(){
     for (var i = 0; i < this.questions.length; i++) {
@@ -398,20 +416,6 @@ export class InterviewComponent implements OnInit{
           if (actual_question.num_pregunta_id === 72) {
             this.throwSpecialCase(72);
           }
-          // if (actual_question.num_pregunta_id === 27) {
-          //   if (actual_question.focused === 5) {
-          //     actual_question.selected = [5];
-          //   } else if (actual_question.selected.indexOf(5) !== -1) {
-          //     actual_question.selected.splice(actual_question.selected.indexOf(5), 1);
-          //   }
-          // }
-          // if (actual_question.num_pregunta_id === 50) {
-          //   if (actual_question.focused === 4) {
-          //     actual_question.selected = [4];
-          //   } else if (actual_question.selected.indexOf(4) !== -1) {
-          //     actual_question.selected.splice(actual_question.selected.indexOf(4), 1);
-          //   }
-          // }
           return;
         }
       }
@@ -694,96 +698,131 @@ export class InterviewComponent implements OnInit{
   }
   throwSpecialCaseForQuestion60(){
     let question_60 = this.getQuestionById(60);
+    let question_60_position = this.getPositionById(60);
+    let question_63 = this.getQuestionById(63);
+    let selected_options = question_60.selected.sort();
+    let difference = selected_options.length - this.actual_credits_selected.length;
     if (this.first_time_with_credits) {
       let question_61_position = this.getPositionById(61);
       this.questions.splice(question_61_position, 2);
       this.first_time_with_credits = false;
     }
-    let selected_element = this.arrDiff(question_60.selected, this.actual_credits_selected)[0];
-    // if (selected_element === '0') {
-    //   question_60.selected = [0];
-    // } else if (question_60.selected.includes(0)) {
-    //   for (var i = 0; i < question_60.selected.length; i++) {
-    //     if (question_60.selected[i] === 0) {
-    //       question_60.selected.splice(i, 1);
-    //     }
-    //   }
-    // }
-    let actual_question_60 = this.getQuestionById(60);
-    let quantity_of_selected_items = actual_question_60.selected.length;
-    if (quantity_of_selected_items > this.actual_credits_selected.length) {
-      let question_61_aux = {
-        bnd_enteros: actual_question_60.block_questions[0].bnd_enteros,
-        bnd_op_mult: actual_question_60.block_questions[0].bnd_op_mult,
-        created_at: actual_question_60.block_questions[0].created_at,
-        des_bloc_preg: actual_question_60.block_questions[0].des_bloc_preg,
-        des_categorias: actual_question_60.block_questions[0].des_categorias,
-        des_opciones: actual_question_60.block_questions[0].des_opciones,
-        des_preg_ref: actual_question_60.block_questions[0].des_preg_ref,
-        des_prev_preg: null,
-        des_sig_preg: null,
-        des_texto: '',
-        num_pregunta_id: null,
-        tipo_fecha: actual_question_60.block_questions[0].tipo_fecha,
-        focused: actual_question_60.block_questions[0].focused,
-        selected: []
-      };
-      let question_62_aux = {
-        bnd_enteros: actual_question_60.block_questions[1].bnd_enteros,
-        bnd_op_mult: actual_question_60.block_questions[1].bnd_op_mult,
-        created_at: actual_question_60.block_questions[1].created_at,
-        des_bloc_preg: actual_question_60.block_questions[1].des_bloc_preg,
-        des_categorias: actual_question_60.block_questions[1].des_categorias,
-        des_opciones: actual_question_60.block_questions[1].des_opciones,
-        des_preg_ref: actual_question_60.block_questions[1].des_preg_ref,
-        des_prev_preg: null,
-        des_sig_preg: null,
-        des_texto: '',
-        num_pregunta_id: null,
-        tipo_fecha: actual_question_60.block_questions[1].tipo_fecha,
-        focused: actual_question_60.block_questions[0].focused,
-        selected: []
-      };
-      this.interview.addControl(('question_61.' + quantity_of_selected_items), new FormControl('', []));
-      this.interview.addControl(('question_62.' + quantity_of_selected_items), new FormControl('', []));
-      question_61_aux.num_pregunta_id = '61.' + quantity_of_selected_items;
-      question_62_aux.num_pregunta_id = '62.' + quantity_of_selected_items;
-      question_60.des_sig_preg = '61.1';
-      let question_63 = this.getQuestionById(63);
-      question_63.des_prev_preg = '62.' + quantity_of_selected_items;
-      if (this.actual_credits_selected.length === 0) {
-        question_61_aux.des_prev_preg = 60;
-      } else {
-        question_61_aux.des_prev_preg = '62.' + (quantity_of_selected_items - 1);
-      }
-      question_62_aux.des_prev_preg = '61.' + quantity_of_selected_items;
-      if (this.actual_credits_selected.length !== 0) {
-        let actual_last_question = this.getQuestionById(('62.' + this.actual_credits_selected.length));
-        actual_last_question.des_sig_preg = '61.' + quantity_of_selected_items;
-      }
-      question_62_aux.des_sig_preg = 63;
-      question_61_aux.des_sig_preg = '62.' + quantity_of_selected_items;
-      question_61_aux.des_texto = '¿Dónde tienes tu crédito ' + quantity_of_selected_items + '?';
-      question_62_aux.des_texto = '¿Cuánto tiempo te falta por pagar tu crédito ' + quantity_of_selected_items + '?';
-      question_61_aux.num_pregunta_id = '61.' + quantity_of_selected_items;
-      question_62_aux.num_pregunta_id = '62.' + quantity_of_selected_items;
-      let actual_60_position = this.getPositionById(60);
-      this.questions.splice((actual_60_position + (this.actual_credits_selected.length * 2) + 1), 0, question_61_aux);
-      this.questions.splice((actual_60_position + (this.actual_credits_selected.length * 2) + 2), 0, question_62_aux);
-    } else {
-      let actual_60_position = this.getPositionById(60);
-      this.questions.splice((actual_60_position + 1 + (quantity_of_selected_items * 2)), 2);
-      if (quantity_of_selected_items){
-        let last_question_of_cycle = this.getQuestionById('62.' + quantity_of_selected_items);
-        last_question_of_cycle.des_sig_preg = 63;
-      } else {
+    if (selected_options.length === 0) {
+      if (this.actual_credits_selected.length === 1 && this.actual_credits_selected[0] === 0) {
         question_60.des_sig_preg = 63;
-      }
-      let question_63 = this.getQuestionById(63);
-      if (quantity_of_selected_items) {
-        question_63.des_prev_preg = '62.' + quantity_of_selected_items;
-      }else {
         question_63.des_prev_preg = 60;
+      } else {
+        this.questions.splice((question_60_position + 1), 2);
+        question_60.des_sig_preg = 63;
+        question_63.des_prev_preg = 60;
+      }
+    } else {
+      if (selected_options[0] === 0) {
+        this.questions.splice((question_60_position + 1), (this.actual_credits_selected.length * 2));
+        question_60.des_sig_preg = 63;
+        question_63.des_prev_preg = 60;
+      } else {
+        if (difference < 0) {
+          let deleted_element = +this.arrDiff(selected_options, this.actual_credits_selected)[0];
+          let deleted_element_position = this.actual_credits_selected.indexOf(deleted_element);
+          
+          if (selected_options.length === 1) {
+            question_60.des_sig_preg = '61.' + question_60.des_opciones[selected_options[0]].valor;
+            question_63.des_prev_preg = '62.' + question_60.des_opciones[selected_options[0]].valor;
+            let question_61_left = this.getQuestionById('61.' + question_60.des_opciones[selected_options[0]].valor);
+            question_61_left.des_prev_preg = 60;
+            let question_62_left = this.getQuestionById('62.' + question_60.des_opciones[selected_options[0]].valor);
+            question_62_left.des_sig_preg = 63;
+          } else {
+            let deleted_61_question = this.getQuestionById('61.' + question_60.des_opciones[this.actual_credits_selected[deleted_element_position]].valor);
+            let deleted_62_question = this.getQuestionById('62.' + question_60.des_opciones[this.actual_credits_selected[deleted_element_position]].valor);
+            if (deleted_element_position === 0) {
+              question_60.des_sig_preg = deleted_62_question.des_sig_preg;
+              let first_61_question = this.getQuestionById(deleted_62_question.des_sig_preg);
+              first_61_question.des_prev_preg = 60;
+            } else if (deleted_element_position === (this.actual_credits_selected.length - 1)) {
+              question_63.des_prev_preg = deleted_61_question.des_prev_preg;
+              let last_62_question = this.getQuestionById(deleted_61_question.des_prev_preg);
+              last_62_question.des_sig_preg = 63
+            } else {
+              let prev_62_question = this.getQuestionById(deleted_61_question.des_prev_preg);
+              prev_62_question.des_sig_preg = deleted_62_question.des_sig_preg;
+              let next_61_question = this.getQuestionById(deleted_62_question.des_sig_preg);
+              next_61_question.des_prev_preg = deleted_61_question.des_prev_preg;
+            }
+          }
+
+          this.questions.splice(((question_60_position + 1) + (deleted_element_position * 2)), 2);
+        } else {
+          let added_element = null;
+          if (difference === 0) {
+            added_element = +this.arrDiff(selected_options, this.actual_credits_selected)[1];
+          } else {
+            added_element = +this.arrDiff(selected_options, this.actual_credits_selected)[0];
+          }
+          let added_element_value = question_60.des_opciones[added_element].valor;
+          let added_element_position = selected_options.indexOf(added_element);
+          let question_61_aux = {
+            bnd_enteros: question_60.block_questions[0].bnd_enteros,
+            bnd_op_mult: question_60.block_questions[0].bnd_op_mult,
+            created_at: question_60.block_questions[0].created_at,
+            des_bloc_preg: question_60.block_questions[0].des_bloc_preg,
+            des_categorias: question_60.block_questions[0].des_categorias,
+            des_opciones: question_60.block_questions[0].des_opciones,
+            des_preg_ref: question_60.block_questions[0].des_preg_ref,
+            des_prev_preg: null,
+            des_sig_preg: '62.' + added_element_value,
+            des_texto: '¿Dónde tienes tu crédito ' + added_element_value + '?',
+            num_pregunta_id: '61.' + added_element_value,
+            tipo_fecha: question_60.block_questions[0].tipo_fecha,
+            focused: question_60.block_questions[0].focused,
+            selected: []
+          };
+          let question_62_aux = {
+            bnd_enteros: question_60.block_questions[1].bnd_enteros,
+            bnd_op_mult: question_60.block_questions[1].bnd_op_mult,
+            created_at: question_60.block_questions[1].created_at,
+            des_bloc_preg: question_60.block_questions[1].des_bloc_preg,
+            des_categorias: question_60.block_questions[1].des_categorias,
+            des_opciones: question_60.block_questions[1].des_opciones,
+            des_preg_ref: question_60.block_questions[1].des_preg_ref,
+            des_prev_preg: '61.' + added_element_value,
+            des_sig_preg: null,
+            des_texto: '¿Cuánto tiempo te falta por pagar tu crédito ' + added_element_value + '?',
+            num_pregunta_id: '62.' + added_element_value,
+            tipo_fecha: question_60.block_questions[1].tipo_fecha,
+            focused: question_60.block_questions[0].focused,
+            selected: []
+          };
+          this.interview.addControl(('question_61.' + added_element_value), new FormControl('', []));
+          this.interview.addControl(('question_62.' + added_element_value), new FormControl('', []));
+          if (added_element_position === 0) {
+            question_60.des_sig_preg = '61.' + added_element_value;
+            question_61_aux.des_prev_preg = 60;
+          }
+          if (added_element_position === (selected_options.length - 1)) {
+            question_63.des_prev_preg = '62.' + added_element_value;
+            question_62_aux.des_sig_preg = 63;
+          }
+          if (selected_options.length > 1) {
+            if (added_element_position < (selected_options.length - 1)) {
+              let next_61_position = selected_options[(added_element_position + 1)];
+              let next_61_value = question_60.des_opciones[next_61_position].valor;
+              let next_61_question = this.getQuestionById('61.' + next_61_value);
+              next_61_question.des_prev_preg = '62.' + added_element_value;
+              question_62_aux.des_sig_preg = '61.' + next_61_value;
+            }
+            if (added_element_position > 0) {
+              let prev_62_position = selected_options[(added_element_position - 1)];
+              let prev_62_value = question_60.des_opciones[prev_62_position].valor;
+              let prev_62_question = this.getQuestionById('62.' + prev_62_value);
+              prev_62_question.des_sig_preg = '61.' + added_element_value;
+              question_61_aux.des_prev_preg = '62.' + prev_62_value;
+            }
+          }
+          this.questions.splice((question_60_position + 1) + (added_element_position * 2), 0, question_61_aux);
+          this.questions.splice((question_60_position + 2) + (added_element_position * 2), 0, question_62_aux);
+        }
       }
     }
     this.actual_credits_selected = JSON.parse(JSON.stringify(question_60.selected));
@@ -983,9 +1022,10 @@ export class InterviewComponent implements OnInit{
   sendInterview(){
     let answers_aux = this.getAnswers();
     let objectives_aux = this.objectives;
+    let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
     let interview_aux = {
       entrevista: {
-        num_clie_cis: 111111111111112,
+        num_clie_cis: client_cis,
         sig_checkup: this.getNextCheckUp(),
         respuestas: answers_aux,
         notas: this.getNotes(),
