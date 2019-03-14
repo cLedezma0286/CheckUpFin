@@ -1,6 +1,7 @@
 import { Component, Renderer2, OnInit } from '@angular/core';
 import { ProductsService } from './products.service';
 import { InterviewService } from '@services/interview.service';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 @Component({
   selector: 'products',
@@ -10,6 +11,9 @@ import { Router } from '@angular/router';
 export class ProductsComponent implements OnInit{
   products = [];
   selectedProducts = [];
+  productForm = this.fb.group({
+    selectedDate: ['']
+  });
   salesDates = [
     {
       key: 'inmediata',
@@ -28,9 +32,33 @@ export class ProductsComponent implements OnInit{
   selectedProduct;
   showSelectedProducts;
   print_modal_open = false;
-  recommended_products = []; 
-  constructor(public productsService: ProductsService, public interviewService: InterviewService, public renderer: Renderer2, public router: Router){}
-  ngOnInit(){
+  anySelected = false;
+  recommended_products = [];
+  objectives;
+  constructor(public productsService: ProductsService,
+    public interviewService: InterviewService, public renderer: Renderer2,
+    public router: Router, public fb: FormBuilder){}
+
+  ngOnInit() {
+    let actual_interview_id = JSON.parse(localStorage.getItem('actual_interview_id'));
+    this.getProducts();
+    this.getRecommendedProducts(actual_interview_id);
+    this.getObjectives(actual_interview_id);
+    this.getCurrentProducts(actual_interview_id);
+  }
+
+  getObjectives(interviewId) {
+    this.productsService.getObjetives(interviewId).subscribe(
+      data => {
+        this.objectives = data['objetivos'];
+      },
+      error => {
+        alert('Ha ocurrido un error');
+      }
+    );
+  }
+
+  getProducts() {
     this.productsService.getProducts().subscribe(
       data => {
         var productos = data['productos'];
@@ -47,8 +75,10 @@ export class ProductsComponent implements OnInit{
         alert('Ha ocurrido un error');
       }
     );
-    let actual_interview_id = JSON.parse(localStorage.getItem('actual_interview_id'));
-    this.interviewService.getRecommendedProducts(actual_interview_id).subscribe(
+  }
+
+  getRecommendedProducts(interviewId) {
+    this.interviewService.getRecommendedProducts(interviewId).subscribe(
       response => {
         var product_categories = response['productos'];
         for (let category in product_categories) {
@@ -62,9 +92,22 @@ export class ProductsComponent implements OnInit{
       }
     );
   }
+
+  getCurrentProducts(interviewId) {
+    this.productsService.getCurrentProducts(interviewId).subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+        alert('Ha ocurrido un error');
+      }
+    );
+  }
+
   getName(category){
     return category + '';
   }
+
   getImagenByCategory(category){
     var images = {
       "Estilo de vida": "dinero.png",
@@ -99,6 +142,15 @@ export class ProductsComponent implements OnInit{
 
   saveProduct() {
     this.selectedProduct['isAdded'] = true;
+    this.selectedProducts['fecha_venta'] = this.productForm.value.selectedDate;
+    this.productForm.controls['selectedDate'].setValue('');
+    this.selectedProduct['objetivos'] = [];
+    for (let objective in this.objectives) {
+      if (objective['selected']) {
+        this.selectedProduct['objetivos'].push(objective['id']);
+      }
+      objective['selected'] = false;
+    }
     this.selectedProduct = undefined;
   }
 
@@ -129,5 +181,12 @@ export class ProductsComponent implements OnInit{
   }
   goToDashboard(){
     this.router.navigate(['/client-finances/client-file/dashboard']);
+  }
+
+  check(currentObjective) {
+    currentObjective.selected = !currentObjective.selected;
+    this.anySelected = this.objectives.reduce(function(x,y) {
+      return x || !!y.selected;
+  }, false);
   }
 }
