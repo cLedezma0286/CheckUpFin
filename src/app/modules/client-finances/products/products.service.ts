@@ -23,6 +23,18 @@ export class ProductsService {
   }
 
   getProduct(idProduct) {
-    return this.http.get(environment.PRODUCTS_URL2 + "/" + idProduct);
+    return this.http.get(environment.PRODUCTS_URL + "/" + idProduct);
+  }
+
+  getObjetives(interviewId) {
+    return this.http.get(environment.INTERVIEWS_URL + "/" + interviewId + '/objetivos');
+  }
+
+  getCurrentProducts(clientId) {
+    return this.http.get(environment.CLIENTS_URL + "/" + clientId + '/productos');
+  }
+
+  putProducts(clientId, params) {
+    return this.http.put(environment.CLIENTS_URL + "/" + clientId + '/productos', params);
   }
 }

@@ -3,10 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ProductsComponent } from "./products.component";
 import { ProductDetailComponent } from "./product-detail/product-detail.component";
 import { PrintoutComponent } from "./printout/printout.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     ProductsComponent,

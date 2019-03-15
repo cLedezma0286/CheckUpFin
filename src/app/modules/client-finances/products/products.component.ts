@@ -1,7 +1,9 @@
 import { Component, Renderer2, OnInit } from '@angular/core';
 import { ProductsService } from './products.service';
 import { InterviewService } from '@services/interview.service';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { noComponentFactoryError } from '@angular/core/src/linker/component_factory_resolver';
 @Component({
   selector: 'products',
   templateUrl: 'products.view.html',
@@ -10,27 +12,62 @@ import { Router } from '@angular/router';
 export class ProductsComponent implements OnInit{
   products = [];
   selectedProducts = [];
-  salesDates = [
-    {
-      key: 'inmediata',
-      value: 'Inmediata'
-    },
-    {
-      key: '3-6 months',
-      value: '3-6 Meses'
-    },
-    {
-      key: '1 year',
-      value: '1 año'
-    }
-  ];
+  productForm = this.fb.group({
+    selectedDate: ['']
+  });
+  now;
+  day;
+  month;
+  year;
+  salesDates;
   currentProduct;
   selectedProduct;
   showSelectedProducts;
   print_modal_open = false;
-  recommended_products = []; 
-  constructor(public productsService: ProductsService, public interviewService: InterviewService, public renderer: Renderer2, public router: Router){}
-  ngOnInit(){
+  anySelected = false;
+  recommended_products = [];
+  objectives;
+  constructor(public productsService: ProductsService,
+    public interviewService: InterviewService, public renderer: Renderer2,
+    public router: Router, public fb: FormBuilder){}
+
+  ngOnInit() {
+    this.now = new Date();
+    this.day = this.now.getDate();
+    this.month = this.now.getMonth();
+    this.year = this.now.getFullYear();
+    this.salesDates = [
+      {
+        key: this.formateDate(this.now),
+        value: 'Inmediata'
+      },
+      {
+        key: this.formateDate(new Date(this.year, this.month + 3, this.day)),
+        value: '3-6 Meses'
+      },
+      {
+        key: this.formateDate(new Date(this.year + 1, this.month, this.day)),
+        value: '1 año'
+      }
+    ];
+    let actual_interview_id = JSON.parse(localStorage.getItem('actual_interview_id'));
+    this.getProducts();
+    this.getRecommendedProducts(actual_interview_id);
+    this.getObjectives(actual_interview_id);
+  }
+
+  getObjectives(interviewId) {
+    this.productsService.getObjetives(interviewId).subscribe(
+      data => {
+        this.objectives = data['objetivos'];
+      },
+      error => {
+        alert('Ha ocurrido un error');
+      }
+    );
+  }
+
+  getProducts() {
     this.productsService.getProducts().subscribe(
       data => {
         var productos = data['productos'];
@@ -42,13 +79,17 @@ export class ProductsComponent implements OnInit{
           }
           index++;
         }
+        let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+        this.getCurrentProducts(client_cis);
       },
       error => {
         alert('Ha ocurrido un error');
       }
     );
-    let actual_interview_id = JSON.parse(localStorage.getItem('actual_interview_id'));
-    this.interviewService.getRecommendedProducts(actual_interview_id).subscribe(
+  }
+
+  getRecommendedProducts(interviewId) {
+    this.interviewService.getRecommendedProducts(interviewId).subscribe(
       response => {
         var product_categories = response['productos'];
         for (let category in product_categories) {
@@ -62,9 +103,41 @@ export class ProductsComponent implements OnInit{
       }
     );
   }
+
+  getCurrentProducts(interviewId) {
+    this.productsService.getCurrentProducts(interviewId).subscribe(
+      response => {
+        this.selectedProducts = [];
+        for (var k = 0; k < response['productos'].length; k++) {
+          for(var a = 0; a < this.products.length; a++) {
+            for(var b = 0; b < this.products[a].length; b++) {
+              if (response['productos'][k].producto.id === this.products[a][b].id) {
+                this.products[a][b] = response['productos'][k].producto;
+                this.products[a][b].isAdded = true;
+                break;
+              }
+            }
+          }
+          this.selectedProducts.push(response['productos'][k].producto);
+          this.selectedProducts[k].objetivos = response['productos'][k].objetivos;
+          this.selectedProducts[k].fecha_venta = response['productos'][k].fecha_venta;
+        }
+      },
+      error => {
+        alert('Ha ocurrido un error');
+      }
+    );
+  }
+
   getName(category){
     return category + '';
   }
+
+  formateDate(date) {
+    return date.getFullYear() + '-' + ('0'+(date.getMonth()+1)).slice(-2) +
+      '-' + ('0' + date.getDate()).slice(-2);
+  }
+
   getImagenByCategory(category){
     var images = {
       "Estilo de vida": "dinero.png",
@@ -99,7 +172,19 @@ export class ProductsComponent implements OnInit{
 
   saveProduct() {
     this.selectedProduct['isAdded'] = true;
+    this.selectedProducts['fecha_venta'] = this.productForm.value.selectedDate;
+    this.productForm.controls['selectedDate'].setValue('');
+    this.selectedProduct['objetivos'] = [];
+    this.selectedProduct['objectivesName'] = [];
+    for (let objective in this.objectives) {
+      if (this.objectives[objective]['selected']) {
+        this.selectedProduct['objetivos'].push(this.objectives[objective]['id']);
+        this.selectedProduct['objectivesName'].push(this.objectives[objective]['nombre']);
+      }
+      this.objectives[objective]['selected'] = false;
+    }
     this.selectedProduct = undefined;
+    this.anySelected = false;
   }
 
   showProductInfo(product) {
@@ -128,6 +213,37 @@ export class ProductsComponent implements OnInit{
     this.renderer.setStyle(document.body, 'overflow', scroll_value);
   }
   goToDashboard(){
-    this.router.navigate(['/client-finances/client-file/dashboard']);
+    let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+    var productAux = [];
+    var objectivesAux = [];
+    for (var k=0; k < this.selectedProducts.length;k++) {
+      objectivesAux = [];
+      for (var a=0; a < this.selectedProducts[k].objetivos.length;a++) {
+        objectivesAux.push(this.selectedProducts[k].objetivos[a].id);
+      }
+      productAux.push({
+        'id': this.selectedProducts[k].id,
+        'fecha_venta': this.selectedProducts[k].fecha_venta,
+        'objetivos': objectivesAux
+      });
+    }
+    var params = {
+      'productos': productAux
+    };
+    this.productsService.putProducts(client_cis,params).subscribe(
+      response => {
+        this.router.navigate(['/client-finances/client-file/dashboard']);
+      },
+      error => {
+        alert('Ha ocurrido un error');
+      }
+    );
+  }
+
+  check(currentObjective) {
+    currentObjective.selected = !currentObjective.selected;
+    this.anySelected = this.objectives.reduce(function(x,y) {
+      return x || !!y.selected;
+  }, false);
   }
 }
