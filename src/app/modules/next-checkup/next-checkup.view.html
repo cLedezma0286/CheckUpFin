@@ -1,0 +1,37 @@
+<div class="fullWindow">
+  <div *ngIf="firstView">
+    <div>
+      <div class="simple-modal-logo"></div>
+      <button class="simple-modal-close-icon" (click)="closeProductModal()">Cerrar</button>
+    </div>
+    <div class="mainSection">
+      <div class="title">Programar próximo checkup</div>
+      
+      <div class="normalText marginTop60px">Tu próxima cita se ha programado automaticamente para dentro de 6 meses.</div>
+      
+      <div class="normalText marginTop30px">
+        El día <span class="dateText">{{nextCheckupDate}}.</span>
+        <button class="pencilButton" (click)="changeCalendar()"></button>
+        <div class="calendar-wrapper" *ngIf="showCalendar">
+          <div id="my-calendar"></div>
+        </div>
+      </div>
+      
+      <div class="right marginTop126px">
+        <button class="nextCheckupButton" (click)="confirmNextCheckup()">Programar cita</button>
+      </div>
+    </div>
+  </div>
+      
+  <div *ngIf="!firstView">
+    <div class="whiteBox">
+      <div class="normalText warning">
+        <p>Hola, ya hemos terminado el check up financiero de {{name}}.</p>
+        <p class="marginTop10px">No se te olvide editar objetivos y asociarlos a una necesidas.</p>
+      </div>
+      <div class="right marginTop30px">
+        <button class="nextCheckupButton" (click)="goToDashboard()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -10,6 +10,8 @@ import { NotesAndAgreementsComponent } from './modules/client-finances/client-fi
 import { ProductsComponent } from './modules/client-finances/products/products.component';
 import { ClientFileComponent } from './modules/client-finances/client-file/client-file.component';
 import { InterviewComponent } from './modules/interview/interview.component';
+import { NextCheckupComponent } from './modules/next-checkup/next-checkup.component'
+
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -18,6 +20,7 @@ const appRoutes: Routes = [
   { path: 'client-search', component: ClientSearchComponent },
   { path: 'interview', component: InterviewComponent },
   { path: 'financial-health', component: FinancialHealthComponent },
+  { path: 'next-checkup', component: NextCheckupComponent },
   { path: 'client-finances', component: ClientFinancesComponent,
     children: [
       { path: 'products', component: ProductsComponent },
