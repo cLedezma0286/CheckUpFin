@@ -15,6 +15,7 @@ export class ClientHeaderComponent implements OnInit{
   actual_interview_id = null;
   @Input() show_menu: boolean;
   @Input() singout_only: boolean = false;
+  @Input() user_information_visible: boolean = true;
   constructor(public headerService: HeaderService, public clientsService: ClientsService, public router: Router){}
   ngOnInit() {
     this.headerService.current_percentage.subscribe(percentage => this.percentage = percentage);

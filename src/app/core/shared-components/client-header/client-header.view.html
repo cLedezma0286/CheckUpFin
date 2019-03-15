@@ -4,15 +4,15 @@
     <p>Financial <span>Check Up</span></p>
   </div>
   <div class="header_controls">
-    <div class="subtitle" *ngIf="subtitle !== ''">{{subtitle}}</div>
-    <div class="percentage_status">
+    <div class="subtitle" *ngIf="subtitle !== '' && user_information_visible">{{subtitle}}</div>
+    <div class="percentage_status" *ngIf="user_information_visible">
       <p class="title">Información de {{name}}</p>
       <div class="status_bar">
         <div [style.width.%]="percentage"></div>
       </div>
       <p class="percentage_amount">{{percentage}}%</p>
     </div>
-    <div class="separation" *ngIf="show_menu"></div>
+    <div class="separation" *ngIf="show_menu && user_information_visible"></div>
     <div class="menu" *ngIf="show_menu">
       <div class="hamburger">
         <div class="line"></div>
