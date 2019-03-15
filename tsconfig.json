@@ -21,7 +21,8 @@
       "@services/*" : ["app/core/services/*"],
       "@models/*" : ["app/core/models/*"],
       "@interceptors/*" : ["app/core/interceptors/*"],
-      "@shared-components/*" : ["app/core/shared-components/*"]
+      "@shared-components/*" : ["app/core/shared-components/*"],
+      "@libraries/*" : ["app/core/libraries/*"]
     }
   }
 }

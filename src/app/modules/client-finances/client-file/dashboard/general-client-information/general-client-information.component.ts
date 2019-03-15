@@ -19,17 +19,18 @@ export class GeneralClientInformationComponent implements OnInit{
   @Output() show_edit_section: EventEmitter<void> = new EventEmitter<void>();
   constructor(public clientsService: ClientsService, public interviewService: InterviewService){}
   ngOnInit(){
-    this.clientsService.getClientInformation(111111111111112).subscribe(
+    let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+    this.clientsService.getClientInformation(client_cis).subscribe(
       (response: Client) => {
         this.client_information = response;
       }
     );
-    this.clientsService.getClientInterviewInformation(111111111111112).subscribe(
+    this.clientsService.getClientInterviewInformation(client_cis).subscribe(
       response => {
         this.financial_health = response['salud_financiera'];
       }
     );
-    this.clientsService.getClientProducts(111111111111112).subscribe(
+    this.clientsService.getClientProducts(client_cis).subscribe(
       response => {
         this.products = response['productos'];
       },
@@ -53,7 +54,7 @@ export class GeneralClientInformationComponent implements OnInit{
       if(document.getElementById('my-calendar')){
         var element = document.getElementById('my-calendar');
         var calendar = jsCalendar.new(element,
-          new Date(this.getDateForObjectFormat(this.client_information.sig_checkup)), {
+          new Date(this.client_information.sig_checkup), {
           language: 'es',
           navigatorPosition: 'right'
         });
@@ -75,7 +76,8 @@ export class GeneralClientInformationComponent implements OnInit{
     var dateRequest = {
       'sig_checkup': nextDate
     };
-    this.clientsService.setNextCheckupClient(111111111111112, dateRequest)
+    let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+    this.clientsService.setNextCheckupClient(client_cis, dateRequest)
     .subscribe(
       (response: Client) => {
         this.client_information = response;

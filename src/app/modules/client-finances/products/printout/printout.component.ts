@@ -14,13 +14,14 @@ export class PrintoutComponent implements OnInit{
   date = '';
   constructor(public clientsService: ClientsService){}
   ngOnInit(){
-    this.clientsService.getClientInterviewInformation(111111111111112).subscribe(
+    let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+    this.clientsService.getClientInterviewInformation(client_cis).subscribe(
       response => {
         this.financial_health = response['salud_financiera'];
         this.objectives = response['objetivos'];
       }
     );
-    this.clientsService.getClientInformation(111111111111112).subscribe(
+    this.clientsService.getClientInformation(client_cis).subscribe(
       response => {
         this.name = response['nombre_clie'];
       }

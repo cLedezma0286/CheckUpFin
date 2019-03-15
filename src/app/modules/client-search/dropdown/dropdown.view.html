@@ -1,12 +1,14 @@
 <section>
   <div class="client_container">
-    <div class="client" *ngIf="client && !loading" (click)="setLocalClientInformation()">
-      <span>CIS. {{client.num_clie_cis}}</span>
-      <div></div>
-      <span>{{client.nombre_clie}}</span>
+    <div class="clients_container" *ngIf="clients.length !== 0 && !loading">
+      <div class="client" (click)="setLocalClientInformation(client)" *ngFor="let client of clients">
+        <span>CIS. {{client.num_clie_cis}}</span>
+        <div></div>
+        <span>{{client.nombre_clie}}</span>
+      </div>
     </div>
-    <div class="not_found" *ngIf="!client && !loading">
-      <span>No se ha encontrado el cliente</span>
+    <div class="not_found" *ngIf="clients.length === 0 && !loading">
+      <span>No se han encontrado clientes</span>
     </div>
     <div class="loading" *ngIf="loading">
       <span>Buscando cliente...</span>

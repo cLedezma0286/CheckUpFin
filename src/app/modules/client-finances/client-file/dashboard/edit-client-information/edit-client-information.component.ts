@@ -35,7 +35,8 @@ export class EditClientInformationComponent implements OnInit{
   });
   constructor(public clientsService: ClientsService, public fb: FormBuilder){}
   ngOnInit(){
-    this.clientsService.getClientInformation(111111111111112).subscribe(
+    let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+    this.clientsService.getClientInformation(client_cis).subscribe(
       response => {
         this.name = response['nombre_clie'];
         this.next_checkup = response['sig_checkup'];
@@ -78,7 +79,8 @@ export class EditClientInformationComponent implements OnInit{
         perfil_riesgo: this.user_information.value.risk_profile,
         sig_checkup: this.next_checkup
       }
-      this.clientsService.setClientPersonalInformation(111111111111112, user_aux).subscribe(
+      let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+      this.clientsService.setClientPersonalInformation(client_cis, user_aux).subscribe(
         response => {
           this.closeEditClientInformation();
         }

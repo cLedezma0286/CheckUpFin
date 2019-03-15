@@ -14,13 +14,15 @@ section{
       align-items: center;
       padding: 11px 15px 11px 15px;
       &.client{
-        cursor: pointer;
-        background-color: $menu-border-bottom;
-        span{
-          color: $white;
-        }
-        div{
-          background-color: $white;
+        &:hover{
+          cursor: pointer;
+          background-color: $menu-border-bottom;
+          span{
+            color: $white;
+          }
+          div{
+            background-color: $white;
+          }
         }
       }
       span{

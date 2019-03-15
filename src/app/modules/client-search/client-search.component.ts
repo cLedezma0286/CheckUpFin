@@ -13,7 +13,7 @@ export class ClientSearchComponent{
   cis_form: FormGroup = this.fb.group({
     'cis': this.cis
   });
-  client = null;
+  clients = [];
   loading = false;
   constructor(public router: Router, public fb: FormBuilder, public clientsService: ClientsService){}
   ngOnInit() {
@@ -24,16 +24,16 @@ export class ClientSearchComponent{
       debounceTime(750),
       switchMap(id => {
         this.loading = true;
-        return this.clientsService.getClientInformation(id);
+        return this.clientsService.getClientsMatchByCis(id);
       })
     ).subscribe(
-      res => {
-        this.client = res;
+      (res: any[]) => {
+        this.clients = res;
         this.loading = false;
         this.searchClient();
       },
       error => {
-        this.client = null;
+        this.clients = [];
         this.loading = false;
         this.searchClient();
       }

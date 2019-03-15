@@ -9,6 +9,9 @@ export class ClientsService{
   getClientInformation(client_cis){
     return this.http.get(environment.CLIENTS_URL + '/' + client_cis);
   }
+  getClientsMatchByCis(client_cis){
+    return this.http.get(environment.CLIENTS_URL + '?num_cis_clie=' + client_cis);
+  }
   getClientInterviewInformation(client_cis){
     return this.http.get(environment.CLIENTS_URL + '/' + client_cis + '/entrevista');
   }
