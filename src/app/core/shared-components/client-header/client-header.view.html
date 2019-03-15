@@ -21,9 +21,10 @@
         <div class="clickable" open_menu="true"></div>
       </div>
       <div class="options_container" *ngIf="open_menu">
-        <a class="option" [routerLink]="['/interview']">Nueva entrevista con cliente</a>
-        <a class="option" [routerLink]="['/interview']" [queryParams]="{id: actual_interview_id}">Terminar entrevista</a>
-        <a class="option" [routerLink]="['/client-finances/client-file/dashboard']">Ficha de cliente</a>
+        <a class="option" *ngIf="!singout_only" [routerLink]="['/interview']">Nueva entrevista con cliente</a>
+        <a class="option" *ngIf="!singout_only" [routerLink]="['/interview']" [queryParams]="{id: actual_interview_id}">Terminar entrevista</a>
+        <a class="option" *ngIf="!singout_only" [routerLink]="['/client-finances/client-file/dashboard']">Ficha de cliente</a>
+        <a class="option">Salir de la aplicación</a>
       </div>
     </div>
   </div>
