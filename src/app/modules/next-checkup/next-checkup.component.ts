@@ -27,9 +27,16 @@ export class NextCheckupComponent implements OnInit{
       (response: Client) => {
         this.client_information = response;
         this.nextCheckupDate = this.getDateForObjectFormat(this.client_information.sig_checkup);
+        this.updateNextCheckup(this.getDateObject(this.nextCheckupDate));
       }
     );
     this.name = JSON.parse(localStorage.getItem('client'))['nombre_clie'];
+  }
+  getDateObject(date){
+    let date_array = date.split('/');
+    let date_string = date_array[2] + '-' + date_array[1] + '-' + date_array[0];
+    let date_object = new Date(date_string);
+    return date_object;
   }
   changeCalendar() {
     this.showCalendar = !this.showCalendar;
