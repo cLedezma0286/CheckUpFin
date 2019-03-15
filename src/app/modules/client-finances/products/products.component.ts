@@ -214,8 +214,21 @@ export class ProductsComponent implements OnInit{
   }
   goToDashboard(){
     let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+    var productAux = [];
+    var objectivesAux = [];
+    for (var k=0; k < this.selectedProducts.length;k++) {
+      objectivesAux = [];
+      for (var a=0; a < this.selectedProducts[k].objetivos.length;a++) {
+        objectivesAux.push(this.selectedProducts[k].objetivos[a].id);
+      }
+      productAux.push({
+        'id': this.selectedProducts[k].id,
+        'fecha_venta': this.selectedProducts[k].fecha_venta,
+        'objetivos': objectivesAux
+      });
+    }
     var params = {
-      'productos': this.selectedProducts
+      'productos': productAux
     };
     this.productsService.putProducts(client_cis,params).subscribe(
       response => {
