@@ -6,10 +6,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeModule } from "./modules/home/home.module";
 import { LoaderModule } from './modules/loader/loader.module';
+import { NextCheckupModule } from './modules/next-checkup/next-checkup.module';
 import { ClientFinancesModule } from './modules/client-finances/client-finances.module';
 import { ClientSearchModule } from './modules/client-search/client-search.module';
 import { InterviewModule } from './modules/interview/interview.module';
 import { GeneralInterceptor } from '@interceptors/general.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -23,7 +25,8 @@ import { GeneralInterceptor } from '@interceptors/general.interceptor';
     LoaderModule,
     InterviewModule,
     ClientFinancesModule,
-    ClientSearchModule
+    ClientSearchModule,
+    NextCheckupModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

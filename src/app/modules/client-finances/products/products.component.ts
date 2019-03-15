@@ -3,7 +3,6 @@ import { ProductsService } from './products.service';
 import { InterviewService } from '@services/interview.service';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { noComponentFactoryError } from '@angular/core/src/linker/component_factory_resolver';
 @Component({
   selector: 'products',
   templateUrl: 'products.view.html',
@@ -232,7 +231,7 @@ export class ProductsComponent implements OnInit{
     };
     this.productsService.putProducts(client_cis,params).subscribe(
       response => {
-        this.router.navigate(['/client-finances/client-file/dashboard']);
+        this.router.navigate(['/next-checkup']);
       },
       error => {
         alert('Ha ocurrido un error');

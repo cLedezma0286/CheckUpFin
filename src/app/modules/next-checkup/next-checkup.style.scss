@@ -1,0 +1,90 @@
+@import 'app-colors';
+.fullWindow {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: UniversNextforHSBCW01-Th;
+}
+.simple-modal-logo {
+  background: transparent url('assets/images/logo_hsbc.svg') no-repeat 0 0;
+  width: 36px;
+  height: 18px;
+  background-size: contain;
+  position: absolute;
+  top: 20px;
+  left: 15px;
+}
+.simple-modal-close-icon {
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  background: transparent url('assets/images/close-arrow.png') no-repeat 0 0;
+  border: none;
+  font-size: 0;
+  width: 27px;
+  height: 26px;
+}
+.mainSection {
+  max-width: 800px;
+  max-height: 400px;
+}
+.title {
+  font-size: 30px;
+  color: $primary-red;
+}
+.normalText {
+  font-size: 24px;
+  color: $text-black;
+  display: flex;
+  position: relative;
+}
+.calendar-wrapper{
+  position: absolute;
+  left: 390px;
+  top: -40px;
+}
+.dateText {
+  color: $primary-red;
+  margin-left: 5px;
+}
+.warning{
+  font-size: 20px;
+  display: inline;
+}
+.marginTop10px {
+  margin-top: 10px;
+}
+.marginTop30px {
+  margin-top: 30px;
+}
+.marginTop60px {
+  margin-top: 60px;
+}
+.marginTop126px {
+  margin-top: 126px;
+}
+.right {
+  text-align: right;
+}
+.pencilButton {
+  background-image: url('assets/images/pencil.png');
+  border: none;
+  width: 30px;
+  height: 30px;
+}
+.nextCheckupButton {
+  color: $white;
+  font-size: 18px;
+  width: 182px;
+  height: 48px;
+  background-color: $primary-red;
+  border: none;
+}
+.whiteBox {
+  width: 700px;
+  max-height: 400px;
+  padding: 100px 25px;
+}
