@@ -150,6 +150,7 @@ export class InterviewComponent implements OnInit{
                 this.throwSpecialCase(20);
               }
               for (var j = 1; j < answers_with_id_17.length; j++) {
+                console.log(answers_with_id_17[j].texto);
                 this.interview.controls[this.getQuestionControlName(answers_with_id_17[j].sub_id)].setValue(answers_with_id_17[j].texto);
               }
             }
