@@ -41,10 +41,11 @@ export class ProductsComponent implements OnInit{
 
   ngOnInit() {
     let actual_interview_id = JSON.parse(localStorage.getItem('actual_interview_id'));
+    let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
     this.getProducts();
     this.getRecommendedProducts(actual_interview_id);
     this.getObjectives(actual_interview_id);
-    this.getCurrentProducts(actual_interview_id);
+    this.getCurrentProducts(client_cis);
   }
 
   getObjectives(interviewId) {
