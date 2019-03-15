@@ -56,6 +56,9 @@
         <div class="form-group checkbox-group" *ngFor="let product of selectedProducts, let i = index" ng-class="{'checkbox-inactive': product.id !== listaProductos.currentProductId}">
           <div class="number">{{(i < 9) ? "0"+(i+1) : (i+1)}}</div>
           <label class="control-label">{{ product.nombre_producto }}</label>
+          <div *ngIf="selectedProduct.id !== product.id">
+            <div *ngFor="let objectiveName of product.objectivesName" class="objective-list">{{objectiveName}}</div>
+          </div>
           <form [formGroup]="productForm" novalidate>
           <div *ngIf="selectedProduct.id === product.id">
             <div class="radio checkbox-padding" *ngFor="let objective of objectives">

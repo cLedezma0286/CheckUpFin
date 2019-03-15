@@ -377,6 +377,10 @@
 .disabledPrimaryButton{
   opacity: 0.3;
 }
+.objective-list {
+  font-size: 14px;
+  color: $text-light-gray;
+}
 
 @media only screen and (min-width: 992px) {
   .col-product {

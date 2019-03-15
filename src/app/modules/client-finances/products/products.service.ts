@@ -30,7 +30,11 @@ export class ProductsService {
     return this.http.get(environment.INTERVIEWS_URL + "/" + interviewId + '/objetivos');
   }
 
-  getCurrentProducts(interviewId) {
-    return this.http.get(environment.CLIENTS_URL + "/" + interviewId + '/productos');
+  getCurrentProducts(clientId) {
+    return this.http.get(environment.CLIENTS_URL + "/" + clientId + '/productos');
+  }
+
+  putProducts(clientId, params) {
+    return this.http.put(environment.CLIENTS_URL + "/" + clientId + '/productos', params);
   }
 }
