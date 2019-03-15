@@ -75,7 +75,6 @@ export class InterviewComponent implements OnInit{
               if (!Array.isArray(this.questions[i].des_bloc_preg)) {
                 if (!question_with_block_index) {
                   question_with_block_index = (i - 1);
-                  console.log(question_with_block_index);
                   this.questions[question_with_block_index]['has_block'] = true;
                   this.questions[question_with_block_index]['block_questions'] = [];
                 }
@@ -113,7 +112,7 @@ export class InterviewComponent implements OnInit{
     for (var i = 0; i < answers.length; i++) {
       let question_aux = this.getQuestionById(answers[i].pregunta_id);
       if (question_aux) {
-        if (question_aux.bnd_enteros === 1 && !(question_aux.num_pregunta_id === 6 || question_aux.num_pregunta_id === 19 || question_aux.num_pregunta_id === 47 || question_aux.num_pregunta_id === 68)) {
+        if (question_aux.bnd_enteros === 1 && !(question_aux.num_pregunta_id === 6 || question_aux.num_pregunta_id === 19 || question_aux.num_pregunta_id === 47 || question_aux.num_pregunta_id === 68 || question_aux.num_pregunta_id === 73)) {
           let answer_value = +answers[i].texto.replace(',','');
           this.interview.controls[this.getQuestionControlName(answers[i].pregunta_id)].setValue(answer_value);
           if (question_aux.num_pregunta_id === 5) {
@@ -155,7 +154,7 @@ export class InterviewComponent implements OnInit{
           } else if (answer_value[1] === 'años') {
             question_aux.selected = [1];
           }
-        } else if (question_aux.des_opciones.length !== 0 && !Array.isArray(answers[i].texto) && question_aux.num_pregunta_id === 46) {
+        } else if (question_aux.des_opciones.length !== 0 && !Array.isArray(answers[i].texto) && question_aux.num_pregunta_id !== 46) {
           let answer_value = answers[i].texto;
           for (var j = 0; j < question_aux.des_opciones.length; j++) {
             if (question_aux.des_opciones[j].valor === answer_value) {
@@ -214,6 +213,46 @@ export class InterviewComponent implements OnInit{
             for (var k = 0; k < answer_value.length; k++) {
               if (question_aux.des_opciones[j].valor === answer_value[k]) {
                 question_aux.selected.push(j);
+                if (question_aux.num_pregunta_id === 72) {
+                  this.throwSpecialCase(72);
+                }
+                if (question_aux.num_pregunta_id === 60) {
+                  this.throwSpecialCase(60);
+                }
+              }
+            }
+          }
+          if (question_aux.num_pregunta_id === 72) {
+            let answers_with_id_73 = this.getAnswersById(answers, 73);
+            for (var j = 0; j < answers_with_id_73.length; j++) {
+              let question_73_sub_id = answers_with_id_73[j].sub_id.split('.')[1];
+              let question_72 = this.getQuestionById(72);
+              let badge_name = question_72.des_opciones[question_73_sub_id].valor;
+              let answer_value = +answers_with_id_73[j].texto.replace(',','');
+              this.interview.controls[this.getQuestionControlName(73 + '-' + badge_name)].setValue(answer_value);
+            }
+          }
+          if (question_aux.num_pregunta_id === 60) {
+            let answers_with_id_61 = this.getAnswersById(answers, 61);
+            let answers_with_id_62 = this.getAnswersById(answers, 62);
+            for (var j = 0; j < answers_with_id_61.length; j++) {
+              let question_61_sub_id = answers_with_id_61[j].sub_id.split('.')[1];
+              let question_60 = this.getQuestionById(60);
+              let badge_name = question_60.des_opciones[question_61_sub_id].valor;
+              let answer_value = answers_with_id_61[j].texto;
+              this.interview.controls[this.getQuestionControlName(61 + '.' + badge_name)].setValue(answer_value);
+            }
+            for (var j = 0; j < answers_with_id_62.length; j++) {
+              let question_62_sub_id = answers_with_id_62[j].sub_id.split('.')[1];
+              let question_60 = this.getQuestionById(60);
+              let badge_name = question_60.des_opciones[question_62_sub_id].valor;
+              let answer_value = answers_with_id_62[j].texto.split(' ');
+              this.interview.controls[this.getQuestionControlName(62 + '.' + badge_name)].setValue(answer_value[0]);
+              let question_62_aux = this.getQuestionById(62 + '.' + badge_name);
+              if (answer_value[1] === 'meses') {
+                question_62_aux.selected = [0];
+              } else if (answer_value[1] === 'años') {
+                question_62_aux.selected = [1];
               }
             }
           }
@@ -676,7 +715,6 @@ export class InterviewComponent implements OnInit{
           for (var i = 1; i < 9999; i++)
             clearInterval(i);
           }
-          this.focusQuestion(1);
       },100);
     } else {
       this.setNextQuestionAsActive();
@@ -1127,13 +1165,7 @@ export class InterviewComponent implements OnInit{
       if (typeof question.num_pregunta_id === 'number') {
         answer['num_pregunta_id'] = question.num_pregunta_id
       } else if (typeof question.num_pregunta_id === 'string') {
-        if (question.num_pregunta_id.indexOf('73') === -1) {
-          let id_element = question.num_pregunta_id.split('.')[0];
-          answer['num_pregunta_id'] = +id_element;
-          answer['sub_id'] = question.num_pregunta_id;
-        } else {
-          console.log(73);
-          console.log(question.num_pregunta_id);
+        if (question.num_pregunta_id.indexOf('73') !== -1) {
           answer['num_pregunta_id'] = 73;
           let question_72 = this.getQuestionById(72);
           for (var j = 0; j < question_72.des_opciones.length; j++) {
@@ -1141,6 +1173,28 @@ export class InterviewComponent implements OnInit{
               answer['sub_id'] = '73.' + j;
             }
           }
+        } else if (question.num_pregunta_id.indexOf('61') !== -1){
+          answer['num_pregunta_id'] = 61;
+          let question_60 = this.getQuestionById(60);
+          for (var j = 0; j < question_60.des_opciones.length; j++) {
+            if (question_60.des_opciones[j].valor === question.num_pregunta_id.split('.')[1]) {
+              answer['sub_id'] = '61.' + j;
+              answer['texto'] = this.interview.value[this.getQuestionControlName(question.num_pregunta_id)];
+              answers_aux.push(answer);
+            }
+          }
+        } else if (question.num_pregunta_id.indexOf('62') !== -1) {
+          answer['num_pregunta_id'] = 62;
+          let question_60 = this.getQuestionById(60);
+          for (var j = 0; j < question_60.des_opciones.length; j++) {
+            if (question_60.des_opciones[j].valor === question.num_pregunta_id.split('.')[1]) {
+              answer['sub_id'] = '62.' + j;
+            }
+          }
+        } else {
+          let id_element = question.num_pregunta_id.split('.')[0];
+          answer['num_pregunta_id'] = +id_element;
+          answer['sub_id'] = question.num_pregunta_id;
         }
       }
       if (question.selected !== undefined && question.tipo_fecha !== 1 && question.bnd_op_mult === 0) { //Preguntas que son de opciones, que no son fecha, que pueden solo seleccionar una opción
