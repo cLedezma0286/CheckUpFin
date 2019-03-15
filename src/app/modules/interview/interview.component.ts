@@ -112,29 +112,99 @@ export class InterviewComponent implements OnInit{
     for (var i = 0; i < answers.length; i++) {
       let question_aux = this.getQuestionById(answers[i].pregunta_id);
       if (question_aux) {
-        if (question_aux.bnd_enteros === 1 && question_aux.num_pregunta_id !== 6) {
+        if (question_aux.bnd_enteros === 1 && !(question_aux.num_pregunta_id === 6 || question_aux.num_pregunta_id === 19 || question_aux.num_pregunta_id === 47 || question_aux.num_pregunta_id === 68 || question_aux.num_pregunta_id === 73)) {
           let answer_value = +answers[i].texto.replace(',','');
           this.interview.controls[this.getQuestionControlName(answers[i].pregunta_id)].setValue(answer_value);
           if (question_aux.num_pregunta_id === 5) {
             this.throwSpecialCase(5);
-            let answers_with_id_6 = this.getAnswersWithId6(answers);
+            let answers_with_id_6 = this.getAnswersById(answers, 6);
             for (var j = 0; j < answers_with_id_6.length; j++) {
               this.interview.controls[this.getQuestionControlName(answers_with_id_6[j].sub_id)].setValue(+answers_with_id_6[j].texto);
             }
           }
-        } else if (question_aux.tipo_fecha === 1) {
+          if (question_aux.num_pregunta_id === 45) {
+            this.throwSpecialCase(45);
+            let answers_with_id_46 = this.getAnswersById(answers, 46);
+            let answers_with_id_47 = this.getAnswersById(answers, 47);
+            for (var k = 0; k < answers_with_id_46.length; k++) {
+              let answer_value = answers_with_id_46[k].texto;
+              let question_aux = this.getQuestionById(answers_with_id_46[k].sub_id);
+              for (var j = 0; j < question_aux.des_opciones.length; j++) {
+                if (question_aux.des_opciones[j].valor === answer_value) {
+                  question_aux.selected.push(j);
+                }
+              }
+            }
+            for (var j = 0; j < answers_with_id_47.length; j++) {
+              this.interview.controls[this.getQuestionControlName(answers_with_id_47[j].sub_id)].setValue(+answers_with_id_47[j].texto);
+            }
+          }
+          if (question_aux.num_pregunta_id === 67) {
+            this.throwSpecialCase(67);
+            let answers_with_id_68 = this.getAnswersById(answers, 68);
+            for (var j = 0; j < answers_with_id_68.length; j++) {
+              this.interview.controls[this.getQuestionControlName(answers_with_id_68[j].sub_id)].setValue(+answers_with_id_68[j].texto);
+            }
+          }
+        } else if (question_aux.tipo_fecha === 1 && question_aux.num_pregunta_id !== 18) {
           let answer_value = answers[i].texto.split(' ');
           this.interview.controls[this.getQuestionControlName(answers[i].pregunta_id)].setValue(answer_value[0]);
           if (answer_value[1] === 'meses') {
-            question_aux.selected.push(0);
+            question_aux.selected = [0];
           } else if (answer_value[1] === 'años') {
-            question_aux.selected.push(0);
+            question_aux.selected = [1];
           }
-        } else if (question_aux.des_opciones.length !== 0 && !Array.isArray(answers[i].texto)) {
+        } else if (question_aux.des_opciones.length !== 0 && !Array.isArray(answers[i].texto) && question_aux.num_pregunta_id !== 46) {
           let answer_value = answers[i].texto;
           for (var j = 0; j < question_aux.des_opciones.length; j++) {
             if (question_aux.des_opciones[j].valor === answer_value) {
               question_aux.selected.push(j);
+            }
+          }
+          if (question_aux.num_pregunta_id === 20) {
+            let answers_with_id_17 = this.getAnswersById(answers, 17);
+            let answers_with_id_18 = this.getAnswersById(answers, 18);
+            let answers_with_id_19 = this.getAnswersById(answers, 19);
+            let max_answered = Math.max(answers_with_id_17.length, answers_with_id_18.length, answers_with_id_18.length);
+            let question_20 = this.getQuestionById(20);
+            question_20.selected = [0];
+            for (var j = 1; j < max_answered; j++) {
+              this.throwSpecialCaseForQuestion20();
+            }
+            for (var j = 0; j < answers_with_id_17.length; j++) {
+              if (answers_with_id_17[j].sub_id) {
+                this.interview.controls[this.getQuestionControlName(answers_with_id_17[j].sub_id)].setValue(answers_with_id_17[j].texto);
+              } else {
+                this.interview.controls[this.getQuestionControlName(17)].setValue(answers_with_id_17[j].texto);
+              }
+            }
+            for (var j = 0; j < answers_with_id_18.length; j++) {
+              let answer_value = answers_with_id_18[j].texto.split(' ');
+              if (answers_with_id_18[j].sub_id) {
+                this.interview.controls[this.getQuestionControlName(answers_with_id_18[j].sub_id)].setValue(answer_value[0]);
+                let question_aux = this.getQuestionById(answers_with_id_18[j].sub_id);
+                if (answer_value[1] === 'meses') {
+                  question_aux.selected = [0];
+                } else if (answer_value[1] === 'años') {
+                  question_aux.selected = [1];
+                }
+              } else {
+                this.interview.controls[this.getQuestionControlName(18)].setValue(answer_value[0]);
+                let question_aux = this.getQuestionById(18);
+                if (answer_value[1] === 'meses') {
+                  question_aux.selected = [0];
+                } else if (answer_value[1] === 'años') {
+                  question_aux.selected = [1];
+                }
+              }
+            }
+            for (var j = 0; j < answers_with_id_19.length; j++) {
+              let answer_value = +answers_with_id_19[j].texto.replace(',','');
+              if (answers_with_id_19[j].sub_id) {
+                this.interview.controls[this.getQuestionControlName(answers_with_id_19[j].sub_id)].setValue(answer_value);
+              } else {
+                this.interview.controls[this.getQuestionControlName(19)].setValue(answer_value);
+              }
             }
           }
         } else if (question_aux.des_opciones.length !== 0 && Array.isArray(answers[i].texto)) {
@@ -143,23 +213,65 @@ export class InterviewComponent implements OnInit{
             for (var k = 0; k < answer_value.length; k++) {
               if (question_aux.des_opciones[j].valor === answer_value[k]) {
                 question_aux.selected.push(j);
+                if (question_aux.num_pregunta_id === 72) {
+                  this.throwSpecialCase(72);
+                }
+                if (question_aux.num_pregunta_id === 60) {
+                  this.throwSpecialCase(60);
+                }
+              }
+            }
+          }
+          if (question_aux.num_pregunta_id === 72) {
+            let answers_with_id_73 = this.getAnswersById(answers, 73);
+            for (var j = 0; j < answers_with_id_73.length; j++) {
+              let question_73_sub_id = answers_with_id_73[j].sub_id.split('.')[1];
+              let question_72 = this.getQuestionById(72);
+              let badge_name = question_72.des_opciones[question_73_sub_id].valor;
+              let answer_value = +answers_with_id_73[j].texto.replace(',','');
+              this.interview.controls[this.getQuestionControlName(73 + '-' + badge_name)].setValue(answer_value);
+            }
+          }
+          if (question_aux.num_pregunta_id === 60) {
+            let answers_with_id_61 = this.getAnswersById(answers, 61);
+            let answers_with_id_62 = this.getAnswersById(answers, 62);
+            for (var j = 0; j < answers_with_id_61.length; j++) {
+              let question_61_sub_id = answers_with_id_61[j].sub_id.split('.')[1];
+              let question_60 = this.getQuestionById(60);
+              let badge_name = question_60.des_opciones[question_61_sub_id].valor;
+              let answer_value = answers_with_id_61[j].texto;
+              this.interview.controls[this.getQuestionControlName(61 + '.' + badge_name)].setValue(answer_value);
+            }
+            for (var j = 0; j < answers_with_id_62.length; j++) {
+              let question_62_sub_id = answers_with_id_62[j].sub_id.split('.')[1];
+              let question_60 = this.getQuestionById(60);
+              let badge_name = question_60.des_opciones[question_62_sub_id].valor;
+              let answer_value = answers_with_id_62[j].texto.split(' ');
+              this.interview.controls[this.getQuestionControlName(62 + '.' + badge_name)].setValue(answer_value[0]);
+              let question_62_aux = this.getQuestionById(62 + '.' + badge_name);
+              if (answer_value[1] === 'meses') {
+                question_62_aux.selected = [0];
+              } else if (answer_value[1] === 'años') {
+                question_62_aux.selected = [1];
               }
             }
           }
         } else {
-          this.interview.controls[this.getQuestionControlName(answers[i].pregunta_id)].setValue(answers[i].texto);
+          if (question_aux.num_pregunta_id !== 17) {
+            this.interview.controls[this.getQuestionControlName(answers[i].pregunta_id)].setValue(answers[i].texto);
+          }
         }
       }
     }
   }
-  getAnswersWithId6(answers){
-    let answers_with_id_6 = [];
+  getAnswersById(answers, id){
+    let answers_with_id = [];
     for (var i = 0; i < answers.length; i++) {
-      if (answers[i].pregunta_id === 6) {
-        answers_with_id_6.push(answers[i]);
+      if (answers[i].pregunta_id === id) {
+        answers_with_id.push(answers[i]);
       }
     }
-    return answers_with_id_6;
+    return answers_with_id;
   }
   getActualQuestion(){
     for (var i = 0; i < this.questions.length; i++) {
@@ -598,10 +710,11 @@ export class InterviewComponent implements OnInit{
       question_20_aux.des_prev_preg = '19.' + this.actual_iterations_of_block_two;
       this.active_question_id = '17.' + this.actual_iterations_of_block_two;
       this.interval = setInterval(()=> {
-        if (document.getElementById(('question_17.' + this.actual_iterations_of_block_two))) {
+        if (!!document.getElementById(('question_17.' + this.actual_iterations_of_block_two))) {
           this.focusQuestion(('17.' + this.actual_iterations_of_block_two));
-          clearInterval(this.interval);
-        }
+          for (var i = 1; i < 9999; i++)
+            clearInterval(i);
+          }
       },100);
     } else {
       this.setNextQuestionAsActive();
@@ -1052,9 +1165,37 @@ export class InterviewComponent implements OnInit{
       if (typeof question.num_pregunta_id === 'number') {
         answer['num_pregunta_id'] = question.num_pregunta_id
       } else if (typeof question.num_pregunta_id === 'string') {
-        let id_element = question.num_pregunta_id.split('.')[0];
-        answer['num_pregunta_id'] = +id_element;
-        answer['sub_id'] = question.num_pregunta_id;
+        if (question.num_pregunta_id.indexOf('73') !== -1) {
+          answer['num_pregunta_id'] = 73;
+          let question_72 = this.getQuestionById(72);
+          for (var j = 0; j < question_72.des_opciones.length; j++) {
+            if (question_72.des_opciones[j].valor === question.num_pregunta_id.split('-')[1]) {
+              answer['sub_id'] = '73.' + j;
+            }
+          }
+        } else if (question.num_pregunta_id.indexOf('61') !== -1){
+          answer['num_pregunta_id'] = 61;
+          let question_60 = this.getQuestionById(60);
+          for (var j = 0; j < question_60.des_opciones.length; j++) {
+            if (question_60.des_opciones[j].valor === question.num_pregunta_id.split('.')[1]) {
+              answer['sub_id'] = '61.' + j;
+              answer['texto'] = this.interview.value[this.getQuestionControlName(question.num_pregunta_id)];
+              answers_aux.push(answer);
+            }
+          }
+        } else if (question.num_pregunta_id.indexOf('62') !== -1) {
+          answer['num_pregunta_id'] = 62;
+          let question_60 = this.getQuestionById(60);
+          for (var j = 0; j < question_60.des_opciones.length; j++) {
+            if (question_60.des_opciones[j].valor === question.num_pregunta_id.split('.')[1]) {
+              answer['sub_id'] = '62.' + j;
+            }
+          }
+        } else {
+          let id_element = question.num_pregunta_id.split('.')[0];
+          answer['num_pregunta_id'] = +id_element;
+          answer['sub_id'] = question.num_pregunta_id;
+        }
       }
       if (question.selected !== undefined && question.tipo_fecha !== 1 && question.bnd_op_mult === 0) { //Preguntas que son de opciones, que no son fecha, que pueden solo seleccionar una opción
         if (question.selected.length !== 0) {
