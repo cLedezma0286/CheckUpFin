@@ -7,12 +7,12 @@ import { Router } from '@angular/router';
   styleUrls: ['dropdown.style.scss']
 })
 export class DropdownComponent{
-  @Input() client: any;
+  @Input() clients = [];
   @Input() loading: boolean;
   constructor(public clientsService: ClientsService, public router: Router){}
-  setLocalClientInformation(){
-    localStorage.setItem('client', JSON.stringify(this.client));
-    this.clientsService.getClientInterviewInformation(this.client.num_clie_cis).subscribe(
+  setLocalClientInformation(client){
+    localStorage.setItem('client', JSON.stringify(client));
+    this.clientsService.getClientInterviewInformation(client.num_clie_cis).subscribe(
       response => {
         localStorage.setItem('actual_interview_id', JSON.stringify(response['salud_financiera']['entrevista_id']));
         this.router.navigate(['/client-finances/client-file/dashboard']);

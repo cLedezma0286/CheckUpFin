@@ -19,13 +19,14 @@ export class FinancialHealthComponent implements OnInit{
   simple_view = false;
   constructor(public router: Router, public route: ActivatedRoute, public clientsService: ClientsService, public objectivesService: ObjectivesService, public renderer: Renderer2){}
   ngOnInit(){
-    this.clientsService.getClientInterviewInformation(111111111111112).subscribe(
+    let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+    this.clientsService.getClientInterviewInformation(client_cis).subscribe(
       response => {
         this.financial_health = response['salud_financiera'];
         this.objectives = response['objetivos'];
       }
     );
-    this.clientsService.getClientInformation(111111111111112).subscribe(
+    this.clientsService.getClientInformation(client_cis).subscribe(
       response => {
         this.name = response['nombre_clie'];
         this.age = response['fecha_nacimiento'];

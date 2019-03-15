@@ -26,8 +26,8 @@ export class NotesAndAgreementsComponent{
   }
 
   getNotes() {
-    
-    this.notesAgreementsService.getNotes(111111111111112).subscribe(
+    let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+    this.notesAgreementsService.getNotes(client_cis).subscribe(
       data => {
         this.notes = data['notas'];
       },
@@ -38,7 +38,8 @@ export class NotesAndAgreementsComponent{
   }
 
   getAgreements() {
-    this.notesAgreementsService.getAgreements(111111111111112).subscribe(
+    let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+    this.notesAgreementsService.getAgreements(client_cis).subscribe(
       data => {
         this.agreements = data['acuerdos'];
       },

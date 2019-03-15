@@ -18,7 +18,8 @@ export class ClientHeaderComponent implements OnInit{
   ngOnInit() {
     this.headerService.current_percentage.subscribe(percentage => this.percentage = percentage);
     this.headerService.current_subtitle.subscribe(subtitle => this.subtitle = subtitle);
-    this.clientsService.getClientInterviewInformation(111111111111112).subscribe(
+    let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+    this.clientsService.getClientInterviewInformation(client_cis).subscribe(
       response => {
         if (response['porcentaje_terminado']) {
           this.percentage = response['porcentaje_terminado'];
@@ -32,7 +33,7 @@ export class ClientHeaderComponent implements OnInit{
         alert('Ha ocurrido un error');
       }
     );
-    this.clientsService.getClientInformation(111111111111112).subscribe(
+    this.clientsService.getClientInformation(client_cis).subscribe(
       response => {
         this.name = response['primer_nombre'];
       },
