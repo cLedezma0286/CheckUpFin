@@ -75,6 +75,7 @@ export class InterviewComponent implements OnInit{
               if (!Array.isArray(this.questions[i].des_bloc_preg)) {
                 if (!question_with_block_index) {
                   question_with_block_index = (i - 1);
+                  //console.log(question_with_block_index);
                   this.questions[question_with_block_index]['has_block'] = true;
                   this.questions[question_with_block_index]['block_questions'] = [];
                 }
@@ -117,7 +118,7 @@ export class InterviewComponent implements OnInit{
           this.interview.controls[this.getQuestionControlName(answers[i].pregunta_id)].setValue(answer_value);
           if (question_aux.num_pregunta_id === 5) {
             this.throwSpecialCase(5);
-            let answers_with_id_6 = this.getAnswersWithId6(answers);
+            let answers_with_id_6 = this.getAnswersById(answers, 6);
             for (var j = 0; j < answers_with_id_6.length; j++) {
               this.interview.controls[this.getQuestionControlName(answers_with_id_6[j].sub_id)].setValue(+answers_with_id_6[j].texto);
             }
@@ -137,6 +138,22 @@ export class InterviewComponent implements OnInit{
               question_aux.selected.push(j);
             }
           }
+          if (question_aux.num_pregunta_id === 20) {
+            let answers_with_id_17 = this.getAnswersById(answers, 17);
+            let answers_with_id_18 = this.getAnswersById(answers, 18);
+            let answers_with_id_19 = this.getAnswersById(answers, 19);
+            let max_answered = Math.max(answers_with_id_17.length, answers_with_id_18.length, answers_with_id_18.length);
+            if (max_answered > 1) {
+              let question_20 = this.getQuestionById(20);
+              question_20.selected = [0];
+              for (var j = 1; j < max_answered; j++) {
+                this.throwSpecialCase(20);
+              }
+              for (var j = 1; j < answers_with_id_17.length; j++) {
+                this.interview.controls[this.getQuestionControlName(answers_with_id_17[j].sub_id)].setValue(answers_with_id_17[j].texto);
+              }
+            }
+          }
         } else if (question_aux.des_opciones.length !== 0 && Array.isArray(answers[i].texto)) {
           let answer_value = answers[i].texto;
           for (var j = 0; j < question_aux.des_opciones.length; j++) {
@@ -152,14 +169,14 @@ export class InterviewComponent implements OnInit{
       }
     }
   }
-  getAnswersWithId6(answers){
-    let answers_with_id_6 = [];
+  getAnswersById(answers, id){
+    let answers_with_id = [];
     for (var i = 0; i < answers.length; i++) {
-      if (answers[i].pregunta_id === 6) {
-        answers_with_id_6.push(answers[i]);
+      if (answers[i].pregunta_id === id) {
+        answers_with_id.push(answers[i]);
       }
     }
-    return answers_with_id_6;
+    return answers_with_id;
   }
   getActualQuestion(){
     for (var i = 0; i < this.questions.length; i++) {
