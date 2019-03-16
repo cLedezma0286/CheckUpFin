@@ -70,8 +70,8 @@ export class NextCheckupComponent implements OnInit{
     this.nextCheckupDate = ('0' + nextDate.getDate()).slice(-2) + '/' +
       ('0'+(nextDate.getMonth()+1)).slice(-2) + '/' +
       nextDate.getFullYear();
-    nextDate = nextDate.getFullYear() + '/' +
-      ('0'+(nextDate.getMonth()+1)).slice(-2) + '/' +
+    nextDate = nextDate.getFullYear() + '-' +
+      ('0'+(nextDate.getMonth()+1)).slice(-2) + '-' +
       ('0' + nextDate.getDate()).slice(-2);
     this.dateRequest = {
       'sig_checkup': nextDate

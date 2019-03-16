@@ -91,6 +91,10 @@ export class EditClientInformationComponent implements OnInit{
   }
   getDateFormat(date){
     let date_array = date.replace('/','-').replace('/','-');
+    date_array = date_array.split('-');
+    date_array = date_array[0] + '-' +
+      ('0'+(date_array[1])).slice(-2) + '-' +
+      ('0' + date_array[2]).slice(-2);;
     return date_array;
   }
   validateBirthdayFormat(){
