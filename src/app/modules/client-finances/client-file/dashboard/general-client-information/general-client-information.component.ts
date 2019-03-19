@@ -70,8 +70,8 @@ export class GeneralClientInformationComponent implements OnInit{
     },100);
   }
   updateNextCheckup(nextDate) {
-    nextDate = nextDate.getFullYear() + '/' +
-      ('0'+(nextDate.getMonth()+1)).slice(-2) + '/' +
+    nextDate = nextDate.getFullYear() + '-' +
+      ('0'+(nextDate.getMonth()+1)).slice(-2) + '-' +
       ('0' + nextDate.getDate()).slice(-2);
     var dateRequest = {
       'sig_checkup': nextDate
