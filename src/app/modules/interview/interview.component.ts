@@ -113,7 +113,7 @@ export class InterviewComponent implements OnInit{
       let question_aux = this.getQuestionById(answers[i].pregunta_id);
       if (question_aux) {
         if (question_aux.bnd_enteros === 1 && !(question_aux.num_pregunta_id === 6 || question_aux.num_pregunta_id === 19 || question_aux.num_pregunta_id === 47 || question_aux.num_pregunta_id === 68 || question_aux.num_pregunta_id === 73)) {
-          let answer_value = +answers[i].texto.replace(',','');
+          let answer_value = +answers[i].texto.replace(/,/g, '');
           this.interview.controls[this.getQuestionControlName(answers[i].pregunta_id)].setValue(answer_value);
           if (question_aux.num_pregunta_id === 5) {
             this.throwSpecialCase(5);
@@ -199,7 +199,7 @@ export class InterviewComponent implements OnInit{
               }
             }
             for (var j = 0; j < answers_with_id_19.length; j++) {
-              let answer_value = +answers_with_id_19[j].texto.replace(',','');
+              let answer_value = +answers_with_id_19[j].texto.replace(/,/g, '');
               if (answers_with_id_19[j].sub_id) {
                 this.interview.controls[this.getQuestionControlName(answers_with_id_19[j].sub_id)].setValue(answer_value);
               } else {
@@ -228,7 +228,7 @@ export class InterviewComponent implements OnInit{
               let question_73_sub_id = answers_with_id_73[j].sub_id.split('.')[1];
               let question_72 = this.getQuestionById(72);
               let badge_name = question_72.des_opciones[question_73_sub_id].valor;
-              let answer_value = +answers_with_id_73[j].texto.replace(',','');
+              let answer_value = +answers_with_id_73[j].texto.replace(/,/g, '');
               this.interview.controls[this.getQuestionControlName(73 + '-' + badge_name)].setValue(answer_value);
             }
           }
@@ -396,6 +396,10 @@ export class InterviewComponent implements OnInit{
         if (this.isQuestionWithOptionsAnswered(actual_question)) { //Revisamos que la pregunta actual ya tenga algún valor seleccionado
           for (var i = 0; i < actual_question.des_opciones.length; i++) { // Recorremos las opciones
             if (this.isAnswerInTheOptions(i, actual_question.selected)) {
+              if (actual_question.num_pregunta_id === 66 && actual_question.des_opciones[i].valor === 'No') {
+                this.throwDefaultAmountOfHouses();
+                return;
+              }
               if (Array.isArray(actual_question.des_opciones[i].des_sig_preg)) { //Checamos si la opción de la iteración actual tiene el atributo des_sig_preg como un arreglo o un número
                 for (var j = 0; j < actual_question.des_opciones[i].des_sig_preg.length; j++) {
                   for (var k = 0; k < actual_question.des_opciones[i].des_sig_preg[j].preg_req.length; k++) {
@@ -434,6 +438,17 @@ export class InterviewComponent implements OnInit{
         return;
       }
     }
+  }
+  throwDefaultAmountOfHouses(){
+    this.interview.controls[this.getQuestionControlName(67)].setValue(1);
+    this.throwSpecialCase(67);
+    this.interval = setInterval(()=> {
+      if (document.getElementById('question_68.1')) {
+        this.setActiveQuestion('68.1');
+        this.focusQuestion('68.1');
+        clearInterval(this.interval);
+      }
+    },100);
   }
   setNextOptionAsFocused(selection_start?){
     for (var i = 0; i < this.questions.length; i++) {
