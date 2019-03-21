@@ -11,7 +11,7 @@ export class EditClientInformationComponent implements OnInit{
   name: string;
   next_checkup: string;
   user_information: FormGroup = this.fb.group({
-    'position': ['', [
+    'position': [{value: '', disabled: true}, [
       Validators.maxLength(50)
     ]],
     'phone': ['', [
@@ -22,10 +22,10 @@ export class EditClientInformationComponent implements OnInit{
     ]],
     'number_of_childrens': ['', []],
     'birthday': ['', []],
-    'civil_status': ['', [
+    'civil_status': [{value: '', disabled: true}, [
       Validators.maxLength(12)
     ]],
-    'cis': ['', [
+    'cis': [{value: '', disabled: true}, [
       Validators.maxLength(15)
     ]],
     'hobbies': ['', [
@@ -46,19 +46,15 @@ export class EditClientInformationComponent implements OnInit{
   }
   setFormValues(user){
     this.user_information.controls.position.setValue(user.ocupacion);
-    this.user_information.controls.position.disable()
     this.user_information.controls.phone.setValue(user.telefono);
-    this.user_information.controls.phone.disable();
     this.user_information.controls.email.setValue(user.correo);
-    this.user_information.controls.email.disable();
     this.user_information.controls.number_of_childrens.setValue(user.num_hijos);
     this.user_information.controls.birthday.setValue(user.fecha_nacimiento.replace('-','/').replace('-','/'));
     this.user_information.controls.civil_status.setValue(user.edo_civil);
-    this.user_information.controls.civil_status.disable();
     this.user_information.controls.cis.setValue(user.num_clie_cis);
-    this.user_information.controls.cis.disable();
     this.user_information.controls.hobbies.setValue(user.hobbies.join(', '));
     this.user_information.controls.risk_profile.setValue(user.perfil_riesgo);
+
   }
   stringToHobbies(hobbies_string){
     let hobbies_array = hobbies_string.split(',');
@@ -72,12 +68,13 @@ export class EditClientInformationComponent implements OnInit{
       let user_aux = {
         nombre_clie: this.name,
         telefono: this.user_information.value.phone,
-        ocupacion: this.user_information.value.position,
+        ocupacion: this.user_information.controls.position.value,
         correo: this.user_information.value.email,
         fecha_nacimiento: this.getDateFormat(this.user_information.value.birthday),
         hobbies: this.stringToHobbies(this.user_information.value.hobbies),
         perfil_riesgo: this.user_information.value.risk_profile,
-        sig_checkup: this.next_checkup
+        sig_checkup: this.next_checkup,
+        num_hijos: this.user_information.value.number_of_childrens
       }
       let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
       this.clientsService.setClientPersonalInformation(client_cis, user_aux).subscribe(
