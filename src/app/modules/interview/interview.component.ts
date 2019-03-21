@@ -989,7 +989,7 @@ export class InterviewComponent implements OnInit{
           this.questions[question_67_position + +this.actual_question_67_value].des_sig_preg = '68.' + (+this.actual_question_67_value + 1);
         }
         if ((+this.actual_question_67_value + i) === question_67_new_value) {
-          question_68_aux.des_sig_preg = 69;
+          question_68_aux.des_sig_preg = this.questions[question_67_position].block_questions[0].des_sig_preg;
         } else {
           question_68_aux.des_sig_preg = '68.' + ((+this.actual_question_67_value + i) + 1);
         }
@@ -1005,7 +1005,7 @@ export class InterviewComponent implements OnInit{
       let difference = +this.actual_question_67_value - question_67_new_value;
       this.questions.splice((question_67_position + 1 + question_67_new_value), difference);
       let last_question_of_cycle_index = question_67_position + question_67_new_value;
-      this.questions[last_question_of_cycle_index].des_sig_preg = 69;
+      this.questions[last_question_of_cycle_index].des_sig_preg = this.questions[question_67_position].block_questions[0].des_sig_preg;
       let question_69 = this.getQuestionById(69);
       if (question_67_new_value) {
         question_69.des_prev_preg = '68.' + (question_67_new_value);
@@ -1038,7 +1038,7 @@ export class InterviewComponent implements OnInit{
         des_opciones: [],
         des_preg_ref: '72',
         des_prev_preg: null,
-        des_sig_preg: 74,
+        des_sig_preg: question_72.block_questions[0].des_sig_preg,
         des_texto: '¿Cuánto tienes en ' + selected_value + '?',
         num_pregunta_id: '73-' + selected_value,
         tipo_fecha: 0
@@ -1062,7 +1062,7 @@ export class InterviewComponent implements OnInit{
           this.questions.splice(question_to_delete_position, 1);
           if (i === 0) {
             if (new_quantity_of_items_selected === 0) {
-              question_72.des_sig_preg = 74;
+              question_72.des_sig_preg = question_72.block_questions[0].des_sig_preg;
               let question_74 = this.getQuestionById(74);
               question_74.des_prev_preg = 72;
             } else {
@@ -1077,14 +1077,14 @@ export class InterviewComponent implements OnInit{
             next_question.des_prev_preg = '73-' + question_72.des_opciones[(question_72.selected[(i - 1)])].valor;
           } else if (i === (previous_quantity_of_items_selected - 1)) {
             if (new_quantity_of_items_selected === 0) {
-              question_72.des_sig_preg = 74;
+              question_72.des_sig_preg = question_72.block_questions[0].des_sig_preg;
               let question_74 = this.getQuestionById(74);
               question_74.des_prev_preg = 72;
             } else {
               let question_74 = this.getQuestionById(74);
               question_74.des_prev_preg = '73-' + question_72.des_opciones[question_72.selected[(question_72.selected.length - 1)]].valor;
               let last_question_73 = this.getQuestionById('73-' + question_72.des_opciones[question_72.selected[(question_72.selected.length - 1)]].valor);
-              last_question_73.des_sig_preg = 74;
+              last_question_73.des_sig_preg = question_72.block_questions[0].des_sig_preg;
             }
           }
           this.question_72_previous = JSON.parse(JSON.stringify(question_72.selected));

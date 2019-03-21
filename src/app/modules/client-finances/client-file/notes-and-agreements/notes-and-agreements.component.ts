@@ -115,15 +115,77 @@ export class NotesAndAgreementsComponent{
   save() {
     if (this.showAgreement) {
       if (this.currentAgreement) {
-        console.log(1);
+        let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+        let agreement_aux = {
+          titulo: this.validateForm.value.title,
+          descripcion: this.validateForm.value.description,
+          tipo_nota: 'acuerdo',
+          num_clie_cis: client_cis
+        }
+        this.notesAgreementsService.editAgreement(agreement_aux, this.currentAgreement.id).subscribe(
+          response => {
+            this.closeModal();
+            this.getAgreements();
+          },
+          error => {
+            alert('Ha ocurrido un error');
+          }
+        );
       } else {
-        console.log(2);
+        let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+        let agreement_aux = {
+          titulo: this.validateForm.value.title,
+          descripcion: this.validateForm.value.description,
+          tipo_nota: 'acuerdo',
+          num_clie_cis: client_cis
+        }
+        this.notesAgreementsService.createAgreement(agreement_aux).subscribe(
+          response => {
+            this.closeModal();
+            this.getAgreements();
+          },
+          error => {
+            alert('Ha ocurrido un error');
+          }
+        );
       }
     } else if (this.showNote) {
       if (this.currentNote) {
-        console.log(3);
+        let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+        let note_aux = {
+          titulo: this.validateForm.value.title,
+          descripcion: this.validateForm.value.description,
+          tipo_nota: 'nota',
+          num_clie_cis: client_cis
+        }
+        this.notesAgreementsService.editNote(note_aux, this.currentNote.id).subscribe(
+          response => {
+            this.closeModal();
+            this.getNotes();
+          },
+          error => {
+            alert('Ha ocurrido un error');
+          }
+        );
       } else {
-        console.log(4);
+        if (this.validateForm.valid) {
+          let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+          let note_aux = {
+            titulo: this.validateForm.value.title,
+            descripcion: this.validateForm.value.description,
+            tipo_nota: 'nota',
+            num_clie_cis: client_cis
+          }
+          this.notesAgreementsService.createNote(note_aux).subscribe(
+            response => {
+              this.closeModal();
+              this.getNotes();
+            },
+            error => {
+              alert('Ha ocurrido un error');
+            }
+          );
+        }
       }
     }
   }
