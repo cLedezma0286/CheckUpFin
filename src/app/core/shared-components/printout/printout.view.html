@@ -21,7 +21,7 @@
           <div class="status_bar">
             <div [style.width.%]="getRateNumber(financial_health.puntuacion) * 10"></div>
           </div>
-          <p class="verdict">Tu salud financiera es es calculada a partir de toda la información que nos has facilitado y estableciendo una media entre cuatro tracks fundamentales…</p>
+          <p class="verdict">Tu salud financiera es calculada a partir de toda la información que nos has facilitado y estableciendo una media entre cuatro tracks fundamentales.</p>
         </div>
         <div class="items">
           <div class="item" [ngClass]="{'healthy': financial_health.Gastos.num_puntuacion >= 7, 'unhealthy': financial_health.Gastos.num_puntuacion >= 5 && financial_health.Gastos.num_puntuacion < 7, 'dangerous': financial_health.Gastos.num_puntuacion < 5}">

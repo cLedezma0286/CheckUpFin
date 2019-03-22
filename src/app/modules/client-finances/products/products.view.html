@@ -103,7 +103,7 @@
           <div class="product-name">{{product.nombre_producto}}</div>
           <div class="product-information">{{product.informacion}}</div>
           <div class="product-links">
-            <a (click)="showProductInfo(product)">mas info</a>
+            <a (click)="showProductInfo(product)">más info</a>
             <a (click)="selectProduct(product)" *ngIf="!product.isAdded">seleccionar</a>
             <a (click)="removeProduct(product.id)" *ngIf="product.isAdded">deseleccionar</a>
           </div>

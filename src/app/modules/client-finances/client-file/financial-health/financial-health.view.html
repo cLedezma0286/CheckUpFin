@@ -10,7 +10,7 @@
         <div class="status_bar">
           <div [style.width.%]="getRateNumber(financial_health.puntuacion) * 10"></div>
         </div>
-        <p class="explanation">Tu salud financiera es es calculada a partir de toda la información que nos has facilitado y estableciendo una media entre cuatro tracks fundamentales...</p>
+        <p class="explanation">Tu salud financiera es calculada a partir de toda la información que nos has facilitado y estableciendo una media entre cuatro tracks fundamentales.</p>
         <p class="calculated" (click)="openCalculationExplanationModal()">¿Cómo se calcula?</p>
       </div>
     </div>
@@ -76,7 +76,6 @@
           <p class="date_price">{{ objective.fecha }}<span *ngIf="objective.valor">, ${{ objective.valor }}</span></p>
         </div>
         <img class="edit" src="assets/images/icon-edit.svg" (click)="editObjective(objective)"/>
-        <div class="delete" (click)="deleteObjective(objective.id)"></div>
       </div>
     </div>
     <!--
@@ -152,10 +151,11 @@
     </div>
   </div>
   <div class="controls">
-    <button *ngIf="!simple_view">Imprimir</button>
+    <button *ngIf="!simple_view" (click)="openPrintModal()">Imprimir</button>
     <button *ngIf="simple_view" class="to_rigth" (click)="goToProducts()">Ver productos</button>
   </div>
   <img src="assets/images/lock-sm.png" class="lock"/>
 </section>
 <calculation-explanation *ngIf="calculation_explanation_open" (close)="closeCalculationExplanationModal()"></calculation-explanation>
 <objective *ngIf="objective_modal_open" [interview_id]="financial_health.entrevista_id" [objective]="objective_to_edit" (close)="closeObjectiveModal($event)"></objective>
+<printout *ngIf="print_modal_open" (close)="closePrintModal()"></printout>

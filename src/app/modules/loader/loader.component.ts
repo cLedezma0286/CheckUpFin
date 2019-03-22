@@ -58,7 +58,9 @@ export class LoaderComponent implements OnDestroy{
     document.querySelector('.icon')['style']['fill'] = '#AAA20A';
     if (this.router.url.indexOf('loading')) {
       setTimeout(() => {
-        this.router.navigate(['client-search']);
+        if (this.router.url === '/loading/edras') {
+          this.router.navigate(['client-search']);
+        }
       }, 1000);
     }
   }

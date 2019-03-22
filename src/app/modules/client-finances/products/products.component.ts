@@ -156,6 +156,7 @@ export class ProductsComponent implements OnInit{
   }
 
   selectProduct(product) {
+
     this.selectedProduct = product;
     this.selectedProducts.push(product);
   }
@@ -171,13 +172,13 @@ export class ProductsComponent implements OnInit{
 
   saveProduct() {
     this.selectedProduct['isAdded'] = true;
-    this.selectedProducts['fecha_venta'] = this.productForm.value.selectedDate;
+    this.selectedProduct['fecha_venta'] = this.productForm.value.selectedDate;
     this.productForm.controls['selectedDate'].setValue('');
     this.selectedProduct['objetivos'] = [];
     this.selectedProduct['objectivesName'] = [];
     for (let objective in this.objectives) {
       if (this.objectives[objective]['selected']) {
-        this.selectedProduct['objetivos'].push(this.objectives[objective]['id']);
+        this.selectedProduct['objetivos'].push(this.objectives[objective]);
         this.selectedProduct['objectivesName'].push(this.objectives[objective]['nombre']);
       }
       this.objectives[objective]['selected'] = false;
@@ -221,7 +222,7 @@ export class ProductsComponent implements OnInit{
         objectivesAux.push(this.selectedProducts[k].objetivos[a].id);
       }
       productAux.push({
-        'id': this.selectedProducts[k].id,
+        'id_producto': this.selectedProducts[k].id,
         'fecha_venta': this.selectedProducts[k].fecha_venta,
         'objetivos': objectivesAux
       });

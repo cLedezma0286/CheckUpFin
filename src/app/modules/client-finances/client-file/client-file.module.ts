@@ -10,12 +10,14 @@ import { CalculationExplanationComponent } from './financial-health/calculation-
 import { ObjectiveComponent } from './financial-health/objective/objective.component';
 import { NotesAndAgreementsComponent } from './notes-and-agreements/notes-and-agreements.component';
 import { RouterModule } from '@angular/router';
+import { SharedComponentsModule } from '@shared-components/shared-components.module';
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    SharedComponentsModule
   ],
   declarations: [
     ClientFileComponent,
