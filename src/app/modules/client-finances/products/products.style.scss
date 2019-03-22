@@ -142,7 +142,9 @@
   .product-links {
     font-size: 12px;
     margin-top: 20px;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
     a {
       padding: 0 5px;
       cursor: pointer;

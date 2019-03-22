@@ -17,6 +17,7 @@ export class FinancialHealthComponent implements OnInit{
   objectives = [];
   objective_to_edit = null;
   simple_view = false;
+  print_modal_open = false;
   constructor(public router: Router, public route: ActivatedRoute, public clientsService: ClientsService, public objectivesService: ObjectivesService, public renderer: Renderer2){}
   ngOnInit(){
     let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
@@ -114,5 +115,13 @@ export class FinancialHealthComponent implements OnInit{
         this.objectives.splice(i, 1);
       }
     }
+  }
+  openPrintModal(){
+    this.setBodyScroll('hidden');
+    this.print_modal_open = true;
+  }
+  closePrintModal(){
+    this.print_modal_open = false;
+    this.setBodyScroll('auto');
   }
 }
