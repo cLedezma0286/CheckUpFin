@@ -22,7 +22,7 @@ export class NextCheckupComponent implements OnInit{
     public router: Router, public fb: FormBuilder){}
 
   ngOnInit() {
-    let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+    let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
     this.clientsService.getClientInformation(client_cis).subscribe(
       (response: Client) => {
         this.client_information = response;
@@ -30,7 +30,7 @@ export class NextCheckupComponent implements OnInit{
         this.updateNextCheckup(this.getDateObject(this.nextCheckupDate));
       }
     );
-    this.name = JSON.parse(localStorage.getItem('client'))['nombre_clie'];
+    this.name = JSON.parse(localStorage.getItem('cliente'))['nombre_clie'];
   }
   getDateObject(date){
     let date_array = date.split('/');
@@ -78,7 +78,7 @@ export class NextCheckupComponent implements OnInit{
     };
   }
   confirmNextCheckup() {
-    let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+    let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
     this.clientsService.setNextCheckupClient(client_cis, this.dateRequest)
     .subscribe(
     response => {

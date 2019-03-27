@@ -14,7 +14,7 @@ export class PrintoutComponent implements OnInit{
   date = '';
   constructor(public clientsService: ClientsService){}
   ngOnInit(){
-    let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+    let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
     this.clientsService.getClientInterviewInformation(client_cis).subscribe(
       response => {
         this.financial_health = response['salud_financiera'];

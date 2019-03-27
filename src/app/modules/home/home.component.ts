@@ -7,9 +7,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent{
   constructor(public router: Router){}
-  ngOnInit(){
-    localStorage.clear();
-  }
+
   goToEDRASLoader(){
     this.router.navigate(['/loading/edras']);
   }

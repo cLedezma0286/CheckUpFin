@@ -1150,7 +1150,7 @@ export class InterviewComponent implements OnInit{
   sendInterview(){
     let answers_aux = this.getAnswers();
     let objectives_aux = this.objectives;
-    let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+    let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
     let interview_aux = {
       entrevista: {
         num_clie_cis: client_cis,

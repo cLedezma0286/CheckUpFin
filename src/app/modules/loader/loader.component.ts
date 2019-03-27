@@ -59,7 +59,14 @@ export class LoaderComponent implements OnDestroy{
     if (this.router.url.indexOf('loading')) {
       setTimeout(() => {
         if (this.router.url === '/loading/edras') {
-          this.router.navigate(['client-search']);
+          var client = JSON.parse(localStorage.getItem('cliente'));
+          if (!client) {
+            this.router.navigate(['client-search']);
+          } else if (client.cliente_nuevo) {
+            this.router.navigate(['/interview']);
+          } else if (!client.cliente_nuevo) {
+            this.router.navigate(['/client-finances/client-file/dashboard']);
+          }
         }
       }, 1000);
     }

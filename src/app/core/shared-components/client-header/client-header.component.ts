@@ -20,8 +20,8 @@ export class ClientHeaderComponent implements OnInit{
   ngOnInit() {
     this.headerService.current_percentage.subscribe(percentage => this.percentage = percentage);
     this.headerService.current_subtitle.subscribe(subtitle => this.subtitle = subtitle);
-    if (JSON.parse(localStorage.getItem('client'))) {
-      let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+    if (JSON.parse(localStorage.getItem('cliente'))) {
+      let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
       this.clientsService.getClientInterviewInformation(client_cis).subscribe(
         response => {
           if (response['porcentaje_terminado']) {

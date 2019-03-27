@@ -26,7 +26,7 @@ export class NotesAndAgreementsComponent{
   }
 
   getNotes() {
-    let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+    let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
     this.notesAgreementsService.getNotes(client_cis).subscribe(
       data => {
         this.notes = data['notas'];
@@ -38,7 +38,7 @@ export class NotesAndAgreementsComponent{
   }
 
   getAgreements() {
-    let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+    let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
     this.notesAgreementsService.getAgreements(client_cis).subscribe(
       data => {
         this.agreements = data['acuerdos'];
@@ -115,7 +115,7 @@ export class NotesAndAgreementsComponent{
   save() {
     if (this.showAgreement) {
       if (this.currentAgreement) {
-        let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+        let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
         let agreement_aux = {
           titulo: this.validateForm.value.title,
           descripcion: this.validateForm.value.description,
@@ -132,7 +132,7 @@ export class NotesAndAgreementsComponent{
           }
         );
       } else {
-        let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+        let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
         let agreement_aux = {
           titulo: this.validateForm.value.title,
           descripcion: this.validateForm.value.description,
@@ -151,7 +151,7 @@ export class NotesAndAgreementsComponent{
       }
     } else if (this.showNote) {
       if (this.currentNote) {
-        let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+        let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
         let note_aux = {
           titulo: this.validateForm.value.title,
           descripcion: this.validateForm.value.description,
@@ -169,7 +169,7 @@ export class NotesAndAgreementsComponent{
         );
       } else {
         if (this.validateForm.valid) {
-          let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+          let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
           let note_aux = {
             titulo: this.validateForm.value.title,
             descripcion: this.validateForm.value.description,
