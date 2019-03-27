@@ -11,7 +11,7 @@ export class DropdownComponent{
   @Input() loading: boolean;
   constructor(public clientsService: ClientsService, public router: Router){}
   setLocalClientInformation(client){
-    localStorage.setItem('client', JSON.stringify(client));
+    localStorage.setItem('cliente', JSON.stringify(client));
     this.clientsService.getClientInterviewInformation(client.num_clie_cis).subscribe(
       response => {
         localStorage.setItem('actual_interview_id', JSON.stringify(response['salud_financiera']['entrevista_id']));

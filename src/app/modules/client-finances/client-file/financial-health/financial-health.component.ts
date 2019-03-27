@@ -20,7 +20,7 @@ export class FinancialHealthComponent implements OnInit{
   print_modal_open = false;
   constructor(public router: Router, public route: ActivatedRoute, public clientsService: ClientsService, public objectivesService: ObjectivesService, public renderer: Renderer2){}
   ngOnInit(){
-    let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+    let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
     this.clientsService.getClientInterviewInformation(client_cis).subscribe(
       response => {
         this.financial_health = response['salud_financiera'];

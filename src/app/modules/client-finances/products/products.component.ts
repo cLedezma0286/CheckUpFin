@@ -78,7 +78,7 @@ export class ProductsComponent implements OnInit{
           }
           index++;
         }
-        let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+        let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
         this.getCurrentProducts(client_cis);
       },
       error => {
@@ -213,7 +213,7 @@ export class ProductsComponent implements OnInit{
     this.renderer.setStyle(document.body, 'overflow', scroll_value);
   }
   goToDashboard(){
-    let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+    let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
     var productAux = [];
     var objectivesAux = [];
     for (var k=0; k < this.selectedProducts.length;k++) {

@@ -19,7 +19,7 @@ export class GeneralClientInformationComponent implements OnInit{
   @Output() show_edit_section: EventEmitter<void> = new EventEmitter<void>();
   constructor(public clientsService: ClientsService, public interviewService: InterviewService){}
   ngOnInit(){
-    let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+    let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
     this.clientsService.getClientInformation(client_cis).subscribe(
       (response: Client) => {
         this.client_information = response;
@@ -76,7 +76,7 @@ export class GeneralClientInformationComponent implements OnInit{
     var dateRequest = {
       'sig_checkup': nextDate
     };
-    let client_cis = JSON.parse(localStorage.getItem('client')).num_clie_cis;
+    let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
     this.clientsService.setNextCheckupClient(client_cis, dateRequest)
     .subscribe(
       (response: Client) => {
