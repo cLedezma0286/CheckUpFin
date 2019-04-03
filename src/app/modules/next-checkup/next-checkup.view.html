@@ -26,7 +26,9 @@
   <div *ngIf="!firstView">
     <div class="whiteBox">
       <div class="normalText warning">
-        <p>Hola, ya hemos terminado el check up financiero de {{name}}.</p>
+        <div class="name_wrapper">
+          <p>Hola, ya hemos terminado el check up financiero de </p> <p> {{ name }} </p>
+        </div>
         <p class="marginTop10px">No se te olvide editar objetivos y asociarlos a una necesidas.</p>
       </div>
       <div class="right marginTop30px">
