@@ -30,6 +30,13 @@ section{
         line-height: 17px;
         font-weight: 100;
         color: $text-black;
+        &:nth-child(3){
+          width: 240px;
+          max-width: 44%;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
       }
       div{
         width: 1px;

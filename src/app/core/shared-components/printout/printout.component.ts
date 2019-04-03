@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, OnDestroy, EventEmitter, Output, Renderer2 } from '@angular/core';
 import { ClientsService } from '@services/clients.service';
 import { FinancialHealth } from '@models/financial-health.model';
 @Component({
@@ -6,13 +6,13 @@ import { FinancialHealth } from '@models/financial-health.model';
   templateUrl: 'printout.view.html',
   styleUrls: ['printout.style.scss']
 })
-export class PrintoutComponent implements OnInit{
+export class PrintoutComponent implements OnInit, OnDestroy{
   @Output() close: EventEmitter<void> = new EventEmitter<void>();
   financial_health: FinancialHealth = new FinancialHealth();
   objectives = [];
   name: string;
   date = '';
-  constructor(public clientsService: ClientsService){}
+  constructor(public clientsService: ClientsService, public renderer: Renderer2){}
   ngOnInit(){
     let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
     this.clientsService.getClientInterviewInformation(client_cis).subscribe(
@@ -84,5 +84,11 @@ export class PrintoutComponent implements OnInit{
         month_name = 'Diciembre';
     }
     return month_name;
+  }
+  ngOnDestroy(){
+    this.setBodyScroll('auto');
+  }
+  setBodyScroll(scroll_value){
+    this.renderer.setStyle(document.body, 'overflow', scroll_value);
   }
 }

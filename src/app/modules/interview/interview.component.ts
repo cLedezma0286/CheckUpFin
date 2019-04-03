@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { QuestionsService } from '@services/questions.service';
 import { InterviewService } from '@services/interview.service';
+import { ClientsService } from '@services/clients.service';
 declare var jsCalendar: any;
 @Component({
   selector: 'interview',
@@ -32,7 +33,8 @@ export class InterviewComponent implements OnInit{
     public router: Router,
     public route: ActivatedRoute,
     public questionsService: QuestionsService,
-    public interviewService: InterviewService, 
+    public interviewService: InterviewService,
+    public clientsService: ClientsService, 
     public fb: FormBuilder,
     @Inject(DOCUMENT) document){}
   ngOnInit(){
@@ -1164,11 +1166,25 @@ export class InterviewComponent implements OnInit{
     this.router.navigate(['/loading/finance-health']);
     this.interviewService.createInterview(interview_aux).subscribe(
       response => {
-        localStorage.setItem('actual_interview_id', JSON.stringify(response['id']));
-        this.router.navigate(['/financial-health'], { queryParams: { simple_view: 'true' }});
+        this.clientsService.getClientInformation(client_cis).subscribe(
+          client => {
+            localStorage.setItem('cliente', JSON.stringify(client));
+            localStorage.setItem('actual_interview_id', JSON.stringify(response['id']));
+            this.router.navigate(['/financial-health'], { queryParams: { simple_view: 'true' }});
+          }
+        );
       },
       error => {
-        alert('Ha ocurrido un error');
+        if (this.interview_id) {
+          this.router.navigate(['/interview'], { queryParams: {id: this.interview_id}});
+        } else {
+          this.router.navigate(['/interview']);
+        }
+        if (error.status === 422 || error.status === 404) {
+          alert(error.Error);
+        } else {
+          alert('Ha ocurrido un error');
+        }
       }
     );
   }

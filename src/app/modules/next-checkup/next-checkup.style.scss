@@ -53,6 +53,18 @@
 .warning{
   font-size: 20px;
   display: inline;
+  .name_wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    p{
+      &:nth-child(2){
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
 }
 .marginTop10px {
   margin-top: 10px;

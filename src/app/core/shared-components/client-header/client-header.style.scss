@@ -65,6 +65,9 @@
         font-stretch: normal;
         letter-spacing: normal;
         color: $text-gray;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
       .status_bar{
         margin-top: 6px;
