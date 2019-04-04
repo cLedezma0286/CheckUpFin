@@ -1175,9 +1175,6 @@ export class InterviewComponent implements OnInit{
         );
       },
       error => {
-        console.log(error);
-        console.log(error.error);
-        console.log(error.error.Error);
         if (this.interview_id) {
           this.router.navigate(['/interview'], { queryParams: {id: this.interview_id}});
         } else {
