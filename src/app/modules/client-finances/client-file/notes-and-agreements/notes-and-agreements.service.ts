@@ -20,11 +20,11 @@ export class NotesAndsAgreementsService {
   }
 
   deleteNote(idNote) {
-    return this.http.post(environment.NOTES_URL + '/' + idNote, null);
+    return this.http.post(environment.NOTES_URL + '/' + idNote + '/delete', null);
   }
 
   deleteAgreement(idAgreement) {
-    return this.http.post(environment.AGREEMENTS_URL + '/' + idAgreement, null);
+    return this.http.post(environment.AGREEMENTS_URL + '/' + idAgreement + '/delete', null);
   }
 
   createNote(note){

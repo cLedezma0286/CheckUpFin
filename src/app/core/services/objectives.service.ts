@@ -13,6 +13,6 @@ export class ObjectivesService{
     return this.http.post(environment.OBJECTIVES_URL + '/' + objective_id, objective);
   }
   deleteObjective(objective_id){
-    return this.http.post(environment.OBJECTIVES_URL + '/' + objective_id, null);
+    return this.http.post(environment.OBJECTIVES_URL + '/' + objective_id + '/delete', null);
   }
 }
