@@ -91,4 +91,7 @@ export class PrintoutComponent implements OnInit, OnDestroy{
   setBodyScroll(scroll_value){
     this.renderer.setStyle(document.body, 'overflow', scroll_value);
   }
+  print(){
+    window.print();
+  }
 }
