@@ -20,11 +20,11 @@ export class NotesAndsAgreementsService {
   }
 
   deleteNote(idNote) {
-    return this.http.delete(environment.NOTES_URL + '/' + idNote);
+    return this.http.post(environment.NOTES_URL + '/' + idNote, null);
   }
 
   deleteAgreement(idAgreement) {
-    return this.http.delete(environment.AGREEMENTS_URL + '/' + idAgreement);
+    return this.http.post(environment.AGREEMENTS_URL + '/' + idAgreement, null);
   }
 
   createNote(note){
@@ -36,10 +36,10 @@ export class NotesAndsAgreementsService {
   }
 
   editNote(note, note_id){
-    return this.http.put(environment.NOTES_URL + '/' + note_id, note);
+    return this.http.post(environment.NOTES_URL + '/' + note_id, note);
   }
 
   editAgreement(agreement, agreement_id){
-    return this.http.put(environment.AGREEMENTS_URL + '/' + agreement_id, agreement);
+    return this.http.post(environment.AGREEMENTS_URL + '/' + agreement_id, agreement);
   }
 }

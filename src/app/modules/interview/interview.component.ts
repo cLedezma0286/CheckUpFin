@@ -1175,13 +1175,16 @@ export class InterviewComponent implements OnInit{
         );
       },
       error => {
+        console.log(error);
+        console.log(error.error);
+        console.log(error.error.Error);
         if (this.interview_id) {
           this.router.navigate(['/interview'], { queryParams: {id: this.interview_id}});
         } else {
           this.router.navigate(['/interview']);
         }
         if (error.status === 422 || error.status === 404) {
-          alert(error.Error);
+          alert(error.error.Error);
         } else {
           alert('Ha ocurrido un error');
         }

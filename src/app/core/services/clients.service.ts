@@ -19,10 +19,10 @@ export class ClientsService{
     return this.http.get(environment.CLIENTS_URL + '/' + client_cis + '/productos');
   }
   setClientPersonalInformation(client_cis, client_information){
-    return this.http.put(environment.CLIENTS_URL + '/' + client_cis, client_information);
+    return this.http.post(environment.CLIENTS_URL + '/' + client_cis, client_information);
   }
   setNextCheckupClient(client_cis, nextCheckup){
-    return this.http.put(environment.CLIENTS_URL + '/' + client_cis + '/siguiente_checkup', nextCheckup);
+    return this.http.post(environment.CLIENTS_URL + '/' + client_cis + '/siguiente_checkup', nextCheckup);
   }
   createClient(){
     return this.http.post(environment.CLIENTS_URL, {});

@@ -35,6 +35,6 @@ export class ProductsService {
   }
 
   putProducts(clientId, params) {
-    return this.http.put(environment.CLIENTS_URL + "/" + clientId + '/productos', params);
+    return this.http.post(environment.CLIENTS_URL + "/" + clientId + '/productos', params);
   }
 }
