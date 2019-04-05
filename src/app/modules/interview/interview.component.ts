@@ -1181,7 +1181,7 @@ export class InterviewComponent implements OnInit{
           this.router.navigate(['/interview']);
         }
         if (error.status === 422 || error.status === 404) {
-          alert(error.Error);
+          alert(error.error.Error);
         } else {
           alert('Ha ocurrido un error');
         }
