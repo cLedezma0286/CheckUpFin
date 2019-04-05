@@ -3,7 +3,7 @@
   <div class="content">
     <div class="searcher_container">
       <p class="title">Busca o añade un cliente por su CIS</p>
-      <p class="description">Busca cliente o añade uno si este no existe o si nunca se le hizo el ckeck up financiero.</p>
+      <p class="description">Busca cliente o añade uno si este no existe o si nunca se le hizo el check up financiero.</p>
       <form class="search_select_container" [formGroup]="cis_form" novalidate>
         <input type="text" maxlength="15" formControlName="cis"/>
         <dropdown *ngIf="cis_form.value.cis" [clients]="clients" [loading]="loading"></dropdown>
