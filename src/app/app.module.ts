@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { routing } from './app.routing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -11,6 +12,10 @@ import { ClientFinancesModule } from './modules/client-finances/client-finances.
 import { ClientSearchModule } from './modules/client-search/client-search.module';
 import { InterviewModule } from './modules/interview/interview.module';
 import { GeneralInterceptor } from '@interceptors/general.interceptor';
+
+import { NoSpecialChars } from './core/directives/noSpecialChars.dir';
+import { MaxValue } from './core/directives/maxValue.dir';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +31,9 @@ import { GeneralInterceptor } from '@interceptors/general.interceptor';
     InterviewModule,
     ClientFinancesModule,
     ClientSearchModule,
-    NextCheckupModule
+    NextCheckupModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -33,7 +33,8 @@
             },
             "scripts": [
               "src/app/core/libraries/calendar/jsCalendar.js",
-              "src/app/core/libraries/calendar/jsCalendar.lang.es.js"
+              "src/app/core/libraries/calendar/jsCalendar.lang.es.js",
+              "./node_modules/xregexp/xregexp-all.js"
             ]
           },
           "configurations": {

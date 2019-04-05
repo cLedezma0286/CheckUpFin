@@ -44,9 +44,11 @@ export class InterviewComponent implements OnInit{
         this.questionsService.getQuestions().subscribe(
           response => {
             let form_aux = {};
+            console.log('response', response);
             for (var i = 0; i < response['preguntas'].length; i++) {
               form_aux['question_' + (i + 1)] = ['', []];
             }
+            console.log('form_aux', form_aux);
             this.interview = this.fb.group(form_aux);
             this.questions = response['preguntas'];
             let question_with_block_index = null;
@@ -1115,10 +1117,11 @@ export class InterviewComponent implements OnInit{
   }
   @HostListener('document:keyup', ['$event'])
   downShortcut(event: KeyboardEvent) {
-    if (event.keyCode === 38) { //Up
+    console.log('document:keyup', event.keyCode);
+    if (event.keyCode === 38 || (event.keyCode === 9 && event.ctrlKey && event.shiftKey)) { //Up
       this.setPreviousQuestionAsActive();
     }
-    if (event.keyCode === 40) { //Down
+    if (event.keyCode === 40 || (event.keyCode === 9 && !event.ctrlKey)) { //Down
       this.setNextQuestionAsActive();
     }
     if (event.keyCode === 39) { //Right
