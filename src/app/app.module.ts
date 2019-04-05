@@ -15,11 +15,13 @@ import { GeneralInterceptor } from '@interceptors/general.interceptor';
 
 import { NoSpecialChars } from './core/directives/noSpecialChars.dir';
 import { MaxValue } from './core/directives/maxValue.dir';
+import { RealEmailValidator } from './core/directives/email.dir';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RealEmailValidator
   ],
   imports: [
     BrowserModule,
