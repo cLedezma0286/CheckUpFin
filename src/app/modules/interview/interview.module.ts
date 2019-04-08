@@ -6,8 +6,6 @@ import { AddObjectiveComponent } from './add-objective/add-objective.component';
 import { AddNotesComponent } from './add-notes/add-notes.component';
 import { SharedComponentsModule } from '@shared-components/shared-components.module';
 
-import { NoSpecialChars } from '../../core/directives/noSpecialChars.dir';
-import { MaxValue } from '../../core/directives/maxValue.dir';
 
 
 @NgModule({
@@ -20,14 +18,11 @@ import { MaxValue } from '../../core/directives/maxValue.dir';
   declarations: [
     InterviewComponent,
     AddObjectiveComponent,
-    AddNotesComponent,
-    NoSpecialChars,
-    MaxValue
+    AddNotesComponent
   ],
   exports: [
     InterviewComponent,
-    NoSpecialChars,
-    MaxValue
+    SharedComponentsModule
   ]
 })
 export class InterviewModule {}

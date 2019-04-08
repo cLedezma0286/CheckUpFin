@@ -111,7 +111,34 @@ export class InterviewComponent implements OnInit{
         );
       }
     );
+
+    document.addEventListener('keydown', (event) => {
+      console.log('keydown', event);
+      event.stopImmediatePropagation();
+      if(event.keyCode == 9) event.preventDefault();
+
+      if (event.keyCode === 40 || (event.keyCode === 9  && !event.ctrlKey)) { //Down
+        console.log('DOWN!!!')
+        this.setNextQuestionAsActive();
+      } else 
+      if (event.keyCode === 38 || (event.keyCode === 9 && event.ctrlKey && event.shiftKey)) { //Up
+        console.log('UP!!!')
+        this.setPreviousQuestionAsActive();
+      } else 
+      if (event.keyCode === 39) { //Right
+        console.log('RIGHT!!!')
+        this.setNextOptionAsFocused(event.target['selectionStart']);
+      } else 
+      if (event.keyCode === 37) { //Left
+        this.setPreviousOptionAsFocused();
+      } else
+      if (event.keyCode === 13) { //Enter
+        this.setActualOptionAsSelected();
+      }
+    });
   }
+
+
   setAnswers(answers){
     for (var i = 0; i < answers.length; i++) {
       let question_aux = this.getQuestionById(answers[i].pregunta_id);
@@ -291,6 +318,13 @@ export class InterviewComponent implements OnInit{
       }
     }
   }
+  getLastQuestion(){
+    for (var i = 0; i < this.questions.length; i++) {
+      if (this.questions[i].num_pregunta_id === this.active_question_id) {
+        return this.questions[i - 1];
+      }
+    }
+  }
   getQuestionById(question_id){
     for (var i = 0; i < this.questions.length; i++) {
       if (this.questions[i].num_pregunta_id === question_id) {
@@ -438,6 +472,7 @@ export class InterviewComponent implements OnInit{
         }
       } else { //En caso de que des_sig_preg sea un número diferente de 0 entonces ese valor es el id de la siguiente pregunta 
         this.active_question_id = actual_question.des_sig_preg;
+        console.log('setNextQuestionAsActive', JSON.stringify(actual_question), actual_question, 'this.active_question_id', this.active_question_id);
         this.focusQuestion(this.active_question_id);
         return;
       }
@@ -1115,25 +1150,7 @@ export class InterviewComponent implements OnInit{
     }
     return diff;
   }
-  @HostListener('document:keyup', ['$event'])
-  downShortcut(event: KeyboardEvent) {
-    console.log('document:keyup', event.keyCode);
-    if (event.keyCode === 38 || (event.keyCode === 9 && event.ctrlKey && event.shiftKey)) { //Up
-      this.setPreviousQuestionAsActive();
-    }
-    if (event.keyCode === 40 || (event.keyCode === 9 && !event.ctrlKey)) { //Down
-      this.setNextQuestionAsActive();
-    }
-    if (event.keyCode === 39) { //Right
-      this.setNextOptionAsFocused(event.target['selectionStart']);
-    }
-    if (event.keyCode === 37) { //Left
-      this.setPreviousOptionAsFocused();
-    }
-    if (event.keyCode === 13) { //Enter
-      this.setActualOptionAsSelected();
-    }
-  }
+
   openAddObjectiveModal(){
     this.add_objective_modal_open = true;
   }

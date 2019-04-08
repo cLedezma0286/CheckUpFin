@@ -1,7 +1,7 @@
 <section class="interview">
   <client-header></client-header>
   <div class="content" id="content">
-    <form class="questions_container" [formGroup]="interview" novalidate>
+    <form class="questions_container" id="interviewForm" [formGroup]="interview">
       
       <div class="question_item" *ngFor="let question of questions" [ngClass]="{active: active_question_id === question.num_pregunta_id}" [attr.id]="'question_container_' + question.num_pregunta_id">
         <div class="question">

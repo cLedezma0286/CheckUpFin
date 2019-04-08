@@ -1,5 +1,5 @@
-import { Component, OnDestroy } from "@angular/core";
-import { Router } from '@angular/router';
+import { Component, HostListener, OnDestroy } from "@angular/core";
+import { Router, NavigationEnd } from '@angular/router';
 @Component({
   selector: 'loader',
   templateUrl: 'loader.view.html',
@@ -16,6 +16,7 @@ export class LoaderComponent implements OnDestroy{
   increment = 0;
   interval;
   interval2;
+
   constructor( public router: Router){
     this.textLoading = router.url === '/loading/edras'? 'Cargando EDRAS' : 'Calculando salud financiera';
     this.interval = setInterval(() => {
@@ -33,7 +34,9 @@ export class LoaderComponent implements OnDestroy{
         clearInterval(this.interval);
       }
     },100);
+
   }
+
   ngOnDestroy(){
     if (this.interval) {
       clearInterval(this.interval);
@@ -68,6 +71,7 @@ export class LoaderComponent implements OnDestroy{
             this.router.navigate(['/client-finances/client-file/dashboard']);
           }
         }
+
       }, 1000);
     }
   }

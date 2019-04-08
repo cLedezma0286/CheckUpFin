@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { HeaderService } from '@services/header.service';
 @Component({
   selector: 'dashboard',
@@ -13,5 +13,12 @@ export class DashboardComponent implements OnInit{
   }
   setActiveSection(section_name){
     this.active_section = section_name;
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    console.log('Back button pressed previus DASHBOARD');
+    event.preventDefault();
+    // this.router.navigate(['/interview'], { queryParams: {id: localStorage.getItem('actual_interview_id')}});
   }
 }
