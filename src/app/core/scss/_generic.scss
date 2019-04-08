@@ -76,8 +76,9 @@ input[type=number] {
   background-color: #ffffff;
   padding: 24px 37px;
   color: #344653;
-  margin-bottom: 25px;
+  //margin-bottom: 25px;
   max-width: 100%;
+  min-height: 100%;
 
   h2 {
     $margin-bottom: 25px;
