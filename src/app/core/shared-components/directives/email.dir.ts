@@ -1,4 +1,4 @@
-import { ElementRef, Input, HostListener, Injectable, Directive, forwardRef, Attribute } from '@angular/core';
+import { ElementRef, Input, HostListener, Injectable, Renderer2, Directive, forwardRef, Attribute } from '@angular/core';
 import { Validator, AbstractControl, NG_VALIDATORS, AsyncValidatorFn , FormControl, Validators, AsyncValidator } from '@angular/forms';
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -11,6 +11,11 @@ import { map } from 'rxjs/operators';
 })
 class RealEmailValidator implements Validator {
 	@Input() RealEmailValidator: boolean;
+	el: HTMLInputElement;
+
+	constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+    	this.el = this.elementRef.nativeElement;
+    }
 
 	validateEmail(val: string) {
 		let atIndex = val.indexOf('@'),
@@ -34,6 +39,7 @@ class RealEmailValidator implements Validator {
         if(control.value && control.value.length > 0){
 
 			const isValidEmail = this.validateEmail(control.value);
+			this.el.style.borderBottomColor =  ((!isValidEmail || !control.value.length) && this.RealEmailValidator) ? '#db0011' : '#d7d8d6';
 			return ((!isValidEmail || !control.value.length) && this.RealEmailValidator) ? { invalid_characters: isValidEmail } : null;
 		
 		}else{
