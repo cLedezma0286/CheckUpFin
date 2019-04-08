@@ -31,7 +31,7 @@ export class MaxValue implements OnInit{
 	}
 
 	textTransform(txt){
-		this.maxValue = (this.maxValue) ? this.maxValue : 100000000000;
+		if(!this.maxValue) return txt;
 		let text = (typeof txt == 'number') ? txt : Number(txt);
 		return (text < this.maxValue) ? text : this.maxValue;
 	}
