@@ -48,7 +48,7 @@ export class InterviewComponent implements OnInit{
             for (var i = 0; i < response['preguntas'].length; i++) {
               form_aux['question_' + (i + 1)] = ['', []];
             }
-            console.log('form_aux', form_aux);
+            // console.log('form_aux', form_aux);
             this.interview = this.fb.group(form_aux);
             this.questions = response['preguntas'];
             let question_with_block_index = null;
@@ -113,20 +113,20 @@ export class InterviewComponent implements OnInit{
     );
 
     document.addEventListener('keydown', (event) => {
-      console.log('keydown', event);
+      // console.log('keydown', event);
       event.stopImmediatePropagation();
       if(event.keyCode == 9) event.preventDefault();
 
       if (event.keyCode === 40 || (event.keyCode === 9  && !event.ctrlKey)) { //Down
-        console.log('DOWN!!!')
+        // console.log('DOWN!!!')
         this.setNextQuestionAsActive();
       } else 
       if (event.keyCode === 38 || (event.keyCode === 9 && event.ctrlKey && event.shiftKey)) { //Up
-        console.log('UP!!!')
+        // console.log('UP!!!')
         this.setPreviousQuestionAsActive();
       } else 
       if (event.keyCode === 39) { //Right
-        console.log('RIGHT!!!')
+        // console.log('RIGHT!!!')
         this.setNextOptionAsFocused(event.target['selectionStart']);
       } else 
       if (event.keyCode === 37) { //Left
@@ -431,30 +431,44 @@ export class InterviewComponent implements OnInit{
       return;
     } else {
       if (actual_question.des_sig_preg === 0) { //En caso de que des_sig_preg sea 0 la pregunta es de opciones
+        
         if (this.isQuestionWithOptionsAnswered(actual_question)) { //Revisamos que la pregunta actual ya tenga algún valor seleccionado
-          for (var i = 0; i < actual_question.des_opciones.length; i++) { // Recorremos las opciones
+
+          for (var i = 0; i < actual_question.des_opciones.length; i++) { // Recorremos las opciones "i"
+            
             if (this.isAnswerInTheOptions(i, actual_question.selected)) {
               if (actual_question.num_pregunta_id === 66 && actual_question.des_opciones[i].valor === 'No') {
                 this.throwDefaultAmountOfHouses();
                 return;
               }
+
               if (Array.isArray(actual_question.des_opciones[i].des_sig_preg)) { //Checamos si la opción de la iteración actual tiene el atributo des_sig_preg como un arreglo o un número
-                for (var j = 0; j < actual_question.des_opciones[i].des_sig_preg.length; j++) {
-                  for (var k = 0; k < actual_question.des_opciones[i].des_sig_preg[j].preg_req.length; k++) {
+                
+                for (var j = 0; j < actual_question.des_opciones[i].des_sig_preg.length; j++) { //recorremos posibles futuras opciones "j"
+                  
+                  for (var k = 0; k < actual_question.des_opciones[i].des_sig_preg[j].preg_req.length; k++) {// recorremos preguntas requeridas por opciones "k"
+
                     required_question = this.getQuestionById(actual_question.des_opciones[i].des_sig_preg[j].preg_req[k]);
-                    if (this.isQuestionWithOptionsAnswered(required_question)) {
+                    
+                    if (this.isQuestionWithOptionsAnswered(required_question)) { //si la pregunta requerida fue contestada
+
                       if (this.isAnswerInTheOptions(this.getSelectedValue(required_question), actual_question.des_opciones[i].des_sig_preg[j].opc_seleccionada)) {
                         this.active_question_id = actual_question.des_opciones[i].des_sig_preg[j].siguiente;
                         this.focusQuestion(this.active_question_id);
                         return;
                       }
-                    }
+                    
+                    } 
+
                   }
+
                 }
+
                 // En caso de que ninguna de las respuestas requeridas haya sido contestada asignamos la siguiente comopregunta de la lista como la activa
                 next_question = this.getNextQuestion();
-                this.active_question_id = next_question.num_pregunta_id;
+                this.active_question_id = (actual_question.num_pregunta_id === 30 && actual_question['selected'][0] == 1) ? next_question.num_pregunta_id + 1 : next_question.num_pregunta_id;
                 this.focusQuestion(this.active_question_id);
+              
               } else {
                 if (actual_question.des_opciones[actual_question.selected[0]].valor === actual_question.des_opciones[i].valor) { //Checamos que si la opción de la iteración actual es la opción seleccionada.
                   this.active_question_id = actual_question.des_opciones[i].des_sig_preg;
@@ -464,15 +478,17 @@ export class InterviewComponent implements OnInit{
               }
             }
           }
+        
         } else { //En caso de que no haya opción seleccionada se considera la siguiente pregunta como la activa
           next_question = this.getNextQuestion();
           this.active_question_id = next_question.num_pregunta_id;
           this.focusQuestion(this.active_question_id);
           return;
         }
+
       } else { //En caso de que des_sig_preg sea un número diferente de 0 entonces ese valor es el id de la siguiente pregunta 
         this.active_question_id = actual_question.des_sig_preg;
-        console.log('setNextQuestionAsActive', JSON.stringify(actual_question), actual_question, 'this.active_question_id', this.active_question_id);
+        // console.log('setNextQuestionAsActive', JSON.stringify(actual_question), actual_question, 'this.active_question_id', this.active_question_id);
         this.focusQuestion(this.active_question_id);
         return;
       }
@@ -648,6 +664,8 @@ export class InterviewComponent implements OnInit{
           des_categorias: this.questions[4].block_questions[0].des_categorias,
           des_opciones: this.questions[4].block_questions[0].des_opciones,
           des_preg_ref: this.questions[4].block_questions[0].des_preg_ref,
+          max: this.questions[4].block_questions[0].max,
+          max_val: this.questions[4].block_questions[0].max_val,
           des_prev_preg: null,
           des_sig_preg: null,
           des_texto: '',
@@ -707,6 +725,8 @@ export class InterviewComponent implements OnInit{
         des_categorias: ['Objetivo'],
         des_opciones: [],
         des_preg_ref: '',
+        max: 254,
+        max_val: null,
         des_prev_preg: null,
         des_sig_preg: ('18.' + this.actual_iterations_of_block_two),
         des_texto: '¿Cuál es tu plan?',
@@ -735,6 +755,8 @@ export class InterviewComponent implements OnInit{
           {Valor: 'Año', des_sig_preg: ('19.' + this.actual_iterations_of_block_two), nombre: 'Año'}
         ],
         des_preg_ref: '',
+        max: 15,
+        max_val: null,
         des_prev_preg: ('17.' + this.actual_iterations_of_block_two),
         des_sig_preg: ('19.' + this.actual_iterations_of_block_two),
         des_texto: '¿Cuándo te gustaría conseguirlo?',
@@ -751,6 +773,8 @@ export class InterviewComponent implements OnInit{
         des_bloc_preg: 'bloque 2',
         des_categorias: ['Objetivo'],
         des_opciones: [],
+        max: 12,
+        max_val: null,
         des_preg_ref: '',
         des_prev_preg: ('18.' + this.actual_iterations_of_block_two),
         des_sig_preg: 20,
@@ -797,6 +821,8 @@ export class InterviewComponent implements OnInit{
           des_sig_preg: null,
           des_texto: '',
           num_pregunta_id: null,
+          max: question_45_aux.block_questions[0].max,
+          max_val: question_45_aux.block_questions[0].max_val,
           tipo_fecha: question_45_aux.block_questions[0].tipo_fecha,
           focused: question_45_aux.block_questions[0].focused,
           selected: []
@@ -811,6 +837,8 @@ export class InterviewComponent implements OnInit{
           des_preg_ref: question_45_aux.block_questions[1].des_preg_ref,
           des_prev_preg: null,
           des_sig_preg: null,
+          max: question_45_aux.block_questions[1].max,
+          max_val: question_45_aux.block_questions[1].max_val,
           des_texto: '',
           num_pregunta_id: null,
           tipo_fecha: question_45_aux.block_questions[1].tipo_fecha
@@ -938,6 +966,8 @@ export class InterviewComponent implements OnInit{
             des_opciones: question_60.block_questions[0].des_opciones,
             des_preg_ref: question_60.block_questions[0].des_preg_ref,
             des_prev_preg: null,
+            max: 30,
+            max_val: null,
             des_sig_preg: '62.' + added_element_value,
             des_texto: '¿Dónde tienes tu crédito ' + added_element_value + '?',
             num_pregunta_id: '61.' + added_element_value,
@@ -955,6 +985,8 @@ export class InterviewComponent implements OnInit{
             des_preg_ref: question_60.block_questions[1].des_preg_ref,
             des_prev_preg: '61.' + added_element_value,
             des_sig_preg: null,
+            max_val: null,
+            max: 55,
             des_texto: '¿Cuánto tiempo te falta por pagar tu crédito ' + added_element_value + '?',
             num_pregunta_id: '62.' + added_element_value,
             tipo_fecha: question_60.block_questions[1].tipo_fecha,
@@ -1013,6 +1045,8 @@ export class InterviewComponent implements OnInit{
           des_preg_ref: this.questions[question_67_position].block_questions[0].des_preg_ref,
           des_prev_preg: null,
           des_sig_preg: null,
+          max: 12,
+          max_val: null,
           des_texto: '',
           num_pregunta_id: null,
           tipo_fecha: this.questions[question_67_position].block_questions[0].tipo_fecha
@@ -1071,6 +1105,8 @@ export class InterviewComponent implements OnInit{
       let question_73_aux = {
         bnd_enteros: 1,
         bnd_op_mult: 0,
+        max: 12,
+        max_val: null,
         created_at: '2018-08-20 20:38:52.0',
         des_bloc_preg: 'bloque 6',
         des_categorias: 'Ahorros e inversiones',

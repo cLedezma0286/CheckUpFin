@@ -35,7 +35,7 @@ export class GeneralClientInformationComponent implements OnInit{
         this.products = response['productos'];
       },
       error => {
-        console.log(error);
+        // console.log(error);
       }
     );
     let actual_interview_id = JSON.parse(localStorage.getItem('actual_interview_id'));
