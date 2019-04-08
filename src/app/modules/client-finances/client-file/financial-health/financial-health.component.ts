@@ -53,7 +53,7 @@ export class FinancialHealthComponent implements OnInit{
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
-    console.log('Back button pressed FinancialHealthComponent');
+    // console.log('Back button pressed FinancialHealthComponent');
     setTimeout(() => {
       this.router.navigate(['/interview'], { queryParams: {id: localStorage.getItem('actual_interview_id')}});
     }, 10);

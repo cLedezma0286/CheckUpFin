@@ -28,7 +28,7 @@ export class NoSpecialChars {
 		var replaced = XRegExp.replace(txt, regex, "");
 
 		this.isSpecialChar = (replaced.trim() != txt.trim()) ? true : false;
-		console.log('this.noSpecialChars', this.noSpecialChars, txt, 'replaced', replaced);
+		// console.log('this.noSpecialChars', this.noSpecialChars, txt, 'replaced', replaced);
 		return (this.noSpecialChars) ? XRegExp.replace(txt, regex, "") : txt;
 	}
 }

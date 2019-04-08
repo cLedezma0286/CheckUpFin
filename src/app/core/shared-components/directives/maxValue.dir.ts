@@ -14,7 +14,7 @@ export class MaxValue implements OnInit{
     }
 
     ngOnInit() {
-    	console.log('this.applyMaxValue', this.applyMaxValue);
+    	// console.log('this.applyMaxValue', this.applyMaxValue);
     	if(!this.applyMaxValue) return;
 		let validNumber = this.textTransform(this.el.value); // opossite of transform
 		this.el.value = validNumber.toString();
@@ -23,7 +23,7 @@ export class MaxValue implements OnInit{
 
 	@HostListener("input", ["$event.target.value"])
 	onInput(value) {
-		console.log('this.applyMaxValue', this.applyMaxValue);
+		// console.log('this.applyMaxValue', this.applyMaxValue);
 		if(!this.applyMaxValue) return;
 		let validNumber = this.textTransform(value); // opossite of transform
 		this.el.value = validNumber.toString();
