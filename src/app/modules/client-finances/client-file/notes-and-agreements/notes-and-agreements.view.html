@@ -19,7 +19,7 @@
     </div>
   </div>
 
-  <div class="content-box">
+  <!-- <div class="content-box">
     <h2>Acuerdos</h2>
 
     <ul class="items-list">
@@ -39,7 +39,7 @@
     <div class="btn-wrapper-right">
       <button class="main-button" (click)="showAgreementView()">Añadir acuerdo</button>
     </div>
-  </div>
+  </div> -->
 </div>
 
 <div *ngIf="showNote || showAgreement">
@@ -49,11 +49,11 @@
     <form [formGroup]="validateForm" class="row" novalidate>
       <div class="form-group col-md-12">
         <label for="field_titulo" class="control-label">Título</label>
-        <input type="text" class="form-control" name="title" required formControlName="title">
+        <input type="text" class="form-control" name="title" maxlength="254" required formControlName="title">
       </div>
       <div class="form-group col-md-12">
         <label for="field_description" class="control-label">Descripción</label>
-        <textarea class="form-control" name="description" required formControlName="description"></textarea>
+        <textarea class="form-control" name="description" maxlength="1299" required formControlName="description"></textarea>
       </div>
       <div class="form-group col-md-12 btn-wrapper-right">
         <button class="btn-link" (click)="closeModal()">Cancelar</button>

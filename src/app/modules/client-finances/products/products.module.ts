@@ -17,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     ProductDetailComponent
   ],
   exports: [
-    ProductsComponent
+    ProductsComponent,
+    SharedComponentsModule
   ]
 })
 export class ProductsModule {

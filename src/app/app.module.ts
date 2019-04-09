@@ -13,9 +13,6 @@ import { ClientSearchModule } from './modules/client-search/client-search.module
 import { InterviewModule } from './modules/interview/interview.module';
 import { GeneralInterceptor } from '@interceptors/general.interceptor';
 
-import { NoSpecialChars } from './core/directives/noSpecialChars.dir';
-import { MaxValue } from './core/directives/maxValue.dir';
-
 
 @NgModule({
   declarations: [

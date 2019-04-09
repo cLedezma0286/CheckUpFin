@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2, HostListener } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ClientsService } from '@services/clients.service';
 import { ObjectivesService } from '@services/objectives.service';
@@ -50,6 +50,16 @@ export class FinancialHealthComponent implements OnInit{
     }
     return 0;
   }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    // console.log('Back button pressed FinancialHealthComponent');
+    setTimeout(() => {
+      this.router.navigate(['/interview'], { queryParams: {id: localStorage.getItem('actual_interview_id')}});
+    }, 10);
+  }
+
+
   getDateForObjectFormat(date_dmy){
     let date_array_aux = date_dmy.split('-');
     return date_array_aux[2] + '/' + date_array_aux[1] + '/' + date_array_aux[0];

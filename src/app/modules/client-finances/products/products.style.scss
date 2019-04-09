@@ -176,6 +176,8 @@
 .col-product {
   width: 100%;
   padding: 0 15px;
+  min-height: 100%;
+  margin-bottom: 25px;
 }
 .row {
   display: flex;
@@ -387,6 +389,8 @@
 @media only screen and (min-width: 992px) {
   .col-product {
     width: 25%;
+    min-height: 100%;
+    margin-bottom: 25px;
   }
 }
 
