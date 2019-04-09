@@ -397,7 +397,7 @@ export class InterviewComponent implements OnInit{
     document.getElementById('question_' + question_id).click();
   }
   setActiveQuestion(question_id, option?){
-    console.log('you just focus one question');
+    // console.log('you just focus one question');
     this.active_question_id = question_id;
     this.smoothlyScroll(document.getElementById('question_container_' + question_id).offsetTop - 188);
     document.getElementById('question_' + question_id).focus();
@@ -413,19 +413,19 @@ export class InterviewComponent implements OnInit{
   }
 
   smoothlyScroll(scrollTo, option?) {
-    console.log('scrollTo', scrollTo, 'documentTop', document.getElementById('content').scrollTop);
+    // console.log('scrollTo', scrollTo, 'documentTop', document.getElementById('content').scrollTop);
     let originalScrollTop = document.getElementById('content').scrollTop;
     
     this.scrollInterval = setInterval(() => {
 
         if(originalScrollTop > scrollTo) {
           if(document.getElementById('content').scrollTop <= scrollTo) {
-            console.log('END!!!', document.getElementById('content').scrollTop, 'scrollTo', scrollTo);
+            // console.log('END!!!', document.getElementById('content').scrollTop, 'scrollTo', scrollTo);
             clearInterval(this.scrollInterval);
           }
         } else if(originalScrollTop < scrollTo) {
           if(document.getElementById('content').scrollTop >= scrollTo) {
-            console.log('END!!!', document.getElementById('content').scrollTop, 'scrollTo', scrollTo);
+            // console.log('END!!!', document.getElementById('content').scrollTop, 'scrollTo', scrollTo);
             clearInterval(this.scrollInterval);
           }
         } else if( originalScrollTop == scrollTo ) {
@@ -439,7 +439,7 @@ export class InterviewComponent implements OnInit{
             : 
             document.getElementById('content').scrollTop + 4;
 
-        console.log('scrollTop', document.getElementById('content').scrollTop);
+        // console.log('scrollTop', document.getElementById('content').scrollTop);
 
     }, .1);
   }
@@ -478,7 +478,7 @@ export class InterviewComponent implements OnInit{
     let actual_question = this.getActualQuestion(),
         actualQID = actual_question.num_pregunta_id;
 
-    console.log('actual_question', actual_question);
+    // console.log('actual_question', actual_question);
 
     let next_question = null;
     let required_question = null;
