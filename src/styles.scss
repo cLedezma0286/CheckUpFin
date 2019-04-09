@@ -1,3 +1,7 @@
 @import 'typography';
 @import 'app-colors';
 @import 'generic';
+
+body {
+	scroll-behavior: smooth;
+}

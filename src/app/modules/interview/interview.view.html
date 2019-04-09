@@ -18,7 +18,7 @@
             [applyMaxValue]="question.bnd_enteros == 0 ? false : true"
             [noSpecialChars]="true"
             [attr.id]="'question_' + question.num_pregunta_id" 
-            (focus)="setActiveQuestion(question.num_pregunta_id)" 
+            (click)="setActiveQuestion(question.num_pregunta_id)" 
             formControlName="{{'question_' + question.num_pregunta_id}}" 
             (input)="validateValue(question)" 
             [attr.maxlength]="question.max ? question.max : 100000000000" />
@@ -37,7 +37,7 @@
             [noSpecialChars]="true"
             [attr.id]="'question_' + question.num_pregunta_id" 
             formControlName="{{'question_' + question.num_pregunta_id}}" 
-            (focus)="setActiveQuestion(question.num_pregunta_id, 0)" 
+            (click)="setActiveQuestion(question.num_pregunta_id, 0)" 
             [attr.maxlength]="question.max ? question.max : 100000000000"/>
         </div>
         
@@ -51,13 +51,13 @@
             [attr.id]="'question_' + question.num_pregunta_id" 
             formControlName="{{'question_' + question.num_pregunta_id}}" 
             [attr.maxlength]="question.max ? question.max : 100000000000"
-            (focus)="setActiveQuestion(question.num_pregunta_id, -1)"/>
+            (click)="setActiveQuestion(question.num_pregunta_id, -1)"/>
           <div class="options_container">
             <div class="option" *ngFor="let option of question.des_opciones; let i = index" [ngClass]="{focused: question.focused === i && active_question_id === question.num_pregunta_id, selected: question.selected.indexOf(i) !== -1}" (click)="selectOptionByClick(question.num_pregunta_id, i)">{{option.nombre}}</div>
             <input 
               type="text" 
               [attr.id]="'question_date_' + question.num_pregunta_id" 
-              (focus)="setActiveQuestion(question.num_pregunta_id, 0)" 
+              (click)="setActiveQuestion(question.num_pregunta_id, 0)" 
               [attr.maxlength]="question.max ? question.max : 100000000000"/>
           </div>
         </div>

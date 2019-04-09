@@ -29,6 +29,9 @@ export class InterviewComponent implements OnInit{
   objectives = [];
   add_note_modal_open = false;
   notes = [];
+
+  scrollInterval;
+
   constructor(
     public router: Router,
     public route: ActivatedRoute,
@@ -123,6 +126,7 @@ export class InterviewComponent implements OnInit{
       } else 
       if (event.keyCode === 38 || (event.keyCode === 9 && event.ctrlKey && event.shiftKey)) { //Up
         // console.log('UP!!!')
+        
         this.setPreviousQuestionAsActive();
       } else 
       if (event.keyCode === 39) { //Right
@@ -132,6 +136,7 @@ export class InterviewComponent implements OnInit{
       if (event.keyCode === 37) { //Left
         this.setPreviousOptionAsFocused();
       } else
+
       if (event.keyCode === 13) { //Enter
         this.setActualOptionAsSelected();
       }
@@ -142,6 +147,7 @@ export class InterviewComponent implements OnInit{
   // downShortcut(event: KeyboardEvent) {
   //   console.log('document:keyup', event.keyCode);
   //   if (event.keyCode === 38 || (event.keyCode === 9 && event.ctrlKey && event.shiftKey)) { //Up
+  
   //     this.setPreviousQuestionAsActive();
   //   }
   //   if (event.keyCode === 40 || (event.keyCode === 9 && !event.ctrlKey)) { //Down
@@ -151,6 +157,7 @@ export class InterviewComponent implements OnInit{
   //     this.setNextOptionAsFocused(event.target['selectionStart']);
   //   }
   //   if (event.keyCode === 37) { //Left
+
   //     this.setPreviousOptionAsFocused();
   //   }
   //   if (event.keyCode === 13) { //Enter
@@ -386,26 +393,75 @@ export class InterviewComponent implements OnInit{
     return this.questions[(this.questions.length - 1)].num_pregunta_id === this.active_question_id;
   }
   focusQuestion(question_id){
-    document.getElementById('question_' + question_id).focus();
+    if(this.scrollInterval) clearInterval(this.scrollInterval);
+    document.getElementById('question_' + question_id).click();
   }
   setActiveQuestion(question_id, option?){
+    console.log('you just focus one question');
     this.active_question_id = question_id;
+    this.smoothlyScroll(document.getElementById('question_container_' + question_id).offsetTop - 188);
+    document.getElementById('question_' + question_id).focus();
+    // document.getElementById('content').scrollTop = document.getElementById('question_container_' + question_id).offsetTop - 188;
     if (option || option === 0) {
       for (var i = 0; i < this.questions.length; i++) {
         if (question_id === this.questions[i].num_pregunta_id) {
           this.questions[i].focused = option;
-          document.getElementById('content').scrollTop = document.getElementById('question_container_' + question_id).offsetTop - 188;
           return;
         }
       }
     }
-    document.getElementById('content').scrollTop = document.getElementById('question_container_' + question_id).offsetTop - 188;
   }
+
+  smoothlyScroll(scrollTo, option?) {
+    console.log('scrollTo', scrollTo, 'documentTop', document.getElementById('content').scrollTop);
+    let originalScrollTop = document.getElementById('content').scrollTop;
+    
+    this.scrollInterval = setInterval(() => {
+
+        if(originalScrollTop > scrollTo) {
+          if(document.getElementById('content').scrollTop <= scrollTo) {
+            console.log('END!!!', document.getElementById('content').scrollTop, 'scrollTo', scrollTo);
+            clearInterval(this.scrollInterval);
+          }
+        } else if(originalScrollTop < scrollTo) {
+          if(document.getElementById('content').scrollTop >= scrollTo) {
+            console.log('END!!!', document.getElementById('content').scrollTop, 'scrollTo', scrollTo);
+            clearInterval(this.scrollInterval);
+          }
+        } else if( originalScrollTop == scrollTo ) {
+          clearInterval(this.scrollInterval);
+        }
+
+        document.getElementById('content').scrollTop = 
+          (originalScrollTop > scrollTo) 
+            ? 
+            document.getElementById('content').scrollTop - 4 
+            : 
+            document.getElementById('content').scrollTop + 4;
+
+        console.log('scrollTop', document.getElementById('content').scrollTop);
+
+    }, .1);
+  }
+
   selectOptionByClick(question_id, option){
     this.setActiveQuestion(question_id, option);
     this.setActualOptionAsSelected();
   }
+  
   setPreviousQuestionAsActive(){
+    // chema set previous
+    
+    let actual_question = this.getActualQuestion();
+
+    if(actual_question['last_question']) {
+      this.active_question_id = actual_question['last_question'];
+      this.focusQuestion(actual_question['last_question'])
+      return;
+    }
+
+    // chema set previous
+
     for (var i = 0; i < this.questions.length; i++) {
       if (this.questions[i].num_pregunta_id === this.active_question_id) {
         this.active_question_id = this.questions[i].des_prev_preg;
@@ -414,42 +470,93 @@ export class InterviewComponent implements OnInit{
       }
     }
   }
+
   setNextQuestionAsActive(){
     if (this.isActualQuestionsTheLastone()){
       return;
     }
-    let actual_question = this.getActualQuestion();
+    let actual_question = this.getActualQuestion(),
+        actualQID = actual_question.num_pregunta_id;
+
+    console.log('actual_question', actual_question);
+
     let next_question = null;
     let required_question = null;
+
     if ((typeof actual_question.des_sig_preg) === 'string') {
       this.active_question_id = actual_question.des_sig_preg;
+
+      // chema for last question
+      
+      next_question = this.getQuestionById(this.active_question_id);
+      next_question['last_question'] = actualQID;
+
+      // chema for last question
+
       this.focusQuestion(this.active_question_id);
       return;
     }
+
     if (Array.isArray(actual_question.des_sig_preg)) { //Revisar si el atributo des_sig_preg es un arreglo o un número
+      
       for (var i = 0; i < actual_question.des_sig_preg.length; i++) {
         required_question = this.getQuestionById(actual_question.des_sig_preg[i].preg_req[0]);
+        
         if (this.isOfOptions(required_question)) { //Revisar si la pregunta requerida es de opciones
+          
           if (this.isQuestionWithOptionsAnswered(required_question)) {
             if (this.isAnswerInTheOptions(this.getSelectedValue(required_question), actual_question.des_sig_preg[i].opc_seleccionada)) {
+              
               this.active_question_id = actual_question.des_sig_preg[i].siguiente;
+
+              // chema for last question
+
+              next_question = this.getQuestionById(this.active_question_id);
+              next_question['last_question'] = actualQID;
+
+              // chema for last question
+              
               this.focusQuestion(this.active_question_id);
+              
               return;
             }
           }
+
         } else {
+          
           if (this.isQuestionAnswered(required_question.num_pregunta_id)) { //En caso de que la pregunta requerida no sea de opciones revisar que ya haya sido contestada
+          
             this.active_question_id = required_question.des_sig_preg;
+
+            // chema for last question
+
+            next_question = this.getQuestionById(this.active_question_id);
+            next_question['last_question'] = actualQID;
+
+            // chema for last question
+
             this.focusQuestion(this.active_question_id);
             return;
+          
           }
         }
+
       }
+
       next_question = this.getNextQuestion();
       this.active_question_id = next_question.num_pregunta_id;
+
+      // chema for last question
+
+      next_question['last_question'] = actualQID;
+
+      // chema for last question
+
       this.focusQuestion(this.active_question_id);
       return;
+    
     } else {
+
       if (actual_question.des_sig_preg === 0) { //En caso de que des_sig_preg sea 0 la pregunta es de opciones
         
         if (this.isQuestionWithOptionsAnswered(actual_question)) { //Revisamos que la pregunta actual ya tenga algún valor seleccionado
@@ -457,9 +564,12 @@ export class InterviewComponent implements OnInit{
           for (var i = 0; i < actual_question.des_opciones.length; i++) { // Recorremos las opciones "i"
             
             if (this.isAnswerInTheOptions(i, actual_question.selected)) {
+              
               if (actual_question.num_pregunta_id === 66 && actual_question.des_opciones[i].valor === 'No') {
+
                 this.throwDefaultAmountOfHouses();
                 return;
+
               }
 
               if (Array.isArray(actual_question.des_opciones[i].des_sig_preg)) { //Checamos si la opción de la iteración actual tiene el atributo des_sig_preg como un arreglo o un número
@@ -473,7 +583,16 @@ export class InterviewComponent implements OnInit{
                     if (this.isQuestionWithOptionsAnswered(required_question)) { //si la pregunta requerida fue contestada
 
                       if (this.isAnswerInTheOptions(this.getSelectedValue(required_question), actual_question.des_opciones[i].des_sig_preg[j].opc_seleccionada)) {
+                      
                         this.active_question_id = actual_question.des_opciones[i].des_sig_preg[j].siguiente;
+
+                        // chema for last question
+
+                        next_question = this.getQuestionById(this.active_question_id);
+                        next_question['last_question'] = actualQID;
+
+                        // chema for last question
+
                         this.focusQuestion(this.active_question_id);
                         return;
                       }
@@ -487,33 +606,69 @@ export class InterviewComponent implements OnInit{
                 // En caso de que ninguna de las respuestas requeridas haya sido contestada asignamos la siguiente comopregunta de la lista como la activa
                 next_question = this.getNextQuestion();
                 this.active_question_id = (actual_question.num_pregunta_id === 30 && actual_question['selected'][0] == 1) ? next_question.num_pregunta_id + 1 : next_question.num_pregunta_id;
+
+                // chema for last question
+
+                next_question['last_question'] = actualQID;
+
+                // chema for last question
+
                 this.focusQuestion(this.active_question_id);
               
               } else {
+                
                 if (actual_question.des_opciones[actual_question.selected[0]].valor === actual_question.des_opciones[i].valor) { //Checamos que si la opción de la iteración actual es la opción seleccionada.
+                
                   this.active_question_id = actual_question.des_opciones[i].des_sig_preg;
+
+                  // chema for last question
+
+                  next_question = this.getQuestionById(this.active_question_id);
+                  next_question['last_question'] = actualQID;
+
+                  // chema for last question
+
                   this.focusQuestion(this.active_question_id);
                   return;
                 }
+
               }
             }
           }
         
         } else { //En caso de que no haya opción seleccionada se considera la siguiente pregunta como la activa
+          
           next_question = this.getNextQuestion();
           this.active_question_id = next_question.num_pregunta_id;
+
+          // chema for last question
+
+          next_question['last_question'] = actualQID;
+
+          // chema for last question
+
           this.focusQuestion(this.active_question_id);
           return;
+        
         }
 
       } else { //En caso de que des_sig_preg sea un número diferente de 0 entonces ese valor es el id de la siguiente pregunta 
         this.active_question_id = actual_question.des_sig_preg;
+
+        // chema for last question
+
+        next_question = this.getQuestionById(this.active_question_id);
+        next_question['last_question'] = actualQID;
+
+        // chema for last question
+        
         // console.log('setNextQuestionAsActive', JSON.stringify(actual_question), actual_question, 'this.active_question_id', this.active_question_id);
         this.focusQuestion(this.active_question_id);
         return;
       }
     }
   }
+
   throwDefaultAmountOfHouses(){
     this.interview.controls[this.getQuestionControlName(67)].setValue(1);
     this.throwSpecialCase(67);
