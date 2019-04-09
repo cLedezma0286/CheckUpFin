@@ -11,6 +11,8 @@ import { ObjectiveComponent } from './financial-health/objective/objective.compo
 import { NotesAndAgreementsComponent } from './notes-and-agreements/notes-and-agreements.component';
 import { RouterModule } from '@angular/router';
 import { SharedComponentsModule } from '@shared-components/shared-components.module';
+
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -27,10 +29,11 @@ import { SharedComponentsModule } from '@shared-components/shared-components.mod
     FinancialHealthComponent,
     NotesAndAgreementsComponent,
     CalculationExplanationComponent,
-    ObjectiveComponent
+    ObjectiveComponent,
   ],
   exports: [
-    ClientFileComponent
+    ClientFileComponent,
+    FormsModule
   ]
 })
 export class ClientFileModule {}

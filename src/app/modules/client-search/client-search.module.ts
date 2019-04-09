@@ -17,7 +17,8 @@ import { SharedComponentsModule } from '@shared-components/shared-components.mod
   ],
   exports: [
     ClientSearchComponent,
-    DropdownComponent
+    DropdownComponent,
+    SharedComponentsModule
   ]
 })
 export class ClientSearchModule {}

@@ -17,7 +17,8 @@ import { SharedComponentsModule } from '@shared-components/shared-components.mod
     ClientFinancesComponent
   ],
   exports: [
-    ClientFinancesComponent
+    ClientFinancesComponent,
+    SharedComponentsModule
   ]
 })
 export class ClientFinancesModule {}
