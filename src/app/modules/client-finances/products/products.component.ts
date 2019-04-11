@@ -26,10 +26,22 @@ export class ProductsComponent implements OnInit{
   anySelected = false;
   recommended_products = [];
   objectives;
+
+  /**
+   * Constructor del componente de productos.
+   * @param productsService Servicio de productos
+   * @param interviewService Servicio de la entrevista
+   * @param renderer Servicio de manejo de estilos de vista.
+   * @param router Servicio de manejo de rutas
+   * @param fb Servicio para manejar forms.
+   */
   constructor(public productsService: ProductsService,
     public interviewService: InterviewService, public renderer: Renderer2,
     public router: Router, public fb: FormBuilder){}
 
+  /**
+   * Función inicializa los elementos de la vista.
+   */
   ngOnInit() {
     this.now = new Date();
     this.day = this.now.getDate();
@@ -55,6 +67,10 @@ export class ProductsComponent implements OnInit{
     this.getObjectives(actual_interview_id);
   }
 
+  /**
+   * Función para mandar la petición de obtener los objetivos de la entrevista.
+   * @param interviewId Id de la entrevista.
+   */  
   getObjectives(interviewId) {
     this.productsService.getObjetives(interviewId).subscribe(
       data => {
@@ -66,6 +82,9 @@ export class ProductsComponent implements OnInit{
     );
   }
 
+  /**
+   * Función par mandar la petición de obtener la lista de productos.
+   */
   getProducts() {
     this.productsService.getProducts().subscribe(
       data => {
@@ -87,6 +106,10 @@ export class ProductsComponent implements OnInit{
     );
   }
 
+  /**
+   * Función para mandar la petición de obtener la lista de productos recomendados de acuerdo a su entrevista.
+   * @param interviewId Id de la entrevista
+   */
   getRecommendedProducts(interviewId) {
     this.interviewService.getRecommendedProducts(interviewId).subscribe(
       response => {
@@ -103,6 +126,10 @@ export class ProductsComponent implements OnInit{
     );
   }
 
+  /**
+   * Función para mandar la petición de obtener la lista de productos seleccionados por el cliente.
+   * @param interviewId Id de la entrevista
+   */
   getCurrentProducts(interviewId) {
     this.productsService.getCurrentProducts(interviewId).subscribe(
       response => {
@@ -128,15 +155,19 @@ export class ProductsComponent implements OnInit{
     );
   }
 
-  getName(category){
-    return category + '';
-  }
-
+  /**
+   * Función para dar formato YYYY-MM-DD a una fecha.
+   * @param date 
+   */
   formateDate(date) {
     return date.getFullYear() + '-' + ('0'+(date.getMonth()+1)).slice(-2) +
       '-' + ('0' + date.getDate()).slice(-2);
   }
 
+  /**
+   * Función para devolver la imagen a mostrar dependiendo la categoría.
+   * @param category 
+   */
   getImagenByCategory(category){
     var images = {
       "Estilo de vida": "dinero.png",
@@ -147,20 +178,33 @@ export class ProductsComponent implements OnInit{
       (images.hasOwnProperty(category) ? images[category] : images['Hogar']);
   }
 
+  /**
+   * Función para mostrar la sección de productos seleccionados.
+   */
   showSelected() {
     this.showSelectedProducts = true;
   }
 
+  /**
+   * Función para esconder la sección de productos seleccionados.
+   */
   hideSelected() {
     this.showSelectedProducts = false;
   }
 
+  /**
+   * Función que actualiza la vista y agrega a la lista de productos seleccionados.
+   * @param product Producto seleccionado.
+   */
   selectProduct(product) {
-
     this.selectedProduct = product;
     this.selectedProducts.push(product);
   }
 
+  /**
+   * Función para eliminar de la lista de productos seleccionados el producto dado.
+   * @param idProduct Id del producto a eliminar.
+   */
   removeProduct(idProduct) {
     for (var k = 0; k < this.selectedProducts.length; k++) {
       if (idProduct === this.selectedProducts[k].id) {
@@ -170,6 +214,10 @@ export class ProductsComponent implements OnInit{
     }
   }
 
+  /**
+   * Función para agregar las elecciones de la vista al producto seleccionado.
+   * Fecha de venta y objetivos asociados.
+   */
   saveProduct() {
     this.selectedProduct['isAdded'] = true;
     this.selectedProduct['fecha_venta'] = this.productForm.value.selectedDate;
@@ -187,6 +235,10 @@ export class ProductsComponent implements OnInit{
     this.anySelected = false;
   }
 
+  /**
+   * Función para mandar la petición de obtener el detalle de un producto. 
+   * @param product 
+   */
   showProductInfo(product) {
     this.productsService.getProduct(product.id)
     .subscribe(data => {
@@ -194,6 +246,9 @@ export class ProductsComponent implements OnInit{
     });
   }
 
+  /**
+   * Función para cerrar las vistas de producto seleccionado y detalle del producto.
+   */
   closeProductModal() {
     if (this.selectedProduct) {
       this.selectedProducts.pop();
@@ -201,17 +256,34 @@ export class ProductsComponent implements OnInit{
     this.currentProduct = undefined;
     this.selectedProduct = undefined;
   }
+
+  /**
+   * Función para mostral la vista para imprimir.
+   */
   openPrintModal(){
     this.setBodyScroll('hidden');
     this.print_modal_open = true;
   }
+
+  /**
+   * Función para cerrar la vista para imprimir.
+   */
   closePrintModal(){
     this.print_modal_open = false;
     this.setBodyScroll('auto');
   }
+
+  /**
+   * Función para actualizar el css del elemento body.
+   * @param scroll_value Valor de scroll.
+   */
    setBodyScroll(scroll_value){
     this.renderer.setStyle(document.body, 'overflow', scroll_value);
   }
+
+  /**
+   * Función para mandar la petición de actualizar los productos seleccionados del cliente.
+   */
   goToDashboard(){
     let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
     var productAux = [];
@@ -240,6 +312,10 @@ export class ProductsComponent implements OnInit{
     );
   }
 
+  /**
+   * Función para actualizar el valor de un elemento check
+   * @param currentObjective Objetivo a cambiar el valor.
+   */
   check(currentObjective) {
     currentObjective.selected = !currentObjective.selected;
     this.anySelected = this.objectives.reduce(function(x,y) {

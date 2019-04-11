@@ -16,6 +16,11 @@ export class LoaderComponent implements OnDestroy{
   increment = 0;
   interval;
   interval2;
+
+  /**
+   * Constructor para inicializar el componente de la vista de cargador.
+   * @param router Servicio de manejo de rutas.
+   */
   constructor( public router: Router){
     this.textLoading = router.url === '/loading/edras'? 'Cargando EDRAS' : 'Calculando salud financiera';
     this.interval = setInterval(() => {
@@ -34,6 +39,10 @@ export class LoaderComponent implements OnDestroy{
       }
     },100);
   }
+
+  /**
+   * Función para limpiar los intervalos al cerrar el componente.
+   */
   ngOnDestroy(){
     if (this.interval) {
       clearInterval(this.interval);
@@ -42,6 +51,10 @@ export class LoaderComponent implements OnDestroy{
       clearInterval(this.interval2);
     }
   }
+
+  /**
+   * Función para inicializar y actualizar la animación de carga.
+   */
   startAnimation() {
     this.interval2 = setInterval(() => {
       this.percentage += this.increment;
@@ -53,6 +66,10 @@ export class LoaderComponent implements OnDestroy{
       }
     },100);
   }
+
+  /**
+   * Función para cambiar el color de los elementos al cargar y redireccionar a la vista correspondiente.
+   */
   changeColor() {
     this.circle.style.stroke = '#AAA20A';
     document.querySelector('.icon')['style']['fill'] = '#AAA20A';
@@ -71,7 +88,13 @@ export class LoaderComponent implements OnDestroy{
       }, 1000);
     }
   }
-  calculatePercentage = function(r, percent) {
+
+  /**
+   * Función para segmentar que tanto ha avanzado la carga.
+   * @param r Radio del circulo
+   * @param percent Contador de avance
+   */
+  calculatePercentage(r, percent) {
     var val = parseInt(percent);
     var c = Math.PI * (r * 2);
     if (val < 0) {
