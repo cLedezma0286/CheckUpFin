@@ -15,5 +15,10 @@
 </head>
 <body>
   <app-root></app-root>
+  <script type="text/javascript">
+    window.onbeforeunload = function() {
+      localStorage.clear();
+    }
+  </script>
 </body>
 </html>

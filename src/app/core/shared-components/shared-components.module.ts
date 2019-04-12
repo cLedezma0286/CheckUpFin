@@ -8,6 +8,7 @@ import { PrintoutComponent } from './printout/printout.component';
 import { RealEmailValidator, EmailValidator } from './directives/email.dir';
 import { NoSpecialChars } from './directives/noSpecialChars.dir';
 import { MaxValue } from './directives/maxValue.dir';
+import { NotNumbersDirective } from './directives/not-numbers.dir';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { MaxValue } from './directives/maxValue.dir';
     RealEmailValidator, 
     EmailValidator,
     NoSpecialChars,
-    MaxValue
+    MaxValue,
+    NotNumbersDirective
   ],
   exports: [
     ClientHeaderComponent,
@@ -28,7 +30,8 @@ import { MaxValue } from './directives/maxValue.dir';
     NoSpecialChars,
     MaxValue,
     RealEmailValidator, 
-    EmailValidator
+    EmailValidator,
+    NotNumbersDirective
   ]
 })
 export class SharedComponentsModule {}

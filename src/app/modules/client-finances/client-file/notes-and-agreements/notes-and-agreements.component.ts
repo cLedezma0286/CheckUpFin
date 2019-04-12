@@ -22,7 +22,7 @@ export class NotesAndAgreementsComponent{
   constructor(public notesAgreementsService: NotesAndsAgreementsService,
     public fb: FormBuilder){
     this.getNotes();
-    this.getAgreements();
+    // this.getAgreements();
   }
 
   getNotes() {

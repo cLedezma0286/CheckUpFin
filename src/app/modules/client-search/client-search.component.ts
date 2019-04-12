@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 import { switchMap, debounceTime } from 'rxjs/operators';
 import { ClientsService } from '@services/clients.service';
+
+import { environment } from '@environments/environment';
+
 @Component({
   selector: 'client-search',
   templateUrl: 'client-search.view.html',

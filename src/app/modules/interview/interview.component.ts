@@ -120,11 +120,11 @@ export class InterviewComponent implements OnInit{
       event.stopImmediatePropagation();
       if(event.keyCode == 9) event.preventDefault();
 
-      if (event.keyCode === 40 || (event.keyCode === 9  && !event.ctrlKey)) { //Down
+      if (event.keyCode === 40 || (event.keyCode === 9  && !event.shiftKey)) { //Down
         // console.log('DOWN!!!')
         this.setNextQuestionAsActive();
       } else 
-      if (event.keyCode === 38 || (event.keyCode === 9 && event.ctrlKey && event.shiftKey)) { //Up
+      if (event.keyCode === 38 || (event.keyCode === 9 && event.shiftKey)) { //Up
         // console.log('UP!!!')
         
         this.setPreviousQuestionAsActive();
@@ -143,27 +143,9 @@ export class InterviewComponent implements OnInit{
     });
   }
 
-  // @HostListener('document:keyup', ['$event'])
-  // downShortcut(event: KeyboardEvent) {
-  //   console.log('document:keyup', event.keyCode);
-  //   if (event.keyCode === 38 || (event.keyCode === 9 && event.ctrlKey && event.shiftKey)) { //Up
-  
-  //     this.setPreviousQuestionAsActive();
-  //   }
-  //   if (event.keyCode === 40 || (event.keyCode === 9 && !event.ctrlKey)) { //Down
-  //     this.setNextQuestionAsActive();
-  //   }
-  //   if (event.keyCode === 39) { //Right
-  //     this.setNextOptionAsFocused(event.target['selectionStart']);
-  //   }
-  //   if (event.keyCode === 37) { //Left
-
-  //     this.setPreviousOptionAsFocused();
-  //   }
-  //   if (event.keyCode === 13) { //Enter
-  //     this.setActualOptionAsSelected();
-  //   }
-  // }
+  consoling() {
+    console.log('questions', this.questions, 'interview', this.interview);
+  }
 
 
   setAnswers(answers){
