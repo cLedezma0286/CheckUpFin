@@ -17,11 +17,23 @@ export class AddObjectiveComponent implements OnInit{
     'when': ['', []],
     'how_many': ['', []],
   });
+  /**
+   * Constructor del componente para Agregar Objetivos
+   * @param fb Servicio para manejar forms.
+   */
   constructor(public fb: FormBuilder){}
+  /**
+   * Al iniciar el componente se define la primera pregunta como la activa
+   */
   ngOnInit(){
     this['question_0'].nativeElement.focus();
   }
 
+  
+  /**
+   * Función que detecta los eventos de teclear la flecha hacia abajo o hacia arriba, así como shortcuts
+   * Cuando se detecta este evento se establece la pasada pregunta como la activa
+   */
   @HostListener('document:keyup', ['$event'])
   downShortcut(event: KeyboardEvent) {
     // console.log('document:keyup', event.keyCode);
@@ -43,9 +55,16 @@ export class AddObjectiveComponent implements OnInit{
     }
   }
 
+  /**
+   * Función que establece la pregunta activa
+   * @params question_number número de la pregunta a poner como activa
+   */
   setActualQuestion(question_number){
     this.actual_question_index = question_number;
   }
+  /**
+   * Función que establece la pregunta pasada como activa
+   */
   setPreviousQuestionAsActual(){
     if (this.actual_question_index > 0) {
       this.actual_question_index = this.actual_question_index - 1;
@@ -53,6 +72,9 @@ export class AddObjectiveComponent implements OnInit{
       setTimeout(() => this[this.getQuestionName()].nativeElement.focus(), 10);
     }
   }
+  /**
+   * Función que establece la pregunta siguiente como activa
+   */
   setNextQuestionAsActual(){
     if (this.actual_question_index < 2) {
       this.actual_question_index = this.actual_question_index + 1;
@@ -104,15 +126,29 @@ export class AddObjectiveComponent implements OnInit{
 
   }
 
+  /**
+   * Función que obtiene el nombre de la pregunta actual
+   * @return cadena con el nombre de la pregunta activa
+   */
   getQuestionName(){
     return 'question_' + this.actual_question_index;
   }
+  /**
+   * Función que establece el calor de la opción seleccionada de la pregunta 1
+   * @param option_value valor a definir 
+   */
   setQuestionOneOptionValue(option_value){
     this.question_1_selected_option = option_value;
   }
+  /**
+   * Función que avisa al componente padre que debe eliminar este componente
+   */
   closeModal(objective){
     this.close.emit(objective);
   }
+  /**
+   * Función que revisa el formulario y exporta los valores del objetivo al padre
+   */
   finishObjectiveForm(){
     let objective_aux = {
       nombre: this.objective_form.value.what_objective,

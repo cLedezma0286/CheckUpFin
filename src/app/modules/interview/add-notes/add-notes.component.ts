@@ -14,22 +14,29 @@ export class AddNotesComponent implements OnInit{
     'title': ['', []],
     'text': ['', []]
   });
+  /**
+   * Contructor del componente que Agregar notas
+   * @param fb Servicio para manejar forms.
+   */
   constructor(public fb: FormBuilder){}
+  /**
+   * Al iniciar el componente se debe marcar como activa la primer pregunta
+   */
   ngOnInit(){
     this['question_0'].nativeElement.focus();
   }
+  /**
+   * Función que indica al componente padre que debe eliminar este componente, puede pasar una nota en el proceso
+   * @param note Datos de la nota que el cliente quiere agregar
+   */
   closeModal(note){
     this.close.emit(note);
   }
-  // @HostListener('document:keyup.arrowUp', ['$event'])
-  // upShortcut(event: KeyboardEvent) {
-  //   this.setPreviousQuestionAsActual();
-  // }
-  // @HostListener('document:keyup.arrowDown', ['$event'])
-  // downShortcut(event: KeyboardEvent) {
-  //   this.setNextQuestionAsActual();
-  // }
 
+  /**
+   * Función que captura eventos de tecleo de la flecha de abajo
+   * En caso de que el cliente teclee la f
+   */
   @HostListener('document:keyup', ['$event'])
   downShortcut(event: KeyboardEvent) {
     // console.log('document:keyup', event.keyCode);
@@ -41,6 +48,9 @@ export class AddNotesComponent implements OnInit{
     }
   }
 
+  /**
+   * Función que revisa el formulario y manda la nota adquirida al componente padre
+   */
   finishNoteForm(){
     let note_aux = {
       title: this.note_form.value.title,
@@ -48,21 +58,35 @@ export class AddNotesComponent implements OnInit{
     };
     this.closeModal(note_aux);
   }
+  /**
+   * Función que establece cual es la pregunta activa
+   * @param question_number Número de la pregunta a establecer como activa
+   */
   setActualQuestion(question_number){
     this.actual_question_index = question_number;
   }
+  /**
+   * Función que establece la pregunta previa como activa
+   */
   setPreviousQuestionAsActual(){
     if (this.actual_question_index > 0) {
       this.actual_question_index = this.actual_question_index - 1;
       this[this.getQuestionName()].nativeElement.focus();
     }
   }
+  /**
+   * Función que establece la pregunta siguiente como activa
+   */
   setNextQuestionAsActual(){
     if (this.actual_question_index < 1) {
       this.actual_question_index = this.actual_question_index + 1;
       this[this.getQuestionName()].nativeElement.focus();
     }
   }
+  /**
+   * Función que regresa el nombre de la pregunta activa actualmente
+   * @return Cadena que representa el nombre de la pregunta activa
+   */
   getQuestionName(){
     return 'question_' + this.actual_question_index;
   }
