@@ -17,7 +17,16 @@ export class GeneralClientInformationComponent implements OnInit{
   products = [];
   investments = [];
   @Output() show_edit_section: EventEmitter<void> = new EventEmitter<void>();
+  /**
+   * Constructor del componente de que muestra la información del cliente en el dashboard.
+   * @param clientsService Servicio que provee métodos para hacer consultas http a las rutas de clientes
+   * @param interviewServiceServicio que provee métodos para hacer consultas http a las rutas de entrevista
+   */
   constructor(public clientsService: ClientsService, public interviewService: InterviewService){}
+  /**
+   * Función proveída por la interfaz OnInit, aquí se declara el flujo que se realizará cuando el componente sea creado.
+   * Se busca al cliente almacenado en localStorage y se utilizan sus datos para obtener su información de salud financiera, productos y de su entrevista
+   */
   ngOnInit(){
     let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
     this.clientsService.getClientInformation(client_cis).subscribe(
@@ -45,10 +54,16 @@ export class GeneralClientInformationComponent implements OnInit{
       }
     );
   }
+  /**
+   * Función que cambia el estado del calendario de visible a oculto o viceversa, en caso de que se tenga que mostrar el calendario se llama a la función que lo inicializa 
+   */
   changeCalendar() {
     this.showCalendar = !this.showCalendar;
     if (this.showCalendar)this.initCalendar();
   }
+  /**
+   * Función que inicializa el calendario
+   */
   initCalendar() {
     var checkExist = setInterval(() => {
       if(document.getElementById('my-calendar')){
@@ -69,6 +84,10 @@ export class GeneralClientInformationComponent implements OnInit{
       }
     },100);
   }
+  /**
+   * Cuando se selecciona una fecha del calendario esta se establece en el servidor como la fecha del siguiente checkup
+   * @param nextDate fecha de tipo Date 
+   */
   updateNextCheckup(nextDate) {
     nextDate = nextDate.getFullYear() + '-' +
       ('0'+(nextDate.getMonth()+1)).slice(-2) + '-' +
@@ -84,6 +103,10 @@ export class GeneralClientInformationComponent implements OnInit{
       }
     );
   }
+  /**
+   * Función que regresa la edad en años obteniendo la fecha de nacimiento del cliente
+   * @return edad en años
+   */
   getYearsOfAge(){
     if (this.client_information.fecha_nacimiento) {
       let birthday = new Date(this.client_information.fecha_nacimiento);
@@ -93,10 +116,19 @@ export class GeneralClientInformationComponent implements OnInit{
     }
     return 0;
   }
+  /**
+   * Función para obtener una cadena de una fecha en formato dd/mm/aaaa
+   * @param cadena con una fecha en formato aaaa-mm-ddd
+   * @return cadena de una fecha en formato dd/mm/aaaa
+   */
   getDateForObjectFormat(date_dmy){
     let date_array_aux = date_dmy.split('-');
     return date_array_aux[2] + '/' + date_array_aux[1] + '/' + date_array_aux[0];
   }
+  /**
+   * Funciín que regresa la fecha de nacimiento en formato legible
+   * @return cadena en formato dd de mmmm
+   */
   getHumanFormatDate(){
     if (this.client_information.fecha_nacimiento) {
       let date_array_aux = this.client_information.fecha_nacimiento.split('-');
@@ -104,6 +136,11 @@ export class GeneralClientInformationComponent implements OnInit{
     }
     return '';
   }
+  /**
+   * Función que recibe el número de un mes y regresa el nombre de dicho mes
+   * @param {number} month Cadena identificadora del mes
+   * @return Cadena del nombre del mes.
+   */
   getMonthName(month){
     let month_number = Number(month);
     let month_name = '';
@@ -146,18 +183,36 @@ export class GeneralClientInformationComponent implements OnInit{
     }
     return month_name;
   }
+  /**
+   * Función que recibe una cadena con la calificación completa de algún rubro y regresa una cadena con solo la calificación
+   * @param {string} full_rate Cadena con la calificación completa de algún rubro
+   * @return Cadena con solo la calificación del rubro
+   */
   getRate(full_rate){
     if(full_rate){
       return full_rate.split('/')[0];
     }
     return 0;
   }
+  /**
+   * Función que recibe una cadena con la calificación completa de algún rubro y regresa un número con la calificación
+   * @param {string} full_rate Cadena con la calificación completa de algún rubro
+   * @return Número con la calificación del rubro
+   */
   getRateNumber(full_rate){
     return Number(this.getRate(full_rate));
   }
+  /**
+   * Función que avisa al componente padre que debe ocultar este componete y mostrar el de editar información del cliente
+   */
   showEditUserInformationSection(){
     this.show_edit_section.emit();
   }
+  /**
+   * Función que recibe un objetivo y regresa la información de ese objetivo en una cadena
+   * @param objective Objetivo a obtener formato
+   * @return cadena con la información del objetivo
+   */
   objectiveToString(objective){
     let objective_string = objective.nombre;
     if (objective.valor) {
@@ -168,6 +223,11 @@ export class GeneralClientInformationComponent implements OnInit{
     }
     return objective_string;
   }
+  /**
+   * Función que recibe la calificación de algún rubro y regresa su estatus
+   * @param cadena con la calificación
+   * @return Cadena con el estatus
+   */
   getClientFinantialHealthState(financial_health_score){
     let score = this.getRateNumber(financial_health_score);
     if (score >= 7) {

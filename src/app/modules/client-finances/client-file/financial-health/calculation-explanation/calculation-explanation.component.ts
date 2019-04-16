@@ -7,6 +7,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class CalculationExplanationComponent{
   @Output() close: EventEmitter<void> = new EventEmitter<void>();
   constructor(){}
+  /**
+   * Función que avisa al componente padre que este componente debe ser eliminado
+   */
   closeModal(){
     this.close.emit();
   }
