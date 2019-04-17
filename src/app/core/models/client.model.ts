@@ -2,6 +2,7 @@ export class Client {
   correo: string;
   created_at: string;
   edo_civil: string;
+  edad?: number;
   fecha_nacimiento: string;
   hobbies: any;
   nombre_clie: string;

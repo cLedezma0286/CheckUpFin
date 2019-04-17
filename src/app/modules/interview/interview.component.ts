@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { QuestionsService } from '@services/questions.service';
 import { InterviewService } from '@services/interview.service';
 import { ClientsService } from '@services/clients.service';
+import { Client } from '@models/client.model';
+
 declare var jsCalendar: any;
 @Component({
   selector: 'interview',
@@ -30,6 +32,9 @@ export class InterviewComponent implements OnInit{
   add_note_modal_open = false;
   notes = [];
 
+  clientAge;
+  client: Client = new Client();
+
   scrollInterval;
 
   constructor(
@@ -41,9 +46,24 @@ export class InterviewComponent implements OnInit{
     public fb: FormBuilder,
     @Inject(DOCUMENT) document){}
   ngOnInit(){
+
+    if(!localStorage.getItem('cliente')) this.router.navigate(['client-search']);
+    let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
+    
+    this.clientsService.getClientInformation(client_cis).subscribe(
+      (response: Client) => {
+        console.log('InterviewComponent', response);
+        this.client = response;
+        this.getYearsOfAge(response);
+      }
+    );
+
     this.route.queryParams.subscribe(
       params => {
         this.interview_id = params['id'];
+
+        console.log('queryParams', params);
+
         this.questionsService.getQuestions().subscribe(
           response => {
             let form_aux = {};
@@ -53,14 +73,16 @@ export class InterviewComponent implements OnInit{
             }
             // console.log('form_aux', form_aux);
             this.interview = this.fb.group(form_aux);
+
+            // this.interview.valueChanges.subscribe(() => {
+            //   console.log('INTERVIEW CHANGES', this.interview);
+            // });
+            
             this.questions = response['preguntas'];
             let question_with_block_index = null;
             for (var i = 0; i < this.questions.length; i++) {
-              if (i > 0) {
-                this.questions[i]['des_prev_preg'] = this.questions[i - 1].num_pregunta_id;
-              } else {
-                this.questions[i]['des_prev_preg'] = 1;
-              }
+              this.questions[i]['des_prev_preg'] = (i > 0) ? this.questions[i - 1].num_pregunta_id : 1;
+              
               if (this.questions[i].des_opciones.length !== 0 || this.questions[i].tipo_fecha === 1){
                 this.questions[i]['focused'] = -1;
                 this.questions[i]['selected'] = [];
@@ -107,6 +129,16 @@ export class InterviewComponent implements OnInit{
                 clearInterval(this.interval);
               }
             },100);
+
+            let theInterval = setInterval(() => {
+              this.interview.controls[this.getQuestionControlName(2)].valueChanges.subscribe(val => {
+                this.client.edad = val;
+                var d = new Date();
+                d.setFullYear(d.getFullYear() - val);
+                this.client.fecha_nacimiento = `${d.getFullYear()}${this.client.fecha_nacimiento.slice(4)}`;
+                console.log('ageChanged', val, this.client);
+              });
+            }, 100);
           },
           error => {
             alert('Ha ocurrido un error');
@@ -143,18 +175,36 @@ export class InterviewComponent implements OnInit{
     });
   }
 
-  consoling() {
-    console.log('questions', this.questions, 'interview', this.interview);
+  getYearsOfAge(client: Client){
+    if (client.fecha_nacimiento) {
+      let birthday = new Date(client.fecha_nacimiento);
+      let age_dif_ms = Date.now() - birthday.getTime();
+      let age_date = new Date(age_dif_ms);
+      this.clientAge = (client.edad > 0) ? client.edad : Math.abs(age_date.getUTCFullYear() - 1970);
+      // console.log('getYearsOfAge INTERVIEW', client.edad, Math.abs(age_date.getUTCFullYear() - 1970));
+    } else {
+      this.clientAge = 0;
+    }
+    
+    // console.log('getYearsOfAge INTERVIEW', client, this.clientAge);
   }
 
 
   setAnswers(answers){
+    // console.log('setAnswers', this.clientAge, answers);
     for (var i = 0; i < answers.length; i++) {
       let question_aux = this.getQuestionById(answers[i].pregunta_id);
       if (question_aux) {
+        // console.log('THEANSWER', answers[i], 'question_aux', question_aux);
         if (question_aux.bnd_enteros === 1 && !(question_aux.num_pregunta_id === 6 || question_aux.num_pregunta_id === 19 || question_aux.num_pregunta_id === 47 || question_aux.num_pregunta_id === 68 || question_aux.num_pregunta_id === 73)) {
+          
+          // console.log('theAnswer', answers[i], question_aux.num_pregunta_id);
           let answer_value = +answers[i].texto.replace(/,/g, '');
+          
           this.interview.controls[this.getQuestionControlName(answers[i].pregunta_id)].setValue(answer_value);
+          
+          if(question_aux.num_pregunta_id === 2) console.log('QUESTION NUM 2!!!'), this.interview.controls[this.getQuestionControlName(2)].setValue(this.clientAge);
+          
           if (question_aux.num_pregunta_id === 5) {
             this.throwSpecialCase(5);
             let answers_with_id_6 = this.getAnswersById(answers, 6);
@@ -194,7 +244,7 @@ export class InterviewComponent implements OnInit{
           } else if (answer_value[1] === 'años') {
             question_aux.selected = [1];
           }
-        } else if (question_aux.des_opciones.length !== 0 && !Array.isArray(answers[i].texto) && question_aux.num_pregunta_id !== 46) {
+        } else if (question_aux.des_opciones.length && !Array.isArray(answers[i].texto) && question_aux.num_pregunta_id !== 46) {
           let answer_value = answers[i].texto;
           for (var j = 0; j < question_aux.des_opciones.length; j++) {
             if (question_aux.des_opciones[j].valor === answer_value) {
@@ -247,7 +297,7 @@ export class InterviewComponent implements OnInit{
               }
             }
           }
-        } else if (question_aux.des_opciones.length !== 0 && Array.isArray(answers[i].texto)) {
+        } else if (question_aux.des_opciones.length && Array.isArray(answers[i].texto)) {
           let answer_value = answers[i].texto;
           for (var j = 0; j < question_aux.des_opciones.length; j++) {
             for (var k = 0; k < answer_value.length; k++) {
@@ -1376,11 +1426,21 @@ export class InterviewComponent implements OnInit{
         objetivos: objectives_aux
       }
     }
+
+    this.clientsService.setClientPersonalInformation(client_cis, this.client).subscribe(data => {
+      console.log(data);
+    }, err => {
+      console.error('error on edit', err);
+    });
+
     this.router.navigate(['/loading/finance-health']);
+    
     this.interviewService.createInterview(interview_aux).subscribe(
       response => {
+        console.log('interviewCorrectly created');
         this.clientsService.getClientInformation(client_cis).subscribe(
           client => {
+            console.log('CLIENT INFO CORRECTLY FETCHED');
             localStorage.setItem('cliente', JSON.stringify(client));
             localStorage.setItem('actual_interview_id', JSON.stringify(response['id']));
             this.router.navigate(['/financial-health'], { queryParams: { simple_view: 'true' }});
@@ -1388,6 +1448,7 @@ export class InterviewComponent implements OnInit{
         );
       },
       error => {
+        console.error('CREATE INTERVIEW ERR', error);
         if (this.interview_id) {
           this.router.navigate(['/interview'], { queryParams: {id: this.interview_id}});
         } else {

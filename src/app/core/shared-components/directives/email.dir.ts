@@ -36,15 +36,10 @@ class RealEmailValidator implements Validator {
 
     validate(control: AbstractControl): { [key: string]: any } {
         // self value (e.g. retype password)
-        if(control.value && control.value.length > 0){
-
-			const isValidEmail = this.validateEmail(control.value);
-			this.el.style.borderBottomColor =  ((!isValidEmail || !control.value.length) && this.RealEmailValidator) ? '#db0011' : '#d7d8d6';
-			return ((!isValidEmail || !control.value.length) && this.RealEmailValidator) ? { invalid_characters: isValidEmail } : null;
-		
-		}else{
-			return null;
-		}
+        const isValidEmail = this.validateEmail(control.value);
+        console.log('RealEmailValidator', isValidEmail);
+		this.el.style.borderBottomColor =  ((!isValidEmail || !control.value.length) && this.RealEmailValidator && control.touched) ? '#db0011' : '#d7d8d6';
+		return ((!isValidEmail || !control.value.length) && this.RealEmailValidator) ? { invalid_characters: isValidEmail } : null;
     }
 }
 
@@ -79,14 +74,9 @@ class EmailValidator implements Validator {
 
     validate(control: AbstractControl): { [key: string]: any } {
         // self value (e.g. retype password)
-        if(control.value && control.value.length > 0){
-
-			const isValidEmail = this.validateMail(control.value);
-			return (!isValidEmail || !control.value.length) ? { invalid_characters: isValidEmail } : null;
-		
-		}else{
-			return null;
-		}
+		const isValidEmail = this.validateMail(control.value);
+		console.log('EmailValidator', isValidEmail);
+		return (!isValidEmail || !control.value.length) ? { invalid_characters: isValidEmail } : null;
     }
 }
 

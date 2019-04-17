@@ -13,6 +13,7 @@ export class InterviewService{
     return this.http.get(environment.INTERVIEWS_URL + '/' + interview_id + '/inversiones');
   }
   createInterview(interview){
+    console.log('createInterview', interview);
   	return this.http.post(environment.INTERVIEWS_URL, interview);
   }
   getRecommendedProducts(interview_id){

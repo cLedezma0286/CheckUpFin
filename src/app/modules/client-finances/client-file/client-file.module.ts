@@ -13,11 +13,14 @@ import { RouterModule } from '@angular/router';
 import { SharedComponentsModule } from '@shared-components/shared-components.module';
 
 
+import {NgxMaskModule} from 'ngx-mask';
+
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxMaskModule.forRoot(),
     RouterModule,
     SharedComponentsModule
   ],

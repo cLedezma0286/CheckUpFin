@@ -1,2 +1,2 @@
-<general-client-information *ngIf="active_section === 'general'" (show_edit_section)="setActiveSection('edit')"></general-client-information>
-<edit-client-information *ngIf="active_section === 'edit'" (close_edit_section)="setActiveSection('general')"></edit-client-information>
+<general-client-information *ngIf="active_section === 'general'" [client_information]="getClientInformation()" (show_edit_section)="setActiveSection('edit')"></general-client-information>
+<edit-client-information *ngIf="active_section === 'edit'" [client_information]="getClientInformation()" (close_edit_section)="resetInfo($event)"></edit-client-information>
