@@ -286,6 +286,8 @@ section{
                 color: $text-black;
                 font-weight: 100;
                 line-height: 22px;
+                text-overflow: ellipsis;
+                overflow: hidden;
               }
             }
             &:nth-child(2){
@@ -352,6 +354,8 @@ section{
             color: $text-black;
             font-weight: 100;
             line-height: 22px;
+            text-overflow: ellipsis;
+            overflow: hidden;
           }
         }
         .product_items{

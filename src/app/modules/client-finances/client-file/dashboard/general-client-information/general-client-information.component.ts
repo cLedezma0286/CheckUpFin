@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { ClientsService } from '@services/clients.service';
 import { InterviewService } from '@services/interview.service';
 import { Client } from '@models/client.model';
@@ -10,7 +10,7 @@ declare var jsCalendar: any;
   styleUrls: ['general-client-information.style.scss']
 })
 export class GeneralClientInformationComponent implements OnInit{
-  client_information: Client = new Client();
+  @Input('client_information') client_information: Client = new Client();
   financial_health: FinancialHealth = new FinancialHealth();
   objectives = [];
   showCalendar=false;
@@ -20,11 +20,6 @@ export class GeneralClientInformationComponent implements OnInit{
   constructor(public clientsService: ClientsService, public interviewService: InterviewService){}
   ngOnInit(){
     let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
-    this.clientsService.getClientInformation(client_cis).subscribe(
-      (response: Client) => {
-        this.client_information = response;
-      }
-    );
     this.clientsService.getClientInterviewInformation(client_cis).subscribe(
       response => {
         this.financial_health = response['salud_financiera'];

@@ -16,7 +16,7 @@
         <div class="question_item has_options" [ngClass]="{past_question: 1 < actual_question_index, actual_question: 1 === actual_question_index, next_question: actual_question_index + 1 === 1, future_question: 1 > actual_question_index + 1}">
           <p class="question">¿Cuándo te gustaría lograrlo?</p>
           <div class="answer_container">
-            <input type="text" #question_1 formControlName="when" (focus)="setActualQuestion(1)"/>
+            <input type="number" maxlength="2" #question_1 formControlName="when" (focus)="setActualQuestion(1)"/>
             <div class="option" [ngClass]="{selected: question_1_selected_option === 'meses'}" (click)="setQuestionOneOptionValue('meses')">Mes</div>
             <div class="option" [ngClass]="{selected: question_1_selected_option === 'años'}" (click)="setQuestionOneOptionValue('años')">Año</div>
           </div>

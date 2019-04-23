@@ -277,6 +277,8 @@ section{
             letter-spacing: normal;
             color: $text-gray;
             font-weight: 100;
+            text-overflow: ellipsis;
+            overflow: hidden;
           }
           .date_price{
             margin-top: 4px;

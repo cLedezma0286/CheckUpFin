@@ -11,17 +11,20 @@
         
         <!-- sin opciones y fecha tipo 0 -->
         <div class="answer simple_input" *ngIf="question.des_opciones.length === 0 && question.tipo_fecha === 0">
+          <!-- <span class="currencySign">$</span> -->
           <input 
             type="text" 
             name="question{{question.num_pregunta_id}}"
             [maxValue]="question.max_val"
             [applyMaxValue]="question.bnd_enteros == 0 ? false : true"
             [noSpecialChars]="true"
+            [noNumbers]="question.no_num"
             [attr.id]="'question_' + question.num_pregunta_id" 
             (click)="setActiveQuestion(question.num_pregunta_id)" 
             formControlName="{{'question_' + question.num_pregunta_id}}" 
             (input)="validateValue(question)" 
-            [attr.maxlength]="question.max ? question.max : 100000000000" />
+            minlength="0"
+            [attr.maxlength]="question.max ? (question.bnd_enteros == 1 ? (question.max + (question.max / 3)) : question.max) : 100000000000" />
         </div>
         
         <!-- con opciones y fecha tipo 0 -->
@@ -35,10 +38,12 @@
             [maxValue]="question.max_val"
             [applyMaxValue]="question.bnd_enteros == 0 ? false : true"
             [noSpecialChars]="true"
+            [noNumbers]="question.no_num"
             [attr.id]="'question_' + question.num_pregunta_id" 
             formControlName="{{'question_' + question.num_pregunta_id}}" 
             (click)="setActiveQuestion(question.num_pregunta_id, 0)" 
-            [attr.maxlength]="question.max ? question.max : 100000000000"/>
+            minlength="0"
+            [attr.maxlength]="question.max ? (question.bnd_enteros == 1 ? (question.max + (question.max / 3)) : question.max) : 100000000000"/>
         </div>
         
         <!-- con opciones (que en realidad no tiene opciones en el servicio) y fecha tipo 1 -->
@@ -48,17 +53,20 @@
             [maxValue]="question.max_val"
             [applyMaxValue]="question.bnd_enteros == 0 ? false : true"
             [noSpecialChars]="true"
+            [noNumbers]="question.no_num"
             [attr.id]="'question_' + question.num_pregunta_id" 
             formControlName="{{'question_' + question.num_pregunta_id}}" 
-            [attr.maxlength]="question.max ? question.max : 100000000000"
+            minlength="0"
+            [attr.maxlength]="question.max ? (question.bnd_enteros == 1 ? (question.max + (question.max / 3)) : question.max) : 100000000000"
             (click)="setActiveQuestion(question.num_pregunta_id, -1)"/>
           <div class="options_container">
             <div class="option" *ngFor="let option of question.des_opciones; let i = index" [ngClass]="{focused: question.focused === i && active_question_id === question.num_pregunta_id, selected: question.selected.indexOf(i) !== -1}" (click)="selectOptionByClick(question.num_pregunta_id, i)">{{option.nombre}}</div>
             <input 
               type="text" 
               [attr.id]="'question_date_' + question.num_pregunta_id" 
-              (click)="setActiveQuestion(question.num_pregunta_id, 0)" 
-              [attr.maxlength]="question.max ? question.max : 100000000000"/>
+              formControlName="{{'question_' + question.num_pregunta_id}}" 
+              (click)="setActiveQuestion(question.num_pregunta_id, 0)"
+              [attr.maxlength]="question.max ? (question.bnd_enteros == 1 ? (question.max + (question.max / 3)) : question.max) : 100000000000"/>
           </div>
         </div>
       </div>

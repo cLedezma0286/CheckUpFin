@@ -6,8 +6,6 @@ import { AddObjectiveComponent } from './add-objective/add-objective.component';
 import { AddNotesComponent } from './add-notes/add-notes.component';
 import { SharedComponentsModule } from '@shared-components/shared-components.module';
 
-
-
 @NgModule({
   imports: [
     BrowserModule,

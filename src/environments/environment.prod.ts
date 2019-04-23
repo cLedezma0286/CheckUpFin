@@ -8,5 +8,9 @@ export const environment = {
   OBJECTIVES_URL: BASE_URL + 'objetivos',
   PRODUCTS_URL: BASE_URL + 'productos',
   PRODUCTS_URL2: BASE_URL + 'products',
-  QUESTIONS_URL: BASE_URL + 'preguntas'
+  QUESTIONS_URL: BASE_URL + 'preguntas',
+  headersObj: {
+		  	'Content-type': 'application/json',
+		  	'Cache-Control': 'no-cache, no-store, must-revalidate, post-check=0, pre-check=0'
+  		}
 };

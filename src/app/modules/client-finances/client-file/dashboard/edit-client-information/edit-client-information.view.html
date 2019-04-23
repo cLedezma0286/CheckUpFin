@@ -20,7 +20,13 @@
       </div>
       <div class="client_input">
         <p class="placeholder">Cumpleaños</p>
-        <input type="text" formControlName="birthday" maxlength="10" (keyup)="validateBirthdayFormat()" placeholder="31/12/1999"/>
+        <input 
+          type="text" 
+          formControlName="birthday" 
+          maxlength="10" 
+          [DateValidator]="true" 
+          placeholder="AAAA/MM/DD" 
+          mask="0000/00/00" />
       </div>
       <div class="client_input">
         <p class="placeholder">Estado civil</p>

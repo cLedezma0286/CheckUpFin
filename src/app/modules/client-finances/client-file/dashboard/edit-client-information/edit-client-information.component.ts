@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Client } from '@models/client.model';
 import { ClientsService } from '@services/clients.service';
 @Component({
   selector: 'edit-client-information',
@@ -7,7 +8,8 @@ import { ClientsService } from '@services/clients.service';
   styleUrls: ['edit-client-information.style.scss']
 })
 export class EditClientInformationComponent implements OnInit{
-  @Output() close_edit_section: EventEmitter<void> = new EventEmitter<void>();
+  @Output() close_edit_section: EventEmitter<any> = new EventEmitter<any>();
+  @Input('client_information') client_information: Client = new Client();
   name: string;
   next_checkup: string;
   user_information: FormGroup = this.fb.group({
@@ -35,14 +37,9 @@ export class EditClientInformationComponent implements OnInit{
   });
   constructor(public clientsService: ClientsService, public fb: FormBuilder){}
   ngOnInit(){
-    let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
-    this.clientsService.getClientInformation(client_cis).subscribe(
-      response => {
-        this.name = response['nombre_clie'];
-        this.next_checkup = response['sig_checkup'];
-        this.setFormValues(response);
-      }
-    );
+    this.name = this.client_information.nombre_clie;
+    this.next_checkup = this.client_information.sig_checkup;
+    this.setFormValues(this.client_information);
   }
   setFormValues(user){
     this.user_information.controls.position.setValue(user.ocupacion);
@@ -61,7 +58,7 @@ export class EditClientInformationComponent implements OnInit{
     return hobbies_array.map(function(e){return e.trim()});
   }
   closeEditClientInformation(){
-    this.close_edit_section.emit();
+    this.close_edit_section.emit(this.client_information);
   }
   setClientPersonalInformation(){
     if (this.user_information.valid) {
@@ -76,9 +73,13 @@ export class EditClientInformationComponent implements OnInit{
         sig_checkup: this.next_checkup,
         num_hijos: this.user_information.value.number_of_childrens
       }
+
+      user_aux['edad'] = this.getYearsOfAge(user_aux.fecha_nacimiento);
       let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
       this.clientsService.setClientPersonalInformation(client_cis, user_aux).subscribe(
-        response => {
+        (response: Client) => {
+          console.log(response);
+          this.client_information = response;
           this.closeEditClientInformation();
         }
       );
@@ -86,23 +87,18 @@ export class EditClientInformationComponent implements OnInit{
       alert('Ha ocurrido un error');
     }
   }
-  getDateFormat(date){
-    let date_array = date.replace('/','-').replace('/','-');
-    date_array = date_array.split('-');
-    date_array = date_array[0] + '-' +
-      ('0'+(date_array[1])).slice(-2) + '-' +
-      ('0' + date_array[2]).slice(-2);;
-    return date_array;
+
+  getYearsOfAge(date: string){
+    let birthday = new Date(date);
+    let age_dif_ms = Date.now() - birthday.getTime();
+    let age_date = new Date(age_dif_ms);
+    return Math.abs(age_date.getUTCFullYear() - 1970);
+    // console.log('getYearsOfAge INTERVIEW', client, this.clientAge);
   }
-  validateBirthdayFormat(){
-    let new_birthday_value = this.user_information.value.birthday;
-    new_birthday_value = new_birthday_value.replace(/[^0-9\/]+/g, '').replace('//', '/');
-    if (new_birthday_value.match(/^\d{2}$/) !== null) {
-      new_birthday_value = new_birthday_value + '/';
-    } else if (new_birthday_value.match(/^\d{2}\/\d{2}$/) !== null) {
-      new_birthday_value = new_birthday_value + '/';
-    }
-    new_birthday_value = new_birthday_value.substr(0, 10);
-    this.user_information.controls.birthday.setValue(new_birthday_value);
+
+  getDateFormat(date){
+
+    let theDate = date.replace(/\//g, '');
+    return `${theDate.substring(0,4)}-${theDate.substring(4, 6)}-${theDate.substring(6)}`;
   }
 }

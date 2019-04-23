@@ -5,6 +5,8 @@ import { ProductsModule } from './products/products.module';
 import { ClientFileModule } from './client-file/client-file.module';
 import { ClientFinancesComponent } from './client-finances.component';
 import { SharedComponentsModule } from '@shared-components/shared-components.module';
+
+
 @NgModule({
   imports: [
     BrowserModule,
