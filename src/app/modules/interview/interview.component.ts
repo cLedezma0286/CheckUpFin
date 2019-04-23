@@ -52,9 +52,11 @@ export class InterviewComponent implements OnInit{
     
     this.clientsService.getClientInformation(client_cis).subscribe(
       (response: Client) => {
-        console.log('InterviewComponent', response);
+        // console.log('InterviewComponent', response);
         this.client = response;
+
         this.getYearsOfAge(response);
+
       }
     );
 
@@ -62,7 +64,7 @@ export class InterviewComponent implements OnInit{
       params => {
         this.interview_id = params['id'];
 
-        console.log('queryParams', params);
+        // console.log('queryParams', params);
 
         this.questionsService.getQuestions().subscribe(
           response => {
@@ -112,16 +114,26 @@ export class InterviewComponent implements OnInit{
                   question_with_block_index = null;
                 }
               }
-            }  
+            }
+
+            if(this.client.nombre_clie) this.interview.controls[this.getQuestionControlName(1)].setValue(this.client.nombre_clie), this.interview.controls[this.getQuestionControlName(1)].disable();
+            if(this.clientAge) this.interview.controls[this.getQuestionControlName(2)].setValue(this.clientAge), this.interview.controls[this.getQuestionControlName(2)].disable();;
+
+
             this.interval = setInterval(()=> {
-              if (document.getElementById('question_1')) {
-                this.focusQuestion(1);
+
+              if (document.getElementById('question_3')) {
+
+                this.focusQuestion(3);
+                
                 if (this.interview_id) {
                   this.interviewService.getInterviewInformation(this.interview_id).subscribe(
                     response => {
+                      // console.log('getInterviewInformation DONE', response);
                       this.setAnswers(response['respuestas']);
                     },
                     error => {
+                      // console.log('getInterviewInformation ERR', error);
                       alert('Ha ocurrido un error');
                     }
                   );
@@ -176,12 +188,14 @@ export class InterviewComponent implements OnInit{
   }
 
   getYearsOfAge(client: Client){
+    // console.log('interview getYearsOfAge', client.fecha_nacimiento, client.edad);
     if (client.fecha_nacimiento) {
       let birthday = new Date(client.fecha_nacimiento);
       let age_dif_ms = Date.now() - birthday.getTime();
       let age_date = new Date(age_dif_ms);
-      this.clientAge = (client.edad > 0) ? client.edad : Math.abs(age_date.getUTCFullYear() - 1970);
-      // console.log('getYearsOfAge INTERVIEW', client.edad, Math.abs(age_date.getUTCFullYear() - 1970));
+      // console.log('parser from nac', Math.abs(age_date.getUTCFullYear() - 1970));
+      this.clientAge = Math.abs(age_date.getUTCFullYear() - 1970);
+      // console.log('getYearsOfAge INTERVIEW END', this.clientAge);
     } else {
       this.clientAge = 0;
     }
@@ -353,6 +367,7 @@ export class InterviewComponent implements OnInit{
         }
       }
     }
+
   }
   getAnswersById(answers, id){
     let answers_with_id = [];
@@ -1437,10 +1452,10 @@ export class InterviewComponent implements OnInit{
     
     this.interviewService.createInterview(interview_aux).subscribe(
       response => {
-        console.log('interviewCorrectly created');
+        // console.log('interviewCorrectly created');
         this.clientsService.getClientInformation(client_cis).subscribe(
           client => {
-            console.log('CLIENT INFO CORRECTLY FETCHED');
+            // console.log('CLIENT INFO CORRECTLY FETCHED');
             localStorage.setItem('cliente', JSON.stringify(client));
             localStorage.setItem('actual_interview_id', JSON.stringify(response['id']));
             this.router.navigate(['/financial-health'], { queryParams: { simple_view: 'true' }});
@@ -1448,7 +1463,7 @@ export class InterviewComponent implements OnInit{
         );
       },
       error => {
-        console.error('CREATE INTERVIEW ERR', error);
+        // console.error('CREATE INTERVIEW ERR', error);
         if (this.interview_id) {
           this.router.navigate(['/interview'], { queryParams: {id: this.interview_id}});
         } else {

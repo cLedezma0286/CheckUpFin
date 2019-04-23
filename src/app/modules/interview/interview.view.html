@@ -64,8 +64,8 @@
             <input 
               type="text" 
               [attr.id]="'question_date_' + question.num_pregunta_id" 
-              (click)="setActiveQuestion(question.num_pregunta_id, 0)" 
-              minlength="0"
+              formControlName="{{'question_' + question.num_pregunta_id}}" 
+              (click)="setActiveQuestion(question.num_pregunta_id, 0)"
               [attr.maxlength]="question.max ? (question.bnd_enteros == 1 ? (question.max + (question.max / 3)) : question.max) : 100000000000"/>
           </div>
         </div>

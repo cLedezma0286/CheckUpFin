@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit{
     this.clientsService.getClientInformation(client_cis).subscribe(
       (response: Client) => {
         this.client_information = response;
-        console.log('this.client_information', this.client_information);
+        // console.log('this.client_information', this.client_information);
       }
     );
   }
@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit{
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
-    console.log('Back button pressed previus DASHBOARD');
+    // console.log('Back button pressed previus DASHBOARD');
     event.preventDefault();
     // this.router.navigate(['/interview'], { queryParams: {id: localStorage.getItem('actual_interview_id')}});
   }
