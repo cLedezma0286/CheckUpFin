@@ -32,7 +32,7 @@ export class MaxValue implements OnInit{
 			let theValue = (validNumber.toString().length > 3) ? 
 								'$' + this.numberWithCommas(validNumber) 
 								: 
-								(validNumber.toString().length > 1 ? (validNumber > 0 ? validNumber : 0) : validNumber);
+								(validNumber.toString().length > 1 ? (validNumber > 0 ? Math.round(validNumber) : 0) : validNumber);
 			this.control.control.setValue(theValue, {emitEvent: false});
 		});
     }
