@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, HostListener } from '@angular/core';
+import { Component, AfterContentInit , Inject, HostListener, OnDestroy } from '@angular/core';
 import { DOCUMENT } from '@angular/common'; 
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
@@ -7,16 +7,18 @@ import { InterviewService } from '@services/interview.service';
 import { ClientsService } from '@services/clients.service';
 import { Client } from '@models/client.model';
 
+import { Subscription } from 'rxjs';
+
 declare var jsCalendar: any;
 @Component({
   selector: 'interview',
   templateUrl: 'interview.view.html',
   styleUrls: ['interview.style.scss']
 })
-export class InterviewComponent implements OnInit{
+export class InterviewComponent implements AfterContentInit , OnDestroy{
   interview: FormGroup = this.fb.group({});
   interview_id = null;
-  questions = [];
+  questions: Array<any>;
   active_question_id = null;
   interval: any;
   actual_question_five_value = null;
@@ -32,8 +34,10 @@ export class InterviewComponent implements OnInit{
   add_note_modal_open = false;
   notes = [];
 
+  clientInfoSusbscription: Subscription;
+
   clientAge;
-  client: Client = new Client();
+  client: Client;
 
   scrollInterval;
 
@@ -43,18 +47,18 @@ export class InterviewComponent implements OnInit{
     public questionsService: QuestionsService,
     public interviewService: InterviewService,
     public clientsService: ClientsService, 
-    public fb: FormBuilder,
-    @Inject(DOCUMENT) document){}
-  ngOnInit(){
+    public fb: FormBuilder){}
+  ngAfterContentInit (){
+
+    console.log('ngOnInit INTERVIEW!!!');
 
     if(!localStorage.getItem('cliente')) this.router.navigate(['client-search']);
     let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
     
-    this.clientsService.getClientInformation(client_cis).subscribe(
+    this.clientInfoSusbscription = this.clientsService.getClientInformation(client_cis).subscribe(
       (response: Client) => {
         // console.log('InterviewComponent', response);
         this.client = response;
-
         this.getYearsOfAge(response);
 
       }
@@ -76,11 +80,11 @@ export class InterviewComponent implements OnInit{
             // console.log('form_aux', form_aux);
             this.interview = this.fb.group(form_aux);
 
-            // this.interview.valueChanges.subscribe(() => {
-            //   console.log('INTERVIEW CHANGES', this.interview);
-            // });
             
-            this.questions = response['preguntas'];
+            this.questions = response['preguntas'].slice();
+
+            console.log('allQuestionsSusbscription', this.questions);
+
             let question_with_block_index = null;
             for (var i = 0; i < this.questions.length; i++) {
               this.questions[i]['des_prev_preg'] = (i > 0) ? this.questions[i - 1].num_pregunta_id : 1;
@@ -116,20 +120,19 @@ export class InterviewComponent implements OnInit{
               }
             }
 
-            if(this.client.nombre_clie) this.interview.controls[this.getQuestionControlName(1)].setValue(this.client.nombre_clie), this.interview.controls[this.getQuestionControlName(1)].disable();
-            if(this.clientAge) this.interview.controls[this.getQuestionControlName(2)].setValue(this.clientAge), this.interview.controls[this.getQuestionControlName(2)].disable();;
-
 
             this.interval = setInterval(()=> {
 
               if (document.getElementById('question_3')) {
 
+                if(this.client.nombre_clie) this.interview.controls[this.getQuestionControlName(1)].setValue(this.client.nombre_clie), this.interview.controls[this.getQuestionControlName(1)].disable();
+                if(this.clientAge) this.interview.controls[this.getQuestionControlName(2)].setValue(this.clientAge), this.interview.controls[this.getQuestionControlName(2)].disable();
                 this.focusQuestion(3);
                 
                 if (this.interview_id) {
                   this.interviewService.getInterviewInformation(this.interview_id).subscribe(
                     response => {
-                      // console.log('getInterviewInformation DONE', response);
+                      console.log('getInterviewInformation DONE', response);
                       this.setAnswers(response['respuestas']);
                     },
                     error => {
@@ -142,15 +145,6 @@ export class InterviewComponent implements OnInit{
               }
             },100);
 
-            let theInterval = setInterval(() => {
-              this.interview.controls[this.getQuestionControlName(2)].valueChanges.subscribe(val => {
-                this.client.edad = val;
-                var d = new Date();
-                d.setFullYear(d.getFullYear() - val);
-                this.client.fecha_nacimiento = `${d.getFullYear()}${this.client.fecha_nacimiento.slice(4)}`;
-                console.log('ageChanged', val, this.client);
-              });
-            }, 100);
           },
           error => {
             alert('Ha ocurrido un error');
@@ -174,10 +168,11 @@ export class InterviewComponent implements OnInit{
         this.setPreviousQuestionAsActive();
       } else 
       if (event.keyCode === 39) { //Right
-        // console.log('RIGHT!!!')
+        console.log('RIGHT!!!')
         this.setNextOptionAsFocused(event.target['selectionStart']);
       } else 
       if (event.keyCode === 37) { //Left
+        console.log('LEFT!!!')
         this.setPreviousOptionAsFocused();
       } else
 
@@ -205,7 +200,7 @@ export class InterviewComponent implements OnInit{
 
 
   setAnswers(answers){
-    // console.log('setAnswers', this.clientAge, answers);
+    console.log('setAnswers', this.clientAge, answers);
     for (var i = 0; i < answers.length; i++) {
       let question_aux = this.getQuestionById(answers[i].pregunta_id);
       if (question_aux) {
@@ -216,8 +211,6 @@ export class InterviewComponent implements OnInit{
           let answer_value = +answers[i].texto.replace(/,/g, '');
           
           this.interview.controls[this.getQuestionControlName(answers[i].pregunta_id)].setValue(answer_value);
-          
-          if(question_aux.num_pregunta_id === 2) console.log('QUESTION NUM 2!!!'), this.interview.controls[this.getQuestionControlName(2)].setValue(this.clientAge);
           
           if (question_aux.num_pregunta_id === 5) {
             this.throwSpecialCase(5);
@@ -437,6 +430,7 @@ export class InterviewComponent implements OnInit{
     return options.indexOf(answer) !== -1;
   }
   isActualQuestionsTheLastone(){
+    console.log('isActualQuestionsTheLastone', this.questions, this.active_question_id);
     return this.questions[(this.questions.length - 1)].num_pregunta_id === this.active_question_id;
   }
   focusQuestion(question_id){
@@ -444,8 +438,10 @@ export class InterviewComponent implements OnInit{
     document.getElementById('question_' + question_id).click();
   }
   setActiveQuestion(question_id, option?){
-    // console.log('you just focus one question');
+    console.log('you just focus one question', question_id, option);
     this.active_question_id = question_id;
+    console.log('you just focus one question', question_id, 'this.active_question_id', this.active_question_id);
+    if(this.scrollInterval) clearInterval(this.scrollInterval);
     this.smoothlyScroll(document.getElementById('question_container_' + question_id).offsetTop - 188);
     document.getElementById('question_' + question_id).focus();
     // document.getElementById('content').scrollTop = document.getElementById('question_container_' + question_id).offsetTop - 188;
@@ -491,7 +487,9 @@ export class InterviewComponent implements OnInit{
     }, .1);
   }
 
-  selectOptionByClick(question_id, option){
+  selectOptionByClick(question_id, option, onKeydown?, ev?){
+    if(onKeydown && ev.keyCode != 13) return;
+
     this.setActiveQuestion(question_id, option);
     this.setActualOptionAsSelected();
   }
@@ -728,8 +726,11 @@ export class InterviewComponent implements OnInit{
     },100);
   }
   setNextOptionAsFocused(selection_start?){
+    console.log('setNextOptionAsFocused', this.questions);
     for (var i = 0; i < this.questions.length; i++) {
       if (this.active_question_id === this.questions[i].num_pregunta_id) {
+        console.log('setNextOptionAsFocused MATCH!!!', this.questions[i]);
+
         if (this.questions[i].tipo_fecha === 1) {
           let characters_quantity = this.interview.value[this.getQuestionControlName(this.questions[i].num_pregunta_id)].length;
           if (characters_quantity === selection_start) {
@@ -739,36 +740,57 @@ export class InterviewComponent implements OnInit{
             }
           }
         }
-        if (this.questions[i].des_opciones.length !== 0) {
+
+        if (this.questions[i].des_opciones.length) {
+
+          console.log('HAS OPTIONS', this.questions[i].focused, this.questions[i].des_opciones.length);
           if (this.questions[i].focused < (this.questions[i].des_opciones.length - 1)) {
-            if (this.questions[i].tipo_fecha === 1) {
-              if (this.questions[i].focused !== -1) {
-                this.questions[i].focused = this.questions[i].focused + 1;
-                return;
-              }
-            }else {
-              this.questions[i].focused = this.questions[i].focused + 1;
-              return;
-            }
+
+            this.questions[i].focused = (this.questions[i].tipo_fecha === 1) ? (this.questions[i].focused !== -1 ? this.questions[i].focused + 1 : 0) : this.questions[i].focused + 1;
+
+            let options = Array.from(document.getElementsByClassName(this.questions[i].num_pregunta_id + '_option'));
+            options.map(opt => opt.classList.remove('focused'));
+            let focusedOpt = document.getElementById(this.questions[i].num_pregunta_id + '_option_' + this.questions[i].focused);
+            focusedOpt.classList.add('focused');
+            console.log('at END!!!', JSON.parse(JSON.stringify(this.questions[i])));
+
+            // if (this.questions[i].tipo_fecha === 1) {
+            //   if (this.questions[i].focused !== -1) this.questions[i].focused = this.questions[i].focused + 1;
+            // }else {
+            //   this.questions[i].focused = this.questions[i].focused + 1;
+            //   return;
+            // }
+
           }
         }
       }
     }
   }
   setPreviousOptionAsFocused(){
+    console.log('setPreviousOptionAsFocused', this.questions);
     for (var i = 0; i < this.questions.length; i++) {
+
       if (this.active_question_id === this.questions[i].num_pregunta_id) {
+        console.log('setPreviousOptionAsFocused MATCH!!!', this.questions[i]);
+
         if (this.questions[i].des_opciones.length !== 0) {
+  
           if (this.questions[i].focused > 0) {
+
             if (this.questions[i].tipo_fecha === 1) {
               if (this.questions[i].focused !== -1) {
                 this.questions[i].focused = this.questions[i].focused - 1;
-                return;
               }
             }else {
               this.questions[i].focused = this.questions[i].focused - 1;
-              return;
             }
+
+            let options = Array.from(document.getElementsByClassName(this.questions[i].num_pregunta_id + '_option'));
+            options.map(opt => opt.classList.remove('focused'));
+            let focusedOpt = document.getElementById(this.questions[i].num_pregunta_id + '_option_' + this.questions[i].focused);
+            focusedOpt.classList.add('focused');
+            console.log('at END!!!', JSON.parse(JSON.stringify(this.questions[i])));
+
           } else if (this.questions[i].focused === 0) {
             this.focusQuestion(this.questions[i].num_pregunta_id);
             return;
@@ -779,16 +801,19 @@ export class InterviewComponent implements OnInit{
   }
   setActualOptionAsSelected(){
     let actual_question = this.getActualQuestion();
-    if (actual_question.des_opciones.length !== 0) {
+    console.log('setActualOptionAsSelected', actual_question);
+    if (actual_question.des_opciones.length) {
+
       if (actual_question.bnd_op_mult === 0) { //La pregunta no es de multiples opciones
         actual_question.selected = [];
         actual_question.selected.push(actual_question.focused);
+
         if (actual_question.num_pregunta_id === 20) {
           this.throwSpecialCase(20);
         } else {
           //this.setNextQuestionAsActive();
         }
-        return;
+     
       } else { //Se pueden escoger varias opciones
         if (actual_question.selected.indexOf(actual_question.focused) !== -1) {
           for (var i = 0; i < actual_question.selected.length; i++) {
@@ -800,7 +825,6 @@ export class InterviewComponent implements OnInit{
               if (actual_question.num_pregunta_id === 72) {
                 this.throwSpecialCase(72);
               }
-              return;
             }
           }
         } else {
@@ -820,9 +844,13 @@ export class InterviewComponent implements OnInit{
           if (actual_question.num_pregunta_id === 72) {
             this.throwSpecialCase(72);
           }
-          return;
         }
       }
+
+      let options = Array.from(document.getElementsByClassName(actual_question.num_pregunta_id + '_option'));
+      options.map(opt => opt.classList.remove('selected'));
+      actual_question.selected.map(idxSelected => document.getElementById(actual_question.num_pregunta_id + '_option_' + idxSelected).classList.add('selected'));
+      console.log('at END setActualOptionAsSelected!!!', JSON.parse(JSON.stringify(actual_question)));
     }
   }
   validateValue(question){
@@ -1442,12 +1470,6 @@ export class InterviewComponent implements OnInit{
       }
     }
 
-    this.clientsService.setClientPersonalInformation(client_cis, this.client).subscribe(data => {
-      console.log(data);
-    }, err => {
-      console.error('error on edit', err);
-    });
-
     this.router.navigate(['/loading/finance-health']);
     
     this.interviewService.createInterview(interview_aux).subscribe(
@@ -1577,5 +1599,32 @@ export class InterviewComponent implements OnInit{
       }
     }
     return question.des_texto;
+  }
+
+  ngOnDestroy() {
+    console.log('destroying');
+
+    this.active_question_id = 3;
+    
+    this.actual_question_five_value = null;
+    this.actual_iterations_of_block_two = 0;
+    this.actual_question_45_value = null;
+    this.actual_credits_selected = [];
+    this.first_time_with_credits = true;
+    this.actual_question_67_value = null;
+    this.question_72_previous = [];
+    this.first_time_with_currency = true;
+    this.add_objective_modal_open = false;
+    this.objectives = [];
+    this.add_note_modal_open = false;
+    this.notes = [];
+
+    this.clientAge = undefined;
+    this.client = undefined;
+
+    clearInterval(this.interval);
+    clearInterval(this.scrollInterval);
+
+    if(this.clientInfoSusbscription) this.clientInfoSusbscription.unsubscribe();
   }
 }
