@@ -56,7 +56,7 @@
     </div>
     <div class="controls">
       <p (click)="closeEditClientInformation()">Cancelar</p>
-      <button [ngStyle]="{'background-color': user_information.invalid || user_information.untouched ? '#d7d8d6' : '#db0011'}" [disabled]="user_information.invalid || user_information.untouched">Guardar</button>
+      <button [ngStyle]="{'background-color': user_information.invalid ? '#d7d8d6' : '#db0011'}" [disabled]="user_information.invalid">Guardar</button>
     </div>
   </form>
 </section>
