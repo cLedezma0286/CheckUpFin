@@ -42,15 +42,19 @@ export class EditClientInformationComponent implements OnInit{
     this.setFormValues(this.client_information);
   }
   setFormValues(user){
-    this.user_information.controls.position.setValue(user.ocupacion);
-    this.user_information.controls.phone.setValue(user.telefono);
-    this.user_information.controls.email.setValue(user.correo);
-    this.user_information.controls.number_of_childrens.setValue(user.num_hijos);
-    this.user_information.controls.birthday.setValue(user.fecha_nacimiento.replace(/-/gi,'/'));
-    this.user_information.controls.civil_status.setValue(user.edo_civil);
-    this.user_information.controls.cis.setValue(user.num_clie_cis);
-    this.user_information.controls.hobbies.setValue(user.hobbies.join(', '));
-    this.user_information.controls.risk_profile.setValue(user.perfil_riesgo);
+    setTimeout(() => {
+
+      this.user_information.controls.position.setValue(user.ocupacion);
+      this.user_information.controls.phone.setValue(user.telefono);
+      this.user_information.controls.email.setValue(user.correo);
+      this.user_information.controls.number_of_childrens.setValue(user.num_hijos);
+      this.user_information.controls.birthday.setValue(user.fecha_nacimiento.replace(/-/gi,'/'));
+      this.user_information.controls.civil_status.setValue(user.edo_civil);
+      this.user_information.controls.cis.setValue(user.num_clie_cis);
+      this.user_information.controls.hobbies.setValue(user.hobbies.join(', '));
+      this.user_information.controls.risk_profile.setValue(user.perfil_riesgo);
+
+    }, 20);
 
   }
   stringToHobbies(hobbies_string){
