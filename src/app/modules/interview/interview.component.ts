@@ -1,4 +1,4 @@
-import { Component, AfterContentInit , Inject, HostListener, OnDestroy } from '@angular/core';
+import { Component, OnInit , Inject, HostListener, OnDestroy } from '@angular/core';
 import { DOCUMENT } from '@angular/common'; 
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
@@ -15,7 +15,7 @@ declare var jsCalendar: any;
   templateUrl: 'interview.view.html',
   styleUrls: ['interview.style.scss']
 })
-export class InterviewComponent implements AfterContentInit , OnDestroy{
+export class InterviewComponent implements OnInit , OnDestroy{
   interview: FormGroup = this.fb.group({});
   interview_id = null;
   questions: Array<any>;
@@ -47,8 +47,9 @@ export class InterviewComponent implements AfterContentInit , OnDestroy{
     public questionsService: QuestionsService,
     public interviewService: InterviewService,
     public clientsService: ClientsService, 
-    public fb: FormBuilder){}
-  ngAfterContentInit (){
+    public fb: FormBuilder,
+    @Inject(DOCUMENT) document){}
+  ngOnInit (){
 
     console.log('ngOnInit INTERVIEW!!!');
 
@@ -82,8 +83,6 @@ export class InterviewComponent implements AfterContentInit , OnDestroy{
 
             
             this.questions = response['preguntas'].slice();
-
-            console.log('allQuestionsSusbscription', this.questions);
 
             let question_with_block_index = null;
             for (var i = 0; i < this.questions.length; i++) {
@@ -152,34 +151,26 @@ export class InterviewComponent implements AfterContentInit , OnDestroy{
         );
       }
     );
+  }
 
-    document.addEventListener('keydown', (event) => {
-      // console.log('keydown', event);
-      event.stopImmediatePropagation();
-      if(event.keyCode == 9) event.preventDefault();
-
-      if (event.keyCode === 40 || (event.keyCode === 9  && !event.shiftKey)) { //Down
-        // console.log('DOWN!!!')
-        this.setNextQuestionAsActive();
-      } else 
-      if (event.keyCode === 38 || (event.keyCode === 9 && event.shiftKey)) { //Up
-        // console.log('UP!!!')
-        
-        this.setPreviousQuestionAsActive();
-      } else 
-      if (event.keyCode === 39) { //Right
-        console.log('RIGHT!!!')
-        this.setNextOptionAsFocused(event.target['selectionStart']);
-      } else 
-      if (event.keyCode === 37) { //Left
-        console.log('LEFT!!!')
-        this.setPreviousOptionAsFocused();
-      } else
-
-      if (event.keyCode === 13) { //Enter
-        this.setActualOptionAsSelected();
-      }
-    });
+  @HostListener('document:keyup', ['$event'])
+  downShortcut(event: KeyboardEvent) {
+    // console.log('document:keyup', event.keyCode);
+    if (event.keyCode === 38 || (event.keyCode === 9 && event.shiftKey)) { //Up
+      this.setPreviousQuestionAsActive();
+    }
+    if (event.keyCode === 40 || (event.keyCode === 9  && !event.shiftKey)) { //Down
+      this.setNextQuestionAsActive();
+    }
+    if (event.keyCode === 39) { //Right
+      this.setNextOptionAsFocused(event.target['selectionStart']);
+    }
+    if (event.keyCode === 37) { //Left
+      this.setPreviousOptionAsFocused();
+    }
+    if (event.keyCode === 13) { //Enter
+      this.setActualOptionAsSelected();
+    }
   }
 
   getYearsOfAge(client: Client){
@@ -200,7 +191,7 @@ export class InterviewComponent implements AfterContentInit , OnDestroy{
 
 
   setAnswers(answers){
-    console.log('setAnswers', this.clientAge, answers);
+    // console.log('setAnswers', this.clientAge, answers);
     for (var i = 0; i < answers.length; i++) {
       let question_aux = this.getQuestionById(answers[i].pregunta_id);
       if (question_aux) {
@@ -430,7 +421,7 @@ export class InterviewComponent implements AfterContentInit , OnDestroy{
     return options.indexOf(answer) !== -1;
   }
   isActualQuestionsTheLastone(){
-    console.log('isActualQuestionsTheLastone', this.questions, this.active_question_id);
+    // console.log('isActualQuestionsTheLastone', this.questions, this.active_question_id);
     return this.questions[(this.questions.length - 1)].num_pregunta_id === this.active_question_id;
   }
   focusQuestion(question_id){
@@ -438,9 +429,9 @@ export class InterviewComponent implements AfterContentInit , OnDestroy{
     document.getElementById('question_' + question_id).click();
   }
   setActiveQuestion(question_id, option?){
-    console.log('you just focus one question', question_id, option);
+    // console.log('you just focus one question', question_id, option);
     this.active_question_id = question_id;
-    console.log('you just focus one question', question_id, 'this.active_question_id', this.active_question_id);
+    // console.log('you just focus one question', question_id, 'this.active_question_id', this.active_question_id);
     if(this.scrollInterval) clearInterval(this.scrollInterval);
     this.smoothlyScroll(document.getElementById('question_container_' + question_id).offsetTop - 188);
     document.getElementById('question_' + question_id).focus();
@@ -487,9 +478,7 @@ export class InterviewComponent implements AfterContentInit , OnDestroy{
     }, .1);
   }
 
-  selectOptionByClick(question_id, option, onKeydown?, ev?){
-    if(onKeydown && ev.keyCode != 13) return;
-
+  selectOptionByClick(question_id, option){
     this.setActiveQuestion(question_id, option);
     this.setActualOptionAsSelected();
   }
@@ -746,20 +735,14 @@ export class InterviewComponent implements AfterContentInit , OnDestroy{
           console.log('HAS OPTIONS', this.questions[i].focused, this.questions[i].des_opciones.length);
           if (this.questions[i].focused < (this.questions[i].des_opciones.length - 1)) {
 
-            this.questions[i].focused = (this.questions[i].tipo_fecha === 1) ? (this.questions[i].focused !== -1 ? this.questions[i].focused + 1 : 0) : this.questions[i].focused + 1;
+            // this.questions[i].focused = (this.questions[i].tipo_fecha === 1) ? (this.questions[i].focused !== -1 ? this.questions[i].focused + 1 : 0) : this.questions[i].focused + 1;
 
-            let options = Array.from(document.getElementsByClassName(this.questions[i].num_pregunta_id + '_option'));
-            options.map(opt => opt.classList.remove('focused'));
-            let focusedOpt = document.getElementById(this.questions[i].num_pregunta_id + '_option_' + this.questions[i].focused);
-            focusedOpt.classList.add('focused');
-            console.log('at END!!!', JSON.parse(JSON.stringify(this.questions[i])));
-
-            // if (this.questions[i].tipo_fecha === 1) {
-            //   if (this.questions[i].focused !== -1) this.questions[i].focused = this.questions[i].focused + 1;
-            // }else {
-            //   this.questions[i].focused = this.questions[i].focused + 1;
-            //   return;
-            // }
+            if (this.questions[i].tipo_fecha === 1) {
+              if (this.questions[i].focused !== -1) this.questions[i].focused = this.questions[i].focused + 1;
+            }else {
+              this.questions[i].focused = this.questions[i].focused + 1;
+              return;
+            }
 
           }
         }
@@ -780,16 +763,12 @@ export class InterviewComponent implements AfterContentInit , OnDestroy{
             if (this.questions[i].tipo_fecha === 1) {
               if (this.questions[i].focused !== -1) {
                 this.questions[i].focused = this.questions[i].focused - 1;
+                return;
               }
             }else {
               this.questions[i].focused = this.questions[i].focused - 1;
+              return;
             }
-
-            let options = Array.from(document.getElementsByClassName(this.questions[i].num_pregunta_id + '_option'));
-            options.map(opt => opt.classList.remove('focused'));
-            let focusedOpt = document.getElementById(this.questions[i].num_pregunta_id + '_option_' + this.questions[i].focused);
-            focusedOpt.classList.add('focused');
-            console.log('at END!!!', JSON.parse(JSON.stringify(this.questions[i])));
 
           } else if (this.questions[i].focused === 0) {
             this.focusQuestion(this.questions[i].num_pregunta_id);
@@ -813,6 +792,7 @@ export class InterviewComponent implements AfterContentInit , OnDestroy{
         } else {
           //this.setNextQuestionAsActive();
         }
+        return;
      
       } else { //Se pueden escoger varias opciones
         if (actual_question.selected.indexOf(actual_question.focused) !== -1) {
@@ -825,6 +805,7 @@ export class InterviewComponent implements AfterContentInit , OnDestroy{
               if (actual_question.num_pregunta_id === 72) {
                 this.throwSpecialCase(72);
               }
+              return;
             }
           }
         } else {
@@ -844,13 +825,10 @@ export class InterviewComponent implements AfterContentInit , OnDestroy{
           if (actual_question.num_pregunta_id === 72) {
             this.throwSpecialCase(72);
           }
+          return;
         }
       }
 
-      let options = Array.from(document.getElementsByClassName(actual_question.num_pregunta_id + '_option'));
-      options.map(opt => opt.classList.remove('selected'));
-      actual_question.selected.map(idxSelected => document.getElementById(actual_question.num_pregunta_id + '_option_' + idxSelected).classList.add('selected'));
-      console.log('at END setActualOptionAsSelected!!!', JSON.parse(JSON.stringify(actual_question)));
     }
   }
   validateValue(question){
@@ -1604,23 +1582,23 @@ export class InterviewComponent implements AfterContentInit , OnDestroy{
   ngOnDestroy() {
     console.log('destroying');
 
-    this.active_question_id = 3;
+    // this.active_question_id = 3;
     
-    this.actual_question_five_value = null;
-    this.actual_iterations_of_block_two = 0;
-    this.actual_question_45_value = null;
-    this.actual_credits_selected = [];
-    this.first_time_with_credits = true;
-    this.actual_question_67_value = null;
-    this.question_72_previous = [];
-    this.first_time_with_currency = true;
-    this.add_objective_modal_open = false;
-    this.objectives = [];
-    this.add_note_modal_open = false;
-    this.notes = [];
+    // this.actual_question_five_value = null;
+    // this.actual_iterations_of_block_two = 0;
+    // this.actual_question_45_value = null;
+    // this.actual_credits_selected = [];
+    // this.first_time_with_credits = true;
+    // this.actual_question_67_value = null;
+    // this.question_72_previous = [];
+    // this.first_time_with_currency = true;
+    // this.add_objective_modal_open = false;
+    // this.objectives = [];
+    // this.add_note_modal_open = false;
+    // this.notes = [];
 
-    this.clientAge = undefined;
-    this.client = undefined;
+    // this.clientAge = undefined;
+    // this.client = undefined;
 
     clearInterval(this.interval);
     clearInterval(this.scrollInterval);
