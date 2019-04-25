@@ -124,8 +124,10 @@ export class InterviewComponent implements OnInit , OnDestroy{
 
               if (document.getElementById('question_3')) {
 
-                if(this.client.nombre_clie) this.interview.controls[this.getQuestionControlName(1)].setValue(this.client.nombre_clie), this.interview.controls[this.getQuestionControlName(1)].disable();
-                if(this.clientAge) this.interview.controls[this.getQuestionControlName(2)].setValue(this.clientAge), this.interview.controls[this.getQuestionControlName(2)].disable();
+
+
+                if(this.client.nombre_clie) document.getElementById('question_1')['value'] = this.client.nombre_clie, this.interview.controls[this.getQuestionControlName(1)].disable();
+                if(this.clientAge) document.getElementById('question_2')['value'] = this.clientAge, this.interview.controls[this.getQuestionControlName(2)].disable();
                 this.focusQuestion(3);
                 
                 if (this.interview_id) {
