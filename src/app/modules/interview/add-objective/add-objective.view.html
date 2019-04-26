@@ -11,19 +11,49 @@
       <div class="questions_list">
         <div class="question_item" [ngClass]="{past_question: 0 < actual_question_index, actual_question: 0 === actual_question_index, next_question: actual_question_index + 1 === 0, future_question: 0 > actual_question_index + 1}">
           <p class="question">¿Qué objetivo te gustaría lograr?</p>
-          <input type="text" maxlength="254" #question_0 formControlName="what_objective" (focus)="setActualQuestion(0)"/>
+          <input 
+            type="text" 
+            maxlength="254" 
+            #question_0 
+            [noSpecialChars]="true"
+            formControlName="what_objective" 
+            (click)="setActualQuestion(0)"/>
         </div>
         <div class="question_item has_options" [ngClass]="{past_question: 1 < actual_question_index, actual_question: 1 === actual_question_index, next_question: actual_question_index + 1 === 1, future_question: 1 > actual_question_index + 1}">
           <p class="question">¿Cuándo te gustaría lograrlo?</p>
           <div class="answer_container">
-            <input type="number" maxlength="2" #question_1 formControlName="when" (focus)="setActualQuestion(1)"/>
-            <div class="option" [ngClass]="{selected: question_1_selected_option === 'meses'}" (click)="setQuestionOneOptionValue('meses')">Mes</div>
-            <div class="option" [ngClass]="{selected: question_1_selected_option === 'años'}" (click)="setQuestionOneOptionValue('años')">Año</div>
+            <input 
+              type="text" 
+              maxlength="2" 
+              #question_1 
+              [maxValue]="99"
+              [applyMaxValue]="true"
+              formControlName="when" 
+              (click)="setActualQuestion(1)"/>
+            <div 
+              class="option second-q-option focused option-one" 
+              [ngClass]="{selected: question_1_selected_option === 'meses'}" 
+              (click)="setQuestionOneOptionValue('meses')">
+                Mes
+              </div>
+            <div 
+              class="option second-q-option option-two" 
+              [ngClass]="{selected: question_1_selected_option === 'años'}" 
+              (click)="setQuestionOneOptionValue('años')">
+                Año
+              </div>
           </div>
         </div>
         <div class="question_item" [ngClass]="{past_question: 2 < actual_question_index, actual_question: 2 === actual_question_index, next_question: actual_question_index + 1 === 2, future_question: 2 > actual_question_index + 1}">
           <p class="question">¿Cuánto necesitas para lograrlo?</p>
-          <input type="text" maxlength="12" #question_2 formControlName="how_many" (focus)="setActualQuestion(2)"/>
+          <input 
+            type="text" 
+            maxlength="12" 
+            [maxValue]="99"
+            [applyMaxValue]="true"
+            [noSpecialChars]="true"
+            #question_2 formControlName="how_many" 
+            (click)="setActualQuestion(2)"/>
         </div>
       </div>
       <div class="controls" *ngIf="actual_question_index === 2">

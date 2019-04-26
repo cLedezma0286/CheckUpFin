@@ -94,6 +94,9 @@ section{
                 font-size: 18px;
                 font-weight: 300;
                 color: $text-gray;
+                &.focused{
+                  border: 1px solid $primary-red;
+                }
                 &.selected{
                   border: 1px solid $primary-red;
                   color: $primary-red;

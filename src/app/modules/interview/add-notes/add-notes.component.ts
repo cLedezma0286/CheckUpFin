@@ -21,14 +21,26 @@ export class AddNotesComponent implements OnInit{
   closeModal(note){
     this.close.emit(note);
   }
-  @HostListener('document:keyup.arrowUp', ['$event'])
-  upShortcut(event: KeyboardEvent) {
-    this.setPreviousQuestionAsActual();
-  }
-  @HostListener('document:keyup.arrowDown', ['$event'])
+  // @HostListener('document:keyup.arrowUp', ['$event'])
+  // upShortcut(event: KeyboardEvent) {
+  //   this.setPreviousQuestionAsActual();
+  // }
+  // @HostListener('document:keyup.arrowDown', ['$event'])
+  // downShortcut(event: KeyboardEvent) {
+  //   this.setNextQuestionAsActual();
+  // }
+
+  @HostListener('document:keyup', ['$event'])
   downShortcut(event: KeyboardEvent) {
-    this.setNextQuestionAsActual();
+    // console.log('document:keyup', event.keyCode);
+    if (event.keyCode === 38 || (event.keyCode === 9 && event.shiftKey)) { //Up
+      this.setPreviousQuestionAsActual();
+    }
+    if (event.keyCode === 40 || (event.keyCode === 9  && !event.shiftKey)) { //Down
+      this.setNextQuestionAsActual();
+    }
   }
+
   finishNoteForm(){
     let note_aux = {
       title: this.note_form.value.title,
@@ -46,7 +58,7 @@ export class AddNotesComponent implements OnInit{
     }
   }
   setNextQuestionAsActual(){
-    if (this.actual_question_index < 2) {
+    if (this.actual_question_index < 1) {
       this.actual_question_index = this.actual_question_index + 1;
       this[this.getQuestionName()].nativeElement.focus();
     }

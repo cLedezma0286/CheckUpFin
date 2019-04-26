@@ -158,6 +158,9 @@ export class InterviewComponent implements OnInit , OnDestroy{
   @HostListener('document:keyup', ['$event'])
   downShortcut(event: KeyboardEvent) {
     // console.log('document:keyup', event.keyCode);
+
+    if(this.add_objective_modal_open || this.add_note_modal_open) return;
+
     if (event.keyCode === 38 || (event.keyCode === 9 && event.shiftKey)) { //Up
       this.setPreviousQuestionAsActive();
     }
@@ -435,7 +438,7 @@ export class InterviewComponent implements OnInit , OnDestroy{
     this.active_question_id = question_id;
     // console.log('you just focus one question', question_id, 'this.active_question_id', this.active_question_id);
     if(this.scrollInterval) clearInterval(this.scrollInterval);
-    this.smoothlyScroll(document.getElementById('question_container_' + question_id).offsetTop - 188);
+    this.smoothlyScroll(document.getElementById('question_container_' + question_id).offsetTop - 188, question_id);
     document.getElementById('question_' + question_id).focus();
     // document.getElementById('content').scrollTop = document.getElementById('question_container_' + question_id).offsetTop - 188;
     if (option || option === 0) {
@@ -448,7 +451,7 @@ export class InterviewComponent implements OnInit , OnDestroy{
     }
   }
 
-  smoothlyScroll(scrollTo, option?) {
+  smoothlyScroll(scrollTo, question_id) {
     // console.log('scrollTo', scrollTo, 'documentTop', document.getElementById('content').scrollTop);
     let originalScrollTop = document.getElementById('content').scrollTop;
     
@@ -508,6 +511,7 @@ export class InterviewComponent implements OnInit , OnDestroy{
   }
 
   setNextQuestionAsActive(){
+    console.log('working');
     if (this.isActualQuestionsTheLastone()){
       return;
     }

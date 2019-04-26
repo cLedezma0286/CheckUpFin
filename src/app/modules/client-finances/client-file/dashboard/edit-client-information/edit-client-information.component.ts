@@ -48,6 +48,7 @@ export class EditClientInformationComponent implements OnInit{
       this.user_information.controls.phone.setValue(user.telefono);
       this.user_information.controls.email.setValue(user.correo);
       this.user_information.controls.number_of_childrens.setValue(user.num_hijos);
+      // console.log('date', user.fecha_nacimiento.replace(/-/gi,''));
       this.user_information.controls.birthday.setValue(user.fecha_nacimiento.replace(/-/gi,'/'));
       this.user_information.controls.civil_status.setValue(user.edo_civil);
       this.user_information.controls.cis.setValue(user.num_clie_cis);
@@ -82,7 +83,7 @@ export class EditClientInformationComponent implements OnInit{
       let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
       this.clientsService.setClientPersonalInformation(client_cis, user_aux).subscribe(
         (response: Client) => {
-          console.log(response);
+          // console.log(response);
           this.client_information = response;
           this.closeEditClientInformation();
         }
