@@ -19,12 +19,20 @@ export class NotesAndAgreementsComponent{
     description: ['', [Validators.required]]
   });
 
+  /**
+   * Construcctor del componente de Notas y acuerdos.
+   * @param notesAgreementsService Servicio de notas y acuerdos
+   * @param fb Servicio de manejo de forms.
+   */
   constructor(public notesAgreementsService: NotesAndsAgreementsService,
     public fb: FormBuilder){
     this.getNotes();
     // this.getAgreements();
   }
 
+  /**
+   * Función para mandar la petición de obtener las notas del cliente usando su num_clie_cis.
+   */
   getNotes() {
     let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
     this.notesAgreementsService.getNotes(client_cis).subscribe(
@@ -37,6 +45,9 @@ export class NotesAndAgreementsComponent{
     );
   }
 
+  /**
+   * Función para mandar la petición de obtener los acuerdos del cliente usando su num_clie_cis.
+   */
   getAgreements() {
     let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
     this.notesAgreementsService.getAgreements(client_cis).subscribe(
@@ -49,6 +60,10 @@ export class NotesAndAgreementsComponent{
     );
   }
 
+  /**
+   * Función para mandar la petición de eliminar una nota seleccionada.
+   * @param note La nota a eliminar.
+   */
   deleteNote(note) {
     if (window.confirm('¿Eliminar definitivamente?')) {
       this.notesAgreementsService.deleteNote(note.id).subscribe(
@@ -62,6 +77,10 @@ export class NotesAndAgreementsComponent{
     }
   }
 
+  /**
+   * Función para mandar la petición de eliminar un acuerdo seleccionado.
+   * @param agreement El acuerdo a eliminar.
+   */
   deleteAgreement(agreement) {
     if (window.confirm('¿Eliminar definitivamente?')) {
       this.notesAgreementsService.deleteAgreement(agreement.id).subscribe(
@@ -75,10 +94,17 @@ export class NotesAndAgreementsComponent{
     }
   }
 
+  /**
+   * Función para mostrar la sección de la información de una nota.
+   */
   showNoteView() {
     this.showNote = true;
   }
 
+  /**
+   * Función para cargar a la vista la información de la nota a editar.
+   * @param note Nota a editar.
+   */
   editNote(note) {
     this.validateForm = this.fb.group({
       title: [note.titulo, [Validators.required,]],
@@ -88,10 +114,17 @@ export class NotesAndAgreementsComponent{
     this.showNoteView();
   }
 
+  /**
+   * Función para mostrar la sección de la información de un acuerdo.
+   */
   showAgreementView() {
     this.showAgreement = true;
   }
 
+  /**
+   * Función para cargar a la vista la información del acuerdo a editar.
+   * @param agreement Acuerdo a editar.
+   */
   editAgreement(agreement) {
     this.validateForm = this.fb.group({
       title: [agreement.titulo, [Validators.required,]],
@@ -101,6 +134,10 @@ export class NotesAndAgreementsComponent{
     this.showAgreementView();
   }
 
+  /**
+   * Función para limpiar la vista de edición/creación de una nota o acuerdo,
+   * y regresar a la vista que enlista los acuerdos y notas.
+   */
   closeModal() {
     this.showAgreement = false;
     this.showNote = false;
@@ -112,6 +149,10 @@ export class NotesAndAgreementsComponent{
     });
   }
 
+  /**
+   * Función que evalua la vista y si se trata de una edición o creación de un elemento,
+   * invocando la patición adecuada.
+   */
   save() {
     if (this.showAgreement) {
       if (this.currentAgreement) {

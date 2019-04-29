@@ -41,6 +41,17 @@ export class InterviewComponent implements OnInit , OnDestroy{
 
   scrollInterval;
 
+  /**
+   * Constructor del componente que maneja la entrevista
+   * @param router Servicio de manejo de rutas.
+   * @param route servicio para manejar valores en la ruta
+   * @param questionsService servicio para hacer peticiones a las rutas de preguntas
+   * @param interviewService Servicio para hacer peticiones a las rutas de entrevista
+   * @param clientsService Servicio para hacer peticiones a las rutas de cliente
+   * @param fb Servicio para manejar forms.
+   * @param document elemento para acceder a elementos definidos en el DOM
+   */
+
   constructor(
     public router: Router,
     public route: ActivatedRoute,
@@ -49,10 +60,16 @@ export class InterviewComponent implements OnInit , OnDestroy{
     public clientsService: ClientsService, 
     public fb: FormBuilder,
     @Inject(DOCUMENT) document){}
-  ngOnInit (){
 
-    console.log('ngOnInit INTERVIEW!!!');
-
+  /**
+   * 
+   Al iniciar el componente se busca en la ruta el parametro id en la ruta, 
+   este indica el id de una entrevista, si se encuentra se piden las respuestas previamente ingresadas, 
+   de lo contrario se considera entrevista nueva.
+   Adicionalmente se obtiene la información del cliente activo para setear las preguntas relacionadas con
+   con la edad y el nombre
+   */
+  ngOnInit(){
     if(!localStorage.getItem('cliente')) this.router.navigate(['client-search']);
     let client_cis = JSON.parse(localStorage.getItem('cliente')).num_clie_cis;
     
@@ -155,6 +172,9 @@ export class InterviewComponent implements OnInit , OnDestroy{
     );
   }
 
+  /**
+   * Función que escucha lo eventos de teclear
+   */
   @HostListener('document:keyup', ['$event'])
   downShortcut(event: KeyboardEvent) {
     // console.log('document:keyup', event.keyCode);
@@ -178,6 +198,10 @@ export class InterviewComponent implements OnInit , OnDestroy{
     }
   }
 
+  /**
+   * Función que genera el valor de la edad en años a partir de una fecha de nacimiento
+   * y lo asigna a una propiedad de la clase
+   */
   getYearsOfAge(client: Client){
     // console.log('interview getYearsOfAge', client.fecha_nacimiento, client.edad);
     if (client.fecha_nacimiento) {
@@ -195,6 +219,10 @@ export class InterviewComponent implements OnInit , OnDestroy{
   }
 
 
+  /**
+   * Función que establece el valor de las preguntas previamente ingresadas
+   * @param answers arreglo de preguntas
+   */
   setAnswers(answers){
     // console.log('setAnswers', this.clientAge, answers);
     for (var i = 0; i < answers.length; i++) {
@@ -358,6 +386,12 @@ export class InterviewComponent implements OnInit , OnDestroy{
     }
 
   }
+  /**
+   * Función que busca en un arreglo respuestas con determinado id
+   * @param answers arreglo de respuestas en el que se buscara
+   * @param id Identificador de las respuestas que se está buscando
+   * @return respuestas que tengan el id
+   */
   getAnswersById(answers, id){
     let answers_with_id = [];
     for (var i = 0; i < answers.length; i++) {
@@ -367,6 +401,10 @@ export class InterviewComponent implements OnInit , OnDestroy{
     }
     return answers_with_id;
   }
+  /**
+   * Función que regresa la pregunta actualmente activa
+   * @return pregunta actual
+   */
   getActualQuestion(){
     for (var i = 0; i < this.questions.length; i++) {
       if (this.questions[i].num_pregunta_id === this.active_question_id) {
@@ -374,6 +412,9 @@ export class InterviewComponent implements OnInit , OnDestroy{
       }
     }
   }
+  /**
+   * Función que regresa la pregunta siguiente a la actualmente activa
+   */
   getNextQuestion(){
     for (var i = 0; i < this.questions.length; i++) {
       if (this.questions[i].num_pregunta_id === this.active_question_id) {
@@ -381,6 +422,10 @@ export class InterviewComponent implements OnInit , OnDestroy{
       }
     }
   }
+  
+  /**
+   * Función que regresa la pregunta anterior a la actualmente activa
+   */
   getLastQuestion(){
     for (var i = 0; i < this.questions.length; i++) {
       if (this.questions[i].num_pregunta_id === this.active_question_id) {
@@ -388,6 +433,12 @@ export class InterviewComponent implements OnInit , OnDestroy{
       }
     }
   }
+
+  /**
+   * Función que regresa la pregunta que contenga determinado id
+   * @param question_id Identificador de la pregunta que se está buscando
+   * @return Pregunta que tiene al identificador recibido, en caso de no encontrarse se regresa null
+   */
   getQuestionById(question_id){
     for (var i = 0; i < this.questions.length; i++) {
       if (this.questions[i].num_pregunta_id === question_id) {
@@ -396,6 +447,11 @@ export class InterviewComponent implements OnInit , OnDestroy{
     }
     return null;
   }
+  /**
+   * Función que encuentra la posición en el arreglo global de preguntas a la que contenga el id recibido
+   * @param question_id Identificador de la pregunta que se está buscando
+   * @return Posición de la pregunta que tiene al identificador recibido, en caso de no encontrarse se regresa null
+   */
   getPositionById(question_id){
     for (var i = 0; i < this.questions.length; i++) {
       if (this.questions[i].num_pregunta_id === question_id) {
@@ -404,35 +460,78 @@ export class InterviewComponent implements OnInit , OnDestroy{
     }
     return null;
   }
+  /**
+   * Función que determina si una pregunta de opciones ya ha sido respondida
+   * @param question Pregunta de la que se quiere saber su estatus
+   * @return Booleano que dice si la pregunta tiene respuesta o no
+   */
   isQuestionWithOptionsAnswered(question){
     return question.selected.length !== 0;
   }
+  /**
+   * Función que revisa si una pregunta con campo de texto ha sido respondida
+   * @param question Pregunta de la que se quiere saber su estatus
+   * @return Booleano que dice si la pregunta tiene respuesta o no
+   */
   isQuestionAnswered(question){
     if (this.interview.value[this.getQuestionControlName(question.num_pregunta_id)]) {
       return true;
     }
     return false;
   }
+  /**
+   * Función que obtiene el nombre del formControlName de una pregunta
+   * @param question_id Identificador de la pregunta que se está manejando
+   * @return cadena con el nombre del formControlName asignado pregunta
+   */
   getQuestionControlName(question_id){
     return 'question_' + question_id;
   }
+  /**
+   * Función que obtiene el calor seleccionado de una pregunta
+   * @param pregunta de la que se quiere saber su valor seleccionado
+   * @return el valor de la opción seleccionada
+   */
   getSelectedValue(question){
     return question.des_opciones[question.selected[0]].valor;
   }
+  /**
+   * Función que revisa si una pregunta es de opciones
+   * @param Pregunta de la que se quiere saber su estructura
+   * @return booleano que determina si la pregunta es de opciones
+   */
   isOfOptions(question){
     return !isNaN(question.selected);
   }
+  /**
+   * Función que recibe una respuesta y un arreglo de respuestas y revisa si esa pregunta está incluida
+   * @param answer pregunta a buscar
+   * @options arreglo de respuestas en el que se va a buscar
+   */
   isAnswerInTheOptions(answer, options){
     return options.indexOf(answer) !== -1;
   }
+  /**
+   * Función que revisa si la pregunta activa actualmente es la última del arreglo de preguntas
+   * @return booleano que representa si la pregunta activa es la última
+   */
   isActualQuestionsTheLastone(){
     // console.log('isActualQuestionsTheLastone', this.questions, this.active_question_id);
     return this.questions[(this.questions.length - 1)].num_pregunta_id === this.active_question_id;
   }
+  /**
+   * Función que enfoca preguntas
+   * @param question_id Identificador de la pregunta que se quiere enfocar
+   */
   focusQuestion(question_id){
     if(this.scrollInterval) clearInterval(this.scrollInterval);
     document.getElementById('question_' + question_id).click();
   }
+  /**
+   * Función que establece a la pregunta activa
+   * @param question_id Identificador de la pregunta a establecer como activa
+   * @param option si la pregunta es de opciones se puede establecer la opción enfocada
+   */
   setActiveQuestion(question_id, option?){
     // console.log('you just focus one question', question_id, option);
     this.active_question_id = question_id;
@@ -451,6 +550,10 @@ export class InterviewComponent implements OnInit , OnDestroy{
     }
   }
 
+  /**
+   * Función que hace la navegación entre las preguntas de manera progresiva
+   * como una animación
+   */
   smoothlyScroll(scrollTo, question_id) {
     // console.log('scrollTo', scrollTo, 'documentTop', document.getElementById('content').scrollTop);
     let originalScrollTop = document.getElementById('content').scrollTop;
@@ -483,13 +586,20 @@ export class InterviewComponent implements OnInit , OnDestroy{
     }, .1);
   }
 
+  /**
+   * Función que marca como activa una opción cuando se le da click
+   * @param question_id Identificador de la pregunta que se marcara como activa
+   * @param option opción que se marcara como seleccionada
+   */
   selectOptionByClick(question_id, option){
     this.setActiveQuestion(question_id, option);
     this.setActualOptionAsSelected();
   }
-  
+
+  /**
+   * Función que marca como activa la pregunta pasada a la actual
+   */
   setPreviousQuestionAsActive(){
-    // chema set previous
     
     let actual_question = this.getActualQuestion();
 
@@ -499,7 +609,6 @@ export class InterviewComponent implements OnInit , OnDestroy{
       return;
     }
 
-    // chema set previous
 
     for (var i = 0; i < this.questions.length; i++) {
       if (this.questions[i].num_pregunta_id === this.active_question_id) {
@@ -509,6 +618,10 @@ export class InterviewComponent implements OnInit , OnDestroy{
       }
     }
   }
+
+  /**
+   * Función que marca como activa la pregunta siguiente a la actual
+   */
 
   setNextQuestionAsActive(){
     console.log('working');
@@ -526,12 +639,10 @@ export class InterviewComponent implements OnInit , OnDestroy{
     if ((typeof actual_question.des_sig_preg) === 'string') {
       this.active_question_id = actual_question.des_sig_preg;
 
-      // chema for last question
       
       next_question = this.getQuestionById(this.active_question_id);
       next_question['last_question'] = actualQID;
 
-      // chema for last question
 
       this.focusQuestion(this.active_question_id);
       return;
@@ -549,12 +660,10 @@ export class InterviewComponent implements OnInit , OnDestroy{
               
               this.active_question_id = actual_question.des_sig_preg[i].siguiente;
 
-              // chema for last question
 
               next_question = this.getQuestionById(this.active_question_id);
               next_question['last_question'] = actualQID;
 
-              // chema for last question
               
               this.focusQuestion(this.active_question_id);
               
@@ -568,12 +677,10 @@ export class InterviewComponent implements OnInit , OnDestroy{
           
             this.active_question_id = required_question.des_sig_preg;
 
-            // chema for last question
 
             next_question = this.getQuestionById(this.active_question_id);
             next_question['last_question'] = actualQID;
 
-            // chema for last question
 
             this.focusQuestion(this.active_question_id);
             return;
@@ -586,11 +693,9 @@ export class InterviewComponent implements OnInit , OnDestroy{
       next_question = this.getNextQuestion();
       this.active_question_id = next_question.num_pregunta_id;
 
-      // chema for last question
 
       next_question['last_question'] = actualQID;
 
-      // chema for last question
 
       this.focusQuestion(this.active_question_id);
       return;
@@ -626,12 +731,10 @@ export class InterviewComponent implements OnInit , OnDestroy{
                       
                         this.active_question_id = actual_question.des_opciones[i].des_sig_preg[j].siguiente;
 
-                        // chema for last question
 
                         next_question = this.getQuestionById(this.active_question_id);
                         next_question['last_question'] = actualQID;
 
-                        // chema for last question
 
                         this.focusQuestion(this.active_question_id);
                         return;
@@ -647,11 +750,9 @@ export class InterviewComponent implements OnInit , OnDestroy{
                 next_question = this.getNextQuestion();
                 this.active_question_id = (actual_question.num_pregunta_id === 30 && actual_question['selected'][0] == 1) ? next_question.num_pregunta_id + 1 : next_question.num_pregunta_id;
 
-                // chema for last question
 
                 next_question['last_question'] = actualQID;
 
-                // chema for last question
 
                 this.focusQuestion(this.active_question_id);
               
@@ -661,12 +762,10 @@ export class InterviewComponent implements OnInit , OnDestroy{
                 
                   this.active_question_id = actual_question.des_opciones[i].des_sig_preg;
 
-                  // chema for last question
 
                   next_question = this.getQuestionById(this.active_question_id);
                   next_question['last_question'] = actualQID;
 
-                  // chema for last question
 
                   this.focusQuestion(this.active_question_id);
                   return;
@@ -681,11 +780,9 @@ export class InterviewComponent implements OnInit , OnDestroy{
           next_question = this.getNextQuestion();
           this.active_question_id = next_question.num_pregunta_id;
 
-          // chema for last question
 
           next_question['last_question'] = actualQID;
 
-          // chema for last question
 
           this.focusQuestion(this.active_question_id);
           return;
@@ -695,12 +792,10 @@ export class InterviewComponent implements OnInit , OnDestroy{
       } else { //En caso de que des_sig_preg sea un número diferente de 0 entonces ese valor es el id de la siguiente pregunta 
         this.active_question_id = actual_question.des_sig_preg;
 
-        // chema for last question
 
         next_question = this.getQuestionById(this.active_question_id);
         next_question['last_question'] = actualQID;
 
-        // chema for last question
         
         // console.log('setNextQuestionAsActive', JSON.stringify(actual_question), actual_question, 'this.active_question_id', this.active_question_id);
         this.focusQuestion(this.active_question_id);
@@ -709,6 +804,9 @@ export class InterviewComponent implements OnInit , OnDestroy{
     }
   }
 
+  /**
+   * Pregunta que establece como 1 el valor default de la cantidad de casas
+   */
   throwDefaultAmountOfHouses(){
     this.interview.controls[this.getQuestionControlName(67)].setValue(1);
     this.throwSpecialCase(67);
@@ -720,6 +818,9 @@ export class InterviewComponent implements OnInit , OnDestroy{
       }
     },100);
   }
+  /**
+   * Función que enfoca la siguiente pregunta
+   */
   setNextOptionAsFocused(selection_start?){
     console.log('setNextOptionAsFocused', this.questions);
     for (var i = 0; i < this.questions.length; i++) {
@@ -755,6 +856,9 @@ export class InterviewComponent implements OnInit , OnDestroy{
       }
     }
   }
+  /**
+   * Función que enfoca la pasada pregunta
+   */
   setPreviousOptionAsFocused(){
     console.log('setPreviousOptionAsFocused', this.questions);
     for (var i = 0; i < this.questions.length; i++) {
@@ -784,6 +888,9 @@ export class InterviewComponent implements OnInit , OnDestroy{
       }
     }
   }
+  /**
+   * Función que marca la opción enfocada actualmente como la respuesta de la pregunta
+   */
   setActualOptionAsSelected(){
     let actual_question = this.getActualQuestion();
     console.log('setActualOptionAsSelected', actual_question);
@@ -837,6 +944,10 @@ export class InterviewComponent implements OnInit , OnDestroy{
 
     }
   }
+  /**
+   * Función que revisa que el usuario a ingresado un número en las preguntas que solo aceptan enteros
+   * @param question pregunta que está siendo editada su respuesta
+   */
   validateValue(question){
     if (question.bnd_enteros) {
       let reg = /^\d+$/;
@@ -858,6 +969,10 @@ export class InterviewComponent implements OnInit , OnDestroy{
       this.throwSpecialCase(67);
     }
   }
+  /**
+   * Función que manda a llamar los comportamientos especiales de las preguntas que crean ciclos
+   * @param Identificador de la pregunta que ocasiona ciclos
+   */
   throwSpecialCase(question_id){
     switch (question_id) {
       case 5:
@@ -882,6 +997,9 @@ export class InterviewComponent implements OnInit , OnDestroy{
         break;
     }
   }
+  /**
+   * Función que maneja los ciclos de la pregunta 5
+   */
   throwSpecialCaseForQuestion5(){
     if (this.actual_question_five_value === null) {
       this.questions.splice(5,1);
@@ -943,6 +1061,9 @@ export class InterviewComponent implements OnInit , OnDestroy{
     }
     this.actual_question_five_value = +question_value;
   }
+  /**
+   * Función que maneja los ciclos de la pregunta 20
+   */
   throwSpecialCaseForQuestion20(){
     let question_20 = this.getQuestionById(20);
     let previous_position = null;
@@ -1032,6 +1153,9 @@ export class InterviewComponent implements OnInit , OnDestroy{
       this.setNextQuestionAsActive();
     }
   }
+  /**
+   * Función que maneja los ciclos de la pregunta 45
+   */
   throwSpecialCaseForQuestion45(){
     let question_45_aux = this.getQuestionById(45);
     if (this.actual_question_45_value === null) {
@@ -1125,6 +1249,9 @@ export class InterviewComponent implements OnInit , OnDestroy{
     }
     this.actual_question_45_value = +question_value;
   }
+  /**
+   * Función que maneja los ciclos de la pregunta 60
+   */
   throwSpecialCaseForQuestion60(){
     let question_60 = this.getQuestionById(60);
     let question_60_position = this.getPositionById(60);
@@ -1260,6 +1387,9 @@ export class InterviewComponent implements OnInit , OnDestroy{
     }
     this.actual_credits_selected = JSON.parse(JSON.stringify(question_60.selected));
   }
+  /**
+   * Función que maneja los ciclos de la pregunta 67
+   */
   throwSpecialCaseForQuestion67(){
     let question_67_position = this.getPositionById(67);
     if (this.actual_question_67_value === null) {
@@ -1322,7 +1452,9 @@ export class InterviewComponent implements OnInit , OnDestroy{
     }
     this.actual_question_67_value = +question_67_new_value;
   }
-
+  /**
+   * Función que maneja los ciclos de la pregunta 72
+   */
   throwSpecialCaseForQuestion72(){
     let question_72 = this.getQuestionById(72);
     let question_72_position = this.getPositionById(72);
@@ -1403,6 +1535,12 @@ export class InterviewComponent implements OnInit , OnDestroy{
     }
     this.question_72_previous = JSON.parse(JSON.stringify(question_72.selected));
   }
+  /**
+   * Pregunta que consigue los elementos diferentes entre dos arreglos
+   * @param a1 primer arreglo a revisar
+   * @param a2 segundo arreglo a revisar
+   * @return arreglo con los elementos diferentes entre los arreglos
+   */
   arrDiff(a1, a2) {
     var a = [], diff = [];
     for (var i = 0; i < a1.length; i++) {
@@ -1421,24 +1559,41 @@ export class InterviewComponent implements OnInit , OnDestroy{
     return diff;
   }
 
+  /**
+   * Función que abre la vista para agregar objetivos
+   */
   openAddObjectiveModal(){
     this.add_objective_modal_open = true;
   }
+  /**
+   * Función que cierra la vista para agregar objetivos
+   * @param objective Objetivo que ha sido agregado
+   */
   closeObjectiveModal(objective){
     if (objective) {
       this.objectives.push(objective);
     }
     this.add_objective_modal_open = false;
   }
+  /**
+   * Función que abre la vista de agregar notas
+   */
   openAddNoteModal(){
     this.add_note_modal_open = true;
   }
+  /**
+   * Función que cierra el modal de agregar notas
+   * @param note Nota que ha sido agregada
+   */
   closeNoteModal(note){
     if (note) {
       this.notes.push(note);
     }
     this.add_note_modal_open = false;
   }
+  /**
+   * Función que revisa la entrevista y guarda la información ingresada
+   */
   sendInterview(){
     let answers_aux = this.getAnswers();
     let objectives_aux = this.objectives;
@@ -1483,6 +1638,10 @@ export class InterviewComponent implements OnInit , OnDestroy{
       }
     );
   }
+  /**
+   * Función que le da formato a las respuestas que se reciben si es una continuación de entrevista
+   * @return arreglo de preguntas con formato
+   */
   getAnswers(){
     let answers_aux = [];
     for (var i = 0; i < this.questions.length; i++){
@@ -1558,6 +1717,10 @@ export class InterviewComponent implements OnInit , OnDestroy{
     }
     return answers_aux;
   }
+  /**
+   * Función que da formato a las notas que se agregaron durante la entrevista
+   * @return arreglo de notas con formato
+   */
   getNotes(){
     let notes_aux = [];
     for (var i = 0; i < this.notes.length; i++) {
@@ -1571,6 +1734,10 @@ export class InterviewComponent implements OnInit , OnDestroy{
     }
     return notes_aux;
   }
+  /**
+   * Función que obtiene la fecha del siguiente checkup
+   * @return cadena con la fecha del siguiente checkup en formato yyyy/mm/dd
+   */
   getNextCheckUp(){
     let today = new Date();
     today.setMonth(today.getMonth()+6);
@@ -1585,27 +1752,11 @@ export class InterviewComponent implements OnInit , OnDestroy{
     return question.des_texto;
   }
 
+  /**
+   * 
+   Al finalizar el componente se eliminan las suscripciones existentes así como se limpian los intervalos, si es que hay
+   */
   ngOnDestroy() {
-    console.log('destroying');
-
-    // this.active_question_id = 3;
-    
-    // this.actual_question_five_value = null;
-    // this.actual_iterations_of_block_two = 0;
-    // this.actual_question_45_value = null;
-    // this.actual_credits_selected = [];
-    // this.first_time_with_credits = true;
-    // this.actual_question_67_value = null;
-    // this.question_72_previous = [];
-    // this.first_time_with_currency = true;
-    // this.add_objective_modal_open = false;
-    // this.objectives = [];
-    // this.add_note_modal_open = false;
-    // this.notes = [];
-
-    // this.clientAge = undefined;
-    // this.client = undefined;
-
     clearInterval(this.interval);
     clearInterval(this.scrollInterval);
 

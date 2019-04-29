@@ -10,6 +10,10 @@ import { ProductsService } from '../products.service';
 export class ProductDetailComponent{
   product;
 
+  /**
+   * Constructor que inicializa el componente del detalle del producto
+   * @param productService Servicio del producto.
+   */
   constructor(productService: ProductsService){
     this.product = productService.getCurrentProduct();
   }
