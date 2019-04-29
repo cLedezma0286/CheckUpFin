@@ -51,8 +51,7 @@ export class DashboardComponent implements OnInit{
   }
 
   /**
-   * Función que regresa la información del usuario activo
-   * @return active user info
+   * Función que reasigna su valor al cliente
    */
   resetInfo(obj: Client) {
     this.client_information = obj;
@@ -60,12 +59,11 @@ export class DashboardComponent implements OnInit{
   }
 
   /**
-   * Función que escucha el evento de regreso en la ventana para evitarlo
+   * Función que escucha cuando el navegador regresa una página,
+   * para evitarlo
    */
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
-    // console.log('Back button pressed previus DASHBOARD');
     event.preventDefault();
-    // this.router.navigate(['/interview'], { queryParams: {id: localStorage.getItem('actual_interview_id')}});
   }
 }

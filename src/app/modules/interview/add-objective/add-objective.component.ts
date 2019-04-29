@@ -83,7 +83,9 @@ export class AddObjectiveComponent implements OnInit{
     }
   }
 
-
+  /**
+   * Función que enfoca la siguiente opción dentro de una pregunta de opciones
+   */
   setNextOptionAsFocused(selection_start?){
     if(this.actual_question_index === 1) {
       let options = Array.from(document.getElementsByClassName('second-q-option')),
@@ -96,6 +98,9 @@ export class AddObjectiveComponent implements OnInit{
       }
     }
   }
+  /**
+   * Función que enfoca la opción anterior dentro de una pregunta con opciones
+   */
   setPreviousOptionAsFocused(){
     if(this.actual_question_index === 1) {
       let options = Array.from(document.getElementsByClassName('second-q-option')),
@@ -109,6 +114,9 @@ export class AddObjectiveComponent implements OnInit{
     }
   }
 
+  /**
+   * Función que marca la opción enfocada actualmente como la respuesta de la pregunta
+   */
   setActualOptionAsSelected(){
 
     if(this.actual_question_index === 1) {
