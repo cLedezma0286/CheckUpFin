@@ -49,15 +49,20 @@ export class DashboardComponent implements OnInit{
     this.active_section = section_name;
   }
 
+  /**
+   * Función que reasigna su valor al cliente
+   */
   resetInfo(obj: Client) {
     this.client_information = obj;
     this.setActiveSection('general');
   }
 
+  /**
+   * Función que escucha cuando el navegador regresa una página,
+   * para evitarlo
+   */
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
-    // console.log('Back button pressed previus DASHBOARD');
     event.preventDefault();
-    // this.router.navigate(['/interview'], { queryParams: {id: localStorage.getItem('actual_interview_id')}});
   }
 }
