@@ -11,7 +11,7 @@
         <input type="number" formControlName="phone" maxlength="15"/>
       </div>
       <div class="client_input">
-        <p class="placeholder">Email</p>
+        <p class="placeholder">Email*</p>
         <input type="text" [RealEmailValidator]="true" EmailValidator formControlName="email" maxlength="80"/>
       </div>
       <div class="client_input">
@@ -19,7 +19,7 @@
         <input type="number" [maxValue]="20" [applyMaxValue]="true" formControlName="number_of_childrens" maxlength="2" />
       </div>
       <div class="client_input">
-        <p class="placeholder">Cumpleaños</p>
+        <p class="placeholder">Cumpleaños*</p>
         <input 
           id="birthdayInput" 
           type="text" 
