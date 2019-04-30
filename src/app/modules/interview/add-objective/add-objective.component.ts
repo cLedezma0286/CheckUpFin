@@ -21,29 +21,89 @@ export class AddObjectiveComponent implements OnInit{
   ngOnInit(){
     this['question_0'].nativeElement.focus();
   }
-  @HostListener('document:keyup.arrowUp', ['$event'])
-  upShortcut(event: KeyboardEvent) {
-    this.setPreviousQuestionAsActual();
-  }
-  @HostListener('document:keyup.arrowDown', ['$event'])
+
+  @HostListener('document:keyup', ['$event'])
   downShortcut(event: KeyboardEvent) {
-    this.setNextQuestionAsActual();
+    // console.log('document:keyup', event.keyCode);
+
+    if (event.keyCode === 38 || (event.keyCode === 9 && event.shiftKey)) { //Up
+      this.setPreviousQuestionAsActual();
+    }
+    if (event.keyCode === 40 || (event.keyCode === 9  && !event.shiftKey)) { //Down
+      this.setNextQuestionAsActual();
+    }
+    if (event.keyCode === 39) { //Right
+      this.setNextOptionAsFocused(event.target['selectionStart']);
+    }
+    if (event.keyCode === 37) { //Left
+      this.setPreviousOptionAsFocused();
+    }
+    if (event.keyCode === 13) { //Enter
+      this.setActualOptionAsSelected();
+    }
   }
+
   setActualQuestion(question_number){
     this.actual_question_index = question_number;
   }
   setPreviousQuestionAsActual(){
     if (this.actual_question_index > 0) {
       this.actual_question_index = this.actual_question_index - 1;
-      this[this.getQuestionName()].nativeElement.focus();
+      this[this.getQuestionName()].nativeElement.click();
+      setTimeout(() => this[this.getQuestionName()].nativeElement.focus(), 10);
     }
   }
   setNextQuestionAsActual(){
     if (this.actual_question_index < 2) {
       this.actual_question_index = this.actual_question_index + 1;
-      this[this.getQuestionName()].nativeElement.focus();
+      this[this.getQuestionName()].nativeElement.click();
+      setTimeout(() => this[this.getQuestionName()].nativeElement.focus(), 10);
     }
   }
+
+
+  setNextOptionAsFocused(selection_start?){
+    if(this.actual_question_index === 1) {
+      let options = Array.from(document.getElementsByClassName('second-q-option')),
+          focusedOpt = options.filter(opt => opt.classList.contains('focused'))[0],
+          unfocusedOpt = options.filter(opt => !opt.classList.contains('focused'))[0];
+
+      if(!focusedOpt.classList.contains('option-two')) {
+        if(focusedOpt.classList) focusedOpt.classList.remove('focused');
+        if(unfocusedOpt.classList) unfocusedOpt.classList.add('focused');
+      }
+    }
+  }
+  setPreviousOptionAsFocused(){
+    if(this.actual_question_index === 1) {
+      let options = Array.from(document.getElementsByClassName('second-q-option')),
+          focusedOpt = options.filter(opt => opt.classList.contains('focused'))[0],
+          unfocusedOpt = options.filter(opt => !opt.classList.contains('focused'))[0];
+
+      if(!focusedOpt.classList.contains('option-one')) {
+        if(focusedOpt.classList) focusedOpt.classList.remove('focused');
+        if(unfocusedOpt.classList) unfocusedOpt.classList.add('focused');
+      }
+    }
+  }
+
+  setActualOptionAsSelected(){
+
+    if(this.actual_question_index === 1) {
+      let options = Array.from(document.getElementsByClassName('second-q-option')),
+          focusedOpt = options.filter(opt => opt.classList.contains('focused'))[0];
+
+      options.map(opt => {
+        if(opt.classList) opt.classList.remove('selected');
+        if(opt.classList) opt.classList.remove('focused');
+      });
+
+      focusedOpt['click']();
+      focusedOpt.classList.add('focused');
+    }
+
+  }
+
   getQuestionName(){
     return 'question_' + this.actual_question_index;
   }

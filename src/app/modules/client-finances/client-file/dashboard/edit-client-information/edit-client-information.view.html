@@ -11,7 +11,7 @@
         <input type="number" formControlName="phone" maxlength="15"/>
       </div>
       <div class="client_input">
-        <p class="placeholder">Email</p>
+        <p class="placeholder">Email*</p>
         <input type="text" [RealEmailValidator]="true" EmailValidator formControlName="email" maxlength="80"/>
       </div>
       <div class="client_input">
@@ -19,14 +19,14 @@
         <input type="number" [maxValue]="20" [applyMaxValue]="true" formControlName="number_of_childrens" maxlength="2" />
       </div>
       <div class="client_input">
-        <p class="placeholder">Cumpleaños</p>
+        <p class="placeholder">Cumpleaños*</p>
         <input 
+          id="birthdayInput" 
           type="text" 
           formControlName="birthday" 
           maxlength="10" 
           [DateValidator]="true" 
-          placeholder="AAAA/MM/DD" 
-          mask="0000/00/00" />
+          placeholder="AAAA/MM/DD" />
       </div>
       <div class="client_input">
         <p class="placeholder">Estado civil</p>
@@ -56,7 +56,7 @@
     </div>
     <div class="controls">
       <p (click)="closeEditClientInformation()">Cancelar</p>
-      <button [ngStyle]="{'background-color': user_information.invalid || user_information.untouched ? '#d7d8d6' : '#db0011'}" [disabled]="user_information.invalid || user_information.untouched">Guardar</button>
+      <button [ngStyle]="{'background-color': user_information.invalid ? '#d7d8d6' : '#db0011'}" [disabled]="user_information.invalid">Guardar</button>
     </div>
   </form>
 </section>

@@ -38,12 +38,12 @@ export class MaxValue implements OnInit{
     }
 
 	textTransform(txt){
-		console.log('textTransform', txt);
+		// console.log('textTransform', txt);
 		txt = txt.replace(/\$/g, '');
 		txt = txt.replace(/,/g, '');
-		if(!this.maxValue || txt.length == 0) return txt;
+		if(!this.maxValue) return txt;
 		let text = (typeof txt == 'number') ? txt : Number(txt);
-		console.log('textTransform', txt, 'txt.length', txt.length, 'Number(txt)', Number(txt), 'text', text);
+		// console.log('textTransform', txt, 'txt.length', txt.length, 'Number(txt)', Number(txt), 'text', text);
 		return (text < this.maxValue) ? text : this.maxValue;
 	}
 }
