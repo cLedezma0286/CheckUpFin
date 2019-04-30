@@ -1565,7 +1565,7 @@ export class InterviewComponent implements OnInit , OnDestroy{
         titulo: this.notes[i].title,
         descripcion: this.notes[i].text,
         tipo_nota: 'nota',
-        num_clie_cis: 1
+        num_clie_cis: JSON.parse(localStorage.getItem('cliente')).num_clie_cis
       }
       notes_aux.push(note_aux);
     }
