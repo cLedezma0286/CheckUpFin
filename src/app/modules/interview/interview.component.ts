@@ -433,12 +433,12 @@ export class InterviewComponent implements OnInit , OnDestroy{
     if(this.scrollInterval) clearInterval(this.scrollInterval);
     document.getElementById('question_' + question_id).click();
   }
-  setActiveQuestion(question_id, option?){
+  setActiveQuestion(question_id, option?, noScroll?){
     // console.log('you just focus one question', question_id, option);
     this.active_question_id = question_id;
     // console.log('you just focus one question', question_id, 'this.active_question_id', this.active_question_id);
     if(this.scrollInterval) clearInterval(this.scrollInterval);
-    this.smoothlyScroll(document.getElementById('question_container_' + question_id).offsetTop - 188, question_id);
+    if(question_id < this.questions.length - 2 && !noScroll) this.smoothlyScroll(document.getElementById('question_container_' + question_id).offsetTop - 188, question_id);
     document.getElementById('question_' + question_id).focus();
     // document.getElementById('content').scrollTop = document.getElementById('question_container_' + question_id).offsetTop - 188;
     if (option || option === 0) {
@@ -484,7 +484,7 @@ export class InterviewComponent implements OnInit , OnDestroy{
   }
 
   selectOptionByClick(question_id, option){
-    this.setActiveQuestion(question_id, option);
+    this.setActiveQuestion(question_id, option, true);
     this.setActualOptionAsSelected();
   }
   

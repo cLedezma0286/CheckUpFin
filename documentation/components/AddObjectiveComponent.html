@@ -1,0 +1,1678 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>premier documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">premier documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>AddObjectiveComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/modules/interview/add-objective/add-objective.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>add-objective</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>add-objective.style.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>add-objective.view.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#actual_question_index">actual_question_index</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#fb">fb</a>
+                            </li>
+                            <li>
+                                <a href="#objective_form">objective_form</a>
+                            </li>
+                            <li>
+                                <a href="#question_0">question_0</a>
+                            </li>
+                            <li>
+                                <a href="#question_1">question_1</a>
+                            </li>
+                            <li>
+                                <a href="#question_1_selected_option">question_1_selected_option</a>
+                            </li>
+                            <li>
+                                <a href="#question_2">question_2</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#closeModal">closeModal</a>
+                            </li>
+                            <li>
+                                <a href="#finishObjectiveForm">finishObjectiveForm</a>
+                            </li>
+                            <li>
+                                <a href="#getQuestionName">getQuestionName</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#setActualOptionAsSelected">setActualOptionAsSelected</a>
+                            </li>
+                            <li>
+                                <a href="#setActualQuestion">setActualQuestion</a>
+                            </li>
+                            <li>
+                                <a href="#setNextOptionAsFocused">setNextOptionAsFocused</a>
+                            </li>
+                            <li>
+                                <a href="#setNextQuestionAsActual">setNextQuestionAsActual</a>
+                            </li>
+                            <li>
+                                <a href="#setPreviousOptionAsFocused">setPreviousOptionAsFocused</a>
+                            </li>
+                            <li>
+                                <a href="#setPreviousQuestionAsActual">setPreviousQuestionAsActual</a>
+                            </li>
+                            <li>
+                                <a href="#setQuestionOneOptionValue">setQuestionOneOptionValue</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#close">close</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostListeners</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#document:keyup.arrowDown">document:keyup.arrowDown</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(fb: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/modules/interview/add-objective/add-objective.component.ts:19</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor del componente para Agregar Objetivos</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Servicio para manejar forms.</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="close"></a>
+                        <b>close</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/modules/interview/add-objective/add-objective.component.ts:14</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3>HostListeners</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="document:keyup.arrowDown"></a>
+                    <span class="name">
+                        <b>
+                            document:keyup.arrowDown
+                        </b>
+                        <a href="#document:keyup.arrowDown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <i>Arguments : </i><code>'$event' </code>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>document:keyup.arrowDown(event: KeyboardEvent)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/app/modules/interview/add-objective/add-objective.component.ts:36</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que detecta los eventos de teclear la flecha hacía arriba
+Cuando se detecta este evento se establece la siguiente pregunta como la activa</p>
+</div>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeModal"></a>
+                    <span class="name">
+                        <b>
+                            closeModal
+                        </b>
+                        <a href="#closeModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>closeModal(objective)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="151"
+                            class="link-to-prism">src/app/modules/interview/add-objective/add-objective.component.ts:151</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que avisa al componente padre que debe eliminar este componente</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>objective</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="finishObjectiveForm"></a>
+                    <span class="name">
+                        <b>
+                            finishObjectiveForm
+                        </b>
+                        <a href="#finishObjectiveForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>finishObjectiveForm()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="157"
+                            class="link-to-prism">src/app/modules/interview/add-objective/add-objective.component.ts:157</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que revisa el formulario y exporta los valores del objetivo al padre</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getQuestionName"></a>
+                    <span class="name">
+                        <b>
+                            getQuestionName
+                        </b>
+                        <a href="#getQuestionName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getQuestionName()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="138"
+                            class="link-to-prism">src/app/modules/interview/add-objective/add-objective.component.ts:138</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que obtiene el nombre de la pregunta actual</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>cadena con el nombre de la pregunta activa</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/app/modules/interview/add-objective/add-objective.component.ts:28</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Al iniciar el componente se define la primera pregunta como la activa</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setActualOptionAsSelected"></a>
+                    <span class="name">
+                        <b>
+                            setActualOptionAsSelected
+                        </b>
+                        <a href="#setActualOptionAsSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setActualOptionAsSelected()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="117"
+                            class="link-to-prism">src/app/modules/interview/add-objective/add-objective.component.ts:117</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que marca la opción enfocada actualmente como la respuesta de la pregunta</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setActualQuestion"></a>
+                    <span class="name">
+                        <b>
+                            setActualQuestion
+                        </b>
+                        <a href="#setActualQuestion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setActualQuestion(question_number)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/app/modules/interview/add-objective/add-objective.component.ts:59</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que establece la pregunta activa</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>question_number</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setNextOptionAsFocused"></a>
+                    <span class="name">
+                        <b>
+                            setNextOptionAsFocused
+                        </b>
+                        <a href="#setNextOptionAsFocused"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setNextOptionAsFocused(selection_start?)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">src/app/modules/interview/add-objective/add-objective.component.ts:86</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que enfoca la siguiente opción dentro de una pregunta de opciones</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>selection_start</td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setNextQuestionAsActual"></a>
+                    <span class="name">
+                        <b>
+                            setNextQuestionAsActual
+                        </b>
+                        <a href="#setNextQuestionAsActual"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setNextQuestionAsActual()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/app/modules/interview/add-objective/add-objective.component.ts:75</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que establece la pregunta siguiente como activa</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setPreviousOptionAsFocused"></a>
+                    <span class="name">
+                        <b>
+                            setPreviousOptionAsFocused
+                        </b>
+                        <a href="#setPreviousOptionAsFocused"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setPreviousOptionAsFocused()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="101"
+                            class="link-to-prism">src/app/modules/interview/add-objective/add-objective.component.ts:101</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que enfoca la opción anterior dentro de una pregunta con opciones</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setPreviousQuestionAsActual"></a>
+                    <span class="name">
+                        <b>
+                            setPreviousQuestionAsActual
+                        </b>
+                        <a href="#setPreviousQuestionAsActual"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setPreviousQuestionAsActual()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="65"
+                            class="link-to-prism">src/app/modules/interview/add-objective/add-objective.component.ts:65</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que establece la pregunta pasada como activa</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setQuestionOneOptionValue"></a>
+                    <span class="name">
+                        <b>
+                            setQuestionOneOptionValue
+                        </b>
+                        <a href="#setQuestionOneOptionValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setQuestionOneOptionValue(option_value)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="145"
+                            class="link-to-prism">src/app/modules/interview/add-objective/add-objective.component.ts:145</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que establece el calor de la opción seleccionada de la pregunta 1</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>option_value</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>valor a definir </p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="actual_question_index"></a>
+                        <span class="name">
+                            <b>
+                            actual_question_index</b>
+                            <a href="#actual_question_index"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>0</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/modules/interview/add-objective/add-objective.component.ts:13</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="fb"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            fb</b>
+                            <a href="#fb"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/modules/interview/add-objective/add-objective.component.ts:24</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">Servicio para manejar forms.</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="objective_form"></a>
+                        <span class="name">
+                            <b>
+                            objective_form</b>
+                            <a href="#objective_form"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.fb.group({
+    &#x27;what_objective&#x27;: [&#x27;&#x27;, []],
+    &#x27;when&#x27;: [&#x27;&#x27;, []],
+    &#x27;how_many&#x27;: [&#x27;&#x27;, []],
+  })</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/modules/interview/add-objective/add-objective.component.ts:15</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="question_0"></a>
+                        <span class="name">
+                            <b>
+                            question_0</b>
+                            <a href="#question_0"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;question_0&#x27;)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/modules/interview/add-objective/add-objective.component.ts:9</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="question_1"></a>
+                        <span class="name">
+                            <b>
+                            question_1</b>
+                            <a href="#question_1"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;question_1&#x27;)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/modules/interview/add-objective/add-objective.component.ts:10</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="question_1_selected_option"></a>
+                        <span class="name">
+                            <b>
+                            question_1_selected_option</b>
+                            <a href="#question_1_selected_option"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;meses&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/modules/interview/add-objective/add-objective.component.ts:11</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="question_2"></a>
+                        <span class="name">
+                            <b>
+                            question_2</b>
+                            <a href="#question_2"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;question_2&#x27;)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/modules/interview/add-objective/add-objective.component.ts:12</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, ViewChild, ElementRef, HostListener, EventEmitter, Output } from &#x27;@angular/core&#x27;;
+import { FormBuilder, FormGroup, Validators } from &#x27;@angular/forms&#x27;;
+@Component({
+  selector: &#x27;add-objective&#x27;,
+  templateUrl: &#x27;add-objective.view.html&#x27;,
+  styleUrls: [&#x27;add-objective.style.scss&#x27;]
+})
+export class AddObjectiveComponent implements OnInit{
+  @ViewChild(&#x27;question_0&#x27;) question_0: ElementRef;
+  @ViewChild(&#x27;question_1&#x27;) question_1: ElementRef;
+  question_1_selected_option &#x3D; &#x27;meses&#x27;;
+  @ViewChild(&#x27;question_2&#x27;) question_2: ElementRef;
+  actual_question_index &#x3D; 0;
+  @Output() close: EventEmitter&lt;any&gt; &#x3D; new EventEmitter&lt;any&gt;();
+  objective_form: FormGroup &#x3D; this.fb.group({
+    &#x27;what_objective&#x27;: [&#x27;&#x27;, []],
+    &#x27;when&#x27;: [&#x27;&#x27;, []],
+    &#x27;how_many&#x27;: [&#x27;&#x27;, []],
+  });
+  /**
+   * Constructor del componente para Agregar Objetivos
+   * @param fb Servicio para manejar forms.
+   */
+  constructor(public fb: FormBuilder){}
+  /**
+   * Al iniciar el componente se define la primera pregunta como la activa
+   */
+  ngOnInit(){
+    this[&#x27;question_0&#x27;].nativeElement.focus();
+  }
+  /**
+   * Función que detecta los eventos de teclear la flecha hacía arriba
+   * Cuando se detecta este evento se establece la siguiente pregunta como la activa
+   */
+  @HostListener(&#x27;document:keyup.arrowDown&#x27;, [&#x27;$event&#x27;])
+  downShortcut(event: KeyboardEvent) {
+    // console.log(&#x27;document:keyup&#x27;, event.keyCode);
+
+    if (event.keyCode &#x3D;&#x3D;&#x3D; 38 || (event.keyCode &#x3D;&#x3D;&#x3D; 9 &amp;&amp; event.shiftKey)) { //Up
+      this.setPreviousQuestionAsActual();
+    }
+    if (event.keyCode &#x3D;&#x3D;&#x3D; 40 || (event.keyCode &#x3D;&#x3D;&#x3D; 9  &amp;&amp; !event.shiftKey)) { //Down
+      this.setNextQuestionAsActual();
+    }
+    if (event.keyCode &#x3D;&#x3D;&#x3D; 39) { //Right
+      this.setNextOptionAsFocused(event.target[&#x27;selectionStart&#x27;]);
+    }
+    if (event.keyCode &#x3D;&#x3D;&#x3D; 37) { //Left
+      this.setPreviousOptionAsFocused();
+    }
+    if (event.keyCode &#x3D;&#x3D;&#x3D; 13) { //Enter
+      this.setActualOptionAsSelected();
+    }
+  }
+  /**
+   * Función que establece la pregunta activa
+   * @params question_number número de la pregunta a poner como activa
+   */
+  setActualQuestion(question_number){
+    this.actual_question_index &#x3D; question_number;
+  }
+  /**
+   * Función que establece la pregunta pasada como activa
+   */
+  setPreviousQuestionAsActual(){
+    if (this.actual_question_index &gt; 0) {
+      this.actual_question_index &#x3D; this.actual_question_index - 1;
+      this[this.getQuestionName()].nativeElement.click();
+      setTimeout(() &#x3D;&gt; this[this.getQuestionName()].nativeElement.focus(), 10);
+    }
+  }
+  /**
+   * Función que establece la pregunta siguiente como activa
+   */
+  setNextQuestionAsActual(){
+    if (this.actual_question_index &lt; 2) {
+      this.actual_question_index &#x3D; this.actual_question_index + 1;
+      this[this.getQuestionName()].nativeElement.click();
+      setTimeout(() &#x3D;&gt; this[this.getQuestionName()].nativeElement.focus(), 10);
+    }
+  }
+
+  /**
+   * Función que enfoca la siguiente opción dentro de una pregunta de opciones
+   */
+  setNextOptionAsFocused(selection_start?){
+    if(this.actual_question_index &#x3D;&#x3D;&#x3D; 1) {
+      let options &#x3D; Array.from(document.getElementsByClassName(&#x27;second-q-option&#x27;)),
+          focusedOpt &#x3D; options.filter(opt &#x3D;&gt; opt.classList.contains(&#x27;focused&#x27;))[0],
+          unfocusedOpt &#x3D; options.filter(opt &#x3D;&gt; !opt.classList.contains(&#x27;focused&#x27;))[0];
+
+      if(!focusedOpt.classList.contains(&#x27;option-two&#x27;)) {
+        if(focusedOpt.classList) focusedOpt.classList.remove(&#x27;focused&#x27;);
+        if(unfocusedOpt.classList) unfocusedOpt.classList.add(&#x27;focused&#x27;);
+      }
+    }
+  }
+  /**
+   * Función que enfoca la opción anterior dentro de una pregunta con opciones
+   */
+  setPreviousOptionAsFocused(){
+    if(this.actual_question_index &#x3D;&#x3D;&#x3D; 1) {
+      let options &#x3D; Array.from(document.getElementsByClassName(&#x27;second-q-option&#x27;)),
+          focusedOpt &#x3D; options.filter(opt &#x3D;&gt; opt.classList.contains(&#x27;focused&#x27;))[0],
+          unfocusedOpt &#x3D; options.filter(opt &#x3D;&gt; !opt.classList.contains(&#x27;focused&#x27;))[0];
+
+      if(!focusedOpt.classList.contains(&#x27;option-one&#x27;)) {
+        if(focusedOpt.classList) focusedOpt.classList.remove(&#x27;focused&#x27;);
+        if(unfocusedOpt.classList) unfocusedOpt.classList.add(&#x27;focused&#x27;);
+      }
+    }
+  }
+
+  /**
+   * Función que marca la opción enfocada actualmente como la respuesta de la pregunta
+   */
+  setActualOptionAsSelected(){
+
+    if(this.actual_question_index &#x3D;&#x3D;&#x3D; 1) {
+      let options &#x3D; Array.from(document.getElementsByClassName(&#x27;second-q-option&#x27;)),
+          focusedOpt &#x3D; options.filter(opt &#x3D;&gt; opt.classList.contains(&#x27;focused&#x27;))[0];
+
+      options.map(opt &#x3D;&gt; {
+        if(opt.classList) opt.classList.remove(&#x27;selected&#x27;);
+        if(opt.classList) opt.classList.remove(&#x27;focused&#x27;);
+      });
+
+      focusedOpt[&#x27;click&#x27;]();
+      focusedOpt.classList.add(&#x27;focused&#x27;);
+    }
+
+  }
+  /**
+   * Función que obtiene el nombre de la pregunta actual
+   * @return cadena con el nombre de la pregunta activa
+   */
+   
+  getQuestionName(){
+    return &#x27;question_&#x27; + this.actual_question_index;
+  }
+  /**
+   * Función que establece el calor de la opción seleccionada de la pregunta 1
+   * @param option_value valor a definir 
+   */
+  setQuestionOneOptionValue(option_value){
+    this.question_1_selected_option &#x3D; option_value;
+  }
+  /**
+   * Función que avisa al componente padre que debe eliminar este componente
+   */
+  closeModal(objective){
+    this.close.emit(objective);
+  }
+  /**
+   * Función que revisa el formulario y exporta los valores del objetivo al padre
+   */
+  finishObjectiveForm(){
+    let objective_aux &#x3D; {
+      nombre: this.objective_form.value.what_objective,
+      fecha: (this.objective_form.value.when + &#x27; &#x27; + this.question_1_selected_option),
+      valor: this.objective_form.value.how_many
+    };
+    this.closeModal(objective_aux);
+  }
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;section&gt;
+  &lt;div class&#x3D;&quot;header&quot;&gt;
+    &lt;img src&#x3D;&quot;assets/images/logo_hsbc.svg&quot;/&gt;
+    &lt;div class&#x3D;&quot;close&quot; (click)&#x3D;&quot;closeModal(null)&quot;&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;p class&#x3D;&quot;title&quot;&gt;Añadir objetivo&lt;/p&gt;
+  &lt;div class&#x3D;&quot;questions_container&quot;&gt;
+    &lt;div class&#x3D;&quot;line&quot;&gt;&lt;/div&gt;
+    &lt;form class&#x3D;&quot;questions_and_controls&quot; [formGroup]&#x3D;&quot;objective_form&quot; novalidate&gt;
+      &lt;div class&#x3D;&quot;questions_list&quot;&gt;
+        &lt;div class&#x3D;&quot;question_item&quot; [ngClass]&#x3D;&quot;{past_question: 0 &lt; actual_question_index, actual_question: 0 &#x3D;&#x3D;&#x3D; actual_question_index, next_question: actual_question_index + 1 &#x3D;&#x3D;&#x3D; 0, future_question: 0 &gt; actual_question_index + 1}&quot;&gt;
+          &lt;p class&#x3D;&quot;question&quot;&gt;¿Qué objetivo te gustaría lograr?&lt;/p&gt;
+          &lt;input 
+            type&#x3D;&quot;text&quot; 
+            maxlength&#x3D;&quot;254&quot; 
+            #question_0 
+            [noSpecialChars]&#x3D;&quot;true&quot;
+            formControlName&#x3D;&quot;what_objective&quot; 
+            (click)&#x3D;&quot;setActualQuestion(0)&quot;/&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;question_item has_options&quot; [ngClass]&#x3D;&quot;{past_question: 1 &lt; actual_question_index, actual_question: 1 &#x3D;&#x3D;&#x3D; actual_question_index, next_question: actual_question_index + 1 &#x3D;&#x3D;&#x3D; 1, future_question: 1 &gt; actual_question_index + 1}&quot;&gt;
+          &lt;p class&#x3D;&quot;question&quot;&gt;¿Cuándo te gustaría lograrlo?&lt;/p&gt;
+          &lt;div class&#x3D;&quot;answer_container&quot;&gt;
+            &lt;input 
+              type&#x3D;&quot;text&quot; 
+              maxlength&#x3D;&quot;2&quot; 
+              #question_1 
+              [maxValue]&#x3D;&quot;99&quot;
+              [applyMaxValue]&#x3D;&quot;true&quot;
+              formControlName&#x3D;&quot;when&quot; 
+              (click)&#x3D;&quot;setActualQuestion(1)&quot;/&gt;
+            &lt;div 
+              class&#x3D;&quot;option second-q-option focused option-one&quot; 
+              [ngClass]&#x3D;&quot;{selected: question_1_selected_option &#x3D;&#x3D;&#x3D; &#x27;meses&#x27;}&quot; 
+              (click)&#x3D;&quot;setQuestionOneOptionValue(&#x27;meses&#x27;)&quot;&gt;
+                Mes
+              &lt;/div&gt;
+            &lt;div 
+              class&#x3D;&quot;option second-q-option option-two&quot; 
+              [ngClass]&#x3D;&quot;{selected: question_1_selected_option &#x3D;&#x3D;&#x3D; &#x27;años&#x27;}&quot; 
+              (click)&#x3D;&quot;setQuestionOneOptionValue(&#x27;años&#x27;)&quot;&gt;
+                Año
+              &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;question_item&quot; [ngClass]&#x3D;&quot;{past_question: 2 &lt; actual_question_index, actual_question: 2 &#x3D;&#x3D;&#x3D; actual_question_index, next_question: actual_question_index + 1 &#x3D;&#x3D;&#x3D; 2, future_question: 2 &gt; actual_question_index + 1}&quot;&gt;
+          &lt;p class&#x3D;&quot;question&quot;&gt;¿Cuánto necesitas para lograrlo?&lt;/p&gt;
+          &lt;input 
+            type&#x3D;&quot;text&quot; 
+            maxlength&#x3D;&quot;12&quot; 
+            [maxValue]&#x3D;&quot;99&quot;
+            [applyMaxValue]&#x3D;&quot;true&quot;
+            [noSpecialChars]&#x3D;&quot;true&quot;
+            #question_2 formControlName&#x3D;&quot;how_many&quot; 
+            (click)&#x3D;&quot;setActualQuestion(2)&quot;/&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;controls&quot; *ngIf&#x3D;&quot;actual_question_index &#x3D;&#x3D;&#x3D; 2&quot;&gt;
+        &lt;button class&#x3D;&quot;add_objective&quot; type&#x3D;&quot;button&quot; (click)&#x3D;&quot;finishObjectiveForm()&quot;&gt;Añadir objetivo&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
+    &lt;div class&#x3D;&quot;line&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>add-objective.style.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;app-colors&#x27;;
+section{
+  z-index: 5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $background-gray;
+  overflow: hidden;
+  .header{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 20px 0px 24px;
+    img{
+      width: 44px;
+      height: 22px;
+    }
+    .close{
+      position: relative;
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      overflow: hidden;
+      cursor: pointer;
+      &amp;::before, &amp;::after {
+        content: &#x27;&#x27;;
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        left: 0;
+        margin-top: -1px;
+        background: $primary-red;
+        height: 1px;
+      }
+      &amp;::before {
+        transform: rotate(45deg);
+      }
+      &amp;::after {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+  .title{
+    margin-top: 112px;
+    padding-left: 147px;
+    font-size: 30px;
+    font-weight: 100;
+    color: $primary-red;
+  }
+  .questions_container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding: 0px 36px;
+    .line{
+      margin-top: 20px;
+      width: 35px;
+      height: 1px;
+      background-color: $primary-red;
+    }
+    .questions_and_controls{
+      width: calc(100% - 222px);
+      .questions_list{
+        .question_item{
+          &amp;:nth-child(n + 2){
+            &amp;:not(.actual_question){
+              &amp;:not(.past_question){
+                margin-top: 100px;
+              }
+            }
+          }
+          &amp;.has_options{
+            .answer_container{
+              margin-top: 34px;
+              display: flex;
+              justify-content: flex-start;
+              input{
+                margin-top: 0px;
+                width: 108px;
+              }
+              .option{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                margin-left: 5px;
+                border: 1px solid $text-gray;
+                border-radius: 2px;
+                padding-left: 16px;
+                width: 116px;
+                height: 36px;
+                cursor: pointer;
+                line-height: 1;
+                font-size: 18px;
+                font-weight: 300;
+                color: $text-gray;
+                &amp;.focused{
+                  border: 1px solid $primary-red;
+                }
+                &amp;.selected{
+                  border: 1px solid $primary-red;
+                  color: $primary-red;
+                  background-color: rgba(219,0,17, 0.15);
+                }
+              }
+            }
+          }
+          &amp;.past_question, &amp;.future_question{
+            height: 0px;
+            overflow: hidden;
+          }
+          &amp;.next_question{
+            opacity: 0.2;
+          }
+          .question{
+            font-size: 30px;
+            line-height: 36px;
+            font-weight: 100;
+            color: $text-black;
+          }
+          input{
+            margin-top: 34px;
+            border: none;
+            padding-left: 0px;
+            width: 100%;
+            height: 36px;
+            background-color: transparent;
+            font-size: 30px;
+            line-height: 1;
+            color: $text-black;
+            font-weight: 100;
+          }
+        }
+      }
+      .controls{
+        margin-top: 80px;
+      }
+    }
+  }
+  .add_objective{
+    border: none;
+    padding: auto;
+    width: 182px;
+    height: 48px;
+    font-size: 18px;
+    font-weight: 100;
+    color: $white;
+    background-color: $primary-red;
+  }
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><section>  <div class="header">    <img src="assets/images/logo_hsbc.svg"/>    <div class="close" (click)="closeModal(null)">    </div>  </div>  <p class="title">Añadir objetivo</p>  <div class="questions_container">    <div class="line"></div>    <form class="questions_and_controls" [formGroup]="objective_form" novalidate>      <div class="questions_list">        <div class="question_item" [ngClass]="{past_question: 0 < actual_question_index, actual_question: 0 === actual_question_index, next_question: actual_question_index + 1 === 0, future_question: 0 > actual_question_index + 1}">          <p class="question">¿Qué objetivo te gustaría lograr?</p>          <input             type="text"             maxlength="254"             #question_0             [noSpecialChars]="true"            formControlName="what_objective"             (click)="setActualQuestion(0)"/>        </div>        <div class="question_item has_options" [ngClass]="{past_question: 1 < actual_question_index, actual_question: 1 === actual_question_index, next_question: actual_question_index + 1 === 1, future_question: 1 > actual_question_index + 1}">          <p class="question">¿Cuándo te gustaría lograrlo?</p>          <div class="answer_container">            <input               type="text"               maxlength="2"               #question_1               [maxValue]="99"              [applyMaxValue]="true"              formControlName="when"               (click)="setActualQuestion(1)"/>            <div               class="option second-q-option focused option-one"               [ngClass]="{selected: question_1_selected_option === \'meses\'}"               (click)="setQuestionOneOptionValue(\'meses\')">                Mes              </div>            <div               class="option second-q-option option-two"               [ngClass]="{selected: question_1_selected_option === \'años\'}"               (click)="setQuestionOneOptionValue(\'años\')">                Año              </div>          </div>        </div>        <div class="question_item" [ngClass]="{past_question: 2 < actual_question_index, actual_question: 2 === actual_question_index, next_question: actual_question_index + 1 === 2, future_question: 2 > actual_question_index + 1}">          <p class="question">¿Cuánto necesitas para lograrlo?</p>          <input             type="text"             maxlength="12"             [maxValue]="99"            [applyMaxValue]="true"            [noSpecialChars]="true"            #question_2 formControlName="how_many"             (click)="setActualQuestion(2)"/>        </div>      </div>      <div class="controls" *ngIf="actual_question_index === 2">        <button class="add_objective" type="button" (click)="finishObjectiveForm()">Añadir objetivo</button>      </div>    </form>    <div class="line"></div>  </div></section></div>'
+    var COMPONENTS = [{'name': 'AddNotesComponent', 'selector': 'add-notes'},{'name': 'AddObjectiveComponent', 'selector': 'add-objective'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CalculationExplanationComponent', 'selector': 'calculation-explanation'},{'name': 'ClientFileComponent', 'selector': 'client-file'},{'name': 'ClientFinancesComponent', 'selector': 'client-finances'},{'name': 'ClientHeaderComponent', 'selector': 'client-header'},{'name': 'ClientSearchComponent', 'selector': 'client-search'},{'name': 'DashboardComponent', 'selector': 'dashboard'},{'name': 'DropdownComponent', 'selector': 'dropdown'},{'name': 'EditClientInformationComponent', 'selector': 'edit-client-information'},{'name': 'FinancialHealthComponent', 'selector': 'financial-health'},{'name': 'GeneralClientInformationComponent', 'selector': 'general-client-information'},{'name': 'HomeComponent', 'selector': 'home'},{'name': 'InterviewComponent', 'selector': 'interview'},{'name': 'LoaderComponent', 'selector': 'loader'},{'name': 'NextCheckupComponent', 'selector': 'nextCheckup'},{'name': 'NotesAndAgreementsComponent', 'selector': 'notes-and-agreements'},{'name': 'ObjectiveComponent', 'selector': 'objective'},{'name': 'PrintoutComponent', 'selector': 'printout'},{'name': 'ProductDetailComponent', 'selector': 'product-detail'},{'name': 'ProductsComponent', 'selector': 'products'}];
+    var DIRECTIVES = [{'name': 'DateValidator', 'selector': '[DateValidator][formControlName],[DateValidator][formControl],[DateValidator][ngModel]'},{'name': 'EmailValidator', 'selector': '[EmailValidator][formControlName],[EmailValidator][formControl],[EmailValidator][ngModel]'},{'name': 'MaxValue', 'selector': '[maxValue]'},{'name': 'NoSpecialChars', 'selector': '[noSpecialChars]'},{'name': 'NotNumbersDirective', 'selector': '[noNumbers]'},{'name': 'RealEmailValidator', 'selector': '[RealEmailValidator][formControlName],[RealEmailValidator][formControl],[RealEmailValidator][ngModel]'}];
+    var ACTUAL_COMPONENT = {'name': 'AddObjectiveComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AddObjectiveComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
