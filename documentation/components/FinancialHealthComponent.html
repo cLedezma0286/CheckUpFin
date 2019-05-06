@@ -1,0 +1,2831 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>premier documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">premier documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>FinancialHealthComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>financial-health</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>financial-health.style.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>financial-health.view.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#age">age</a>
+                            </li>
+                            <li>
+                                <a href="#calculation_explanation_open">calculation_explanation_open</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#clientsService">clientsService</a>
+                            </li>
+                            <li>
+                                <a href="#financial_health">financial_health</a>
+                            </li>
+                            <li>
+                                <a href="#name">name</a>
+                            </li>
+                            <li>
+                                <a href="#objective_modal_open">objective_modal_open</a>
+                            </li>
+                            <li>
+                                <a href="#objective_to_edit">objective_to_edit</a>
+                            </li>
+                            <li>
+                                <a href="#objectives">objectives</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#objectivesService">objectivesService</a>
+                            </li>
+                            <li>
+                                <a href="#print_modal_open">print_modal_open</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#renderer">renderer</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#route">route</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#router">router</a>
+                            </li>
+                            <li>
+                                <a href="#simple_view">simple_view</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#closeCalculationExplanationModal">closeCalculationExplanationModal</a>
+                            </li>
+                            <li>
+                                <a href="#closeObjectiveModal">closeObjectiveModal</a>
+                            </li>
+                            <li>
+                                <a href="#closePrintModal">closePrintModal</a>
+                            </li>
+                            <li>
+                                <a href="#deleteObjective">deleteObjective</a>
+                            </li>
+                            <li>
+                                <a href="#deleteObjectiveLocal">deleteObjectiveLocal</a>
+                            </li>
+                            <li>
+                                <a href="#editObjective">editObjective</a>
+                            </li>
+                            <li>
+                                <a href="#getDateForObjectFormat">getDateForObjectFormat</a>
+                            </li>
+                            <li>
+                                <a href="#getRate">getRate</a>
+                            </li>
+                            <li>
+                                <a href="#getRateNumber">getRateNumber</a>
+                            </li>
+                            <li>
+                                <a href="#getYearsOfAge">getYearsOfAge</a>
+                            </li>
+                            <li>
+                                <a href="#goToProducts">goToProducts</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#openCalculationExplanationModal">openCalculationExplanationModal</a>
+                            </li>
+                            <li>
+                                <a href="#openObjectiveModal">openObjectiveModal</a>
+                            </li>
+                            <li>
+                                <a href="#openPrintModal">openPrintModal</a>
+                            </li>
+                            <li>
+                                <a href="#setBodyScroll">setBodyScroll</a>
+                            </li>
+                            <li>
+                                <a href="#updateLocalObjectivesList">updateLocalObjectivesList</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostListeners</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#window:popstate">window:popstate</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, clientsService: <a href="../injectables/ClientsService.html">ClientsService</a>, objectivesService: <a href="../injectables/ObjectivesService.html">ObjectivesService</a>, renderer: <a href="https://angular.io/api/core/Renderer2" target="_blank">Renderer2</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:20</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor del componente de salud financiera</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Servicio para manejo de direccionamiento de rutas</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>servicio para conocer datos mediante la ruta</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>clientsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ClientsService.html" target="_self" >ClientsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Servicio que provee métodos para hacer consultas http a las rutas de clientes</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>objectivesService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ObjectivesService.html" target="_self" >ObjectivesService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>renderer</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/Renderer2" target="_blank" >Renderer2</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Elemento que provee una interacción directa con elementos definidos del DOM y sus atributos</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+    <section>
+    <h3>HostListeners</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="window:popstate"></a>
+                    <span class="name">
+                        <b>
+                            window:popstate
+                        </b>
+                        <a href="#window:popstate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <i>Arguments : </i><code>'$event' </code>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>window:popstate(event)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:75</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que escucha cuando se retrocede de página, para
+marcar una ruta diferente a la de volver al loader</p>
+</div>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeCalculationExplanationModal"></a>
+                    <span class="name">
+                        <b>
+                            closeCalculationExplanationModal
+                        </b>
+                        <a href="#closeCalculationExplanationModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>closeCalculationExplanationModal()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="101"
+                            class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:101</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que oculta la vista en la que se explica como se calcula la salud financiera</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeObjectiveModal"></a>
+                    <span class="name">
+                        <b>
+                            closeObjectiveModal
+                        </b>
+                        <a href="#closeObjectiveModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>closeObjectiveModal(objective)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="115"
+                            class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:115</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que oculta la vista para editar o crear objetivos</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>objective</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closePrintModal"></a>
+                    <span class="name">
+                        <b>
+                            closePrintModal
+                        </b>
+                        <a href="#closePrintModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>closePrintModal()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="207"
+                            class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:207</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que oculta la vista en la que se imprime la información del cliente</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteObjective"></a>
+                    <span class="name">
+                        <b>
+                            deleteObjective
+                        </b>
+                        <a href="#deleteObjective"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteObjective(objective_id)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="179"
+                            class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:179</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que elimina objetivos en el servidor</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>objective_id</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>id del objetivo a eliminar del servidor</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteObjectiveLocal"></a>
+                    <span class="name">
+                        <b>
+                            deleteObjectiveLocal
+                        </b>
+                        <a href="#deleteObjectiveLocal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteObjectiveLocal(objective_id)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="190"
+                            class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:190</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que elimina objetivos en el servidor</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>objective_id</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>id del objetivo a eliminar del arreglo local</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editObjective"></a>
+                    <span class="name">
+                        <b>
+                            editObjective
+                        </b>
+                        <a href="#editObjective"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>editObjective(objective)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="171"
+                            class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:171</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que muesta la vista de editar objetivo</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>objective</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>el objetivo que se va a editar</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDateForObjectFormat"></a>
+                    <span class="name">
+                        <b>
+                            getDateForObjectFormat
+                        </b>
+                        <a href="#getDateForObjectFormat"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getDateForObjectFormat(date_dmy)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="87"
+                            class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:87</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función para obtener una cadena de una fecha en formato dd/mm/aaaa</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>date_dmy</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>cadena de una fecha en formato dd/mm/aaaa</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getRate"></a>
+                    <span class="name">
+                        <b>
+                            getRate
+                        </b>
+                        <a href="#getRate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getRate(full_rate)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="161"
+                            class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:161</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que recibe una cadena con la calificación completa de algún rubro y regresa una cadena con solo la calificación</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>full_rate</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Cadena con la calificación completa de algún rubro</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Cadena con solo la calificación del rubro</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getRateNumber"></a>
+                    <span class="name">
+                        <b>
+                            getRateNumber
+                        </b>
+                        <a href="#getRateNumber"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getRateNumber(full_rate)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="153"
+                            class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:153</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que recibe una cadena con la calificación completa de algún rubro y regresa un número con la calificación</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>full_rate</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Cadena con la calificación completa de algún rubro</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Número con la calificación del rubro</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getYearsOfAge"></a>
+                    <span class="name">
+                        <b>
+                            getYearsOfAge
+                        </b>
+                        <a href="#getYearsOfAge"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getYearsOfAge()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:60</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que regresa la edad en años obteniendo la fecha de nacimiento del cliente</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>edad en años</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goToProducts"></a>
+                    <span class="name">
+                        <b>
+                            goToProducts
+                        </b>
+                        <a href="#goToProducts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goToProducts()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="145"
+                            class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:145</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que dirige la página a la vista de productos</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:34</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Al iniciar el componente se obtiene al cliente guardado en localStorage, con esos datos se busca su información de salud financiera y objetivos
+Se revisa si la vista tiene el parametro de simple_view que evita que algunos elementos se muestren</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openCalculationExplanationModal"></a>
+                    <span class="name">
+                        <b>
+                            openCalculationExplanationModal
+                        </b>
+                        <a href="#openCalculationExplanationModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openCalculationExplanationModal()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="94"
+                            class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:94</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que muestra la vista en la que se explica como se calcula la salud financiera</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openObjectiveModal"></a>
+                    <span class="name">
+                        <b>
+                            openObjectiveModal
+                        </b>
+                        <a href="#openObjectiveModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openObjectiveModal()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="108"
+                            class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:108</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que muestra la vista para editar o crear objetivos</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openPrintModal"></a>
+                    <span class="name">
+                        <b>
+                            openPrintModal
+                        </b>
+                        <a href="#openPrintModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openPrintModal()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="200"
+                            class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:200</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que muestra la vista que imprime la información del cliente</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setBodyScroll"></a>
+                    <span class="name">
+                        <b>
+                            setBodyScroll
+                        </b>
+                        <a href="#setBodyScroll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setBodyScroll(scroll_value)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="139"
+                            class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:139</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que establece el comportamiento del scroll de la página</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>scroll_value</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Valor que se le asirnará al elemento body en su atributo overflow</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateLocalObjectivesList"></a>
+                    <span class="name">
+                        <b>
+                            updateLocalObjectivesList
+                        </b>
+                        <a href="#updateLocalObjectivesList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateLocalObjectivesList(objective)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="126"
+                            class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:126</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Función que recibe un objetivo y lo actualiza en la lista local de objetivos</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>objective</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="age"></a>
+                        <span class="name">
+                            <b>
+                            age</b>
+                            <a href="#age"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>null</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:13</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="calculation_explanation_open"></a>
+                        <span class="name">
+                            <b>
+                            calculation_explanation_open</b>
+                            <a href="#calculation_explanation_open"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:14</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="clientsService"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            clientsService</b>
+                            <a href="#clientsService"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../injectables/ClientsService.html" target="_self" >ClientsService</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:29</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">Servicio que provee métodos para hacer consultas http a las rutas de clientes</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="financial_health"></a>
+                        <span class="name">
+                            <b>
+                            financial_health</b>
+                            <a href="#financial_health"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/FinancialHealth.html" target="_self" >FinancialHealth</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new FinancialHealth()</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:16</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="name"></a>
+                        <span class="name">
+                            <b>
+                            name</b>
+                            <a href="#name"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:12</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="objective_modal_open"></a>
+                        <span class="name">
+                            <b>
+                            objective_modal_open</b>
+                            <a href="#objective_modal_open"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:15</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="objective_to_edit"></a>
+                        <span class="name">
+                            <b>
+                            objective_to_edit</b>
+                            <a href="#objective_to_edit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>null</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:18</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="objectives"></a>
+                        <span class="name">
+                            <b>
+                            objectives</b>
+                            <a href="#objectives"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:17</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="objectivesService"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            objectivesService</b>
+                            <a href="#objectivesService"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../injectables/ObjectivesService.html" target="_self" >ObjectivesService</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:29</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="print_modal_open"></a>
+                        <span class="name">
+                            <b>
+                            print_modal_open</b>
+                            <a href="#print_modal_open"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:20</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="renderer"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            renderer</b>
+                            <a href="#renderer"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/core/Renderer2" target="_blank" >Renderer2</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:29</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">Elemento que provee una interacción directa con elementos definidos del DOM y sus atributos</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="route"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            route</b>
+                            <a href="#route"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:29</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">servicio para conocer datos mediante la ruta</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="router"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            router</b>
+                            <a href="#router"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:29</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">Servicio para manejo de direccionamiento de rutas</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="simple_view"></a>
+                        <span class="name">
+                            <b>
+                            simple_view</b>
+                            <a href="#simple_view"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/modules/client-finances/client-file/financial-health/financial-health.component.ts:19</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Renderer2, HostListener } from &#x27;@angular/core&#x27;;
+import { Router, ActivatedRoute } from &#x27;@angular/router&#x27;;
+import { ClientsService } from &#x27;@services/clients.service&#x27;;
+import { ObjectivesService } from &#x27;@services/objectives.service&#x27;;
+import { FinancialHealth } from &#x27;@models/financial-health.model&#x27;;
+@Component({
+  selector: &#x27;financial-health&#x27;,
+  templateUrl: &#x27;financial-health.view.html&#x27;,
+  styleUrls: [&#x27;financial-health.style.scss&#x27;]
+})
+export class FinancialHealthComponent implements OnInit{
+  name: string;
+  age &#x3D; null;
+  calculation_explanation_open &#x3D; false;
+  objective_modal_open &#x3D; false;
+  financial_health: FinancialHealth &#x3D; new FinancialHealth();
+  objectives &#x3D; [];
+  objective_to_edit &#x3D; null;
+  simple_view &#x3D; false;
+  print_modal_open &#x3D; false;
+  /**
+   * Constructor del componente de salud financiera
+   * @param router Servicio para manejo de direccionamiento de rutas
+   * @param route servicio para conocer datos mediante la ruta
+   * @param clientsService Servicio que provee métodos para hacer consultas http a las rutas de clientes
+   * @param objectivesServiceServicio que provee métodos para hacer consultas http a las rutas de servicios
+   * @param renderer Elemento que provee una interacción directa con elementos definidos del DOM y sus atributos
+   */
+  constructor(public router: Router, public route: ActivatedRoute, public clientsService: ClientsService, public objectivesService: ObjectivesService, public renderer: Renderer2){}
+  /**
+   * Al iniciar el componente se obtiene al cliente guardado en localStorage, con esos datos se busca su información de salud financiera y objetivos
+   * Se revisa si la vista tiene el parametro de simple_view que evita que algunos elementos se muestren
+   */
+  ngOnInit(){
+    let client_cis &#x3D; JSON.parse(localStorage.getItem(&#x27;cliente&#x27;)).num_clie_cis;
+    this.clientsService.getClientInterviewInformation(client_cis).subscribe(
+      response &#x3D;&gt; {
+        this.financial_health &#x3D; response[&#x27;salud_financiera&#x27;];
+        this.objectives &#x3D; response[&#x27;objetivos&#x27;];
+      }
+    );
+    this.clientsService.getClientInformation(client_cis).subscribe(
+      response &#x3D;&gt; {
+        this.name &#x3D; response[&#x27;nombre_clie&#x27;];
+        this.age &#x3D; response[&#x27;fecha_nacimiento&#x27;];
+      }
+    );
+    this.route.queryParams.subscribe(
+      params &#x3D;&gt; {
+        if (params[&#x27;simple_view&#x27;]) {
+          this.simple_view &#x3D; true;
+        }
+      }
+    );
+  }
+  /**
+   * Función que regresa la edad en años obteniendo la fecha de nacimiento del cliente
+   * @return edad en años
+   */
+  getYearsOfAge(){
+    if (this.age) {
+      let birthday &#x3D; new Date(this.age);
+      let age_dif_ms &#x3D; Date.now() - birthday.getTime();
+      let age_date &#x3D; new Date(age_dif_ms);
+      return Math.abs(age_date.getUTCFullYear() - 1970);
+    }
+    return 0;
+  }
+
+  /**
+   * Función que escucha cuando se retrocede de página, para
+   * marcar una ruta diferente a la de volver al loader
+   */
+  @HostListener(&#x27;window:popstate&#x27;, [&#x27;$event&#x27;])
+  onPopState(event) {
+    // console.log(&#x27;Back button pressed FinancialHealthComponent&#x27;);
+    setTimeout(() &#x3D;&gt; {
+      this.router.navigate([&#x27;/interview&#x27;], { queryParams: {id: localStorage.getItem(&#x27;actual_interview_id&#x27;)}});
+    }, 10);
+  }
+
+  /**
+   * Función para obtener una cadena de una fecha en formato dd/mm/aaaa
+   * @param cadena con una fecha en formato aaaa-mm-ddd
+   * @return cadena de una fecha en formato dd/mm/aaaa
+   */
+  getDateForObjectFormat(date_dmy){
+    let date_array_aux &#x3D; date_dmy.split(&#x27;-&#x27;);
+    return date_array_aux[2] + &#x27;/&#x27; + date_array_aux[1] + &#x27;/&#x27; + date_array_aux[0];
+  }
+  /**
+   * Función que muestra la vista en la que se explica como se calcula la salud financiera
+   */
+  openCalculationExplanationModal(){
+    this.setBodyScroll(&#x27;hidden&#x27;);
+    this.calculation_explanation_open &#x3D; true;
+  }
+  /**
+   * Función que oculta la vista en la que se explica como se calcula la salud financiera
+   */
+  closeCalculationExplanationModal(){
+    this.calculation_explanation_open &#x3D; false;
+    this.setBodyScroll(&#x27;auto&#x27;);
+  }
+  /**
+   * Función que muestra la vista para editar o crear objetivos
+   */
+  openObjectiveModal(){
+    this.setBodyScroll(&#x27;hidden&#x27;);
+    this.objective_modal_open &#x3D; true;
+  }
+  /**
+   * Función que oculta la vista para editar o crear objetivos
+   */
+  closeObjectiveModal(objective){
+    if (objective) {
+      this.updateLocalObjectivesList(objective);
+    }
+    this.objective_modal_open &#x3D; false;
+    this.objective_to_edit &#x3D; null;
+    this.setBodyScroll(&#x27;auto&#x27;);
+  }
+  /**
+   * Función que recibe un objetivo y lo actualiza en la lista local de objetivos
+   */
+  updateLocalObjectivesList(objective){
+    for (var i &#x3D; 0; i &lt; this.objectives.length; i++) {
+      if (objective.id &#x3D;&#x3D;&#x3D; this.objectives[i].id) {
+        this.objectives[i] &#x3D; objective;
+        return;
+      }
+    }
+    this.objectives.push(objective);
+  }
+  /**
+   * Función que establece el comportamiento del scroll de la página
+   * @param {string} scroll_value Valor que se le asirnará al elemento body en su atributo overflow
+   */
+  setBodyScroll(scroll_value){
+    this.renderer.setStyle(document.body, &#x27;overflow&#x27;, scroll_value);
+  }
+  /**
+   * Función que dirige la página a la vista de productos
+   */
+  goToProducts(){
+    this.router.navigate([&#x27;/client-finances/products&#x27;]);
+  }
+  /**
+   * Función que recibe una cadena con la calificación completa de algún rubro y regresa un número con la calificación
+   * @param {string} full_rate Cadena con la calificación completa de algún rubro
+   * @return Número con la calificación del rubro
+   */
+  getRateNumber(full_rate){
+    return Number(this.getRate(full_rate));
+  }
+  /**
+   * Función que recibe una cadena con la calificación completa de algún rubro y regresa una cadena con solo la calificación
+   * @param {string} full_rate Cadena con la calificación completa de algún rubro
+   * @return Cadena con solo la calificación del rubro
+   */
+  getRate(full_rate){
+    if(full_rate){
+      return full_rate.split(&#x27;/&#x27;)[0];
+    }
+    return 0;
+  }
+  /**
+   * Función que muesta la vista de editar objetivo
+   * @param objective el objetivo que se va a editar
+   */
+  editObjective(objective){
+    this.objective_to_edit &#x3D; objective;
+    this.openObjectiveModal();
+  }
+  /**
+   * Función que elimina objetivos en el servidor
+   * @param objective_id id del objetivo a eliminar del servidor
+   */
+  deleteObjective(objective_id){
+    this.objectivesService.deleteObjective(objective_id).subscribe(
+      response &#x3D;&gt; {
+        this.deleteObjectiveLocal(objective_id);
+      }
+    );
+  }
+  /**
+   * Función que elimina objetivos en el servidor
+   * @param objective_id id del objetivo a eliminar del arreglo local
+   */
+  deleteObjectiveLocal(objective_id){
+    for (var i &#x3D; 0; i &lt; this.objectives.length; i++) {
+      if (objective_id &#x3D;&#x3D;&#x3D; this.objectives[i].id) {
+        this.objectives.splice(i, 1);
+      }
+    }
+  }
+  /**
+   * Función que muestra la vista que imprime la información del cliente
+   */
+  openPrintModal(){
+    this.setBodyScroll(&#x27;hidden&#x27;);
+    this.print_modal_open &#x3D; true;
+  }
+  /**
+   * Función que oculta la vista en la que se imprime la información del cliente
+   */
+  closePrintModal(){
+    this.print_modal_open &#x3D; false;
+    this.setBodyScroll(&#x27;auto&#x27;);
+  }
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;section [ngClass]&#x3D;&quot;{space_around: simple_view}&quot;&gt;
+  &lt;div class&#x3D;&quot;financial_health_index&quot;&gt;
+    &lt;div class&#x3D;&quot;whiteBox status&quot;&gt;
+      &lt;div class&#x3D;&quot;header&quot;&gt;
+        &lt;img src&#x3D;&quot;assets/images/heart.svg&quot;/&gt;
+        &lt;p&gt;Índice salud financiera&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;content&quot; [ngClass]&#x3D;&quot;{&#x27;healthy&#x27;: getRateNumber(financial_health.puntuacion) &gt;&#x3D; 7, &#x27;unhealthy&#x27;: getRateNumber(financial_health.puntuacion) &gt;&#x3D; 5 &amp;&amp; getRateNumber(financial_health.puntuacion) &lt; 7, &#x27;dangerous&#x27;: getRateNumber(financial_health.puntuacion) &lt; 5}&quot;&gt;
+        &lt;p class&#x3D;&quot;score&quot;&gt;{{getRate(financial_health.puntuacion)}}&lt;/p&gt;
+        &lt;div class&#x3D;&quot;status_bar&quot;&gt;
+          &lt;div [style.width.%]&#x3D;&quot;getRateNumber(financial_health.puntuacion) * 10&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;p class&#x3D;&quot;explanation&quot;&gt;Tu salud financiera es calculada a partir de toda la información que nos has facilitado y estableciendo una media entre cuatro tracks fundamentales.&lt;/p&gt;
+        &lt;p class&#x3D;&quot;calculated&quot; (click)&#x3D;&quot;openCalculationExplanationModal()&quot;&gt;¿Cómo se calcula?&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;whiteBox items&quot;&gt;
+        &lt;div class&#x3D;&quot;item&quot; [ngClass]&#x3D;&quot;{&#x27;healthy&#x27;: financial_health.Gastos.num_puntuacion &gt;&#x3D; 7, &#x27;unhealthy&#x27;: financial_health.Gastos.num_puntuacion &gt;&#x3D; 5 &amp;&amp; financial_health.Gastos.num_puntuacion &lt; 7, &#x27;dangerous&#x27;: financial_health.Gastos.num_puntuacion &lt; 5}&quot;&gt;
+          &lt;div class&#x3D;&quot;bar&quot;&gt;
+            &lt;div class&#x3D;&quot;image_container&quot;&gt;
+              &lt;img src&#x3D;&quot;assets/images/gastos.svg&quot;/&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;status_bar&quot;&gt;
+              &lt;div [style.height.%]&#x3D;&quot;financial_health.Gastos.num_puntuacion * 10&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;p class&#x3D;&quot;name&quot;&gt;Gastos&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;p class&#x3D;&quot;score&quot;&gt;&lt;span&gt;{{financial_health.Gastos.num_puntuacion}}&lt;/span&gt;/10&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;item&quot; [ngClass]&#x3D;&quot;{&#x27;healthy&#x27;: financial_health.Deuda.num_puntuacion &gt;&#x3D; 7, &#x27;unhealthy&#x27;: financial_health.Deuda.num_puntuacion &gt;&#x3D; 5 &amp;&amp; financial_health.Deuda.num_puntuacion &lt; 7, &#x27;dangerous&#x27;: financial_health.Deuda.num_puntuacion &lt; 5}&quot;&gt;
+          &lt;div class&#x3D;&quot;bar&quot;&gt;
+            &lt;div class&#x3D;&quot;image_container&quot;&gt;
+              &lt;img src&#x3D;&quot;assets/images/deuda.svg&quot;/&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;status_bar&quot;&gt;
+              &lt;div [style.height.%]&#x3D;&quot;financial_health.Deuda.num_puntuacion * 10&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;p class&#x3D;&quot;name&quot;&gt;Deuda&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;p class&#x3D;&quot;score&quot;&gt;&lt;span&gt;{{financial_health.Deuda.num_puntuacion}}&lt;/span&gt;/10&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;item&quot; [ngClass]&#x3D;&quot;{&#x27;healthy&#x27;: financial_health.Ahorro.num_puntuacion &gt;&#x3D; 7, &#x27;unhealthy&#x27;: financial_health.Ahorro.num_puntuacion &gt;&#x3D; 5 &amp;&amp; financial_health.Ahorro.num_puntuacion &lt; 7, &#x27;dangerous&#x27;: financial_health.Ahorro.num_puntuacion &lt; 5}&quot;&gt;
+          &lt;div class&#x3D;&quot;bar&quot;&gt;
+            &lt;div class&#x3D;&quot;image_container&quot;&gt;
+              &lt;img src&#x3D;&quot;assets/images/ahorro.svg&quot;/&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;status_bar&quot;&gt;
+              &lt;div [style.height.%]&#x3D;&quot;financial_health.Ahorro.num_puntuacion * 10&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;p class&#x3D;&quot;name&quot;&gt;Ahorro&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;p class&#x3D;&quot;score&quot;&gt;&lt;span&gt;{{financial_health.Ahorro.num_puntuacion}}&lt;/span&gt;/10&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;item&quot; [ngClass]&#x3D;&quot;{&#x27;healthy&#x27;: financial_health.Plan.num_puntuacion &gt;&#x3D; 7, &#x27;unhealthy&#x27;: financial_health.Plan.num_puntuacion &gt;&#x3D; 5 &amp;&amp; financial_health.Plan.num_puntuacion &lt; 7, &#x27;dangerous&#x27;: financial_health.Plan.num_puntuacion &lt; 5}&quot;&gt;
+          &lt;div class&#x3D;&quot;bar&quot;&gt;
+            &lt;div class&#x3D;&quot;image_container&quot;&gt;
+              &lt;img src&#x3D;&quot;assets/images/plan.svg&quot;/&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;status_bar&quot;&gt;
+              &lt;div [style.height.%]&#x3D;&quot;financial_health.Plan.num_puntuacion * 10&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;p class&#x3D;&quot;name&quot;&gt;Planificación&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;p class&#x3D;&quot;score&quot;&gt;&lt;span&gt;{{financial_health.Plan.num_puntuacion}}&lt;/span&gt;/10&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class&#x3D;&quot;life_goals_and_needs whiteBox&quot;&gt;
+    &lt;p class&#x3D;&quot;title&quot;&gt;Objetivos de vida y necesidades&lt;/p&gt;
+    &lt;p class&#x3D;&quot;description&quot;&gt;Estos son tus objetivos y sueños, así como los detalles que debes tener en cuenta para conseguirlos:&lt;/p&gt;
+    &lt;div class&#x3D;&quot;objectives_container&quot;&gt;
+      &lt;div class&#x3D;&quot;objective&quot; *ngFor&#x3D;&quot;let objective of objectives; let i &#x3D; index&quot;&gt;
+        &lt;div class&#x3D;&quot;number&quot;&gt;{{ i + 1 }}&lt;/div&gt;
+        &lt;div class&#x3D;&quot;details&quot;&gt;
+          &lt;p class&#x3D;&quot;name&quot;&gt;{{ objective.nombre }}&lt;/p&gt;
+          &lt;p class&#x3D;&quot;date_price&quot;&gt;{{ objective.fecha }}&lt;span *ngIf&#x3D;&quot;objective.valor&quot;&gt;, ${{ objective.valor }}&lt;/span&gt;&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;img class&#x3D;&quot;edit&quot; src&#x3D;&quot;assets/images/icon-edit.svg&quot; (click)&#x3D;&quot;editObjective(objective)&quot;/&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!--
+    &lt;button class&#x3D;&quot;add_objective&quot; (click)&#x3D;&quot;openObjectiveModal()&quot;&gt;Añadir objetivo&lt;/button&gt;
+    --&gt;
+  &lt;/div&gt;
+  &lt;div class&#x3D;&quot;results whiteBox&quot;&gt;
+    &lt;p class&#x3D;&quot;title&quot;&gt;Resultado de tu Financial Check-Up&lt;/p&gt;
+    &lt;div class&#x3D;&quot;description&quot;&gt;&lt;p&gt; {{name}} ({{getYearsOfAge()}} años) &lt;/p&gt;&lt;/div&gt;
+    &lt;div class&#x3D;&quot;recommendations_by_category&quot;&gt;
+      &lt;div class&#x3D;&quot;row&quot;&gt;
+        &lt;div class&#x3D;&quot;item&quot;&gt;
+          &lt;div class&#x3D;&quot;score&quot;&gt;
+            &lt;img src&#x3D;&quot;assets/images/gastos.svg&quot;/&gt;
+            &lt;div [ngClass]&#x3D;&quot;{&#x27;healthy&#x27;: financial_health.Gastos.num_puntuacion &gt;&#x3D; 7, &#x27;unhealthy&#x27;: financial_health.Gastos.num_puntuacion &gt;&#x3D; 5 &amp;&amp; financial_health.Gastos.num_puntuacion &lt; 7, &#x27;dangerous&#x27;: financial_health.Gastos.num_puntuacion &lt; 5}&quot;&gt;{{financial_health.Gastos.num_puntuacion}}&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;recomendations&quot;&gt;
+            &lt;p class&#x3D;&quot;recomendation_title&quot;&gt;Gastos&lt;/p&gt;
+            &lt;div class&#x3D;&quot;recomendations_list&quot;&gt;
+              &lt;div *ngFor&#x3D;&quot;let recommendation of financial_health.Gastos.recomendaciones&quot;&gt;
+                &lt;p *ngFor&#x3D;&quot;let bullet of recommendation.bullets&quot;&gt;• {{bullet}}&lt;/p&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;separation&quot;&gt;&lt;/div&gt;
+        &lt;div class&#x3D;&quot;item&quot;&gt;
+          &lt;div class&#x3D;&quot;score&quot;&gt;
+            &lt;img src&#x3D;&quot;assets/images/deuda.svg&quot;/&gt;
+            &lt;div [ngClass]&#x3D;&quot;{&#x27;healthy&#x27;: financial_health.Deuda.num_puntuacion &gt;&#x3D; 7, &#x27;unhealthy&#x27;: financial_health.Deuda.num_puntuacion &gt;&#x3D; 5 &amp;&amp; financial_health.Deuda.num_puntuacion &lt; 7, &#x27;dangerous&#x27;: financial_health.Deuda.num_puntuacion &lt; 5}&quot;&gt;{{financial_health.Deuda.num_puntuacion}}&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;recomendations&quot;&gt;
+            &lt;p class&#x3D;&quot;recomendation_title&quot;&gt;Deuda&lt;/p&gt;
+            &lt;div class&#x3D;&quot;recomendations_list&quot;&gt;
+              &lt;div *ngFor&#x3D;&quot;let recommendation of financial_health.Deuda.recomendaciones&quot;&gt;
+                &lt;p *ngFor&#x3D;&quot;let bullet of recommendation.bullets&quot;&gt;• {{bullet}}&lt;/p&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;row&quot;&gt;
+        &lt;div class&#x3D;&quot;item&quot;&gt;
+          &lt;div class&#x3D;&quot;score&quot;&gt;
+            &lt;img src&#x3D;&quot;assets/images/ahorro.svg&quot;/&gt;
+            &lt;div [ngClass]&#x3D;&quot;{&#x27;healthy&#x27;: financial_health.Ahorro.num_puntuacion &gt;&#x3D; 7, &#x27;unhealthy&#x27;: financial_health.Ahorro.num_puntuacion &gt;&#x3D; 5 &amp;&amp; financial_health.Ahorro.num_puntuacion &lt; 7, &#x27;dangerous&#x27;: financial_health.Ahorro.num_puntuacion &lt; 5}&quot;&gt;{{financial_health.Ahorro.num_puntuacion}}&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;recomendations&quot;&gt;
+            &lt;p class&#x3D;&quot;recomendation_title&quot;&gt;Ahorro&lt;/p&gt;
+            &lt;div class&#x3D;&quot;recomendations_list&quot;&gt;
+              &lt;div *ngFor&#x3D;&quot;let recommendation of financial_health.Ahorro.recomendaciones&quot;&gt;
+                &lt;p *ngFor&#x3D;&quot;let bullet of recommendation.bullets&quot;&gt;• {{bullet}}&lt;/p&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;separation&quot;&gt;&lt;/div&gt;
+        &lt;div class&#x3D;&quot;item&quot;&gt;
+          &lt;div class&#x3D;&quot;score&quot;&gt;
+            &lt;img src&#x3D;&quot;assets/images/plan.svg&quot;/&gt;
+            &lt;div [ngClass]&#x3D;&quot;{&#x27;healthy&#x27;: financial_health.Plan.num_puntuacion &gt;&#x3D; 7, &#x27;unhealthy&#x27;: financial_health.Plan.num_puntuacion &gt;&#x3D; 5 &amp;&amp; financial_health.Plan.num_puntuacion &lt; 7, &#x27;dangerous&#x27;: financial_health.Plan.num_puntuacion &lt; 5}&quot;&gt;{{financial_health.Plan.num_puntuacion}}&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;recomendations&quot;&gt;
+            &lt;p class&#x3D;&quot;recomendation_title&quot;&gt;Planificación&lt;/p&gt;
+            &lt;div class&#x3D;&quot;recomendations_list&quot;&gt;
+              &lt;div *ngFor&#x3D;&quot;let recommendation of financial_health.Plan.recomendaciones&quot;&gt;
+                &lt;p *ngFor&#x3D;&quot;let bullet of recommendation.bullets&quot;&gt;• {{bullet}}&lt;/p&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class&#x3D;&quot;controls&quot;&gt;
+    &lt;button *ngIf&#x3D;&quot;!simple_view&quot; (click)&#x3D;&quot;openPrintModal()&quot;&gt;Imprimir&lt;/button&gt;
+    &lt;button *ngIf&#x3D;&quot;simple_view&quot; class&#x3D;&quot;to_rigth&quot; (click)&#x3D;&quot;goToProducts()&quot;&gt;Ver productos&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;img src&#x3D;&quot;assets/images/lock-sm.png&quot; class&#x3D;&quot;lock&quot;/&gt;
+&lt;/section&gt;
+&lt;calculation-explanation *ngIf&#x3D;&quot;calculation_explanation_open&quot; (close)&#x3D;&quot;closeCalculationExplanationModal()&quot;&gt;&lt;/calculation-explanation&gt;
+&lt;objective *ngIf&#x3D;&quot;objective_modal_open&quot; [interview_id]&#x3D;&quot;financial_health.entrevista_id&quot; [objective]&#x3D;&quot;objective_to_edit&quot; (close)&#x3D;&quot;closeObjectiveModal($event)&quot;&gt;&lt;/objective&gt;
+&lt;printout *ngIf&#x3D;&quot;print_modal_open&quot; (close)&#x3D;&quot;closePrintModal()&quot;&gt;&lt;/printout&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>financial-health.style.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;app-colors&#x27;;
+section{
+  position: relative;
+  padding-top: 47px;
+  padding-bottom: 80px;
+  &amp;.space_around{
+    max-width: 848px;
+    margin: 0px auto;
+    display: block;
+  }
+  .financial_health_index{
+    display: flex;
+    justify-content: space-between;
+    &gt;.whiteBox{
+      width: calc(50% - 3px);
+      height: 350px;
+    }
+    .status{
+      padding-top: 34px;
+      .header{
+        display: flex;
+        justify-content: flex-start;
+        padding-left: 34px;
+        height: 23px;
+        img{
+          width: 26px;
+        }
+        p{
+          font-size: 20px;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: 23px;
+          letter-spacing: normal;
+          font-weight: 300;
+          color: $text-black;
+          margin-left: 18px;
+        }
+      }
+      .content{
+        margin-top: 10px;
+        padding: 0px 60px;
+        &amp;.healthy{
+          .score{
+            color: $primary-green;
+          }
+          .status_bar{
+            div{
+              background-color: $primary-green;
+            }
+          }
+        }
+        &amp;.unhealthy{
+          .score{
+            color: $unhealthy-yellow;
+          }
+          .status_bar{
+            div{
+              background-color: $unhealthy-yellow;
+            }
+          }
+        }
+        &amp;.dangerous{
+          .score{
+            color: $primary-red;
+          }
+          .status_bar{
+            div{
+              background-color: $primary-red;
+            }
+          }
+        }
+      }
+      .score{
+        font-size: 112px;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 131px;
+        letter-spacing: normal;
+        text-align: center;
+        font-weight: 100;
+      }
+      .status_bar{
+        margin-top: 6px;
+        width: 100%;
+        height: 3px;
+        background-color: $background-gray-status;
+        div{
+          height: 3px;
+          -webkit-transition: width 0.5s;
+          transition: width 0.5s;
+        }
+      }
+      .explanation{
+        margin-top: 20px;
+        padding: 0px 5px;
+        font-size: 14px;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: $text-gray;
+        font-weight: 400;
+      }
+      .calculated{
+        margin-top: 12px;
+        font-weight: 400;
+        font-style: normal;
+        font-stretch: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: $primary-red;
+        font-size: 14px;
+        cursor: pointer;
+        &amp;:hover{
+          text-decoration: underline;
+        }
+      }
+    }
+    .items{
+      display: flex;
+      justify-content: space-between;
+      padding: 34px 26px 0px 36px;
+      .item{
+        &amp;.healthy{
+          .bar{
+            .status_bar{
+              div{
+                background-color: $primary-green;
+              }
+            }
+          }
+          .score{
+            span{
+              color: $primary-green;
+            }
+          }
+        }
+        &amp;.unhealthy{
+          .bar{
+            .status_bar{
+              div{
+                background-color: $unhealthy-yellow;
+              }
+            }
+          }
+          .score{
+            span{
+              color: $unhealthy-yellow;
+            }
+          }
+        }
+        &amp;.dangerous{
+          .bar{
+            .status_bar{
+              div{
+                background-color: $primary-red;
+              }
+            }
+          }
+          .score{
+            span{
+              color: $primary-red;
+            }
+          }
+        }
+        .bar{
+          .image_container{
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            margin: 0px auto 0px auto;
+            width: 30px;
+            height: 30px;
+            img{
+              width: 100%;
+            }
+          }
+          .status_bar{
+            display: flex;
+            align-items: flex-end;
+            margin: 28px auto 0px auto;
+            width: 3px;
+            height: 168px;
+            background-color: $background-gray-status;
+            div{
+              width: 3px;
+            }
+          }
+          .name{
+            font-size: 13px;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: 15px;
+            letter-spacing: normal;
+            text-align: center;
+            color: $text-black;
+            margin-top: 16px;
+          }
+        }
+        .score{
+          margin-top: 9px;
+          font-size: 14px;
+          font-style: normal;
+          font-stretch: normal;
+          letter-spacing: normal;
+          color: $text-light-gray;
+          text-align: center;
+          span{
+            font-size: 24px;
+            margin-right: 3px;
+          }
+        }
+      }
+    }
+  }
+  .life_goals_and_needs{
+    margin-top: 5px;
+    padding: 26px 16px 16px 26px;
+    .title{
+      font-size: 24px;
+      font-style: normal;
+      font-stretch: normal;
+      font-stretch: normal;
+      letter-spacing: normal;
+      color: $text-black;
+      font-weight: 100;
+    }
+    .description{
+      font-size: 14px;
+      font-weight: 100;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: $text-gray;
+    }
+    .objectives_container{
+      margin-top: 50px;
+      /*When add button is comment*/
+      margin-bottom: 50px;
+      /**/
+      padding: 0px 40px;
+      .objective{
+        display: flex;
+        &amp;:nth-child(n + 2){
+          margin-top: 18px;
+        }
+        &amp;:not(:last-child){
+          border-bottom: 1px solid rgba(151,151,151,0.4);
+          padding-bottom: 16px;
+        }
+        .number{
+          border-radius: 100%;
+          background-color: $primary-green;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 36px;
+          height: 36px;
+          font-size: 24px;
+          line-height: 1;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          letter-spacing: normal;
+          color: $white;
+        }
+        .details{
+          margin-left: 20px;
+          width: calc(100% - 110px);
+          .name{
+            font-size: 16px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: $text-gray;
+            font-weight: 100;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+          .date_price{
+            margin-top: 4px;
+            font-size: 14px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: $text-light-gray;
+          }
+        }
+        .edit{
+          width: 18px;
+          height: 18px;
+          margin-top: 8px;
+          cursor: pointer;
+        }
+        .delete{
+          position: relative;
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          overflow: hidden;
+          margin-top: 8px;
+          margin-left: 18px;
+          cursor: pointer;
+          &amp;::before, &amp;::after {
+            content: &#x27;&#x27;;
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            left: 0;
+            margin-top: -1px;
+            background: $text-black;
+            height: 1px;
+          }
+          &amp;::before {
+            transform: rotate(45deg);
+          }
+          &amp;::after {
+            transform: rotate(-45deg);
+          }
+        }
+      }
+    }
+    .add_objective{
+      display: block;
+      margin: 40px 0px 0px auto;
+      border: none;
+      padding: 0px;
+      width: 140px;
+      height: 36px;
+      background-color: $primary-red;
+      color: $white;
+      font-size: 16px;
+      font-weight: 300;
+    }
+  }
+  .results{
+    margin-top: 5px;
+    padding: 26px 0px 80px 26px;
+    .title{
+      font-size: 24px;
+      font-style: normal;
+      font-stretch: normal;
+      font-stretch: normal;
+      letter-spacing: normal;
+      color: $text-black;
+      font-weight: 100;
+    }
+    .description{
+      display: flex;
+      flex-wrap: nowrap;
+      span, p{
+        margin-top: 8px;
+        font-size: 14px;
+        font-weight: 100;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: $text-gray;
+      }
+      span{
+        font-weight: 300;
+      }
+      p{
+        max-width: 80%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+    .recommendations_by_category{
+      margin-top: 50px;
+      padding: 0px 70px 0px 38px;
+      .row{
+        display: flex;
+        align-items: flex-start;
+        width: 100%;
+        &amp;:nth-child(n + 2){
+          margin-top: 60px;
+        }
+        .item{
+          display: flex;
+          width: calc(50% - 0.5px);
+          &amp;:nth-child(1){
+            .recomendations{
+              padding-right: 38px;
+            }
+          }
+          &amp;:nth-child(3){
+            padding-left: 47px;
+          }
+          .score{
+            position: relative;
+            width: 73px;
+            height: 71px;
+            img{
+              position: absolute;
+              width: 52px;
+              top: 0;
+              left: 0;
+            }
+            div{
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              position: absolute;
+              right: 0;
+              bottom: 0;
+              z-index: 2;
+              border-radius: 48px;
+              width: 48px;
+              height: 48px;
+              color: $white;
+              font-size: 24px;
+              line-height: 1;
+              font-weight: 400;
+              &amp;.healthy{
+                background-color: $primary-green;
+              }
+              &amp;.unhealthy{
+                background-color: $unhealthy-yellow
+              }
+              &amp;.dangerous{
+                background-color: $primary-red;
+              }
+            }
+          }
+          .recomendations{
+            width: calc(100% - 73px);
+            padding-left: 12px;
+            .recomendation_title{
+              font-size: 24px;
+              font-weight: 300;
+              color: $text-black;
+            }
+            .recomendations_list{
+              margin-top: 12px;
+              p{
+                font-size: 14px;
+                color: $text-gray;
+                font-weight: 300;
+              }
+            }
+          }
+        }
+        .separation{
+          height: 162px;
+          width: 1px;
+          background-color: $menu-gray;
+          opacity: 0.4;
+        }
+      }
+    }
+  }
+  .controls{
+    display: flex;
+    margin-top: 40px;
+    button, a{ 
+      border: none;
+      padding: 0px;
+      height: 48px;
+      background-color: $primary-red;
+      color: $white;
+      font-size: 16px;
+      font-weight: 300;
+      &amp;:nth-child(1){
+        width: 160px;
+      }
+      &amp;:nth-child(2){
+        width: 180px;
+      }
+      &amp;.to_rigth{
+        display: block;
+        margin: 0px 0px 0px auto;
+      }
+    }
+  }
+  .lock{
+    position: absolute;
+    bottom: 40px;
+    left: -52px;
+    width: 20px;
+  }
+}
+
+.btn-image {
+  background-color: $primary-red;
+  border: none;
+  background-position: center center;
+  width: 55px;
+  height: 40px;
+  margin-right: 5px;
+  &amp;:hover{
+    background-color: $hover-red
+  }
+}
+.btn-img-print{
+  background-image: url(/assets/images/print.svg);
+  background-repeat: no-repeat;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><section [ngClass]="{space_around: simple_view}">  <div class="financial_health_index">    <div class="whiteBox status">      <div class="header">        <img src="assets/images/heart.svg"/>        <p>Índice salud financiera</p>      </div>      <div class="content" [ngClass]="{\'healthy\': getRateNumber(financial_health.puntuacion) >= 7, \'unhealthy\': getRateNumber(financial_health.puntuacion) >= 5 && getRateNumber(financial_health.puntuacion) < 7, \'dangerous\': getRateNumber(financial_health.puntuacion) < 5}">        <p class="score">{{getRate(financial_health.puntuacion)}}</p>        <div class="status_bar">          <div [style.width.%]="getRateNumber(financial_health.puntuacion) * 10"></div>        </div>        <p class="explanation">Tu salud financiera es calculada a partir de toda la información que nos has facilitado y estableciendo una media entre cuatro tracks fundamentales.</p>        <p class="calculated" (click)="openCalculationExplanationModal()">¿Cómo se calcula?</p>      </div>    </div>    <div class="whiteBox items">        <div class="item" [ngClass]="{\'healthy\': financial_health.Gastos.num_puntuacion >= 7, \'unhealthy\': financial_health.Gastos.num_puntuacion >= 5 && financial_health.Gastos.num_puntuacion < 7, \'dangerous\': financial_health.Gastos.num_puntuacion < 5}">          <div class="bar">            <div class="image_container">              <img src="assets/images/gastos.svg"/>            </div>            <div class="status_bar">              <div [style.height.%]="financial_health.Gastos.num_puntuacion * 10"></div>            </div>            <p class="name">Gastos</p>          </div>          <p class="score"><span>{{financial_health.Gastos.num_puntuacion}}</span>/10</p>        </div>        <div class="item" [ngClass]="{\'healthy\': financial_health.Deuda.num_puntuacion >= 7, \'unhealthy\': financial_health.Deuda.num_puntuacion >= 5 && financial_health.Deuda.num_puntuacion < 7, \'dangerous\': financial_health.Deuda.num_puntuacion < 5}">          <div class="bar">            <div class="image_container">              <img src="assets/images/deuda.svg"/>            </div>            <div class="status_bar">              <div [style.height.%]="financial_health.Deuda.num_puntuacion * 10"></div>            </div>            <p class="name">Deuda</p>          </div>          <p class="score"><span>{{financial_health.Deuda.num_puntuacion}}</span>/10</p>        </div>        <div class="item" [ngClass]="{\'healthy\': financial_health.Ahorro.num_puntuacion >= 7, \'unhealthy\': financial_health.Ahorro.num_puntuacion >= 5 && financial_health.Ahorro.num_puntuacion < 7, \'dangerous\': financial_health.Ahorro.num_puntuacion < 5}">          <div class="bar">            <div class="image_container">              <img src="assets/images/ahorro.svg"/>            </div>            <div class="status_bar">              <div [style.height.%]="financial_health.Ahorro.num_puntuacion * 10"></div>            </div>            <p class="name">Ahorro</p>          </div>          <p class="score"><span>{{financial_health.Ahorro.num_puntuacion}}</span>/10</p>        </div>        <div class="item" [ngClass]="{\'healthy\': financial_health.Plan.num_puntuacion >= 7, \'unhealthy\': financial_health.Plan.num_puntuacion >= 5 && financial_health.Plan.num_puntuacion < 7, \'dangerous\': financial_health.Plan.num_puntuacion < 5}">          <div class="bar">            <div class="image_container">              <img src="assets/images/plan.svg"/>            </div>            <div class="status_bar">              <div [style.height.%]="financial_health.Plan.num_puntuacion * 10"></div>            </div>            <p class="name">Planificación</p>          </div>          <p class="score"><span>{{financial_health.Plan.num_puntuacion}}</span>/10</p>        </div>      </div>  </div>  <div class="life_goals_and_needs whiteBox">    <p class="title">Objetivos de vida y necesidades</p>    <p class="description">Estos son tus objetivos y sueños, así como los detalles que debes tener en cuenta para conseguirlos:</p>    <div class="objectives_container">      <div class="objective" *ngFor="let objective of objectives; let i = index">        <div class="number">{{ i + 1 }}</div>        <div class="details">          <p class="name">{{ objective.nombre }}</p>          <p class="date_price">{{ objective.fecha }}<span *ngIf="objective.valor">, ${{ objective.valor }}</span></p>        </div>        <img class="edit" src="assets/images/icon-edit.svg" (click)="editObjective(objective)"/>      </div>    </div>    <!--    <button class="add_objective" (click)="openObjectiveModal()">Añadir objetivo</button>    -->  </div>  <div class="results whiteBox">    <p class="title">Resultado de tu Financial Check-Up</p>    <div class="description"><p> {{name}} ({{getYearsOfAge()}} años) </p></div>    <div class="recommendations_by_category">      <div class="row">        <div class="item">          <div class="score">            <img src="assets/images/gastos.svg"/>            <div [ngClass]="{\'healthy\': financial_health.Gastos.num_puntuacion >= 7, \'unhealthy\': financial_health.Gastos.num_puntuacion >= 5 && financial_health.Gastos.num_puntuacion < 7, \'dangerous\': financial_health.Gastos.num_puntuacion < 5}">{{financial_health.Gastos.num_puntuacion}}</div>          </div>          <div class="recomendations">            <p class="recomendation_title">Gastos</p>            <div class="recomendations_list">              <div *ngFor="let recommendation of financial_health.Gastos.recomendaciones">                <p *ngFor="let bullet of recommendation.bullets">• {{bullet}}</p>              </div>            </div>          </div>        </div>        <div class="separation"></div>        <div class="item">          <div class="score">            <img src="assets/images/deuda.svg"/>            <div [ngClass]="{\'healthy\': financial_health.Deuda.num_puntuacion >= 7, \'unhealthy\': financial_health.Deuda.num_puntuacion >= 5 && financial_health.Deuda.num_puntuacion < 7, \'dangerous\': financial_health.Deuda.num_puntuacion < 5}">{{financial_health.Deuda.num_puntuacion}}</div>          </div>          <div class="recomendations">            <p class="recomendation_title">Deuda</p>            <div class="recomendations_list">              <div *ngFor="let recommendation of financial_health.Deuda.recomendaciones">                <p *ngFor="let bullet of recommendation.bullets">• {{bullet}}</p>              </div>            </div>          </div>        </div>      </div>      <div class="row">        <div class="item">          <div class="score">            <img src="assets/images/ahorro.svg"/>            <div [ngClass]="{\'healthy\': financial_health.Ahorro.num_puntuacion >= 7, \'unhealthy\': financial_health.Ahorro.num_puntuacion >= 5 && financial_health.Ahorro.num_puntuacion < 7, \'dangerous\': financial_health.Ahorro.num_puntuacion < 5}">{{financial_health.Ahorro.num_puntuacion}}</div>          </div>          <div class="recomendations">            <p class="recomendation_title">Ahorro</p>            <div class="recomendations_list">              <div *ngFor="let recommendation of financial_health.Ahorro.recomendaciones">                <p *ngFor="let bullet of recommendation.bullets">• {{bullet}}</p>              </div>            </div>          </div>        </div>        <div class="separation"></div>        <div class="item">          <div class="score">            <img src="assets/images/plan.svg"/>            <div [ngClass]="{\'healthy\': financial_health.Plan.num_puntuacion >= 7, \'unhealthy\': financial_health.Plan.num_puntuacion >= 5 && financial_health.Plan.num_puntuacion < 7, \'dangerous\': financial_health.Plan.num_puntuacion < 5}">{{financial_health.Plan.num_puntuacion}}</div>          </div>          <div class="recomendations">            <p class="recomendation_title">Planificación</p>            <div class="recomendations_list">              <div *ngFor="let recommendation of financial_health.Plan.recomendaciones">                <p *ngFor="let bullet of recommendation.bullets">• {{bullet}}</p>              </div>            </div>          </div>        </div>      </div>    </div>  </div>  <div class="controls">    <button *ngIf="!simple_view" (click)="openPrintModal()">Imprimir</button>    <button *ngIf="simple_view" class="to_rigth" (click)="goToProducts()">Ver productos</button>  </div>  <img src="assets/images/lock-sm.png" class="lock"/></section><calculation-explanation *ngIf="calculation_explanation_open" (close)="closeCalculationExplanationModal()"></calculation-explanation><objective *ngIf="objective_modal_open" [interview_id]="financial_health.entrevista_id" [objective]="objective_to_edit" (close)="closeObjectiveModal($event)"></objective><printout *ngIf="print_modal_open" (close)="closePrintModal()"></printout></div>'
+    var COMPONENTS = [{'name': 'AddNotesComponent', 'selector': 'add-notes'},{'name': 'AddObjectiveComponent', 'selector': 'add-objective'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CalculationExplanationComponent', 'selector': 'calculation-explanation'},{'name': 'ClientFileComponent', 'selector': 'client-file'},{'name': 'ClientFinancesComponent', 'selector': 'client-finances'},{'name': 'ClientHeaderComponent', 'selector': 'client-header'},{'name': 'ClientSearchComponent', 'selector': 'client-search'},{'name': 'DashboardComponent', 'selector': 'dashboard'},{'name': 'DropdownComponent', 'selector': 'dropdown'},{'name': 'EditClientInformationComponent', 'selector': 'edit-client-information'},{'name': 'FinancialHealthComponent', 'selector': 'financial-health'},{'name': 'GeneralClientInformationComponent', 'selector': 'general-client-information'},{'name': 'HomeComponent', 'selector': 'home'},{'name': 'InterviewComponent', 'selector': 'interview'},{'name': 'LoaderComponent', 'selector': 'loader'},{'name': 'NextCheckupComponent', 'selector': 'nextCheckup'},{'name': 'NotesAndAgreementsComponent', 'selector': 'notes-and-agreements'},{'name': 'ObjectiveComponent', 'selector': 'objective'},{'name': 'PrintoutComponent', 'selector': 'printout'},{'name': 'ProductDetailComponent', 'selector': 'product-detail'},{'name': 'ProductsComponent', 'selector': 'products'}];
+    var DIRECTIVES = [{'name': 'DateValidator', 'selector': '[DateValidator][formControlName],[DateValidator][formControl],[DateValidator][ngModel]'},{'name': 'EmailValidator', 'selector': '[EmailValidator][formControlName],[EmailValidator][formControl],[EmailValidator][ngModel]'},{'name': 'MaxValue', 'selector': '[maxValue]'},{'name': 'NoSpecialChars', 'selector': '[noSpecialChars]'},{'name': 'NotNumbersDirective', 'selector': '[noNumbers]'},{'name': 'RealEmailValidator', 'selector': '[RealEmailValidator][formControlName],[RealEmailValidator][formControl],[RealEmailValidator][ngModel]'}];
+    var ACTUAL_COMPONENT = {'name': 'FinancialHealthComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'FinancialHealthComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
