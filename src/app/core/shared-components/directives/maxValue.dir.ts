@@ -6,6 +6,7 @@ import { NgControl } from '@angular/forms';
 // Directive class
 export class MaxValue implements OnInit{
 	private el: HTMLInputElement;
+	private regex: RegExp = new RegExp(/^[A-Za-z]+$/);
 	@Input() maxValue: number;
 	@Input() applyMaxValue: boolean;
 
@@ -26,7 +27,7 @@ export class MaxValue implements OnInit{
 
 
 		this.control.valueChanges.subscribe(()  => {
-			// console.log('valueChanges', this.el.value);
+			console.log('valueChanges', this.el.value, this.maxValue, this.applyMaxValue);
 			if(!this.applyMaxValue) return;
 			let validNumber = this.textTransform(this.el.value); // opossite of transform(validNumber == 0 ? 0 : '');
 			let theValue = (validNumber.toString().length > 3) ? 
@@ -36,6 +37,29 @@ export class MaxValue implements OnInit{
 			this.control.control.setValue(theValue, {emitEvent: false});
 		});
     }
+
+    @HostListener('keydown', [ '$event' ])
+	onInput(event: KeyboardEvent) {
+		// Allow: Delete, Backspace, Tab, Escape, Enter
+		if (
+			[46, 8, 9, 27, 13].indexOf(event.keyCode) !== -1 || 
+			(event.keyCode === 65 && event.ctrlKey === true) || // Allow: Ctrl+A
+			(event.keyCode === 67 && event.ctrlKey === true) || // Allow: Ctrl+C
+			(event.keyCode === 86 && event.ctrlKey === true) || // Allow: Ctrl+V
+			(event.keyCode === 88 && event.ctrlKey === true) || // Allow: Ctrl+X
+			(event.keyCode === 65 && event.metaKey === true) || // Cmd+A (Mac)
+			(event.keyCode === 67 && event.metaKey === true) || // Cmd+C (Mac)
+			(event.keyCode === 86 && event.metaKey === true) || // Cmd+V (Mac)
+			(event.keyCode === 88 && event.metaKey === true) || // Cmd+X (Mac)
+			(event.keyCode >= 35 && event.keyCode <= 39) // Home, End, Left, Right
+			) {
+			return;  // let it happen, don't do anything
+		}
+
+		if ((event.shiftKey || (event.keyCode < 48 || event.keyCode > 57)) && (event.keyCode < 96 || event.keyCode > 105)) {
+			event.preventDefault();
+		}
+	}
 
 	textTransform(txt){
 		// console.log('textTransform', txt);

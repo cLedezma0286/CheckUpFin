@@ -484,7 +484,10 @@ export class InterviewComponent implements OnInit , OnDestroy{
   }
 
   selectOptionByClick(question_id, option){
-    this.setActiveQuestion(question_id, option, true);
+    let actual_question = this.getActualQuestion(),
+        actualQID = actual_question.num_pregunta_id;
+
+    (actualQID === question_id) ? this.setActiveQuestion(question_id, option, true) : this.setActiveQuestion(question_id, option);
     this.setActualOptionAsSelected();
   }
   
@@ -1071,8 +1074,8 @@ export class InterviewComponent implements OnInit , OnDestroy{
           des_preg_ref: question_45_aux.block_questions[1].des_preg_ref,
           des_prev_preg: null,
           des_sig_preg: null,
-          max: question_45_aux.block_questions[1].max,
-          max_val: question_45_aux.block_questions[1].max_val,
+          max: 12,
+          max_val: 999999999999,
           des_texto: '',
           num_pregunta_id: null,
           tipo_fecha: question_45_aux.block_questions[1].tipo_fecha
