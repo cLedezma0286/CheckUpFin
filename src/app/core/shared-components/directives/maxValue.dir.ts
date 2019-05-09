@@ -56,8 +56,12 @@ export class MaxValue implements OnInit{
 			return;  // let it happen, don't do anything
 		}
 
-		if ((event.shiftKey || (event.keyCode < 48 || event.keyCode > 57)) && (event.keyCode < 96 || event.keyCode > 105)) {
-			event.preventDefault();
+		if(this.applyMaxValue) {
+
+			if ((event.shiftKey || (event.keyCode < 48 || event.keyCode > 57)) && (event.keyCode < 96 || event.keyCode > 105)) {
+				event.preventDefault();
+			}
+			
 		}
 	}
 
