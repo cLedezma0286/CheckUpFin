@@ -34,8 +34,7 @@ export class AddNotesComponent implements OnInit{
   }
 
   /**
-   * Función que captura eventos de tecleo de la flecha de abajo
-   * En caso de que el cliente teclee la f
+   * Función que escucha lo eventos de teclear
    */
   @HostListener('document:keyup', ['$event'])
   downShortcut(event: KeyboardEvent) {

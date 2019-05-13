@@ -78,7 +78,6 @@ export class FinancialHealthComponent implements OnInit{
     }, 10);
   }
 
-
   /**
    * Función para obtener una cadena de una fecha en formato dd/mm/aaaa
    * @param cadena con una fecha en formato aaaa-mm-ddd

@@ -28,6 +28,7 @@ export class AddObjectiveComponent implements OnInit{
   ngOnInit(){
     this['question_0'].nativeElement.focus();
   }
+<<<<<<< HEAD
 
   
   /**
@@ -54,7 +55,6 @@ export class AddObjectiveComponent implements OnInit{
       this.setActualOptionAsSelected();
     }
   }
-
   /**
    * Función que establece la pregunta activa
    * @params question_number número de la pregunta a poner como activa
@@ -133,7 +133,7 @@ export class AddObjectiveComponent implements OnInit{
     }
 
   }
-
+  
   /**
    * Función que obtiene el nombre de la pregunta actual
    * @return cadena con el nombre de la pregunta activa

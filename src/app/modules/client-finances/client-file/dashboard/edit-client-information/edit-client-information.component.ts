@@ -17,6 +17,7 @@ export class EditClientInformationComponent implements OnInit{
    * Variable que se utiliza para avisar al componente padre que se debe borrar este componente
    */
   @Output() close_edit_section: EventEmitter<any> = new EventEmitter<any>();
+
   /**
    * Variable que se utiliza para mostrar el nombre del cliente
    */

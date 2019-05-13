@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit{
    * @param {HeaderService} headerService Servicio que provee interacción entre componentes con el header, además de solicitudes http de información del header
    */
   constructor(public headerService: HeaderService, private router: Router, private clientsService: ClientsService){}
+
   /**
    * Al iniciar el componente se establece el subtitulo que aparece en el header
    */
@@ -40,7 +41,6 @@ export class DashboardComponent implements OnInit{
   getClientInformation(): Client {
     return this.client_information;
   }
-
 
   /**
    * Función que establece la sección activa del dashboard
