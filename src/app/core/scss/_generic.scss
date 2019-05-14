@@ -59,6 +59,11 @@ input[type=number]::-webkit-outer-spin-button {
 input[type=number] {
   -moz-appearance:textfield;
 }
+
+input::-ms-clear {
+    display: none;
+}
+
 .hidden{
   display: none !important;
 }
